@@ -14,5 +14,13 @@ describe('StringWriter', function () {
 
 			assert.equal(namer.getApprovedFile("png"), "C:\\temp\\foo.js.approved.png");
 		})
+
+		it('should clean up not normalized input', function () {
+			var pathWithoutTrailingSlash = "C:\\temp\\";
+			var fileName = "foo.js.";
+			var namer = new Namer(pathWithoutTrailingSlash, fileName);
+
+			assert.equal(namer.getReceivedFile(".txt"), "C:\\temp\\foo.js.received.txt");
+		})
 	})
 })
