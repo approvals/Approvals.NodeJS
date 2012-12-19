@@ -1,0 +1,5 @@
+*.swp
+*~
+
+# WebMatrix automatically adds this Robots.txt file (booo)
+Robots.txt
