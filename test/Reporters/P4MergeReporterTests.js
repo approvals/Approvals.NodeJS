@@ -7,8 +7,8 @@ describe('Reporter', function () {
 
 			var reporter = new P4MergeReporter();
 
-			var receivedFile = __dirname + "\\a.txt";
-			var approvedFile = __dirname + "\\b.txt";
+			var approvedFile = __dirname + "\\a.txt";
+			var receivedFile = __dirname + "\\b.txt";
 
 			reporter.report(approvedFile, receivedFile, function (command, args) {
 				assert.equal(command, "C:\\Program Files\\Perforce\\p4merge.exe");

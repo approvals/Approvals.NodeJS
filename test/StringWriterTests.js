@@ -14,12 +14,12 @@ describe('StringWriter', function () {
 	describe('', function () {
 		it('should default to type of txt', function () {
 			var stringWriter = new StringWriter("HELLO");
-			assert.equal(stringWriter.getType(), "txt");
+			assert.equal(stringWriter.getFileExtension(), "txt");
 		})
 
 		it('should allow type to be specified', function () {
 			var stringWriter = new StringWriter("HELLO", "html");
-			assert.equal(stringWriter.getType(), "html");
+			assert.equal(stringWriter.getFileExtension(), "html");
 		})
 
 		it('should write out file', function (done) {
