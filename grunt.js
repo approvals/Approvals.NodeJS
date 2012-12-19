@@ -18,20 +18,25 @@ module.exports = function (grunt) {
 		},
 		jshint: {
 			options: {
-				curly: true,
-				eqeqeq: true,
-				immed: true,
-				latedef: true,
-				newcap: true,
-				noarg: true,
-				sub: true,
-				undef: true,
-				boss: true,
-				eqnull: true,
-				node: true
+				"es5": true,
+				"boss": true,
+				"node": true,
+				"strict": false, // TODO: Research
+				"white": true,
+				"smarttabs": true,
+				"maxlen": 100,
+				"newcap": false,
+				"undef": true,
+				"unused": true,
+				"onecase": true,
+				"indent": 2
 			},
 			globals: {
-				exports: true
+				exports: true,
+
+				//// mocha globals
+				describe: false,
+				it: true
 			}
 		},
 		mochaTest: {

@@ -13,7 +13,7 @@ describe('Namer', function () {
 			assert.equal(namer.getReceivedFile("txt"), "C:\\temp\\foo.js.received.txt");
 
 			assert.equal(namer.getApprovedFile("png"), "C:\\temp\\foo.js.approved.png");
-		})
+		});
 
 		it('should clean up not normalized input', function () {
 			var pathWithoutTrailingSlash = "C:\\temp\\";
@@ -21,6 +21,6 @@ describe('Namer', function () {
 			var namer = new Namer(pathWithoutTrailingSlash, fileName);
 
 			assert.equal(namer.getReceivedFile(".txt"), "C:\\temp\\foo.js.received.txt");
-		})
-	})
-})
+		});
+	});
+});

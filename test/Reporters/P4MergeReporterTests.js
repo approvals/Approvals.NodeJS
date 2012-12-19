@@ -14,7 +14,7 @@ describe('Reporter', function () {
 				assert.equal(command, "C:\\Program Files\\Perforce\\p4merge.exe");
 				assert.deepEqual(args, [receivedFile, approvedFile]);
 			});
-		})
+		});
 
-	})
-})
+	});
+});

@@ -1,4 +1,4 @@
-var assert = require("assert");
+'use strict';
 var Namer = require("../lib/Namer.js");
 var StringWriter = require("../lib/StringWriter.js");
 var P4MergeReporter = require("../lib/Reporters/P4MergeReporter.js");
@@ -19,6 +19,6 @@ describe('FileApprover', function () {
 
 			FileApprover.verify(namer, writer, reporter);
 
-		})
-	})
-})
+		});
+	});
+});
