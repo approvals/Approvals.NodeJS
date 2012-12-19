@@ -12,7 +12,7 @@ describe('Reporter', function () {
 
 			reporter.report(approvedFile, receivedFile, function (command, args) {
 				assert.equal(command, "C:\\Program Files\\Perforce\\p4merge.exe");
-				assert.deepEqual(args, [ approvedFile, receivedFile ]);
+				assert.deepEqual(args, [receivedFile, approvedFile]);
 			});
 		})
 

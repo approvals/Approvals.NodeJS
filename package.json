@@ -1,0 +1,34 @@
+{
+  "name": "Approvals",
+  "description": "Approval Tests Library - Capturing Human Intelligence",
+  "version": "0.1.0",
+  "homepage": "http://approvaltests.sourceforge.net/",
+  "contributors": [
+    {"name": "Llewellyn Falco"},
+    {"name": "Jason Jarrett (http://staxmanade.blogspot.com)"}
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/approvals/Approvals.NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/approvals/Approvals.NodeJS/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
+    }
+  ],
+  "main": "lib/Approvals",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": []
+}

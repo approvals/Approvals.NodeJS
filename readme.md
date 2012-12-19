@@ -1,10 +1,27 @@
-[Approvals](https://github.com/approvals) - Capturing Human Intelligence
-==================================================
+# Approvals
 
+Approval Tests Library - Capturing Human Intelligence
 
-Contribution Guides
---------------------------------------
-The project is fairly new and not created by node experts, so fork it and then we can discuss in a PR.
+## Getting Started
+Install the module with: `npm install Approvals`
 
-Run the Tests
---------------------------------------
+```javascript
+var Approvals = require('Approvals');
+Approvals.awesome(); // "awesome"
+```
+
+## Documentation
+_(Coming soon)_
+
+## Examples
+_(Coming soon)_
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
+
+## Release History
+_(Nothing yet)_
+
+## License
+Copyright (c) 2012 Llewellyn Falco, Jason Jarrett  
+Licensed under the Apache license.
