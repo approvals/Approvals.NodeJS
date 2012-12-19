@@ -2,7 +2,7 @@ var assert = require("assert");
 var Namer = require("../lib/Namer.js");
 
 
-describe('StringWriter', function () {
+describe('Namer', function () {
 
 	describe('getReceivedFile & approvedFile', function () {
 		it('should format a path that has no trailing separator', function () {
