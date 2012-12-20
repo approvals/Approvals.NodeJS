@@ -1,7 +1,8 @@
 module.exports = function (grunt) {
 
 	// Add our custom tasks.
-	grunt.loadNpmTasks('grunt-mocha-test');
+	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -39,11 +40,9 @@ module.exports = function (grunt) {
 				it: true
 			}
 		},
-		//mochaTest: {
-		//	normal: ['test/**/*[Tt]ests.js']
 		simplemocha: {
 			dev: {
-				src: "test/test.js",
+				src: ['test/**/*[Tt]ests.js'],
 				options: {
 					reporter: 'spec',
 					slow: 200,
@@ -51,13 +50,6 @@ module.exports = function (grunt) {
 				}
 			}
 		}
-		//,
-		//watch: {
-		//	all: {
-		//		files: ['src/*', 'test/*.coffee'],
-		//		tasks: ['buildDev', 'buildTest', 'test']
-		//	}
-		//}
 	});
 
 	// Default task.

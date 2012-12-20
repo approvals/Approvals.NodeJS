@@ -4,8 +4,12 @@
   "version": "0.1.0",
   "homepage": "http://approvaltests.sourceforge.net/",
   "contributors": [
-    {"name": "Llewellyn Falco"},
-    {"name": "Jason Jarrett (http://staxmanade.blogspot.com)"}
+    {
+      "name": "Llewellyn Falco"
+    },
+    {
+      "name": "Jason Jarrett (http://staxmanade.blogspot.com)"
+    }
   ],
   "repository": {
     "type": "git",
@@ -28,11 +32,13 @@
     "test": "grunt test"
   },
   "dependencies": {
-	"file-utils": ">= 0.3.0"
+    "file-utils": ">= 0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.3.17",
-	"grunt-contrib-watch": ">= 0.1.4"
+    "grunt-contrib-watch": ">= 0.1.4",
+    "grunt-simple-mocha": "~0.2.0",
+    "mocha": "~1.7.4"
   },
   "keywords": []
 }
