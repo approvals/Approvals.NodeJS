@@ -56,6 +56,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('test', 'simplemocha:dev');
 
 	// Default task.
-	grunt.registerTask('default', 'lint test');
+	grunt.registerTask('default', 'test lint');
 
 };
