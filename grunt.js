@@ -49,6 +49,12 @@ module.exports = function (grunt) {
 					timeout: 1000
 				}
 			}
+		},
+		watch: {
+			all: {
+				files: ['lib/*', 'test/*.js'],
+				tasks: ['test']
+			}
 		}
 	});
 
