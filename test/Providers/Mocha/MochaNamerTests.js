@@ -16,11 +16,11 @@ describe('MochaNamer', function () {
 			var receivedFileName = namer.getReceivedFile();
 
 			assert.equal(approvedFileName,
-				"C:\\temp\\foo.js" + 
-				".MochaNamer.when_given_a_mocha_context.should_generate_correct_name.approved.txt");
+				"C:\\temp\\" + 
+				"MochaNamer.when_given_a_mocha_context.should_generate_correct_name.approved.txt");
 			assert.equal(receivedFileName,
-				"C:\\temp\\foo.js" + 
-				".MochaNamer.when_given_a_mocha_context.should_generate_correct_name.received.txt");
+				"C:\\temp\\" + 
+				"MochaNamer.when_given_a_mocha_context.should_generate_correct_name.received.txt");
 		});
 	});
 });
