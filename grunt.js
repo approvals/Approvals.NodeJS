@@ -39,26 +39,29 @@ module.exports = function (grunt) {
 				it: true
 			}
 		},
-		mochaTest: {
-			normal: ['test/**/*[Tt]ests.js']
-			//, withTimeout: ['test-timeout/**/*.test.js']
-		},
-		mochaTestConfig: {
-			normal: {
+		//mochaTest: {
+		//	normal: ['test/**/*[Tt]ests.js']
+		simplemocha: {
+			dev: {
+				src: "test/test.js",
 				options: {
-					reporter: 'nyan'
-				}
-			},
-			withTimeout: {
-				options: {
-					reporter: 'nyan',
+					reporter: 'spec',
+					slow: 200,
 					timeout: 1000
 				}
 			}
 		}
+		//,
+		//watch: {
+		//	all: {
+		//		files: ['src/*', 'test/*.coffee'],
+		//		tasks: ['buildDev', 'buildTest', 'test']
+		//	}
+		//}
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'lint test');
+	grunt.registerTask('default', 'lint simplemocha');
 
+	grunt.registerTask('test', 'simplemocha:dev');
 };

@@ -27,8 +27,12 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+	"file-utils": ">= 0.3.0"
+  },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+	"grunt-contrib-watch": ">= 0.1.4"
   },
   "keywords": []
 }
