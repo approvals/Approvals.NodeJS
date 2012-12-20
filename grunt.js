@@ -8,7 +8,8 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: '<json:package.json>',
 		test: {
-			files: ['test/**/*.js']
+			files: ['test/**/*.js'],
+			tasks: "simplemocha:dev"
 		},
 		lint: {
 			files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
@@ -49,17 +50,12 @@ module.exports = function (grunt) {
 					timeout: 1000
 				}
 			}
-		},
-		watch: {
-			all: {
-				files: ['lib/*', 'test/*.js'],
-				tasks: ['test']
-			}
 		}
 	});
 
-	// Default task.
-	grunt.registerTask('default', 'lint simplemocha');
-
 	grunt.registerTask('test', 'simplemocha:dev');
+
+	// Default task.
+	grunt.registerTask('default', 'lint test');
+
 };
