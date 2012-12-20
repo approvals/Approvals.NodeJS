@@ -1,14 +1,19 @@
-require("../lib/Approvals.Mocha");
+
+// run this test by calling
+// > mocha .\examples\sample.Mocha.js
 
 
-var assert = require("assert")
+// Places a 'verify(...)' method on the Mocha context var 'this'.
+require("../lib/Providers/Mocha/Approvals.Mocha");
 
-describe('Array', function () {
-	describe('#indexOf()', function () {
-		it('should return -1 when the value is not present', function () {
+describe('With a Mocha describe', function () {
+	describe('And a Mocha sub-describe', function () {
+		it('should be able to use Approvals', function () {
 
 			var data = "Hello World!";
+
+			// Call the Approvals verify with our data.
 			this.verify(data);
-		})
-	})
-})
+		});
+	});
+});
