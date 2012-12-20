@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 				"strict": false, // TODO: Research
 				"white": true,
 				"smarttabs": true,
-				"maxlen": 100,
+				"maxlen": 150,
 				"newcap": false,
 				"undef": true,
 				"unused": true,

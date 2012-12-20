@@ -4,7 +4,7 @@
 
 
 // Places a 'verify(...)' method on the Mocha context var 'this'.
-require("../lib/Providers/Mocha/Approvals.Mocha");
+require("../lib/Providers/Mocha/Approvals.Mocha")(arguments);
 
 describe('With a Mocha describe', function () {
 	describe('And a Mocha sub-describe', function () {
