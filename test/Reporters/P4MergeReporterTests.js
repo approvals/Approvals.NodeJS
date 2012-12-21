@@ -1,11 +1,11 @@
 var assert = require("assert");
-var P4MergeReporter = require("../../lib/Reporters/P4MergeReporter.js");
+var ReporterUnderTest = require("../../lib/Reporters/P4MergeReporter.js");
 
 describe('Reporter', function () {
 	describe('p4merge', function () {
-		it('should use p4merge to report', function () {
+		it('reporter args are correct', function () {
 
-			var reporter = new P4MergeReporter();
+			var reporter = new ReporterUnderTest();
 
 			var approvedFile = __dirname + "\\a.txt";
 			var receivedFile = __dirname + "\\b.txt";
@@ -14,7 +14,7 @@ describe('Reporter', function () {
 				assert.equal(command, "C:\\Program Files\\Perforce\\p4merge.exe");
 				assert.deepEqual(args, [receivedFile, approvedFile]);
 			});
-		});
 
+		});
 	});
 });

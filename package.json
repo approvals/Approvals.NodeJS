@@ -32,7 +32,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "file-utils": ">= 0.3.0"
+    "file-utils": ">= 0.3.0",
+    "underscore": "~1.4.3"
   },
   "devDependencies": {
     "grunt": "~0.3.17",
