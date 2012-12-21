@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "file-utils": ">= 0.3.0",
-    "underscore": "~1.4.3"
+    "underscore": "~1.4.3",
+    "shelljs": "0.0.9"
   },
   "devDependencies": {
     "grunt": "~0.3.17",

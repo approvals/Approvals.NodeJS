@@ -12,9 +12,11 @@ describe('Reporter', function () {
 			var approved = __dirname + "\\a.txt";
 			var received = __dirname + "\\b.txt";
 
-			reporter.report(approved, received, function (command, args) {
-				assert.equal(command, "git");
-				assert.deepEqual(args, ["diff", "--no-index", "--", received, approved]);
+			var expectedCommand = "git diff --no-index -- " + received + " " + approved;
+
+			reporter.report(approved, received, function (command) {
+				assert.equal(command, expectedCommand);
+				return {};
 			});
 		});
 
