@@ -1,10 +1,4 @@
-
-// run this test by calling
-// > mocha .\examples\sample.Mocha.js
-
-
-// Places a 'verify(...)' method on the Mocha context var 'this'.
-require("../lib/Providers/Mocha/Approvals.Mocha")(arguments);
+require('Approvals').mocha(__dirname);
 
 describe('With a Mocha describe', function () {
 	describe('And a Mocha sub-describe', function () {
@@ -13,7 +7,7 @@ describe('With a Mocha describe', function () {
 			var data = "Hello World!";
 
 			// Call the Approvals verify with our data.
-			this.verify(data);
+ 			this.verify(data);
 		});
 	});
 });
