@@ -5,17 +5,22 @@ Approval Tests Library - Capturing Human Intelligence
 ## Getting Started
 ~~Install the module with: `npm install Approvals`~~ (Well not yet - when we get a version ready :))
 
-```javascript
-var Approvals = require('Approvals');
-var data = "Hello World!";
-Approvals.verify(data); // "awesome"
-```
-
 ## Documentation
-_(Coming soon)_
+
+[Approvals Github Wiki!](https://github.com/approvals/Approvals.NodeJS/wiki)
 
 ## Examples
-_(Coming soon)_
+
+#### Mocha
+```javascript
+require('Approvals').mocha(__dirname);
+describe('And a Mocha sub-describe', function () {
+	it('should be able to use Approvals', function () {
+		var data = "Hello World!";
+		this.verify(data);
+	});
+});
+```
 
 ## Contributing
 
