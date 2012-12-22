@@ -12,10 +12,13 @@ describe('Reporter', function () {
 			var approved = __dirname + "\\a.txt";
 			var received = __dirname + "\\b.txt";
 
-			var expectedCommand = "git diff --no-index -- " + received + " " + approved;
+			var expectedCommand = "C:/Program Files/Git/cmd/git.exe diff --no-index -- " + received + " " + approved;
 
 			reporter.report(approved, received, function (command) {
-				assert.equal(command, expectedCommand);
+
+				var pathTrimmedCommand = command.replace(" (x86)", "");
+
+				assert.equal(pathTrimmedCommand, expectedCommand);
 				return {};
 			});
 		});
