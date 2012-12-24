@@ -3,8 +3,8 @@ var assert = require("assert");
 
 describe('ReporterFactory', function () {
 
-	var textDiffReporters = ['gitdiff', 'p4merge'];
-	var allAvailableDiffReporters = ['gitdiff', 'p4merge'];
+	var textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
+	var allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
 
 	it('Should load specific reporters', function () {
 		allAvailableDiffReporters.forEach(function (differ) {

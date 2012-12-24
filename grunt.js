@@ -38,7 +38,8 @@ module.exports = function (grunt) {
 
 				//// mocha globals
 				describe: false,
-				it: true
+				it: true,
+				before: false
 			}
 		},
 		simplemocha: {
