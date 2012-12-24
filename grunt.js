@@ -50,11 +50,21 @@ module.exports = function (grunt) {
 					slow: 200,
 					timeout: 1000
 				}
+			},
+			explicit:{
+				src: ['test/**/*.Explicit.js'],
+				options: {
+					slow: 200,
+					timeout: 1000
+				}
 			}
 		}
 	});
 
 	grunt.registerTask('test', 'simplemocha:dev');
+
+	grunt.registerTask('testExplicit', 'simplemocha:explicit');
+	
 
 	// Default task.
 	grunt.registerTask('default', 'test lint');
