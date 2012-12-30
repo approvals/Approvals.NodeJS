@@ -11,7 +11,7 @@ describe('Reporter', function () {
 			var receivedFile = __dirname + "/b.txt";
 
 			reporter.report(approvedFile, receivedFile, function (command, args) {
-				assert.equal(command, "C:/program files/Perforce/p4merge.exe");
+				assert.equal(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
 				assert.deepEqual(args, [receivedFile, approvedFile]);
 			});
 

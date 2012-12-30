@@ -51,7 +51,7 @@ module.exports = function (grunt) {
 					timeout: 1000
 				}
 			},
-			explicit:{
+			explicit: {
 				src: ['test/**/*.Explicit.js'],
 				options: {
 					slow: 200,
