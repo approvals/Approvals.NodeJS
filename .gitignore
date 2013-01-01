@@ -4,6 +4,8 @@
 # WebMatrix automatically adds this Robots.txt file (booo)
 Robots.txt
 
+# WebMatrix throws this in there sometimes
+web.config
 
 lib-cov
 *.seed
@@ -24,3 +26,4 @@ npm-debug.log
 *.received.*
 
 node_modules
+
