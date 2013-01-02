@@ -31,7 +31,7 @@ describe('StringWriter', function () {
 			};
 
 			File.createTempFile(settings, function (error, file) {
-if(error) throw error;
+				if (error) throw error;
 				var filePath = file.getPath();
 
 				stringWriter.write(filePath);

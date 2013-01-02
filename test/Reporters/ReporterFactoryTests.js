@@ -4,9 +4,9 @@ var path = require("path");
 
 describe('ReporterFactory', function () {
 
-	var  textDiffReporters, allAvailableDiffReporters;
+	var textDiffReporters, allAvailableDiffReporters;
 
-	if(process.platform.indexOf('win') !== -1) {
+	if (process.platform.indexOf('win') !== -1) {
 		textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
 		allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
 	}

@@ -4,7 +4,7 @@ var assert = require("assert");
 describe('AUtils', function () {
 
 	// only run these tests on Windows
-	if(process.platform.indexOf('win') !== -1){
+	if (process.platform.indexOf('win') !== -1) {
 
 		describe('findWindowsExecutable', function () {
 			describe("when using windows where.exe to find programs", function () {
