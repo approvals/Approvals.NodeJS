@@ -13,7 +13,7 @@ Approval Tests Library - Capturing Human Intelligence
 
 #### Mocha
 ```javascript
-require('Approvals').mocha(__dirname);
+require('approvals').mocha(__dirname);
 describe('And a Mocha sub-describe', function () {
 	it('should be able to use Approvals', function () {
 		var data = "Hello World!";

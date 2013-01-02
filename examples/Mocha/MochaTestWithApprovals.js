@@ -1,4 +1,4 @@
-require('Approvals').mocha(__dirname);
+require('approvals').mocha(__dirname);
 
 describe('With a Mocha describe', function () {
 	describe('And a Mocha sub-describe', function () {
