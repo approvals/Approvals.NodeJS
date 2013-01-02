@@ -2,8 +2,8 @@
 
 Approval Tests Library - Capturing Human Intelligence
 
-## Getting Started
-~~Install the module with: `npm install Approvals`~~ (Well not yet - when we get a version ready :))
+## Getting Approvals
+    npm install approvals
 
 ## Documentation
 
