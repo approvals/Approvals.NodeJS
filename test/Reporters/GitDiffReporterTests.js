@@ -1,7 +1,7 @@
 //git diff --no-index -- test\Reporters\a.txt test\Reporters\b.txt
 
 var assert = require("assert");
-var ReporterUnderTest = require("../../lib/Reporters/GitDiffReporter.js");
+var ReporterUnderTest = require("../../lib/Reporters/gitdiffReporter.js");
 
 describe('Reporter', function () {
 	describe('git diff', function () {

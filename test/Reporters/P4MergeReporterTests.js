@@ -1,5 +1,5 @@
 var assert = require("assert");
-var ReporterUnderTest = require("../../lib/Reporters/P4MergeReporter.js");
+var ReporterUnderTest = require("../../lib/Reporters/p4mergeReporter.js");
 
 describe('Reporter', function () {
 	describe('p4merge', function () {

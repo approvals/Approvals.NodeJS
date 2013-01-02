@@ -27,10 +27,11 @@ describe('StringWriter', function () {
 			var settings = {
 				prefix: "foo",
 				suffix: "bar",
-				directory: "."
+				directory: __dirname
 			};
 
 			File.createTempFile(settings, function (error, file) {
+if(error) throw error;
 				var filePath = file.getPath();
 
 				stringWriter.write(filePath);

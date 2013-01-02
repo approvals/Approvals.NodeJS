@@ -1,7 +1,7 @@
 'use strict';
 var Namer = require("../lib/Namer.js");
 var StringWriter = require("../lib/StringWriter.js");
-var P4MergeReporter = require("../lib/Reporters/P4MergeReporter.js");
+var P4MergeReporter = require("../lib/Reporters/p4mergeReporter.js");
 var FileApprover = require("../lib/FileApprover.js");
 
 

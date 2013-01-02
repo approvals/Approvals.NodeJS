@@ -1,52 +1,50 @@
 var utils = require("../lib/AUtils.js");
 var assert = require("assert");
 
-
 describe('AUtils', function () {
-	describe('findProgramOnPath', function () {
-		describe("when using windows where.exe to find programs", function () {
-			it('ipconfig should be found once', function () {
 
-				var ipconfigFIlePath = utils.findProgramOnPath("ipconfig");
+	// only run these tests on Windows
+	if(process.platform.indexOf('win') !== -1){
 
-				utils.assertFileExists(ipconfigFIlePath);
+		describe('findWindowsExecutable', function () {
+			describe("when using windows where.exe to find programs", function () {
+				it('ipconfig should be found once', function () {
+
+					var file = utils.findWindowsExecutable("ipconfig");
+
+					utils.assertFileExists(file);
+				});
+
+				it('notepad is found multiple times and we should just use the first one', function () {
+
+					var file = utils.findWindowsExecutable("ipconfig");
+
+					utils.assertFileExists(file);
+				});
 			});
 
-			it('notepad is found multiple times and we should just use the first one', function () {
+			describe("When lookign for a program in program files", function () {
+				it("should find iexplorer", function () {
 
-				var ipconfigFIlePath = utils.findProgramOnPath("ipconfig");
+					var file = utils.findWindowsExecutable("Internet Explorer", "iexplore");
 
-				utils.assertFileExists(ipconfigFIlePath);
-			});
-		});
-	});
-
-	describe('findWindowsExecutable', function () {
-		describe("when using windows where.exe to find programs", function () {
-			it('ipconfig should be found once', function () {
-
-				var file = utils.findWindowsExecutable("ipconfig");
-
-				utils.assertFileExists(file);
-			});
-
-			it('notepad is found multiple times and we should just use the first one', function () {
-
-				var file = utils.findWindowsExecutable("ipconfig");
-
-				utils.assertFileExists(file);
+					utils.assertFileExists(file);
+				});
 			});
 		});
+	}
+	else {
+		describe('find linux executable', function () {
+			describe("when using linux 'which' to find programs", function () {
+				it('ifconfig should be found once', function () {
 
-		describe("When lookign for a program in program files", function () {
-			it("should find iexplorer", function () {
+					var file = utils.findWindowsExecutable("ifconfig");
 
-				var file = utils.findWindowsExecutable("Internet Explorer", "iexplore");
-
-				utils.assertFileExists(file);
+					utils.assertFileExists(file);
+				});
 			});
 		});
-	});
+	}
 
 	describe('fixFilePathSlashes', function () {
 		it("should replace back slashes with forward slashes", function () {
