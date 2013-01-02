@@ -16,7 +16,7 @@ describe('Reporter', function () {
 			var expectedCommand;
 
 			if(process.platform.indexOf("win") !== -1) {
-				expectedCommand = "'C:/Program Files/Git/cmd/git.exe'";
+				expectedCommand = "'C:/Program Files/Git/cmd/git.cmd'";
 			}
 			else {
 				expectedCommand = "'/usr/bin/git'";
