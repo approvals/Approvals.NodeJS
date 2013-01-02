@@ -22,6 +22,14 @@ describe('And a Mocha sub-describe', function () {
 });
 ```
 
+#### Others?
+
+- TODO:
+    - Jasime
+    - Vows
+
+Can you think any other testing frameworks should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
+
 ## Contributing
 
 ### Getting started.
