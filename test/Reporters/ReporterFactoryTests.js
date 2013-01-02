@@ -1,10 +1,19 @@
 var ReporterFactory = require("../../lib/Reporters/ReporterFactory.js");
 var assert = require("assert");
+var path = require("path");
 
 describe('ReporterFactory', function () {
 
-	var textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
-	var allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
+	var  textDiffReporters, allAvailableDiffReporters;
+
+	if(process.platform.indexOf('win') !== -1) {
+		textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
+		allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
+	}
+	else {
+		textDiffReporters = ['DoNothing', 'gitdiff'];
+		allAvailableDiffReporters = ['DoNothing', 'gitdiff'];
+	}
 
 	it('Should load specific reporters', function () {
 		allAvailableDiffReporters.forEach(function (differ) {
@@ -36,7 +45,7 @@ describe('ReporterFactory', function () {
 
 			assert.ok(reporter.canReportOn, "Reporter missing 'canReportOn' function for reporter [" + reporter.name + "]");
 
-			var canReportOn = reporter.canReportOn(__dirname + "\\a.txt");
+			var canReportOn = reporter.canReportOn(path.join(__dirname, "a.txt"));
 			assert.ok(canReportOn, "Could not load reporter with name [" + reporter.name + "]");
 		});
 

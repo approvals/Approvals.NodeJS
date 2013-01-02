@@ -1,5 +1,6 @@
 var ReporterFactory = require("../../lib/Reporters/ReporterFactory.js");
 var assert = require("assert");
+var path = require("path");
 var DiffReporterAggregate = require("../../lib/Reporters/DiffReporterAggregate.js");
 
 describe('AggregateReporter', function () {
@@ -8,7 +9,7 @@ describe('AggregateReporter', function () {
 
 	it("should be able to report on a txt file", function () {
 
-		var file = __dirname + "\\a.txt";
+		var file = path.join(__dirname, "a.txt");
 
 		var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
 
