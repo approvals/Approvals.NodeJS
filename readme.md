@@ -2,6 +2,9 @@
 
 Approval Tests Library - Capturing Human Intelligence
 
+## Build Status
+[![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
+
 ## Getting Approvals
     npm install approvals
 
