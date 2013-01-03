@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 			files: '<config:lint.files>',
 			tasks: 'default'
 		},
-		jshint: {
+		jshint:{
 			options: {
 				"es5": true,
 				"boss": true,
