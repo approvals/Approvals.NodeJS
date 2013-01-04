@@ -1,4 +1,5 @@
 var ReporterFactory = require("../../lib/Reporters/ReporterFactory.js");
+var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
 
@@ -6,7 +7,7 @@ describe('ReporterFactory', function () {
 
 	var textDiffReporters, allAvailableDiffReporters;
 
-	if (process.platform.indexOf('win') !== -1) {
+	if (os.platform.isWindows) {
 		textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
 		allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
 	}

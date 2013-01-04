@@ -1,6 +1,7 @@
 //git diff --no-index -- test\Reporters\a.txt test\Reporters\b.txt
 
 var assert = require("assert");
+var os = require("../../lib/osTools");
 var path = require("path");
 var ReporterUnderTest = require("../../lib/Reporters/gitdiffReporter.js");
 
@@ -15,7 +16,7 @@ describe('Reporter', function () {
 
 			var expectedCommand;
 
-			if (process.platform.indexOf("win") !== -1) {
+			if (os.platform.isWindows) {
 				expectedCommand = "'C:/Program Files/Git/cmd/git.cmd'";
 			}
 			else {
@@ -26,7 +27,11 @@ describe('Reporter', function () {
 
 			reporter.report(approved, received, function (command) {
 
-				var pathTrimmedCommand = command.replace(" (x86)", "");
+				// TODO: find a way to fix up the linux/mac 'git path' instead of hacking by replaces
+				var pathTrimmedCommand = command
+					.replace(" (x86)", "")       // Win x86 folder trim
+					.replace("local/git/", '');  // Git was installed here on the mac
+
 
 				assert.equal(pathTrimmedCommand, expectedCommand);
 				return {};

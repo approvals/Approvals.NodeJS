@@ -1,10 +1,11 @@
-var utils = require("../lib/AUtils.js");
+var utils = require("../lib/AUtils");
+var os = require("../lib/osTools");
 var assert = require("assert");
 
 describe('AUtils', function () {
 
 	// only run these tests on Windows
-	if (process.platform.indexOf('win') !== -1) {
+	if (os.platform.isWindows) {
 
 		describe('findWindowsExecutable', function () {
 			describe("when using windows where.exe to find programs", function () {

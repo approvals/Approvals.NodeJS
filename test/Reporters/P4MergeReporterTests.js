@@ -1,3 +1,4 @@
+var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
 var ReporterUnderTest = require("../../lib/Reporters/p4mergeReporter.js");
@@ -5,7 +6,7 @@ var ReporterUnderTest = require("../../lib/Reporters/p4mergeReporter.js");
 describe('Reporter', function () {
 
 
-	if (process.platform.indexOf("win") !== -1) {
+	if (os.platform.isWindows) {
 		describe('p4merge', function () {
 			it('reporter args are correct', function () {
 
