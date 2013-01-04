@@ -2,6 +2,8 @@
 
 Approval Tests Library - Capturing Human Intelligence
 
+Learn more more about Approvals at [approvaltests.com](https://approvaltests.com)
+
 ## Build Status
 [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
