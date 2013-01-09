@@ -30,6 +30,7 @@ describe('And a Mocha sub-describe', function () {
 #### Others?
 
 - TODO:
+    - Manual calls for verify/naming/etc.
     - Jasime
     - Vows
 
