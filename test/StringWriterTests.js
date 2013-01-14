@@ -37,7 +37,7 @@ describe('StringWriter', function () {
 				stringWriter.write(filePath);
 
 				fs.readFile(filePath, 'utf8', function (err, data) {
-					assert.equal(data, "HELLO");
+					assert.equal(data, "HELLO" + require('os').EOL);
 					done();
 				});
 			});
