@@ -1,6 +1,5 @@
 require("../../../lib/Approvals").mocha(__dirname);
 
-
 describe('Mocha', function () {
 
 	describe('when verifying some basic text', function () {
