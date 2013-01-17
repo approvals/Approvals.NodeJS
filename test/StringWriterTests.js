@@ -48,7 +48,8 @@ describe('StringWriter', function () {
 
     it('should write out file and append EOL', function (done) {
       var config = {
-        appendEOL: true
+        appendEOL: true,
+        EOL: "EndOfLineConfig"
       };
 			var stringWriter = new StringWriter(config, "HELLO");
 
@@ -65,7 +66,7 @@ describe('StringWriter', function () {
 				stringWriter.write(filePath);
 
 				fs.readFile(filePath, 'utf8', function (err, data) {
-					assert.equal(data, "HELLO" + require('os').EOL);
+					assert.equal(data, "HELLO" + "EndOfLineConfig");
 					done();
 				});
 			});
