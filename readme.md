@@ -16,6 +16,17 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 ## Examples
 
+#### Config (override)
+```javascript
+require('approvals')
+    .configure({
+        reporters:  ["p4merge", "opendiff", "tortisemerge", "gitdiff"],
+        appendEOL: false, // default is (still up for discussion, but currently true on windows false everywhere else
+        EOL:  require('os').EOL
+    })
+/* ... */
+```
+
 #### Mocha
 ```javascript
 require('approvals').mocha(__dirname);
