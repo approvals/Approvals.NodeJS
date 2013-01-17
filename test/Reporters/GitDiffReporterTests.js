@@ -17,7 +17,7 @@ describe('Reporter', function () {
 			var expectedCommand;
 
 			if (os.platform.isWindows) {
-				expectedCommand = "'C:/Program Files/Git/cmd/git.cmd'";
+				expectedCommand = "'C:/Program Files/Git/cmd/git.exe'";
 			}
 			else {
 				expectedCommand = "'/usr/bin/git'";
@@ -29,7 +29,8 @@ describe('Reporter', function () {
 
 				// TODO: find a way to fix up the linux/mac 'git path' instead of hacking by replaces
 				var pathTrimmedCommand = command
-					.replace(" (x86)", "")       // Win x86 folder trim
+					.replace("git.cmd", "git.exe") // cmd is good enough
+                    .replace(" (x86)", "")       // Win x86 folder trim
 					.replace("local/git/", '');  // Git was installed here on the mac
 
 
