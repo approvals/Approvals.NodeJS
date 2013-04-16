@@ -1,22 +1,21 @@
 {
-  "curly": true,
-  "eqeqeq": true,
-  "immed": true,
-  "latedef": true,
-  "newcap": true,
-  "noarg": true,
-  "sub": true,
+  "es5": true,
+  "boss": true,
+  "node": true,
+  "strict": false,
+  "white": true,
+  "smarttabs": true,
+  "maxlen": 150,
+  "newcap": false,
   "undef": true,
   "unused": true,
-  "boss": true,
-  "eqnull": true,
-  "node": true,
-  "es5": true,
+  "onecase": true,
+  "indent": 2,
   "globals" : {
-         "exports": true,
-         "describe": false,
-         "it": true,
-         "before": false,
-         "beforeEach": false
+    "exports": true,
+    "describe": false,
+    "it": true,
+    "before": false,
+    "beforeEach": false
   }
 }
