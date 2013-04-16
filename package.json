@@ -38,10 +38,11 @@
     "linq": "~1.0.2"
   },
   "devDependencies": {
-    "grunt": "~0.3.17",
-    "grunt-contrib-watch": ">= 0.1.4",
-    "grunt-simple-mocha": "~0.2.0",
-    "mocha": "~1.7.4"
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-simple-mocha": "~0.4.0",
+    "mocha": "~1.7.4",
+    "grunt-contrib-jshint": "~0.4.3"
   },
   "keywords": [
     "Approvals",

@@ -1,10 +1,6 @@
 module.exports = function (grunt) {
 
-	// Add our custom tasks.
-	grunt.loadNpmTasks('grunt-simple-mocha');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-
-	// Project configuration.
+  // Project configuration.
 	grunt.initConfig({
 		pkg: '<json:package.json>',
 		test: {
@@ -18,32 +14,21 @@ module.exports = function (grunt) {
 			files: '<config:lint.files>',
 			tasks: 'default'
 		},
-		jshint: {
-			options: {
-				"es5": true,
-				"boss": true,
-				"node": true,
-				"strict": false, // TODO: Research
-				"white": true,
-				"smarttabs": true,
-				"maxlen": 150,
-				"newcap": false,
-				"undef": true,
-				"unused": true,
-				"onecase": true,
-				"indent": 2
-			},
-			globals: {
-				exports: true,
-
-				//// mocha globals
-				describe: false,
-				it: true,
-				before: false,
-				beforeEach: false
-			}
-		},
-		simplemocha: {
+    jshint: {
+      options: {
+      jshintrc: '.jshintrc'
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      lib: {
+        src: ['lib/**/*.js']
+      },
+      test: {
+        src: ['test/**/*.js']
+      }
+    },
+    simplemocha: {
 			dev: {
 				src: ['test/**/*[Tt]ests.js'],
 				options: {
@@ -62,12 +47,12 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('test', 'simplemocha:dev');
-
-	grunt.registerTask('testExplicit', 'simplemocha:explicit');
+	// Add our custom tasks.
+	grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 	
-
-	// Default task.
-	grunt.registerTask('default', 'test lint');
+	grunt.registerTask('test', 'simplemocha:dev');
+	grunt.registerTask('testExplicit', 'simplemocha:explicit');
+	grunt.registerTask('default', ['test', 'jshint']);
 
 };
