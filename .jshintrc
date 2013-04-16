@@ -1,0 +1,21 @@
+{
+  "es5": true,
+  "boss": true,
+  "node": true,
+  "strict": false,
+  "white": true,
+  "smarttabs": true,
+  "maxlen": 150,
+  "newcap": false,
+  "undef": true,
+  "unused": true,
+  "onecase": true,
+  "indent": 2,
+  "globals" : {
+    "exports": true,
+    "describe": false,
+    "it": true,
+    "before": false,
+    "beforeEach": false
+  }
+}
