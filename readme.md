@@ -28,7 +28,7 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
     ```javascript
     require('approvals').mocha(__dirname);
-    describe('And a Mocha sub-describe', function () {
+    describe('When running some tests', function () {
         it('should be able to use Approvals', function () {
             var data = "Hello World!";
             this.verify(data);
