@@ -7,8 +7,42 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 ## Build Status
 [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
-## Getting Approvals
-    npm install approvals
+## Getting Started
+
+1. Create a project
+
+    ```
+    mkdir MyProject
+    cd MyProject`
+    ```
+2. Install approals
+    `npm install approvals` or if you have a package.json include it as a dev dependency `npm install approvals --save-dev`
+
+3. Install [Mocha](http://visionmedia.github.io/mocha/) globally to execute our tests
+
+    ```
+    npm install -g mocha    
+    ```
+
+4. Create a sample Mocha test file.
+
+    ```javascript
+    require('approvals').mocha(__dirname);
+    describe('And a Mocha sub-describe', function () {
+        it('should be able to use Approvals', function () {
+            var data = "Hello World!";
+            this.verify(data);
+        });
+    });
+    ```
+
+5. Test the file
+
+    ```
+    mocha test.js
+    ```
+
+6. You should be presented with a diff tool. (if not, you may need to install one)
 
 ## Documentation
 
@@ -25,17 +59,6 @@ require('approvals')
         EOL:  require('os').EOL
     })
 /* ... */
-```
-
-#### Mocha
-```javascript
-require('approvals').mocha(__dirname);
-describe('And a Mocha sub-describe', function () {
-	it('should be able to use Approvals', function () {
-		var data = "Hello World!";
-		this.verify(data);
-	});
-});
 ```
 
 #### Others?
