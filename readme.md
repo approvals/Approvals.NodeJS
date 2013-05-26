@@ -47,6 +47,10 @@ describe('And a Mocha sub-describe', function () {
 
 Can you think any other testing frameworks should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
 
+## Contributing
+
+Check out the [guidlines](CONTRIBUTING.md)!
+
 ## Release History
 _(Nothing yet)_
 
