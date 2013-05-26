@@ -9,7 +9,7 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 ## Getting Started
 
-1. Create a project
+1. Create a project (folder)
 
     ```
     mkdir MyProject
