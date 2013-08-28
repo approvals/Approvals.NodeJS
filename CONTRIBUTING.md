@@ -6,7 +6,7 @@
 git clone https://github.com/approvals/Approvals.NodeJS.git
 cd Approvals.NodeJS
 npm install
-npm install -g grunt
+npm install -g grunt-cli
 grunt
 ```
 
