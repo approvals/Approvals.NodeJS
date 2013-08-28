@@ -10,66 +10,66 @@ var fs = require('fs');
 
 describe('StringWriter', function () {
 
-  var defaultConfig = {};
-  
-	describe('', function () {
-		it('should default to type of txt', function () {
-			var stringWriter = new StringWriter(defaultConfig, "HELLO");
-			assert.equal(stringWriter.getFileExtension(), "txt");
-		});
+    var defaultConfig = {};
 
-		it('should allow type to be specified', function () {
-			var stringWriter = new StringWriter(defaultConfig, "HELLO", "html");
-			assert.equal(stringWriter.getFileExtension(), "html");
-		});
+    describe('', function () {
+        it('should default to type of txt', function () {
+            var stringWriter = new StringWriter(defaultConfig, "HELLO");
+            assert.equal(stringWriter.getFileExtension(), "txt");
+        });
 
-		it('should write out file', function (done) {
-      var config = {};
-			var stringWriter = new StringWriter(config, "HELLO");
+        it('should allow type to be specified', function () {
+            var stringWriter = new StringWriter(defaultConfig, "HELLO", "html");
+            assert.equal(stringWriter.getFileExtension(), "html");
+        });
 
-			var settings = {
-				prefix: "foo",
-				suffix: "bar",
-				directory: __dirname
-			};
+        it('should write out file', function (done) {
+            var config = {};
+            var stringWriter = new StringWriter(config, "HELLO");
 
-			File.createTempFile(settings, function (error, file) {
-				if (error) throw error;
-				var filePath = file.getPath();
+            var settings = {
+                prefix: "foo",
+                suffix: "bar",
+                directory: __dirname
+            };
 
-				stringWriter.write(filePath);
+            File.createTempFile(settings, function (error, file) {
+                if (error) throw error;
+                var filePath = file.getPath();
 
-				fs.readFile(filePath, 'utf8', function (err, data) {
-					assert.equal(data, "HELLO");
-					done();
-				});
-			});
+                stringWriter.write(filePath);
+
+                fs.readFile(filePath, 'utf8', function (err, data) {
+                    assert.equal(data, "HELLO");
+                    done();
+                });
+            });
+        });
+
+        it('should write out file and append EOL', function (done) {
+            var config = {
+                appendEOL: true,
+                EOL: "EndOfLineConfig"
+            };
+            var stringWriter = new StringWriter(config, "HELLO");
+
+            var settings = {
+                prefix: "foo",
+                suffix: "bar",
+                directory: __dirname
+            };
+
+            File.createTempFile(settings, function (error, file) {
+                if (error) throw error;
+                var filePath = file.getPath();
+
+                stringWriter.write(filePath);
+
+                fs.readFile(filePath, 'utf8', function (err, data) {
+                    assert.equal(data, "HELLO" + "EndOfLineConfig");
+                    done();
+                });
+            });
+        });
     });
-
-    it('should write out file and append EOL', function (done) {
-      var config = {
-        appendEOL: true,
-        EOL: "EndOfLineConfig"
-      };
-			var stringWriter = new StringWriter(config, "HELLO");
-
-			var settings = {
-				prefix: "foo",
-				suffix: "bar",
-				directory: __dirname
-			};
-
-			File.createTempFile(settings, function (error, file) {
-				if (error) throw error;
-				var filePath = file.getPath();
-
-				stringWriter.write(filePath);
-
-				fs.readFile(filePath, 'utf8', function (err, data) {
-					assert.equal(data, "HELLO" + "EndOfLineConfig");
-					done();
-				});
-			});
-		});
-	});
 });

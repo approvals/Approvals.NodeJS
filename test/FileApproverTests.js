@@ -7,18 +7,18 @@ var FileApprover = require("../lib/FileApprover.js");
 
 describe('FileApprover', function () {
 
-	describe('', function () {
-		it('should verify two files match', function () {
+    describe('', function () {
+        it('should verify two files match', function () {
 
-			var dir = __dirname;
-			var fileName = "FileApprover.should_verify_two_files_match";
-			var namer = new Namer(dir, fileName);
-      var config = { appendEOL: false };
-			var writer = new StringWriter(config, "HELLO!");
-			var reporter = new DoNothingReporter();
+            var dir = __dirname;
+            var fileName = "FileApprover.should_verify_two_files_match";
+            var namer = new Namer(dir, fileName);
+            var config = { appendEOL: false };
+            var writer = new StringWriter(config, "HELLO!");
+            var reporter = new DoNothingReporter();
 
-			FileApprover.verify(namer, writer, reporter);
+            FileApprover.verify(namer, writer, reporter);
 
-		});
-	});
+        });
+    });
 });

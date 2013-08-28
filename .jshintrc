@@ -10,7 +10,7 @@
   "undef": true,
   "unused": true,
   "onecase": true,
-  "indent": 2,
+  "indent": 4,
   "globals" : {
     "exports": true,
     "describe": false,
