@@ -1,9 +1,8 @@
 var assert = require("assert");
 var StringWriter = require("../lib/StringWriter.js");
-var File = require("file-utils").File;
 var fs = require('fs');
-
-
+var temp = require('temp');
+temp.track();
 // Write out contest to file (leveraging the Namer)
 // Responsible for 'type' of the file.
 
@@ -27,22 +26,13 @@ describe('StringWriter', function () {
             var config = {};
             var stringWriter = new StringWriter(config, "HELLO");
 
-            var settings = {
-                prefix: "foo",
-                suffix: "bar",
-                directory: __dirname
-            };
+            var filePath = temp.path({suffix: '.txt'});
 
-            File.createTempFile(settings, function (error, file) {
-                if (error) throw error;
-                var filePath = file.getPath();
+            stringWriter.write(filePath);
 
-                stringWriter.write(filePath);
-
-                fs.readFile(filePath, 'utf8', function (err, data) {
-                    assert.equal(data, "HELLO");
-                    done();
-                });
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                assert.equal(data, "HELLO");
+                done();
             });
         });
 
@@ -53,23 +43,15 @@ describe('StringWriter', function () {
             };
             var stringWriter = new StringWriter(config, "HELLO");
 
-            var settings = {
-                prefix: "foo",
-                suffix: "bar",
-                directory: __dirname
-            };
+            var filePath = temp.path({suffix: '.txt'});
 
-            File.createTempFile(settings, function (error, file) {
-                if (error) throw error;
-                var filePath = file.getPath();
+            stringWriter.write(filePath);
 
-                stringWriter.write(filePath);
-
-                fs.readFile(filePath, 'utf8', function (err, data) {
-                    assert.equal(data, "HELLO" + "EndOfLineConfig");
-                    done();
-                });
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                assert.equal(data, "HELLO" + "EndOfLineConfig");
+                done();
             });
+
         });
     });
 });
