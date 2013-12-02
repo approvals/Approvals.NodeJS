@@ -3,13 +3,11 @@
   "boss": true,
   "node": true,
   "strict": false,
-  "white": true,
   "smarttabs": true,
   "newcap": false,
   "undef": true,
   "unused": true,
   "onecase": true,
-  "indent": 4,
   "globals" : {
     "exports": true,
     "describe": false,
