@@ -5,7 +5,6 @@
   "strict": false,
   "white": true,
   "smarttabs": true,
-  "maxlen": 150,
   "newcap": false,
   "undef": true,
   "unused": true,
