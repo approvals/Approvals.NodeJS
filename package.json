@@ -29,7 +29,8 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "install": "node install_dependencies.js"
   },
   "dependencies": {
     "file-utils": ">= 0.1.0",
