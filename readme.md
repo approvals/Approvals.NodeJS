@@ -7,6 +7,10 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 ## Build Status
 [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
+## Supported Testing Frameworks
+- Mocha
+- Jasmine
+
 ## Getting Started
 
 1. Create a project (folder)
@@ -69,7 +73,6 @@ The suggested fix is to add
 
 - TODO:
     - Manual calls for verify/naming/etc.
-    - Jasime
     - Vows
 
 Can you think any other testing frameworks should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
