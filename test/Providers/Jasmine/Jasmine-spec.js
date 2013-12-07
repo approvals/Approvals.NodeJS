@@ -1,4 +1,5 @@
-require("../../../lib/Approvals").jasmine(__dirname);
+require("../../../lib/Approvals")
+    .jasmine(__dirname);
 
 describe('Jasmine Reporter', function () {
 
@@ -6,6 +7,7 @@ describe('Jasmine Reporter', function () {
         it('should work', function () {
 
             this.verify("Hello World!");
+
         });
 
     });
