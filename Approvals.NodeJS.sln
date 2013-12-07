@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Approvals.NodeJS", "Approvals.NodeJS.njsproj", "{4DEA2036-3B0D-4132-94A6-4CBFDBF024D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DEA2036-3B0D-4132-94A6-4CBFDBF024D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEA2036-3B0D-4132-94A6-4CBFDBF024D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEA2036-3B0D-4132-94A6-4CBFDBF024D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEA2036-3B0D-4132-94A6-4CBFDBF024D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
