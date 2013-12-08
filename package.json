@@ -1,7 +1,7 @@
 {
   "name": "approvals",
   "description": "Approval Tests Library - Capturing Human Intelligence",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "http://approvaltests.sourceforge.net/",
   "contributors": [
     {
