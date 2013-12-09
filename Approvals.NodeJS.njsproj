@@ -26,7 +26,6 @@
     <Compile Include="lib\Namer.js" />
     <Compile Include="lib\osTools.js" />
     <Compile Include="lib\Providers\BeforeEachVerifierBase.js" />
-    <Compile Include="lib\Providers\Jasmine\Approvals.js" />
     <Compile Include="lib\Providers\Jasmine\JasmineNamer.js" />
     <Compile Include="lib\StringWriter.js" />
     <Content Include="test\FileApprover.should_verify_two_files_match.approved.txt" />
@@ -45,7 +44,6 @@
     <Compile Include="lib\Reporters\p4mergeReporter.js" />
     <Compile Include="lib\Reporters\ReporterFactory.js" />
     <Compile Include="lib\Reporters\tortisemergeReporter.js" />
-    <Compile Include="lib\Providers\Mocha\Approvals.Mocha.js" />
     <Compile Include="lib\Providers\Mocha\MochaNamer.js" />
     <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.approved.txt" />
     <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.received.txt" />
