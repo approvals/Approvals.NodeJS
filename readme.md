@@ -81,9 +81,6 @@ Can you think any other testing frameworks should integrate with? Consider submi
 
 Check out the [guidlines](CONTRIBUTING.md)!
 
-## Release History
-_(Nothing yet)_
-
 ## License
 Copyright (c) 2012 Llewellyn Falco, Jason Jarrett  
 Licensed under the Apache license.
