@@ -25,6 +25,7 @@
     <Compile Include="lib\FileApprover.js" />
     <Compile Include="lib\Namer.js" />
     <Compile Include="lib\osTools.js" />
+    <Compile Include="lib\Providers\BeforeEachVerifierBase.js" />
     <Compile Include="lib\Providers\Jasmine\Approvals.js" />
     <Compile Include="lib\Providers\Jasmine\JasmineNamer.js" />
     <Compile Include="lib\StringWriter.js" />
@@ -33,6 +34,7 @@
     <Compile Include="test\AUtilsTests.js" />
     <Compile Include="test\FileApproverTests.js" />
     <Compile Include="test\namerTests.js" />
+    <Compile Include="test\Providers\Jasmine\Jasmine-spec.js" />
     <Compile Include="test\StringWriterTests.js" />
     <Compile Include="examples\Mocha\MochaTestWithApprovals.js" />
     <Compile Include="lib\Reporters\DiffReporterAggregate.js" />
@@ -45,6 +47,8 @@
     <Compile Include="lib\Reporters\tortisemergeReporter.js" />
     <Compile Include="lib\Providers\Mocha\Approvals.Mocha.js" />
     <Compile Include="lib\Providers\Mocha\MochaNamer.js" />
+    <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.approved.txt" />
+    <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.received.txt" />
     <Content Include="test\Reporters\a.txt" />
     <Content Include="test\Reporters\b.txt" />
     <Compile Include="test\Reporters\AggregateDiffReporterTests.js" />
@@ -1071,6 +1075,7 @@
     <Folder Include="lib\Reporters" />
     <Folder Include="test" />
     <Folder Include="test\Providers\" />
+    <Folder Include="test\Providers\Jasmine\" />
     <Folder Include="test\Providers\Mocha" />
     <Folder Include="test\Reporters" />
   </ItemGroup>
