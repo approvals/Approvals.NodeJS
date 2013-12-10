@@ -13,14 +13,17 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 ## Getting Started
 
+Below is a simple getting started using Mocha. We now support Jasmine as well, just replace mocha with Jasmine below and you should be able to get started.
+
 1. Create a project (folder)
 
     ```
     mkdir MyProject
     cd MyProject`
     ```
-2. Install approals
-    `npm install approvals` or if you have a package.json include it as a dev dependency `npm install approvals --save-dev`
+
+2. Install approvals
+    `npm install --save-dev approvals`
 
 3. Install [Mocha](http://visionmedia.github.io/mocha/) globally to execute our tests
 
@@ -52,9 +55,12 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 [Approvals Github Wiki!](https://github.com/approvals/Approvals.NodeJS/wiki)
 
-## Examples
+## Usage
 
 #### Config (override)
+
+The default configuration can be overriden by using the `.configure(...)` as shown below.
+
 ```javascript
 require('approvals')
     .configure({
@@ -64,6 +70,7 @@ require('approvals')
     })
 /* ... */
 ```
+
 #### Approved File Artifacts
 The `*.approved.*` files must be checked into source your source control. This can be an issue with git as it will change the line endings. 
 The suggested fix is to add
@@ -75,7 +82,7 @@ The suggested fix is to add
     - Manual calls for verify/naming/etc.
     - Vows
 
-Can you think any other testing frameworks should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
+Can you think any other testing frameworks that should approvals should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
 
 ## Contributing
 
