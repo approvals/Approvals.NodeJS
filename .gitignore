@@ -31,3 +31,5 @@ node_modules
 
 #Visual Studio files
 *.suo
+
+coverage/
