@@ -27,6 +27,7 @@
     <Compile Include="lib\osTools.js" />
     <Compile Include="lib\Providers\BeforeEachVerifierBase.js" />
     <Compile Include="lib\Providers\Jasmine\JasmineNamer.js" />
+    <Compile Include="lib\Reporters\beyondcompareReporter.js" />
     <Compile Include="lib\StringWriter.js" />
     <Content Include="test\FileApprover.should_verify_two_files_match.approved.txt" />
     <Content Include="test\FileApprover.should_verify_two_files_match.received.txt" />
