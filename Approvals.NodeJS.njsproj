@@ -20,7 +20,7 @@
     <Content Include="CONTRIBUTING.md" />
     <Content Include="readme.md" />
     <Compile Include="Gruntfile.js" />
-    <Compile Include="lib\Approvals.js" />
+    <Compile Include="lib\approvals.js" />
     <Compile Include="lib\AUtils.js" />
     <Compile Include="lib\FileApprover.js" />
     <Compile Include="lib\Namer.js" />

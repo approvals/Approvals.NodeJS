@@ -1,8 +1,8 @@
 {
   "name": "approvals",
   "description": "Approval Tests Library - Capturing Human Intelligence",
-  "version": "0.0.6",
-  "homepage": "http://approvaltests.sourceforge.net/",
+  "version": "0.0.7",
+  "homepage": "http://approvaltests.com",
   "contributors": [
     {
       "name": "Llewellyn Falco"
@@ -24,9 +24,9 @@
       "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
     }
   ],
-  "main": "lib/Approvals",
+  "main": "lib/approvals",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt",
