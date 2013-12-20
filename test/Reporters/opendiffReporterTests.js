@@ -19,6 +19,12 @@ describe('Reporter', function () {
 
                     assert.ok(command.toLowerCase().indexOf("opendiff") >= 0);
                     assert.deepEqual(args, [receivedFile, approvedFile]);
+                                
+                                
+                    return {
+                        stdout: { on: function () {} },
+                        stderr: { on: function () {} }
+                    };
                 });
 
             });
