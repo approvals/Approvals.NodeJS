@@ -1,12 +1,16 @@
 ## Contributing
 
+### Dependencies
+
+- [`node && npm`](http://nodejs.org)
+- `grunt-cli` - you can install that with `npm install -g grunt-cli`
+
 ### Getting started.
 
 ```bash
 git clone https://github.com/approvals/Approvals.NodeJS.git
 cd Approvals.NodeJS
 npm install
-npm install -g grunt-cli
 grunt
 ```
 
