@@ -10,5 +10,13 @@ describe('Jasmine Reporter', function () {
 
         });
 
+        it('should verifyAsJSON', function () {
+
+            var value = {a:1, b:"bar"};
+
+            this.verifyAsJSON(value);
+
+        });        
+
     });
 });

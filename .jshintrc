@@ -13,6 +13,7 @@
     "describe": false,
     "it": true,
     "before": false,
+    "expect": false,
     "beforeEach": false
   }
 }
