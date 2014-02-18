@@ -44,14 +44,21 @@ module.exports = function (grunt) {
                     timeout: 1000
                 }
             }
-        }
+        },
+        jasmine_node: {
+            specNameMatcher: ".Spec", // load only specs containing specNameMatcher
+            projectRoot: ".",
+            requirejs: false,
+            forceExit: true
+          }
     });
 
     // Add our custom tasks.
     grunt.loadNpmTasks('grunt-simple-mocha');
+    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
-    grunt.registerTask('test', 'simplemocha:dev');
+    grunt.registerTask('test', ['simplemocha:dev', 'jasmine_node']);
     grunt.registerTask('testExplicit', 'simplemocha:explicit');
     grunt.registerTask('default', ['test', 'jshint']);
 

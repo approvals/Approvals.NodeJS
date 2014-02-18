@@ -15,7 +15,6 @@ describe('Jasmine Reporter', function () {
             var value = {a:1, b:"bar"};
 
             this.verifyAsJSON(value);
-
         });        
 
     });
