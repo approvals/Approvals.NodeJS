@@ -64,7 +64,7 @@ The default configuration can be overriden by using the `.configure(...)` as sho
 ```javascript
 require('approvals')
     .configure({
-        reporters:  ["p4merge", "opendiff", "tortisemerge", "gitdiff"],
+        reporters:  ["p4merge", "opendiff", "tortoisemerge", "gitdiff"],
         appendEOL: false, // default is (still up for discussion, but currently true on windows false everywhere else
         EOL:  require('os').EOL
     })
