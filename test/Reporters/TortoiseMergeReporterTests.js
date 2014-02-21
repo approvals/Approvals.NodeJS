@@ -1,10 +1,10 @@
 //var assert = require("assert");
-//var ReporterUnderTest = require("../../lib/Reporters/TortiseMergeReporter.js");
+//var ReporterUnderTest = require("../../lib/Reporters/TortoiseMergeReporter.js");
 
 // TODO: 
 
 //describe('Reporter', function () {
-//	describe('TortiseMerge', function () {
+//	describe('TortoiseMerge', function () {
 //		it('reporter args are correct', function () {
 
 //			var reporter = new ReporterUnderTest();
