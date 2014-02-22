@@ -67,7 +67,7 @@ require('approvals')
         reporters:  ["p4merge", "opendiff", "tortoisemerge", "gitdiff"],
         appendEOL: false, // default is (still up for discussion, but currently true on windows false everywhere else
         EOL:  require('os').EOL
-    })
+    }).mocha(__dirname); // or .jasmine(__dirname);
 /* ... */
 ```
 
