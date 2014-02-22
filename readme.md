@@ -31,7 +31,7 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
     npm install -g mocha    
     ```
 
-4. Create a sample Mocha test file.
+4. Create a sample Mocha test file called `test.js`.
 
     ```javascript
     require('approvals').mocha(__dirname);
@@ -43,7 +43,7 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
     });
     ```
 
-5. Test the file
+5. Test the file with mocha.
 
     ```
     mocha test.js
