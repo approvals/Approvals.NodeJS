@@ -89,5 +89,5 @@ Can you think any other testing frameworks that should approvals should integrat
 Check out the [guidlines](CONTRIBUTING.md)!
 
 ## License
-Copyright (c) 2012 Llewellyn Falco, Jason Jarrett  
+Copyright (c) 2012-2014 Llewellyn Falco, Jason Jarrett  
 Licensed under the Apache license.
