@@ -8,8 +8,8 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
 ## Supported Testing Frameworks
-- Mocha
-- Jasmine
+- [Mocha](http://visionmedia.github.io/mocha/)
+- [Jasmine](http://pivotal.github.io/jasmine/)
 
 ## Getting Started
 
