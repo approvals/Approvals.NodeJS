@@ -7,18 +7,18 @@ describe('AUtils', function () {
     // only run these tests on Windows
     if (os.platform.isWindows) {
 
-        describe('findWindowsExecutable', function () {
+        describe('searchForExecutable', function () {
             describe("when using windows where.exe to find programs", function () {
                 it('ipconfig should be found once', function () {
 
-                    var file = utils.findWindowsExecutable("ipconfig");
+                    var file = utils.searchForExecutable("ipconfig");
 
                     utils.assertFileExists(file);
                 });
 
                 it('notepad is found multiple times and we should just use the first one', function () {
 
-                    var file = utils.findWindowsExecutable("ipconfig");
+                    var file = utils.searchForExecutable("ipconfig");
 
                     utils.assertFileExists(file);
                 });
@@ -27,7 +27,7 @@ describe('AUtils', function () {
             describe("When lookign for a program in program files", function () {
                 it("should find iexplorer", function () {
 
-                    var file = utils.findWindowsExecutable("Internet Explorer", "iexplore");
+                    var file = utils.searchForExecutable("Internet Explorer", "iexplore");
 
                     utils.assertFileExists(file);
                 });
@@ -39,7 +39,7 @@ describe('AUtils', function () {
             describe("when using linux 'which' to find programs", function () {
                 it('ifconfig should be found once', function () {
 
-                    var file = utils.findWindowsExecutable("ifconfig");
+                    var file = utils.searchForExecutable("ifconfig");
 
                     utils.assertFileExists(file);
                 });
