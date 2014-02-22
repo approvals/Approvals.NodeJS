@@ -57,4 +57,5 @@ describe('ReporterFactory', function () {
             ReporterFactory.loadReporter(textDiffReporters);
         });
     });
+
 });
