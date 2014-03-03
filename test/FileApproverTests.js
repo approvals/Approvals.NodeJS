@@ -47,6 +47,17 @@ describe('FileApprover', function () {
             assert.ok(!fs.existsSync(receivedFileName), "Received File should be deleted");
         });
 
+        it('should raise an event with the approved file name', function (done) {
+            var approvedFileName = namer.getApprovedFile(writer.getFileExtension());
+
+            process.once("approvalFileApproved", function(fileName){
+                assert.equal(fileName, approvedFileName);
+
+                done();
+            });
+
+            FileApprover.verify(namer, writer, reporter);
+        });
 
 
         it('should fail the approver if the writer gives something different', function () {
