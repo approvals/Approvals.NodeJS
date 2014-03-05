@@ -5,7 +5,7 @@
   "homepage": "http://approvaltests.com",
   "author": {
     "name": "Jason Jarrett",
-	"url": "http://staxmanade.blogspot.com"
+    "url": "http://staxmanade.blogspot.com"
   },
   "contributors": [
     {
@@ -40,7 +40,8 @@
     "file-utils": "~0.1.0",
     "underscore": "~1.4.3",
     "shelljs": "0.0.9",
-    "linq": "~1.0.2"
+    "linq": "~1.0.2",
+    "glob": "~3.2.9"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
