@@ -31,16 +31,14 @@
     <Compile Include="lib\Reporters\tortoisemergeReporter.js" />
     <Compile Include="lib\Reporters\visualstudioReporter.js" />
     <Compile Include="lib\StringWriter.js" />
-    <Content Include="test\FileApprover.should_verify_two_files_match.approved.txt" />
-    <Content Include="test\FileApprover.should_verify_two_files_match.received.txt" />
     <Compile Include="test\AUtilsTests.js" />
     <Compile Include="test\FileApproverTests.js" />
     <Compile Include="test\namerTests.js" />
-    <Compile Include="test\Providers\Jasmine\Jasmine-spec.js" />
+    <Compile Include="test\Providers\Jasmine\JasmineNamerSpec.js" />
+    <Compile Include="test\Providers\Jasmine\JasmineSpec.js" />
     <Compile Include="test\Reporters\CustomReporterTests.js" />
     <Compile Include="test\Reporters\TortoiseMergeReporterTests.js" />
     <Compile Include="test\StringWriterTests.js" />
-    <Compile Include="examples\Mocha\MochaTestWithApprovals.js" />
     <Compile Include="lib\Reporters\DiffReporterAggregate.js" />
     <Compile Include="lib\Reporters\donothingReporter.js" />
     <Compile Include="lib\Reporters\GenericDiffReporterBase.js" />
@@ -49,8 +47,6 @@
     <Compile Include="lib\Reporters\p4mergeReporter.js" />
     <Compile Include="lib\Reporters\ReporterFactory.js" />
     <Compile Include="lib\Providers\Mocha\MochaNamer.js" />
-    <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.approved.txt" />
-    <Content Include="test\Providers\Jasmine\_Jasmine_Reporter_when_verifying_some_basic_text.received.txt" />
     <Content Include="test\Reporters\a.txt" />
     <Content Include="test\Reporters\b.txt" />
     <Compile Include="test\Reporters\AggregateDiffReporterTests.js" />
@@ -64,8 +60,6 @@
     <Compile Include="test\Providers\Mocha\MochaTests.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="examples\" />
-    <Folder Include="examples\Mocha" />
     <Folder Include="lib" />
     <Folder Include="lib\Providers\" />
     <Folder Include="lib\Providers\Jasmine\" />
