@@ -66,7 +66,8 @@ require('approvals')
     .configure({
         reporters:  ["p4merge", "opendiff", "tortoisemerge", "gitdiff"],
         appendEOL: false, // default is (still up for discussion, but currently true on windows false everywhere else
-        EOL:  require('os').EOL
+        EOL:  require('os').EOL,
+        errorOnStaleApprovedFiles: true,
     }).mocha(__dirname); // or .jasmine(__dirname);
 /* ... */
 ```
