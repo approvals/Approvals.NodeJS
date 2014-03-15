@@ -1,7 +1,11 @@
 
 describe('Mocha', function () {
 
-	require("../../../lib/Approvals").mocha(__dirname);
+	require("../../../lib/Approvals")
+        .configure({
+            errorOnStaleApprovedFiles: false
+        })
+        .mocha(__dirname);
 
     describe('when verifying some basic text', function () {
         it('should work', function () {

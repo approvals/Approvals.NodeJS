@@ -1,4 +1,7 @@
 require("../../../lib/Approvals")
+    .configure({
+        errorOnStaleApprovedFiles: false
+    })
     .jasmine(__dirname);
 
 describe('Jasmine Reporter', function () {

@@ -1,5 +1,8 @@
 require("../../../lib/Approvals")
-    .jasmine(__dirname);
+    .configure({
+        errorOnStaleApprovedFiles: false
+    })
+   .jasmine(__dirname);
 
 describe('Jasmine Naming', function () {
 
