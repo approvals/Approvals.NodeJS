@@ -38,7 +38,7 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
     describe('When running some tests', function () {
         it('should be able to use Approvals', function () {
             var data = "Hello World!";
-            this.verify(data);
+            this.verify(data);  // or this.verifyAsJSON(data)
         });
     });
     ```
