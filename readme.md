@@ -80,7 +80,7 @@ The suggested fix is to add
 - TODO:
     - [Vows](http://vowsjs.org/)
 
-Can you think any other testing frameworks that should approvals should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
+Can you think any other testing frameworks that approvals should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
 
 ## Contributing
 
