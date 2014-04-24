@@ -1,5 +1,4 @@
 {
   "x": "some stuff here",
-  "y": 123,
-  "z": "Thu, 01 Dec 2011 08:00:00 GMT"
+  "y": 123
 }
