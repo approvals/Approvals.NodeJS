@@ -1,11 +1,9 @@
-# Approvals
+# Approvals [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
 Approval Tests Library - Capturing Human Intelligence
 
 Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
-## Build Status
-[![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 
 ## Supported Testing Frameworks
 - [Mocha](http://visionmedia.github.io/mocha/)
