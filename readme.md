@@ -8,6 +8,7 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 ## Supported Testing Frameworks
 - [Mocha](http://visionmedia.github.io/mocha/)
 - [Jasmine](http://pivotal.github.io/jasmine/)
+- Manual (manually invoke the approvals.verify(...))
 
 ## Getting Started
 
