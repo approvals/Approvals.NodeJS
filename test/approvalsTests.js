@@ -1,4 +1,6 @@
-var approvals = require("../lib/Approvals.js");
+var approvals = require("../lib/Approvals.js").configure({
+    appendEOL: true,
+});
 
 describe('approvals', function () {
 
