@@ -23,6 +23,7 @@
     <Compile Include="lib\approvals.js" />
     <Compile Include="lib\AUtils.js" />
     <Compile Include="lib\FileApprover.js" />
+    <Compile Include="lib\ManualNamer.js" />
     <Compile Include="lib\Namer.js" />
     <Compile Include="lib\osTools.js" />
     <Compile Include="lib\Providers\BeforeEachVerifierBase.js" />
@@ -33,6 +34,7 @@
     <Compile Include="lib\StringWriter.js" />
     <Compile Include="test\AUtilsTests.js" />
     <Compile Include="test\FileApproverTests.js" />
+    <Compile Include="test\approvalsTests.js" />
     <Compile Include="test\namerTests.js" />
     <Compile Include="test\Providers\Jasmine\JasmineNamerSpec.js" />
     <Compile Include="test\Providers\Jasmine\JasmineSpec.js" />
