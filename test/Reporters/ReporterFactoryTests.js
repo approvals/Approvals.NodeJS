@@ -8,8 +8,8 @@ describe('ReporterFactory', function () {
     var textDiffReporters, allAvailableDiffReporters;
 
     if (os.platform.isWindows) {
-        textDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
-        allAvailableDiffReporters = ['DoNothing', 'gitdiff', 'p4merge'];
+        textDiffReporters = ['DoNothing', 'gitdiff'];
+        allAvailableDiffReporters = ['DoNothing', 'gitdiff'];
     }
     else {
         textDiffReporters = ['DoNothing', 'gitdiff'];
