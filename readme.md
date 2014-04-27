@@ -1,8 +1,14 @@
-# Approvals [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
+# Approvals 
 
 Approval Tests Library - Capturing Human Intelligence
 
 Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
+
+# Latest Builds
+
+- Linux@travis.ci: [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
+- Windows@appveyor: [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
+
 
 
 ## Supported Testing Frameworks
