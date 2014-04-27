@@ -41,7 +41,8 @@
     "underscore": "~1.4.3",
     "shelljs": "0.0.9",
     "linq": "~1.0.2",
-    "glob": "~3.2.9"
+    "glob": "~3.2.9",
+    "mkdirp": "^0.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
