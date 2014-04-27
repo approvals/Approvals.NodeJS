@@ -1,5 +1,6 @@
 var approvals = require("../lib/Approvals.js").configure({
-    appendEOL: true,
+    EOL:  "\n",
+    appendEOL: true
 });
 
 describe('approvals', function () {
