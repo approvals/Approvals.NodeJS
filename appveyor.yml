@@ -11,9 +11,9 @@ init:
 # what combinations to test
 environment:
   matrix:
-    - nodejs_version: 0.10
-    - nodejs_version: 0.8
     - nodejs_version: 0.11
+    - nodejs_version: 0.10
+#    - nodejs_version: 0.8
 
 # combinations having this can fail
 matrix:
