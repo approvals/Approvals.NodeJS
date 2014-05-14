@@ -23,7 +23,7 @@ matrix:
 # Get the latest stable version of Node 0.STABLE.latest
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
-  - npm install -g grunt-cli
+  - npm install -g gulp
   - npm install
 #  - npm uninstall grunt
 
@@ -32,5 +32,5 @@ build: off
 test_script:
   - node --version
   - npm --version
-  - ps: grunt --no-color # PowerShell
-  - cmd: grunt --no-color
+  - ps: npm test --no-color # PowerShell
+  - cmd: npm test --no-color
