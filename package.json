@@ -33,7 +33,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt",
+    "test": "gulp",
     "install": "node install_dependencies.js"
   },
   "dependencies": {
@@ -53,7 +53,7 @@
     "file-utils": "^0.1.5",
     "gulp": "^3.5.6",
     "gulp-mocha": "^0.4.1",
-    "gulp-jshint": "^1.5.5",
+    "gulp-jshint": "^1.5.5"
   },
   "keywords": [
     "Approvals",
