@@ -24,7 +24,7 @@ describe('AUtils', function () {
                 });
             });
 
-            describe("When lookign for a program in program files", function () {
+            describe("When looking for a program in program files", function () {
                 it("should find iexplorer", function () {
 
                     var file = utils.searchForExecutable("Internet Explorer", "iexplore");
