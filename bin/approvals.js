@@ -5,6 +5,19 @@ var chalk = require('chalk');
 var es = require('event-stream');
 
 var verbose = process.argv.indexOf('--verbose') >= 0
+var printHelp = process.argv.indexOf('--help') >= 0
+
+if(printHelp) {
+
+    console.log('usage: approvals testName');
+    console.log('         [--reporter difftool] (can pass multiple ex: --reporter opendiff --reporter gitdiff)');
+    console.log('         [--verbose] (spew some debug info)');
+    console.log('         [--outdir] (dir to place approval file - defaults to current dir)');
+    console.log('         [--{approvalTestArg}] (intent is to support all args that approvals.configure takes (report if it is missing one))');
+    //TODO: better help/console documentation
+
+    process.exit(1);
+}
 
 if(verbose) console.log('process.argv: ', process.argv);
 
