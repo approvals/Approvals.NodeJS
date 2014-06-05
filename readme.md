@@ -10,11 +10,12 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 - windows: [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs) (Thanks to [AppVeyor](http://AppVeyor.com))
 
 
+## Invoke via:
 
-## Supported Testing Frameworks
-- [Mocha](http://visionmedia.github.io/mocha/)
-- [Jasmine](http://pivotal.github.io/jasmine/)
-- Manual (manually invoke the `approvals.verify(...)`)
+- [Mocha](http://visionmedia.github.io/mocha/) tests
+- [Jasmine](http://pivotal.github.io/jasmine/) tests
+- Approvals API (`require('approvals').verify(...)`)
+- Command line Utility
 
 ## Getting Started
 

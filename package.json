@@ -29,6 +29,9 @@
     }
   ],
   "main": "lib/approvals",
+  "bin": {
+    "approvals": "./bin/approvals.js"
+  },
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -37,11 +40,17 @@
     "install": "node install_dependencies.js"
   },
   "dependencies": {
+    "chalk": "^0.4.0",
+    "event-stream": "^3.1.5",
     "file-utils": "~0.1.0",
     "glob": "~3.2.9",
+    "liftoff": "^0.11.2",
     "linq": "~1.0.2",
+    "minimist": "^0.1.0",
     "mkdirp": "^0.4.0",
+    "semver": "^2.3.0",
     "shelljs": "0.0.9",
+    "tildify": "^0.2.0",
     "underscore": "~1.4.3"
   },
   "devDependencies": {
