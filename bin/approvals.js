@@ -74,7 +74,7 @@ if(verbose) console.log('approval opts: ', opts);
 
 // TODO: add other approval options in... or find a way to dynamically add them.
 
-var approvals = require('../lib/approvals').configure(opts);
+var approvals = require('../lib/Approvals').configure(opts);
 
 // now capture standard in and verify against it
 process.stdin.pipe(es.mapSync(function(data) {
