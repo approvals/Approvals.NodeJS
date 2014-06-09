@@ -3,27 +3,33 @@
 
 var chalk = require('chalk');
 var es = require('event-stream');
-
 var verbose = process.argv.indexOf('--verbose') >= 0
 var printHelp = process.argv.indexOf('--help') >= 0
 
-if(printHelp) {
+function printHelpMessage(){
 
-    console.log('usage: approvals testName');
-    console.log('         [--reporter difftool] (can pass multiple ex: --reporter opendiff --reporter gitdiff)');
-    console.log('         [--verbose] (spew some debug info)');
-    console.log('         [--outdir] (dir to place approval file - defaults to current dir)');
-    console.log('         [--{approvalTestArg}] (intent is to support all args that approvals.configure takes (report if it is missing one))');
-    //TODO: better help/console documentation
+  if(verbose) console.log("printing help...");
 
+  var helpFile = require('path').join(__dirname, 'help.md');
+  console.log(require('msee').parseFile(helpFile));
+}
+
+function errAndExit(msg) {
+    printHelpMessage();
+    console.log(chalk.red(msg));
     process.exit(1);
 }
 
+if(printHelp) {
+  printHelpMessage();
+  process.kill();
+}
+
+
+
 if(verbose) console.log('process.argv: ', process.argv);
 
-var cliPackage = require('../package');
-
-var argv = require('minimist')(process.argv.slice(2), { 
+var argv = require('minimist')(process.argv.slice(2), {
     alias: {
         'reporters': ['r']
     },
@@ -32,21 +38,10 @@ var argv = require('minimist')(process.argv.slice(2), {
 if(verbose) console.log('parsed args: ', argv);
 
 
-function errAndExit(msg) {
-    console.log(chalk.red(msg));
-    process.exit(1);
-}
-
 var reporters = argv.reporter;
-
 if(typeof reporters === 'string') {
+    // single argument case is a string - multiple is an array already
     reporters = [reporters];
-}
-
-if(reporters) {
-    if(!Array.isArray(reporters)) {
-        errAndExit("reporters argument must be an array of reporters. TODO: print sample");
-    }
 }
 
 var testname = argv._[0];
@@ -59,6 +54,8 @@ if(!require('fs').existsSync(outdir)) {
     errAndExit('Directory not found: ' + outdir);
 }
 
+// we don't want to error on stale approved files by default because this basically runs 1 test at a time
+// and we would end up with a bunch of noise.
 var errorOnStaleApprovedFiles = argv.errorOnStaleApprovedFiles === 'true';
 
 if(verbose) console.log('outdir: ', outdir);
@@ -81,4 +78,3 @@ process.stdin.pipe(es.mapSync(function(data) {
     var dataToVerify = data.toString();
     approvals.verify(outdir, testname, dataToVerify);
 }));
-
