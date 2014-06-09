@@ -11,7 +11,11 @@ function printHelpMessage(){
   if(verbose) console.log("printing help...");
 
   var helpFile = require('path').join(__dirname, 'help.md');
-  console.log(require('msee').parseFile(helpFile));
+  var output = require('msee').parseFile(helpFile)
+
+  // Some spacing formatting cleanup
+  output = output.replace(/&nbsp;/g, ' ');
+  console.log(output);
 }
 
 function errAndExit(msg) {
