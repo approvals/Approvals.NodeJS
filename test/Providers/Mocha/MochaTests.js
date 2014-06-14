@@ -1,13 +1,14 @@
 
 describe('Mocha', function () {
 
-	require("../../../lib/Approvals")
-        .configure({
-            errorOnStaleApprovedFiles: false
-        })
-        .mocha(__dirname);
-
     describe('when verifying some basic text', function () {
+
+				require("../../../lib/Approvals")
+							.configure({
+									errorOnStaleApprovedFiles: false
+							})
+				.mocha(__dirname);
+
         it('should work', function () {
 
             this.verify("Hello World!");
@@ -20,6 +21,6 @@ describe('Mocha', function () {
 
             this.verifyAsJSON(value);
 
-        });        
+        });
     });
 });
