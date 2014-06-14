@@ -33,3 +33,5 @@ node_modules
 *.suo
 
 coverage/
+
+.node-version
