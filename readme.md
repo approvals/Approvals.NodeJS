@@ -14,7 +14,7 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 - [Mocha](http://visionmedia.github.io/mocha/) tests
 - [Jasmine](http://pivotal.github.io/jasmine/) tests
-- Approvals API (`require('approvals').verify(...)`)
+- [Approvals API](https://github.com/approvals/Approvals.NodeJS/wiki/Manual-API) (`require('approvals').verify(...)`)
 - [Command line Utility](https://github.com/approvals/Approvals.NodeJS/wiki/Command-Line)
 
 ## Getting Started
