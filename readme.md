@@ -87,8 +87,7 @@ The suggested fix is to add
 
 - TODO:
     - [Vows](http://vowsjs.org/)
-
-Can you think any other testing frameworks that approvals should integrate with? Consider submitting a pull request, or report a Github issue for discussion.
+    - Other? Let us know in the [issues](https://github.com/Approvals.NodeJS/issues)
 
 ## Contributing
 
