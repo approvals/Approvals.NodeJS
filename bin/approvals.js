@@ -50,7 +50,7 @@ if(typeof reporters === 'string') {
 
 var testname = argv._[0];
 if(!testname) {
-    errAndExit('Missing parameter: stupply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory');
+    errAndExit('Missing parameter: supply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory');
 }
 
 var outdir = argv.outdir || process.cwd();
