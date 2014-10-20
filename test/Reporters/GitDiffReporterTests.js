@@ -14,13 +14,13 @@ describe('Reporter', function () {
             var approved = path.join(__dirname, "a.txt");
             var received = path.join(__dirname, "b.txt");
 
-            var expectedCommand = "'git' diff --no-index -- " + received + " " + approved;
+            var expectedCommand = "'git' diff --no-index -- '" + received + "' '" + approved + "'";
 
             reporter.report(approved, received, function (command) {
-
+                
                 var pathTrimmedCommand = command
-                  .replace("git.cmd'", "git")
-                  .replace("git.exe'", "git")
+                  .replace("git.cmd'", "git'")
+                  .replace("git.exe'", "git'")
                 ;
 
                 var startTrim = pathTrimmedCommand.indexOf("git' diff")
