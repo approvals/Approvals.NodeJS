@@ -21,6 +21,3 @@ if(isWin) {
     });
 
 }
-else {
-	console.error("not npm installing edge as it's only used on windows");
-}
