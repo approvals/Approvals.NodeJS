@@ -28,7 +28,7 @@
       "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
     }
   ],
-  "main": "lib/approvals",
+  "main": "lib/Approvals",
   "bin": {
     "approvals": "./bin/approvals.js"
   },
