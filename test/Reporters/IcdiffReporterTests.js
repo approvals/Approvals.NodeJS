@@ -17,14 +17,10 @@ describe('Reporter', function () {
 
             reporter.report(approved, received, function (command) {
 
-                var pathTrimmedCommand = command
-                  .replace("icdiff.cmd'", "git'")
-                ;
+                var startTrim = command.indexOf("icdiff");
+                command = "'" + command.substr(startTrim);
 
-                var startTrim = pathTrimmedCommand.indexOf("icdiff");
-                pathTrimmedCommand = "'" + pathTrimmedCommand.substr(startTrim);
-
-                assert.equal(pathTrimmedCommand, expectedCommand);
+                assert.equal(command, expectedCommand);
                 return {};
             });
         });
