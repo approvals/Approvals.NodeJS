@@ -4,58 +4,57 @@ var assert = require("assert");
 
 describe('AUtils', function () {
 
-    // only run these tests on Windows
-    if (os.platform.isWindows) {
+  // only run these tests on Windows
+  if (os.platform.isWindows) {
 
-        describe('searchForExecutable', function () {
-            describe("when using windows where.exe to find programs", function () {
-                it('ipconfig should be found once', function () {
+    describe('searchForExecutable', function () {
+      describe("when using windows where.exe to find programs", function () {
+        it('ipconfig should be found once', function () {
 
-                    var file = utils.searchForExecutable("ipconfig");
+          var file = utils.searchForExecutable("ipconfig");
 
-                    utils.assertFileExists(file);
-                });
-
-                it('notepad is found multiple times and we should just use the first one', function () {
-
-                    var file = utils.searchForExecutable("ipconfig");
-
-                    utils.assertFileExists(file);
-                });
-            });
-
-            describe("When looking for a program in program files", function () {
-                it("should find iexplorer", function () {
-
-                    var file = utils.searchForExecutable("Internet Explorer", "iexplore");
-
-                    utils.assertFileExists(file);
-                });
-            });
+          utils.assertFileExists(file);
         });
-    }
-    else {
-        describe('find linux executable', function () {
-            describe("when using linux 'which' to find programs", function () {
-                it('ifconfig should be found once', function () {
 
-                    var file = utils.searchForExecutable("ifconfig");
+        it('notepad is found multiple times and we should just use the first one', function () {
 
-                    utils.assertFileExists(file);
-                });
-            });
+          var file = utils.searchForExecutable("ipconfig");
+
+          utils.assertFileExists(file);
         });
-    }
+      });
 
-    describe('fixFilePathSlashes', function () {
-        it("should replace back slashes with forward slashes", function () {
+      describe("When looking for a program in program files", function () {
+        it("should find iexplorer", function () {
 
-            var before = "C:\\Windows\\System32\\ipconfig.exe";
-            var expected = "C:/Windows/System32/ipconfig.exe";
+          var file = utils.searchForExecutable("Internet Explorer", "iexplore");
 
-            var fixed = utils.fixFilePathSlashes(before);
-
-            assert.equal(fixed, expected);
+          utils.assertFileExists(file);
         });
+      });
     });
+  } else {
+    describe('find linux executable', function () {
+      describe("when using linux 'which' to find programs", function () {
+        it('ifconfig should be found once', function () {
+
+          var file = utils.searchForExecutable("ifconfig");
+
+          utils.assertFileExists(file);
+        });
+      });
+    });
+  }
+
+  describe('fixFilePathSlashes', function () {
+    it("should replace back slashes with forward slashes", function () {
+
+      var before = "C:\\Windows\\System32\\ipconfig.exe";
+      var expected = "C:/Windows/System32/ipconfig.exe";
+
+      var fixed = utils.fixFilePathSlashes(before);
+
+      assert.equal(fixed, expected);
+    });
+  });
 });

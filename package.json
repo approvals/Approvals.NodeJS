@@ -4,75 +4,76 @@
   "version": "0.0.25",
   "homepage": "http://approvaltests.com",
   "author": {
-    "name": "Jason Jarrett",
-    "url": "http://staxmanade.com"
+  "name": "Jason Jarrett",
+  "url": "http://staxmanade.com"
   },
   "contributors": [
-    {
-      "name": "Llewellyn Falco"
-    },
-    {
-      "name": "Jason Jarrett (http://staxmanade.com)"
-    }
+  {
+    "name": "Llewellyn Falco"
+  },
+  {
+    "name": "Jason Jarrett (http://staxmanade.com)"
+  }
   ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/approvals/Approvals.NodeJS.git"
+  "type": "git",
+  "url": "https://github.com/approvals/Approvals.NodeJS.git"
   },
   "bugs": {
-    "url": "https://github.com/approvals/Approvals.NodeJS/issues"
+  "url": "https://github.com/approvals/Approvals.NodeJS/issues"
   },
   "licenses": [
-    {
-      "type": "Apache",
-      "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
-    }
+  {
+    "type": "Apache",
+    "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
+  }
   ],
   "main": "lib/Approvals",
   "bin": {
-    "approvals": "./bin/approvals.js"
+  "approvals": "./bin/approvals.js"
   },
   "engines": {
-    "node": ">= 0.8.0"
+  "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "gulp",
-    "install": "node install_dependencies.js"
+  "test": "gulp",
+  "install": "node install_dependencies.js"
   },
   "dependencies": {
-    "chalk": "^0.4.0",
-    "event-stream": "^3.1.5",
-    "file-utils": "~0.1.0",
-    "glob": "~3.2.9",
-    "liftoff": "^0.11.2",
-    "linq": "~1.0.2",
-    "minimist": "^0.1.0",
-    "mkdirp": "^0.4.0",
-    "msee": "^0.1.1",
-    "semver": "^2.3.0",
-    "shelljs": "0.0.9",
-    "tildify": "^0.2.0",
-    "underscore": "~1.4.3"
+  "chalk": "^0.4.0",
+  "event-stream": "^3.1.5",
+  "file-utils": "~0.1.0",
+  "glob": "~3.2.9",
+  "liftoff": "^0.11.2",
+  "linq": "~1.0.2",
+  "minimist": "^0.1.0",
+  "mkdirp": "^0.4.0",
+  "msee": "^0.1.1",
+  "semver": "^2.3.0",
+  "shelljs": "0.0.9",
+  "tildify": "^0.2.0",
+  "underscore": "~1.4.3"
   },
   "devDependencies": {
-    "mocha": "^1.7.4",
-    "temp": "^0.6.0",
-    "underscore": "^1.4.4",
-    "shelljs": "0.0.9",
-    "linq": "^1.0.3",
-    "file-utils": "^0.1.5",
-    "gulp": "^3.5.6",
-    "gulp-mocha": "^0.4.1",
-    "gulp-jscs": "^1.5.2",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-jshint": "^1.5.5",
-    "jshint-stylish": "^1.0.1"
+  "file-utils": "^0.1.5",
+  "gulp": "^3.5.6",
+  "gulp-jscs": "^1.5.2",
+  "gulp-jshint": "^1.5.5",
+  "gulp-load-plugins": "^0.10.0",
+  "gulp-mocha": "^0.4.1",
+  "gulp-watch": "^4.2.4",
+  "jshint-stylish": "^1.0.1",
+  "linq": "^1.0.3",
+  "mocha": "^1.7.4",
+  "shelljs": "0.0.9",
+  "temp": "^0.6.0",
+  "underscore": "^1.4.4"
   },
   "keywords": [
-    "Approvals",
-    "ApprovalTests",
-    "Approval Tests",
-    "Mocha",
-    "Test"
+  "Approvals",
+  "ApprovalTests",
+  "Approval Tests",
+  "Mocha",
+  "Test"
   ]
 }

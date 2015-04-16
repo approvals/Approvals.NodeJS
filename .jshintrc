@@ -8,11 +8,11 @@
   "unused": true,
   "onecase": true,
   "globals" : {
-    "exports": true,
-    "describe": false,
-    "it": true,
-    "before": false,
-    "expect": false,
-    "beforeEach": false
+  "exports": true,
+  "describe": false,
+  "it": true,
+  "before": false,
+  "expect": false,
+  "beforeEach": false
   }
 }
