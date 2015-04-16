@@ -25,7 +25,7 @@ gulp.task('jshint', function() {
     .pipe($.jshint.reporter('default'));
 });
 
-gulp.task('test', function(){
+gulp.task('test', ['jshint', 'jscs'], function(){
   return gulp.src(paths.mochaTests, { read: false })
   .pipe($.mocha({
     reporter: 'spec',
