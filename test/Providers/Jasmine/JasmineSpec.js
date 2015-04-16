@@ -7,18 +7,21 @@ require("../../../lib/Approvals")
 describe('Jasmine Reporter', function () {
 
   describe('when verifying some basic text', function () {
-  it('should work', function () {
 
-    this.verify("Hello World!");
+    it('should work', function () {
+      this.timeout(10000);
 
-  });
+      this.verify("Hello World!");
 
-  it('should verifyAsJSON', function () {
+    });
 
-    var value = {a:1, b:"bar"};
+    it('should verifyAsJSON', function () {
+      this.timeout(10000);
 
-    this.verifyAsJSON(value);
-  });
+      var value = {a:1, b:"bar"};
+
+      this.verifyAsJSON(value);
+    });
 
   });
 });
