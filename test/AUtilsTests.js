@@ -9,29 +9,33 @@ describe('AUtils', function () {
 
         describe('searchForExecutable', function () {
             describe("when using windows where.exe to find programs", function () {
-                it('ipconfig should be found once', function () {
+                if (!process.env.APPVEYOR) {
+                  it('git should be found once', function () {
 
-                    var file = utils.searchForExecutable("ipconfig");
+                      var file = utils.searchForExecutable("git");
 
-                    utils.assertFileExists(file);
-                });
+                      utils.assertFileExists(file);
+                  });
+                }
 
                 it('notepad is found multiple times and we should just use the first one', function () {
 
-                    var file = utils.searchForExecutable("ipconfig");
+                    var file = utils.searchForExecutable("git");
 
                     utils.assertFileExists(file);
                 });
             });
 
-            describe("When looking for a program in program files", function () {
-                it("should find iexplorer", function () {
+            if (!process.env.APPVEYOR) {
+                describe("When looking for a program in program files", function () {
+                    it("should find iexplorer", function () {
 
-                    var file = utils.searchForExecutable("Internet Explorer", "iexplore");
+                        var file = utils.searchForExecutable("Internet Explorer", "iexplore");
 
-                    utils.assertFileExists(file);
+                        utils.assertFileExists(file);
+                    });
                 });
-            });
+           }
         });
     }
     else {
