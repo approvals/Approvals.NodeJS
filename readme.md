@@ -6,9 +6,11 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 # Latest Builds
 
-Linux  | Windows
+ Service | Status
 ------------- | -------------
-[![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS) (Thanks to [travis-ci](http://travis-ci.org)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs) (Thanks to [AppVeyor](http://AppVeyor.com))
+Linux ([Travis CI](https://travis-ci.org/)) | [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
+Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
+Coverage ([Coveralls](https://coveralls.io)) | [![Coverage Status](https://coveralls.io/repos/approvals/Approvals.NodeJS/badge.svg)](https://coveralls.io/r/approvals/Approvals.NodeJS)
 
 
 ## Invoke via:
