@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var path = require('path');
 
 var paths = {
   mochaTests: ['test/**/*[Tt]ests.js'],
@@ -48,6 +49,15 @@ gulp.task('coverage', function (cb) {
         cb();
       });
     });
+});
+
+gulp.task('coveralls', ['coverage'], function () {
+  if (!process.env.CI) {
+    return;
+  }
+
+  return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+    .pipe($.coveralls());
 });
 
 gulp.task('default', ["test", "jshint"]);
