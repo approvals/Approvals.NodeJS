@@ -50,6 +50,7 @@
     "shelljs": "0.0.9"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "gulp": "^3.8.11",
     "gulp-coveralls": "^0.1.3",
     "gulp-istanbul": "^0.8.1",
