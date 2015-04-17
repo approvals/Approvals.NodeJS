@@ -4,7 +4,8 @@ var $ = require('gulp-load-plugins')();
 var paths = {
   mochaTests: ['test/**/*[Tt]ests.js'],
   jasmineTests: ['test/**/*.Spec.js'],
-  filesToLint: ['./lib/**/*.js', './test/**/*.js', 'gulpfile.js']
+  filesToLint: ['./lib/**/*.js', './test/**/*.js', 'gulpfile.js'],
+  sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
 };
 
 gulp.task('jscs', function() {
@@ -32,6 +33,21 @@ gulp.task('test', ['jshint', 'jscs'], function(){
     timeout: 2000,
     globals: { }
   }));
+});
+
+gulp.task('coverage', function (cb) {
+  gulp.src(paths.sourceJSFilesForCodeCoverage)
+    .pipe($.istanbul()) // Covering files
+    .pipe($.istanbul.hookRequire())
+    .on('finish', function () {
+      gulp.src(paths.mochaTests, { read: false })
+      .pipe($.mocha({ reporter: 'dot' }))
+      .pipe($.istanbul.writeReports()) // Creating the reports after tests ran
+      .on('finish', function() {
+        process.chdir(__dirname);
+        cb();
+      });
+    });
 });
 
 gulp.task('default', ["test", "jshint"]);
