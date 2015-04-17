@@ -22,7 +22,7 @@ gulp.task('jscs-watch', function() {
 gulp.task('jshint', function() {
   return gulp.src(paths.filesToLint)
     .pipe($.jshint())
-    .pipe($.jshint.reporter('default'));
+    .pipe($.jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('test', ['jshint', 'jscs'], function(){
