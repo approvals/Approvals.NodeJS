@@ -5,20 +5,20 @@ var DiffReporterAggregate = require("../../lib/Reporters/DiffReporterAggregate.j
 
 describe('AggregateReporter', function () {
 
-    var textDiffReporters = ['gitdiff', 'p4merge'];
+  var textDiffReporters = ['gitdiff', 'p4merge'];
 
-    it("should be able to report on a txt file", function () {
+  it("should be able to report on a txt file", function () {
 
-        var file = path.join(__dirname, "a.txt");
+    var file = path.join(__dirname, "a.txt");
 
-        var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
+    var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
 
-        var reporterX = new DiffReporterAggregate(reporters);
-        var canReportOn = reporterX.canReportOn(file);
-        assert.ok(canReportOn, "Can report on " + file);
+    var reporterX = new DiffReporterAggregate(reporters);
+    var canReportOn = reporterX.canReportOn(file);
+    assert.ok(canReportOn, "Can report on " + file);
 
-        var foundReporter = reporterX.getReporter(file);
+    var foundReporter = reporterX.getReporter(file);
 
-        assert.ok(foundReporter, "foundReporter not found?");
-    });
+    assert.ok(foundReporter, "foundReporter not found?");
+  });
 });
