@@ -20,7 +20,7 @@ gulp.task('jscs-watch', function() {
 });
 
 gulp.task('jshint', function() {
-  return gulp.src(["lib/**/*.js", "test/**/*.js"])
+  return gulp.src(paths.filesToLint)
     .pipe($.jshint())
     .pipe($.jshint.reporter('default'));
 });
