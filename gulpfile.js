@@ -57,7 +57,10 @@ gulp.task('coveralls', ['coverage'], function () {
   }
 
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
-    .pipe($.coveralls());
+    .pipe($.coveralls())
+    .on('end', function () {
+      console.log("Coverage published to coveralls.io");
+    });
 });
 
 gulp.task('default', ["test", "jshint"]);
