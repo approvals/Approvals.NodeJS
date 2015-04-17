@@ -42,15 +42,12 @@
   "dependencies": {
     "chalk": "^0.4.0",
     "event-stream": "^3.1.5",
-    "file-utils": "~0.1.0",
     "glob": "~3.2.9",
     "lodash": "^3.7.0",
     "minimist": "^0.1.0",
     "mkdirp": "^0.4.0",
     "msee": "^0.1.1",
-    "semver": "^2.3.0",
-    "shelljs": "0.0.9",
-    "tildify": "^0.2.0"
+    "shelljs": "0.0.9"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -60,7 +57,6 @@
     "gulp-mocha": "^0.4.1",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",
-    "mocha": "^1.7.4",
     "temp": "^0.6.0"
   },
   "keywords": [
