@@ -4,7 +4,7 @@
   "version": "0.0.25",
   "homepage": "http://approvaltests.com",
   "author": {
-  "name": "Jason Jarrett",
+    "name": "Jason Jarrett",
     "url": "http://staxmanade.com"
   },
   "contributors": [
@@ -16,7 +16,7 @@
     }
   ],
   "repository": {
-  "type": "git",
+    "type": "git",
     "url": "https://github.com/approvals/Approvals.NodeJS.git"
   },
   "bugs": {
@@ -46,13 +46,13 @@
     "glob": "~3.2.9",
     "liftoff": "^0.11.2",
     "linq": "~1.0.2",
+    "lodash": "^3.7.0",
     "minimist": "^0.1.0",
     "mkdirp": "^0.4.0",
     "msee": "^0.1.1",
     "semver": "^2.3.0",
     "shelljs": "0.0.9",
-    "tildify": "^0.2.0",
-    "underscore": "~1.4.3"
+    "tildify": "^0.2.0"
   },
   "devDependencies": {
     "file-utils": "^0.1.5",
@@ -66,8 +66,7 @@
     "linq": "^1.0.3",
     "mocha": "^1.7.4",
     "shelljs": "0.0.9",
-    "temp": "^0.6.0",
-    "underscore": "^1.4.4"
+    "temp": "^0.6.0"
   },
   "keywords": [
     "Approvals",
