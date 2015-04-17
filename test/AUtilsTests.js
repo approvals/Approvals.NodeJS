@@ -8,30 +8,32 @@ describe('AUtils', function () {
   if (os.platform.isWindows) {
 
     describe('searchForExecutable', function () {
-      describe("when using windows where.exe to find programs", function () {
-        it('ipconfig should be found once', function () {
+      if (!process.env.APPVEYOR) {
+        describe("when using windows where.exe to find programs", function () {
+          it('ipconfig should be found once', function () {
 
-          var file = utils.searchForExecutable("ipconfig");
+            var file = utils.searchForExecutable("ipconfig");
 
-          utils.assertFileExists(file);
+            utils.assertFileExists(file);
+          });
+
+          it('notepad is found multiple times and we should just use the first one', function () {
+
+            var file = utils.searchForExecutable("ipconfig");
+
+            utils.assertFileExists(file);
+          });
         });
 
-        it('notepad is found multiple times and we should just use the first one', function () {
+        describe("When looking for a program in program files", function () {
+          it("should find iexplorer", function () {
 
-          var file = utils.searchForExecutable("ipconfig");
+            var file = utils.searchForExecutable("Internet Explorer", "iexplore");
 
-          utils.assertFileExists(file);
+            utils.assertFileExists(file);
+          });
         });
-      });
-
-      describe("When looking for a program in program files", function () {
-        it("should find iexplorer", function () {
-
-          var file = utils.searchForExecutable("Internet Explorer", "iexplore");
-
-          utils.assertFileExists(file);
-        });
-      });
+      }
     });
   } else {
     describe('find linux executable', function () {
