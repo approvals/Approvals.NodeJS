@@ -45,7 +45,6 @@
     "file-utils": "~0.1.0",
     "glob": "~3.2.9",
     "liftoff": "^0.11.2",
-    "linq": "~1.0.2",
     "lodash": "^3.7.0",
     "minimist": "^0.1.0",
     "mkdirp": "^0.4.0",
@@ -55,7 +54,6 @@
     "tildify": "^0.2.0"
   },
   "devDependencies": {
-    "file-utils": "^0.1.5",
     "gulp": "^3.5.6",
     "gulp-jscs": "^1.5.2",
     "gulp-jshint": "^1.5.5",
@@ -63,9 +61,7 @@
     "gulp-mocha": "^0.4.1",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",
-    "linq": "^1.0.3",
     "mocha": "^1.7.4",
-    "shelljs": "0.0.9",
     "temp": "^0.6.0"
   },
   "keywords": [
