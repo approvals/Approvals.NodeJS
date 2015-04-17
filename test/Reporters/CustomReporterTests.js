@@ -1,64 +1,64 @@
 
 var assert = require('assert');
 var MyCustomReporter = function () {
-	var wasReporterUsed = false;
-	return {
-		canReportOn: function(/*file*/){
-			return true;
-		},
-		report: function(/*approved, received*/){
-			wasReporterUsed = true;
-		},
-		getWasReporterUsed: function(){
-			return wasReporterUsed;
-		},
-		name: "globalCustomReporter"
-	};
+  var wasReporterUsed = false;
+  return {
+    canReportOn: function(/*file*/){
+      return true;
+    },
+    report: function(/*approved, received*/){
+      wasReporterUsed = true;
+    },
+    getWasReporterUsed: function(){
+      return wasReporterUsed;
+    },
+    name: "globalCustomReporter"
+  };
 };
 
 var globalCustomReporter = new MyCustomReporter();
 
 require('../../lib/Approvals').configure({
-	reporters: [globalCustomReporter]
+  reporters: [globalCustomReporter]
 }).mocha(__dirname);
 
 describe("CustomReporter", function  () {
-	it("allows CustomReporter at method level", function  () {
-		
-		var calledCustomReporter = false;
+  it("allows CustomReporter at method level", function  () {
 
-		try {
-			this.verify('foo', {
-				canReportOn: function(/*file*/){
-					return true;
-				},
-				report: function(/*approved, received*/){
-					calledCustomReporter = true;
-				}
-			});
+    var calledCustomReporter = false;
 
-		} catch(err){
-		}
+    try {
+      this.verify('foo', {
+        canReportOn: function(/*file*/){
+          return true;
+        },
+        report: function(/*approved, received*/){
+          calledCustomReporter = true;
+        }
+      });
 
-		assert.ok(calledCustomReporter);
-	});
+    } catch (err) {
+    }
 
-	it("uses global custom reporter", function(){
+    assert.ok(calledCustomReporter);
+  });
 
-		try {
-			this.verify('foo');
+  it("uses global custom reporter", function(){
 
-		} catch(err){
-		}
+    try {
+      this.verify('foo');
+    } catch (err) {
 
-		assert.ok(globalCustomReporter.getWasReporterUsed());
-	});
+    }
 
-	it("uses global custom reporter 2", function(){
+    assert.ok(globalCustomReporter.getWasReporterUsed());
+  });
 
-		var reporter = this.approvals.getCurrentReporter();
+  it("uses global custom reporter 2", function(){
 
-		assert.equal(reporter.name, "DiffReporterAggregate [globalCustomReporter]");
-	});
+    var reporter = this.approvals.getCurrentReporter();
+
+    assert.equal(reporter.name, "DiffReporterAggregate [globalCustomReporter]");
+  });
 
 });

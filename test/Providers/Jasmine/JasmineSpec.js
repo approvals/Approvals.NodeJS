@@ -1,24 +1,27 @@
 require("../../../lib/Approvals")
-    .configure({
-        errorOnStaleApprovedFiles: false
-    })
-    .jasmine(__dirname);
+  .configure({
+    errorOnStaleApprovedFiles: false
+  })
+  .jasmine(__dirname);
 
 describe('Jasmine Reporter', function () {
 
-    describe('when verifying some basic text', function () {
-        it('should work', function () {
+  describe('when verifying some basic text', function () {
 
-            this.verify("Hello World!");
+    it('should work', function () {
+      this.timeout(10000);
 
-        });
-
-        it('should verifyAsJSON', function () {
-
-            var value = {a:1, b:"bar"};
-
-            this.verifyAsJSON(value);
-        });        
+      this.verify("Hello World!");
 
     });
+
+    it('should verifyAsJSON', function () {
+      this.timeout(10000);
+
+      var value = {a:1, b:"bar"};
+
+      this.verifyAsJSON(value);
+    });
+
+  });
 });

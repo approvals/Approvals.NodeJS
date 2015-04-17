@@ -1,0 +1,21 @@
+{
+  "requireCurlyBraces": ["if", "else", "for", "while", "do", "try", "catch"],
+  "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
+  "disallowSpaceBeforeBinaryOperators": [",", ":"],
+  "disallowSpaceAfterBinaryOperators": ["!"],
+  "requireSpaceBeforeBinaryOperators": ["?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<="],
+  "requireSpaceAfterBinaryOperators": ["?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<="],
+  "disallowImplicitTypeConversion": ["string"],
+  "disallowKeywords": ["with"],
+  "disallowMultipleLineBreaks": true,
+  "disallowKeywordsOnNewLine": ["else", "catch"],
+  "disallowTrailingWhitespace": true,
+  "requireLineFeedAtFileEnd": true,
+  "disallowEmptyBlocks": true,
+  "disallowSpacesInsideArrayBrackets": true,
+  "disallowSpacesInsideParentheses": true,
+  "disallowMixedSpacesAndTabs": true,
+  "disallowTrailingComma": true,
+  "disallowNewlineBeforeBlockStatements": true,
+  "validateIndentation": 2
+}
