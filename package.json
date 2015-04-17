@@ -64,10 +64,15 @@
     "temp": "^0.6.0"
   },
   "keywords": [
+    "Approve",
     "Approvals",
     "ApprovalTests",
     "Approval Tests",
     "Mocha",
-    "Test"
+    "Jasmine",
+    "Test",
+    "Testing",
+    "Verification",
+    "Verify"
   ]
 }
