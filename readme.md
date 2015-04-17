@@ -1,4 +1,4 @@
-# Approvals 
+# Approvals
 
 Approval Tests Library - Capturing Human Intelligence
 
@@ -6,8 +6,9 @@ Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
 # Latest Builds
 
-- linux: [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS) (Thanks to [travis-ci](http://travis-ci.org))
-- windows: [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs) (Thanks to [AppVeyor](http://AppVeyor.com))
+Linux  | Windows
+------------- | -------------
+[![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS) (Thanks to [travis-ci](http://travis-ci.org)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs) (Thanks to [AppVeyor](http://AppVeyor.com))
 
 
 ## Invoke via:
@@ -40,7 +41,10 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 4. Create a sample Mocha test file called `test.js`.
 
   ```javascript
-  require('approvals').mocha(__dirname);
+  require('approvals')
+    .configure(/* options - see below */)
+    .mocha(__dirname);
+
   describe('When running some tests', function () {
     it('should be able to use Approvals', function () {
       var data = "Hello World!";
@@ -79,7 +83,7 @@ require('approvals')
 ```
 
 #### Approved File Artifacts
-The `*.approved.*` files must be checked into source your source control. This can be an issue with git as it will change the line endings. 
+The `*.approved.*` files must be checked into source your source control. This can be an issue with git as it will change the line endings.
 The suggested fix is to add
 `*.approved.* binary` to your `.gitattributes`
 
