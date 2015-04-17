@@ -1,6 +1,4 @@
-var os = require('os');
 var spawn = require('child_process').spawn;
-
 var isWin = !!process.platform.match(/^win/);
 
 console.log();

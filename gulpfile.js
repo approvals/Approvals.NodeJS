@@ -12,8 +12,7 @@ gulp.task('jscs', function() {
   .pipe($.jscs());
 });
 
-gulp.task('jscs-watch', function() {
-  gulp.start('jscs');
+gulp.task('jscs-watch', ['jscs'], function() {
   $.watch(paths.filesToLint, function () {
     gulp.start('jscs');
   });
