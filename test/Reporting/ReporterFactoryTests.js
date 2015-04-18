@@ -25,7 +25,7 @@ describe('ReporterFactory', function () {
     try {
       ReporterFactory.loadReporter('wat?');
     } catch (e) {
-      if (e.indexOf("Reporter not found [wat?]. Try one of the following") === -1) {
+      if (e.indexOf("Error loading reporter or reporter not found [wat?]. Try one of the following") === -1) {
         throw e;
       }
     }
