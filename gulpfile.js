@@ -31,7 +31,7 @@ gulp.task('test', ['jshint', 'jscs'], function(){
   .pipe($.mocha({
     reporter: 'spec',
     slow: 500,
-    timeout: 2000,
+    timeout: 5000,
     globals: { }
   }));
 });
@@ -42,7 +42,10 @@ gulp.task('coverage', function (cb) {
     .pipe($.istanbul.hookRequire())
     .on('finish', function () {
       gulp.src(paths.mochaTests, { read: false })
-      .pipe($.mocha({ reporter: 'dot' }))
+      .pipe($.mocha({
+        reporter: 'dot',
+        timeout: 5000
+      }))
       .pipe($.istanbul.writeReports()) // Creating the reports after tests ran
       .on('finish', function() {
         process.chdir(__dirname);
