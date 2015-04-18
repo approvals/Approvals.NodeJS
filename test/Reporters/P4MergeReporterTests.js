@@ -1,7 +1,7 @@
 var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
-var ReporterUnderTest = require("../../lib/Reporters/p4mergeReporter.js");
+var ReporterUnderTest = require("../../lib/Reporting/Reporters/p4mergeReporter.js");
 
 describe('Reporter', function () {
 

@@ -1,7 +1,7 @@
-var ReporterFactory = require("../../lib/Reporters/ReporterFactory.js");
+var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
 var assert = require("assert");
 var path = require("path");
-var DiffReporterAggregate = require("../../lib/Reporters/DiffReporterAggregate.js");
+var DiffReporterAggregate = require("../../lib/Reporting/DiffReporterAggregate.js");
 
 describe('AggregateReporter', function () {
 

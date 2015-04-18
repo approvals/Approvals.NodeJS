@@ -1,5 +1,5 @@
 //var assert = require("assert");
-//var ReporterUnderTest = require("../../lib/Reporters/TortoiseMergeReporter.js");
+//var ReporterUnderTest = require("../../lib/Reporting/Reporters/TortoiseMergeReporter.js");
 
 // TODO:
 
