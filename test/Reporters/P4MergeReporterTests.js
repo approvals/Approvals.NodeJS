@@ -8,7 +8,7 @@ describe('Reporter', function () {
   if (os.platform.isWindows) {
     describe('p4merge', function () {
       it('reporter args are correct', function () {
-
+        this.timeout(60000); // test runs slow on appveyor?
         var reporter = new ReporterUnderTest();
 
         var approvedFile = path.join(__dirname, "a.txt");
