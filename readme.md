@@ -74,11 +74,32 @@ The default configuration can be overriden by using the `.configure(...)` as sho
 ```javascript
 require('approvals')
   .configure({
+
+    // The strategy for determining which reporter to use will likely
+    // change at some point. For now, you can configure priority here.
+    // What'd I'd prefer is if each project has a configuraiton file
+    // and each user could setup a ~/.approvalConfig file
+    // which would contain their preferred merge/diff tools
     reporters:  ["p4merge", "opendiff", "tortoisemerge", "gitdiff"],
-    appendEOL: false, // default is (still up for discussion, but currently true on windows false everywhere else
+
+    // Some diff tools automatically append an EOL to a merge file
+    // Setting this to true helps with those cases...
+    appendEOL: false,
+
     EOL:  require('os').EOL,
+
+    // This helps keep the project clean of files
+    // that became stale due to removal of test
+    // or after a rename
     errorOnStaleApprovedFiles: true,
-  }).mocha(__dirname); // or .jasmine(__dirname);
+
+    // On some files or projects a Byte Order
+    // Mark can be inserted and cause issues,
+    // this allows you to force it to be stripped
+    stripBOM: false
+
+  })
+  .mocha(__dirname); // or .jasmine(__dirname);
 /* ... */
 ```
 
