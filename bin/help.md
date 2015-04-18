@@ -2,7 +2,7 @@
 
 `approvals testName`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  **[--forceapproveall]**   : Skip the approve step and apply the results to the .approved.txt file (good for a first time run)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  **[-f | --forceapproveall]**   : Skip the approve step and apply the results to the .approved.txt file (good for a first time run)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  **[--reporter difftool]** : supports multiple EX: `--reporter opendiff --reporter gitdiff`
 
