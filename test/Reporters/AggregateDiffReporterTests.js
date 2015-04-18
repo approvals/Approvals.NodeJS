@@ -8,7 +8,7 @@ describe('AggregateReporter', function () {
   var textDiffReporters = ['gitdiff', 'p4merge'];
 
   it("should be able to report on a txt file", function () {
-
+    this.timeout(60000); // just a test to see if it can pass on AppVeyor?
     var file = path.join(__dirname, "a.txt");
 
     var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
