@@ -1,3 +1,4 @@
+/*jshint expr:true */
 'use strict';
 
 var assert = require('assert');
@@ -7,17 +8,20 @@ var expect = require('chai').expect;
 var Namer = require("../lib/Namer.js");
 var StringWriter = require("../lib/StringWriter.js");
 var FileApprover = require("../lib/FileApprover.js");
+var ReporterFactory = require("../lib/Reporting/ReporterFactory.js");
 
 var ShouldFailCustomReporter = function () {
-  return {
-    canReportOn: function (/*file*/) {
-      return true;
-    },
-    report: function (/*approved, received*/) {
-      throw "This reporter should never run";
-    },
-    name: "ShouldFailCustomReporter"
+
+  this.canReportOn = function (/*file*/) {
+    return true;
   };
+
+  this.report = function (/*approved, received*/) {
+    console.log(arguments);
+    throw "This reporter should never run";
+  };
+
+  this.name = "ShouldFailCustomReporter";
 };
 
 describe('FileApprover', function () {
@@ -95,4 +99,46 @@ describe('FileApprover', function () {
 
   });
 
+  describe("when configuring the Byte Order Mark (BOM)", function(){
+
+    var namer;
+    var reporterFactory;
+    var writer;
+    var config = {
+      appendEOL: false,
+      stripBOM: true,
+      EOL: '\n'
+    };
+
+    beforeEach(function() {
+      var dir = __dirname;
+      var fileName = "FileApproverTests.ByteOrderMark";
+      namer = new Namer(dir, fileName);
+      writer = new StringWriter(config, "\uFEFFHello Missing Byte Order Mark!\n");
+      reporterFactory = function () {
+        var x = ReporterFactory.loadReporter('gitdiff');
+        return x;
+      };
+    });
+
+    it('The approved file should have a BOM', function () {
+      config.stripBOM = false;
+      FileApprover.verify(namer, writer, reporterFactory, config);
+    });
+
+    it('The approved file should have a BOM and the local file should not - but shouldn\'t matter because config says to ignore BOM', function () {
+      config.stripBOM = true;
+      writer = new StringWriter(config, "Hello Missing Byte Order Mark!\n");
+      FileApprover.verify(namer, writer, reporterFactory, config);
+    });
+
+    it('The approved file should have a BOM and the local file should not - This should raise an exception because we should be comparing BOMs', function () {
+      config.stripBOM = false;
+      writer = new StringWriter(config, "Hello Missing Byte Order Mark!\n");
+      expect(function() {
+        FileApprover.verify(namer, writer, reporterFactory, config);
+      }).to.throw;
+    });
+
+  });
 });

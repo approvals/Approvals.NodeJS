@@ -1,0 +1,1 @@
+﻿Hello Missing Byte Order Mark!
