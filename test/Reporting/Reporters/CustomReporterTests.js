@@ -19,7 +19,8 @@ var MyCustomReporter = function () {
 var globalCustomReporter = new MyCustomReporter();
 
 require('../../../lib/Approvals').configure({
-  reporters: [globalCustomReporter]
+  reporters: [globalCustomReporter],
+  errorOnStaleApprovedFiles: false
 }).mocha(__dirname);
 
 describe("CustomReporter", function  () {
