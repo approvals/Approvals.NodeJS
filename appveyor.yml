@@ -18,9 +18,9 @@ environment:
 
 
 # combinations having this can fail
-# matrix:
-#   allow_failures:
-#   - nodejs_version: 0.11
+matrix:
+  allow_failures:
+  - nodejs_version: 0.10 # (this was failing to build due to jscs dependency on esparse?)
 
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
