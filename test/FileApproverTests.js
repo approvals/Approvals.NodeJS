@@ -22,7 +22,7 @@ describe('FileApprover', function () {
   describe("when two files match", function(){
 
     var namer;
-    var reporter;
+    var reporterFactory;
     var writer;
     var config = { appendEOL: false };
 
@@ -31,15 +31,17 @@ describe('FileApprover', function () {
       var fileName = "FileApprover.should_verify_two_files_match";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
-      reporter = new ShouldFailCustomReporter();
+      reporterFactory = function() {
+        return new ShouldFailCustomReporter();
+      };
     });
 
     it('should verify two files match', function () {
-      FileApprover.verify(namer, writer, reporter);
+      FileApprover.verify(namer, writer, reporterFactory);
     });
 
     it('should remove the received file', function () {
-      FileApprover.verify(namer, writer, reporter);
+      FileApprover.verify(namer, writer, reporterFactory);
       var receivedFileName = namer.getReceivedFile(writer.getFileExtension());
 
       assert.ok(!fs.existsSync(receivedFileName), "Received File should be deleted");
@@ -54,7 +56,7 @@ describe('FileApprover', function () {
         done();
       });
 
-      FileApprover.verify(namer, writer, reporter);
+      FileApprover.verify(namer, writer, reporterFactory);
     });
 
     it('should fail the approver if the writer gives something different', function () {
@@ -62,7 +64,7 @@ describe('FileApprover', function () {
       writer = new StringWriter(config, "BYE");
 
       assert.throws(function() {
-        FileApprover.verify(namer, writer, reporter);
+        FileApprover.verify(namer, writer, reporterFactory);
       });
     });
 
