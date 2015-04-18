@@ -1,7 +1,7 @@
-var utils = require("../../lib/AUtils");
+var utils = require("../../../lib/AUtils");
 var assert = require("assert");
 var path = require("path");
-var ReporterUnderTest = require("../../lib/Reporting/Reporters/opendiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/opendiffReporter.js");
 
 describe('Reporter', function () {
 

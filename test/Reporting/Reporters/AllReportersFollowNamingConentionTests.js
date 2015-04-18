@@ -4,7 +4,7 @@ var assert = require('assert');
 var allReporterFiles = [];
 describe('All reporters must conform to naming convention', function () {
   beforeEach(function () {
-    fs.readdirSync(__dirname + "/../../lib/Reporting/Reporters")
+    fs.readdirSync(__dirname + "/../../../lib/Reporting/Reporters")
       .forEach(function (file) {
         if (file.indexOf("Reporter.js") > -1) {
           allReporterFiles.push(file);

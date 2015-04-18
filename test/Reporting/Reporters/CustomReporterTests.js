@@ -18,7 +18,7 @@ var MyCustomReporter = function () {
 
 var globalCustomReporter = new MyCustomReporter();
 
-require('../../lib/Approvals').configure({
+require('../../../lib/Approvals').configure({
   reporters: [globalCustomReporter]
 }).mocha(__dirname);
 
