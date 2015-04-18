@@ -67,9 +67,7 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 [Approvals Github Wiki!](https://github.com/approvals/Approvals.NodeJS/wiki)
 
-## Usage
-
-#### Config (override)
+## Config (overriding)
 
 The default configuration can be overriden by using the `.configure(...)` as shown below.
 
@@ -84,16 +82,22 @@ require('approvals')
 /* ... */
 ```
 
-#### Approved File Artifacts
-The `*.approved.*` files must be checked into source your source control. This can be an issue with git as it will change the line endings.
-The suggested fix is to add
-`*.approved.* binary` to your `.gitattributes`
+#### Source Control
 
-#### Others?
+- `*.approved.*` files should be checked into source control.
+- `*.received.*` files should be **IGNORED**.
 
-- TODO:
-  - [Vows](http://vowsjs.org/)
-  - Other? Let us know in the [issues](https://github.com/Approvals.NodeJS/issues)
+  ##### Git
+
+  If you're using [Git](http://git-scm.com) add this to your `.gitignore`:
+
+  ```
+  *.received.*
+  ```
+
+  Another issue that can crop up is the line-endings as git can change the files depending on checking out the file on linux/mac vs windows.
+
+  The suggested fix is to add `*.approved.* binary` to your `.gitattributes`
 
 ## Contributing
 
