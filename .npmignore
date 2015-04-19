@@ -1,7 +1,7 @@
 /node_modules/
-
-
 /test/
+/coverage/
+appveyor.yml
 .editorconfig
 .gitattributes
 .gitignore
@@ -10,9 +10,7 @@
 .travis.yml
 Approvals.NodeJS.njsproj
 Approvals.NodeJS.sln
-grunt.bat
-grunt.sh
-Gruntfile.js
+gulpfile.js
 LICENSE-Apache
 
 
@@ -39,4 +37,3 @@ npm-debug.log
 
 .DS_Store
 *.suo
-
