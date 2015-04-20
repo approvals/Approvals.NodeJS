@@ -8,6 +8,8 @@ describe('Reporter', function () {
   describe('icdiff', function () {
     it('reporter args are correct', function () {
 
+      this.timeout(20000); // failed on appVeyor for some reason?
+
       var reporter = new ReporterUnderTest();
 
       var approved = path.join(__dirname, "a.txt");
