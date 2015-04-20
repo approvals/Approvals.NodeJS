@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var path = require("path");
-var ReporterUnderTest = require("../../lib/Reporters/icdiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/icdiffReporter.js");
 
 describe('Reporter', function () {
   describe('icdiff', function () {
@@ -15,14 +15,17 @@ describe('Reporter', function () {
 
       var expectedCommand = "'icdiff' '" + received + "' '" + approved + "'";
 
-      reporter.report(approved, received, function (command) {
+      if (reporter.canReportOn(received)) {
+        reporter.report(approved, received, function (command) {
 
-        var startTrim = command.indexOf("icdiff");
-        command = "'" + command.substr(startTrim);
+          var startTrim = command.indexOf("icdiff");
+          command = "'" + command.substr(startTrim);
 
-        assert.equal(command, expectedCommand);
-        return {};
-      });
+          assert.equal(command, expectedCommand);
+          return {};
+        });
+      }
+
     });
 
   });
