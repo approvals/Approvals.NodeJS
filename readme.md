@@ -68,51 +68,69 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 ## Config (overriding)
 
-The default configuration can be overriden by using the following strategy.
+The default configuration as defined below can be overriden by using the following strategy.
 
-1. Placing a yaml or json file in `~/.approvalsConfig` and overriding the defaults
-2. Passing in a config object as the last parameter to a `.verify(..., {...overriden config...});`
+Priority is given the config at the bottom of the list (going up).
 
-Below are the current default values
-```
-{
+1. Starting with the defaults (as shown below) and defined in [lib/config.js](lib/config.js).
+2. Override any defaults with config in a yaml or json file in `~/.approvalsConfig`.
+3. Then override with an `approvals.configure({...})` (not recommended in general).
+4. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overriden config...});`.
 
-    // The strategy for determining which reporter to use will likely
-    // change at some point. For now, you can configure priority here.
-    // What'd I'd prefer is if each project has a configuraiton file
-    // and each user could setup a ~/.approvalConfig file
-    // which would contain their preferred merge/diff tools
-    reporters:  ["opendiff", "p4merge", "tortoisemerge", "nodediff", "gitdiff"],
+```javascript
+var defaultConfig = {
+  // The strategy for determining which reporter to use will likely
+  // change at some point. For now, you can configure priority here.
+  // What'd I'd prefer is if each project has a configuraiton file
+  // and each user could setup a ~/.approvalConfig file
+  // which would contain their preferred merge/diff tools
+  reporters:  [
+    "opendiff",
+    "p4merge",
+    "tortoisemerge",
+    "nodediff",
+    "gitdiff"
 
-    // Some diff tools automatically append an EOL to a merge file
-    // Setting this to true helps with those cases...
-    appendEOL: true,
+/* OR a custom reporter object. Below describes the reporter object interface:
 
-    EOL:  require('os').EOL,
+  // If you want to provide a custom reporter
+  // you can't do this with the config yml file
+  // but can be passed anywhere a config object is accepted
+  // and must have the following interface
+  {
 
-    // This helps keep the project clean of files
-    // that became stale due to removal of test
-    // or after a rename
-    errorOnStaleApprovedFiles: true,
+    // This is used to determine if the reporter can report on the specified file
+    // EX: an image differ vs a txt differ...
+    canReportOn(receivedFilePath: string): boolean;
 
-    // On some files or projects a Byte Order
-    // Mark can be inserted and cause issues,
-    // this allows you to force it to be stripped
-    stripBOM: false
+    // Actually execute the diff against the two files
+    report(approvedFilePath: string, receivedFilePath: string): void;
+  }
+*/
+  ],
 
-    // If you want to provide a custom reporter
-    // you can't do this with a config yml file
-    // but can be passed in the override config options
-    reporterOverride: {
+  // Some diff tools automatically append an EOL to a merge file
+  // Setting this to true helps with those cases...
+  appendEOL: true,
 
-      // This is used to determine if the reporter can report on the specified file
-      // EX: an image differ vs a txt differ...
-      canReportOn(receivedFilePath: string);
+  EOL:  require('os').EOL,
 
-      // Actually execute the diff against the two files
-      report(approvedFilePath: string, receivedFilePath: string);
-    }
-}
+  // This helps keep the project clean of files
+  // that became stale due to removal of tests
+  // or after a rename
+  errorOnStaleApprovedFiles: true,
+
+  // This is a function called when the proc is exiting and we're
+  // validating any stale *.approved.txt files. You can override
+  // this function to ignore validation of some files or not
+  shouldIgnoreStaleApprovedFile: function(/*fileName*/) { return false; },
+
+  // On some files or projects a Byte Order
+  // Mark can be inserted and cause issues,
+  // this allows you to force it to be stripped
+  stripBOM: false
+
+};
 ```
 
 ```javascript
@@ -136,12 +154,12 @@ require('approvals')
 
   Another issue that can crop up is the line-endings as git can change the files depending on checking out the file on linux/mac vs windows.
 
-  The suggested fix is to add `*.approved.* binary` to your `.gitattributes`
+  A possible fix for this is to add `*.approved.* binary` to your `.gitattributes`
 
 ## Contributing
 
 Check out the [guidlines](CONTRIBUTING.md)!
 
 ## License
-Copyright (c) 2012-2014 Llewellyn Falco, Jason Jarrett  
+Copyright (c) 2012-2015 Llewellyn Falco, Jason Jarrett  
 Licensed under the Apache license.
