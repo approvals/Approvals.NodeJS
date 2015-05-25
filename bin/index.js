@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/// <reference path="../typings/node/node.d.ts"/>
 'use strict';
 
 var chalk = require('chalk');
