@@ -99,6 +99,9 @@ var defaultConfig = {
   // and must have the following interface
   {
 
+    // this is used in exception reporting etc. Just give it a name :)
+    name: string;
+
     // This is used to determine if the reporter can report on the specified file
     // EX: an image differ vs a txt differ...
     canReportOn(receivedFilePath: string): boolean;
