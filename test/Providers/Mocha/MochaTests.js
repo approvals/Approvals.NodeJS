@@ -1,28 +1,24 @@
+var approvals = require("../../../lib/Approvals");
 
-describe('Mocha', function () {
+describe('Mocha', function() {
 
   describe('when verifying some basic text', function () {
-
-    require("../../../lib/Approvals")
-      .configure({
-        errorOnStaleApprovedFiles: false
+    beforeEach(function() {
+      approvals.configure({
+        appendEOL: false,
+        reporters: ["nodediff"]
       })
-    .mocha(__dirname);
+      .mocha(__dirname);
+    });
 
     it('should work', function () {
-      this.timeout(10000);
-
       this.verify("Hello World!");
-
     });
 
     it('should verifyAsJSON', function () {
-      this.timeout(10000);
-
       var value = {a:1, b:"bar"};
 
       this.verifyAsJSON(value);
-
     });
   });
 });

@@ -1,7 +1,8 @@
-var approvals = require("../lib/Approvals.js").configure({
+var approvalOverrides = {
   EOL:  "\n",
-  appendEOL: true
-});
+  appendEOL: false
+};
+var approvals = require("../lib/Approvals");
 
 describe('approvals', function () {
 
@@ -9,8 +10,7 @@ describe('approvals', function () {
     it('can verify some manual text', function () {
       var testName = "manualVerification";
       var dataToVerify =  "some stuff here";
-      var reporters = ["gitdiff"]; //blank for now Need to work round the global unit test reporter problem...
-      approvals.verify(__dirname, testName, dataToVerify, reporters);
+      approvals.verify(__dirname, testName, dataToVerify, approvalOverrides);
     });
   });
 
@@ -21,8 +21,7 @@ describe('approvals', function () {
         x: "some stuff here",
         y: 123
       };
-      var reporters = ["gitdiff"]; //blank for now Need to work round the global unit test reporter problem...
-      approvals.verifyAsJSON(__dirname, testName, dataToVerify, reporters);
+      approvals.verifyAsJSON(__dirname, testName, dataToVerify, approvalOverrides);
     });
   });
 });

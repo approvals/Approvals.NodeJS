@@ -44,7 +44,6 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
   ```javascript
   require('approvals')
-    .configure(/* options - see below */)
     .mocha(__dirname);
 
   describe('When running some tests', function () {
@@ -69,22 +68,25 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 ## Config (overriding)
 
-The default configuration can be overriden by using the `.configure(...)` as shown below.
+The default configuration can be overriden by using the following strategy.
 
-```javascript
-require('approvals')
-  .configure({
+1. Placing a yaml or json file in `~/.approvalsConfig` and overriding the defaults
+2. Passing in a config object as the last parameter to a `.verify(..., {...overriden config...});`
+
+Below are the current default values
+```
+{
 
     // The strategy for determining which reporter to use will likely
     // change at some point. For now, you can configure priority here.
     // What'd I'd prefer is if each project has a configuraiton file
     // and each user could setup a ~/.approvalConfig file
     // which would contain their preferred merge/diff tools
-    reporters:  ["p4merge", "opendiff", "tortoisemerge", "gitdiff"],
+    reporters:  ["opendiff", "p4merge", "tortoisemerge", "nodediff", "gitdiff"],
 
     // Some diff tools automatically append an EOL to a merge file
     // Setting this to true helps with those cases...
-    appendEOL: false,
+    appendEOL: true,
 
     EOL:  require('os').EOL,
 
@@ -98,7 +100,23 @@ require('approvals')
     // this allows you to force it to be stripped
     stripBOM: false
 
-  })
+    // If you want to provide a custom reporter
+    // you can't do this with a config yml file
+    // but can be passed in the override config options
+    reporterOverride: {
+
+      // This is used to determine if the reporter can report on the specified file
+      // EX: an image differ vs a txt differ...
+      canReportOn(receivedFilePath: string);
+
+      // Actually execute the diff against the two files
+      report(approvedFilePath: string, receivedFilePath: string);
+    }
+}
+```
+
+```javascript
+require('approvals')
   .mocha(__dirname); // or .jasmine(__dirname);
 /* ... */
 ```

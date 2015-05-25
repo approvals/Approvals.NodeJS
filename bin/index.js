@@ -84,10 +84,10 @@ if (verbose) {
 
 // TODO: add other approval options in... or find a way to dynamically add them.
 
-var approvals = require('../lib/Approvals').configure(opts);
+var approvals = require('../lib/Approvals');
 
 // now capture standard in and verify against it
 process.stdin.pipe(es.mapSync(function(data) {
   var dataToVerify = data.toString();
-  approvals.verify(outdir, testname, dataToVerify);
+  approvals.verify(outdir, testname, dataToVerify, opts);
 }));

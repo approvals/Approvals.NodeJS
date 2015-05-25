@@ -1,8 +1,12 @@
-var config = require('../lib/config');
-var expect = require('chai').expect;
+/*jshint expr:true */
+
+var chai = require('chai');
+var expect = chai.expect;
 var sinon = require('sinon');
 var fs = require('fs');
 var _ = require('lodash');
+
+var config = require('../lib/config');
 
 describe("config.js - ", function(){
 
