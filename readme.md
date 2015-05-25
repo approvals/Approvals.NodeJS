@@ -14,8 +14,8 @@ Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor
 
 ## Invoke via:
 
-- [Mocha](http://visionmedia.github.io/mocha/) tests
-- [Jasmine](http://pivotal.github.io/jasmine/) tests
+- [Mocha](http://mochajs.org/) tests
+- [Jasmine](http://jasmine.github.io/) tests
 - [Approvals API](https://github.com/approvals/Approvals.NodeJS/wiki/Manual-API) (`require('approvals').verify(...)`)
 - [Command line Utility](https://github.com/approvals/Approvals.NodeJS/wiki/Command-Line)
 
