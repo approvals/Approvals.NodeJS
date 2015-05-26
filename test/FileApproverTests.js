@@ -1,6 +1,8 @@
 'use strict';
 var assert = require('assert');
 var fs = require('fs');
+var expect = require('chai').expect;
+
 var Namer = require("../lib/Namer.js");
 var StringWriter = require("../lib/StringWriter.js");
 var FileApprover = require("../lib/FileApprover.js");
@@ -34,6 +36,28 @@ describe('FileApprover', function () {
       reporterFactory = function() {
         return new ShouldFailCustomReporter();
       };
+    });
+
+    describe('when validating arguments', function(){
+
+      it("should validate namer (parameter 1)", function(){
+        expect(function(){
+          FileApprover.verify(null);
+        }).to.throw(Error, 'namer')
+      });
+
+      it("should validate writer (parameter 2)", function(){
+        expect(function(){
+          FileApprover.verify(namer, null);
+        }).to.throw(Error, 'writer')
+      });
+
+      it("should validate reporterFactory (parameter 3)", function(){
+        expect(function(){
+          FileApprover.verify(namer, writer, null);
+        }).to.throw(Error, 'reporterFactory')
+      });
+
     });
 
     it('should verify two files match', function () {
