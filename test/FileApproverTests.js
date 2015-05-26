@@ -44,19 +44,19 @@ describe('FileApprover', function () {
       it("should validate namer (parameter 1)", function(){
         expect(function(){
           FileApprover.verify(null);
-        }).to.throw(Error, 'namer')
+        }).to.throw(Error, 'namer');
       });
 
       it("should validate writer (parameter 2)", function(){
         expect(function(){
           FileApprover.verify(namer, null);
-        }).to.throw(Error, 'writer')
+        }).to.throw(Error, 'writer');
       });
 
       it("should validate reporterFactory (parameter 3)", function(){
         expect(function(){
           FileApprover.verify(namer, writer, null);
-        }).to.throw(Error, 'reporterFactory')
+        }).to.throw(Error, 'reporterFactory');
       });
 
     });
