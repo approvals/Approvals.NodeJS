@@ -7,7 +7,7 @@ var sinon = require('sinon');
 var fs = require('fs');
 var _ = require('lodash');
 
-var config = require('../lib/config');
+var cfg = require('../lib/config');
 
 describe("config.js - ", function(){
 
@@ -16,7 +16,7 @@ describe("config.js - ", function(){
 
   beforeEach(function(){
     fsExistsSyncStub = null;
-    config.reset();
+    cfg.reset();
   });
 
   afterEach(function(){
@@ -37,14 +37,14 @@ describe("config.js - ", function(){
     });
 
     it("should not find config in user home directory", function(){
-      var configFile = config.getHomeApprovalConfig();
+      var configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.not.exist;
     });
 
     it("should load default config", function(){
-      var configFile = config.getConfig();
-      expect(configFile).to.deep.equal(config.defaultConfig);
+      var configFile = cfg.getConfig();
+      expect(configFile).to.deep.equal(cfg.defaultConfig);
     });
 
   });
@@ -66,7 +66,7 @@ describe("config.js - ", function(){
     });
 
     it("should find config in user home directory", function() {
-      var configFile = config.getHomeApprovalConfig();
+      var configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.exist;
     });
@@ -78,7 +78,7 @@ describe("config.js - ", function(){
         ]
       };
 
-      var configFile = config.getHomeApprovalConfig();
+      var configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile.reporters).to.deep.equal(["gitdiff"]);
     });
@@ -94,8 +94,8 @@ describe("config.js - ", function(){
       configToLoad = {
         myConfig: true
       };
-      var expectedConfig = _.defaults(configToLoad, config.defaultConfig);
-      var configFile = config.getConfig();
+      var expectedConfig = _.defaults(configToLoad, cfg.defaultConfig);
+      var configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(expectedConfig);
     });
   });
