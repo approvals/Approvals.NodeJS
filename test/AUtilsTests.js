@@ -1,3 +1,5 @@
+'use strict';
+
 var utils = require("../lib/AUtils");
 var os = require("../lib/osTools");
 var assert = require("assert");

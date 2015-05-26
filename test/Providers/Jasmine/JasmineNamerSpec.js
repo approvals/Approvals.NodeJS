@@ -1,4 +1,6 @@
 /* global expect */
+'use strict';
+
 require("../../../lib/Approvals")
    .jasmine(__dirname);
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var utils = require("../../../lib/AUtils");
 var assert = require("assert");
 var path = require("path");

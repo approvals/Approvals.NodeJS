@@ -1,3 +1,5 @@
+'use strict';
+
 var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
 var assert = require("assert");
 var path = require("path");

@@ -1,3 +1,5 @@
+'use strict';
+
 /// <reference path="../typings/tests.d.ts"/>
 var shelljs = require('shelljs');
 var path = require('path');

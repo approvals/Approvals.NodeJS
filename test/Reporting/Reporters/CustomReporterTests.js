@@ -1,3 +1,5 @@
+'use strict';
+
 /// <reference path="../../../typings/node/node.d.ts"/>
 /// <reference path="../../../typings/mocha/mocha.d.ts"/>
 var expect = require('chai').expect;

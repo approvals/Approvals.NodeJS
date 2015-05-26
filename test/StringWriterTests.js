@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require("assert");
 var StringWriter = require("../lib/StringWriter.js");
 var fs = require('fs');

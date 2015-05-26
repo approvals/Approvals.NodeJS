@@ -1,3 +1,5 @@
+'use strict';
+
 var approvalOverrides = {
   EOL:  "\n",
   appendEOL: false

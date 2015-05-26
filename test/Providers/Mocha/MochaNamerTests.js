@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require("assert");
 var path = require('path');
 var MochaNamer = require("../../../lib/Providers/Mocha/MochaNamer.js");

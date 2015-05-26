@@ -1,3 +1,5 @@
+'use strict';
+
 //git diff --no-index -- test\Reporters\a.txt test\Reporters\b.txt
 
 var assert = require("assert");

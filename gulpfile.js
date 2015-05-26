@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var path = require('path');
@@ -20,13 +22,19 @@ gulp.task('jscs-watch', ['jscs'], function() {
   });
 });
 
-gulp.task('jshint', function() {
+gulp.task('lint-watch', ['lint'], function(){
+  $.watch(paths.filesToLint, function () {
+    gulp.start('lint');
+  });
+});
+
+gulp.task('lint', function() {
   return gulp.src(paths.filesToLint)
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('test', ['jshint', 'jscs'], function(){
+gulp.task('test', ['lint', 'jscs'], function(){
   return gulp.src(paths.mochaTests, { read: false })
   .pipe($.mocha({
     reporter: 'spec',
@@ -66,4 +74,4 @@ gulp.task('coveralls', ['coverage'], function () {
     });
 });
 
-gulp.task('default', ["test", "jshint"]);
+gulp.task('default', ["test"]);

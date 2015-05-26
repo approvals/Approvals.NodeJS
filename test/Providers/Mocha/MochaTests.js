@@ -1,3 +1,5 @@
+'use strict';
+
 var approvals = require("../../../lib/Approvals");
 
 describe('Mocha', function() {
