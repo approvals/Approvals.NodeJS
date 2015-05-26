@@ -15,6 +15,7 @@ describe("config.js - ", function(){
 
   beforeEach(function(){
     fsExistsSyncStub = null;
+    config.reset();
   });
 
   afterEach(function(){

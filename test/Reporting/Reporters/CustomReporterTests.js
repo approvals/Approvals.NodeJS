@@ -1,5 +1,6 @@
 /// <reference path="../../../typings/node/node.d.ts"/>
 /// <reference path="../../../typings/mocha/mocha.d.ts"/>
+var expect = require('chai').expect;
 
 var assert = require('assert');
 var MyCustomReporter = function () {
@@ -57,6 +58,24 @@ describe("CustomReporter", function  () {
     } catch (err) {
 
     }
+
+    assert.ok(globalCustomReporter.getWasReporterUsed());
+  });
+
+  it("uses global custom reporter manual verify", function(){
+    approvals.configure({
+      reporters: [globalCustomReporter],
+      errorOnStaleApprovedFiles: false
+    });
+
+    var didRaiseException = false;
+    try {
+      approvals.verify(__dirname, "CustomReporter.uses_global_custom_reporter_manual_verify", 'foo');
+    } catch (err) {
+      didRaiseException = true;
+    }
+
+    expect(didRaiseException).to.equal(true);
 
     assert.ok(globalCustomReporter.getWasReporterUsed());
   });
