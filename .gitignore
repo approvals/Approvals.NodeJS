@@ -35,3 +35,6 @@ node_modules
 coverage/
 
 .node-version
+
+# VS Code settings folder
+.settings/
