@@ -132,6 +132,12 @@ var defaultConfig = {
   // this allows you to force it to be stripped
   stripBOM: false
 
+  //DANGER: this can be used to force-approve a file during a test run.
+  // Can be used for first time-run or if lots of tests are failing because 
+  // of a change you know is correct. AGAIN DANGER - don't ever check code  
+  // in that configures this to be on...)
+  forceApproveAll: false
+
 };
 ```
 

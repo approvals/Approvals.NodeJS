@@ -4,6 +4,8 @@
 
 var chalk = require('chalk');
 var es = require('event-stream');
+var autils = require('../lib/AUtils');
+
 var verbose = process.argv.indexOf('--verbose') >= 0;
 var printHelp = process.argv.indexOf('--help') >= 0;
 
@@ -86,6 +88,8 @@ if (verbose) {
 // TODO: add other approval options in... or find a way to dynamically add them.
 
 var approvals = require('../lib/Approvals');
+
+opts.forceApproveAll = !!(autils.hasCommandLineArgument("--forceapproveall") || autils.hasCommandLineArgument("-f"));
 
 // now capture standard in and verify against it
 process.stdin.pipe(es.mapSync(function(data) {
