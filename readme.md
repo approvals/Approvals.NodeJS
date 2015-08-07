@@ -36,14 +36,14 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 3. Install [Mocha](http://visionmedia.github.io/mocha/) globally to execute our tests
 
   ```
-  npm install -g mocha  
+  npm install -g mocha
   ```
 
 4. Create a sample Mocha test file called `test.js`.
 
   ```javascript
   require('approvals')
-    .mocha(__dirname);
+    .mocha();
 
   describe('When running some tests', function () {
     it('should be able to use Approvals', function () {
@@ -133,8 +133,8 @@ var defaultConfig = {
   stripBOM: false
 
   //DANGER: this can be used to force-approve a file during a test run.
-  // Can be used for first time-run or if lots of tests are failing because 
-  // of a change you know is correct. AGAIN DANGER - don't ever check code  
+  // Can be used for first time-run or if lots of tests are failing because
+  // of a change you know is correct. AGAIN DANGER - don't ever check code
   // in that configures this to be on...)
   forceApproveAll: false
 
@@ -143,7 +143,7 @@ var defaultConfig = {
 
 ```javascript
 require('approvals')
-  .mocha(__dirname); // or .jasmine(__dirname);
+  .mocha(); // or .jasmine();
 /* ... */
 ```
 
@@ -169,5 +169,5 @@ require('approvals')
 Check out the [guidlines](CONTRIBUTING.md)!
 
 ## License
-Copyright (c) 2012-2015 Llewellyn Falco, Jason Jarrett  
+Copyright (c) 2012-2015 Llewellyn Falco, Jason Jarrett
 Licensed under the Apache license.
