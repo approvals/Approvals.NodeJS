@@ -40,12 +40,13 @@
     "install": "node install_dependencies.js"
   },
   "dependencies": {
+    "callsite": "^1.0.0",
     "chalk": "^0.4.0",
     "diff": "^1.3.2",
     "event-stream": "^3.1.5",
     "glob": "~3.2.9",
-    "lodash": "^3.7.0",
     "js-yaml": "^3.2.2",
+    "lodash": "^3.7.0",
     "minimist": "^0.1.0",
     "mkdirp": "^0.5.0",
     "msee": "^0.1.1",
