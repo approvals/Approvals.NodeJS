@@ -23,7 +23,7 @@ var MyCustomReporter = function () {
 
 var globalCustomReporter = MyCustomReporter();
 
-var approvals = require('../../../lib/Approvals').mocha(__dirname);
+var approvals = require('../../../lib/Approvals').mocha();
 
 describe("CustomReporter", function  () {
   it("allows CustomReporter at method level", function  () {
