@@ -54,5 +54,23 @@ describe('StringWriter', function () {
       });
 
     });
+
+    it('should write out file and replace line endings', function (done) {
+      var config = {
+        normalizeLineEndingsTo: "\r\n"
+      };
+      var stringWriter = new StringWriter(config, "HELLO\nThere\n");
+
+      var filePath = temp.path({suffix: '.txt'});
+
+      stringWriter.write(filePath);
+
+      fs.readFile(filePath, 'utf8', function (err, data) {
+        assert.equal(data, "HELLO\r\nThere\r\n");
+        done();
+      });
+
+    });
+
   });
 });
