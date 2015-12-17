@@ -77,7 +77,7 @@ describe('StringWriter', function () {
       };
 
       assert.throws(function(){
-        var stringWriter = new StringWriter(config, {someObject:"someValue"});
+        new StringWriter(config, {someObject:"someValue"});
       });
     });
 
