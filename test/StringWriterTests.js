@@ -72,5 +72,14 @@ describe('StringWriter', function () {
 
     });
 
+    it('should give a useful error message if value is not a string', function () {
+      var config = {
+      };
+
+      assert.throws(function(){
+        var stringWriter = new StringWriter(config, {someObject:"someValue"});
+      });
+    });
+
   });
 });
