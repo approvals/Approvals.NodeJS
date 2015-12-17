@@ -51,6 +51,7 @@
     "mkdirp": "^0.5.0",
     "msee": "^0.2.0",
     "shelljs": "^0.5.3",
+    "temp": "^0.8.3",
     "user-home": "1.1.1"
   },
   "devDependencies": {
@@ -65,8 +66,7 @@
     "gulp-mocha": "^0.4.1",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",
-    "sinon": "^1.11.1",
-    "temp": "^0.6.0"
+    "sinon": "^1.11.1"
   },
   "keywords": [
     "Approve",
