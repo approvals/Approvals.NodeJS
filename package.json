@@ -22,12 +22,7 @@
   "bugs": {
     "url": "https://github.com/approvals/Approvals.NodeJS/issues"
   },
-  "licenses": [
-    {
-      "type": "Apache",
-      "url": "http://approvaltests.sourceforge.net//blob/master/LICENSE-Apache"
-    }
-  ],
+  "license": "Apache-2.0",
   "main": "lib/Approvals",
   "bin": {
     "approvals": "./bin/index.js"
