@@ -18,7 +18,7 @@ var ShouldFailCustomReporter = function () {
 
   this.report = function (/*approved, received*/) {
     console.log(arguments);
-    throw "This reporter should never run";
+    throw new Error("This reporter should never run");
   };
 
   this.name = "ShouldFailCustomReporter";
