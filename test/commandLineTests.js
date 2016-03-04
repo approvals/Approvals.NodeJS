@@ -12,7 +12,7 @@ describe('Command Line', function () {
     shelljs.exec(cliTestCommand, {async:true}, function (code, output) {
       if (code !== 0) {
         console.error('code:', code, 'output:', output);
-        throw "cli script failed";
+        throw new Error("cli script failed");
       }
       done();
     });
