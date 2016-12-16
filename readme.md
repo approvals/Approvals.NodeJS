@@ -33,7 +33,7 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 2. Install approvals
   `npm install --save-dev approvals`
 
-3. Install [Mocha](http://visionmedia.github.io/mocha/) globally to execute our tests
+3. Install [Mocha](http://mochajs.org/) globally to execute our tests
 
   ```
   npm install -g mocha
