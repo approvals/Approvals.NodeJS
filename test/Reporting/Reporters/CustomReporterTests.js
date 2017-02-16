@@ -88,7 +88,7 @@ describe("CustomReporter", function  () {
       errorOnStaleApprovedFiles: false
     });
 
-    var reporter = this.approvals.getCurrentReporter();
+    var reporter = this.approvals.getCurrentReporters()[0];
 
     assert.equal(reporter.name, "globalCustomReporter");
   });
