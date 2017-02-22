@@ -61,6 +61,7 @@
     "gulp-mocha": "^0.4.1",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",
+    "mocha": "^3.2.0",
     "sinon": "^1.11.1"
   },
   "keywords": [
