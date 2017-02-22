@@ -4,7 +4,6 @@ var expect = require("chai").expect;
 var path = require("path");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/vimdiffReporter.js");
 
-
 describe('Reporter', function () {
   describe('vimdiff', function () {
     it('reporter args are correct', function () {
@@ -13,7 +12,6 @@ describe('Reporter', function () {
 
       var approved = path.join(__dirname, "a.txt");
       var received = path.join(__dirname, "b.txt");
-
 
       reporter.report(approved, received, function (command,arglist) {
 
