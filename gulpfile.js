@@ -24,7 +24,7 @@ gulp.task('lint', function () {
     .pipe($.eslint.failAfterError());
 });
 
-gulp.task('test', ['lint'], function () {
+gulp.task('unitTest', function() {
   return gulp.src(paths.mochaTests, { read: false })
     .pipe($.mocha({
       reporter: 'spec',
@@ -32,6 +32,10 @@ gulp.task('test', ['lint'], function () {
       timeout: 5000,
       globals: {}
     }));
+})
+
+gulp.task('test', ['unitTest'], function () {
+  gulp.start('lint');
 });
 
 gulp.task('coverage', function (cb) {
