@@ -39,7 +39,7 @@ describe('FileApprover', function () {
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
       reporterFactory = function() {
-        return new ShouldFailCustomReporter();
+        return [new ShouldFailCustomReporter()];
       };
     });
 
@@ -107,7 +107,7 @@ describe('FileApprover', function () {
     var config = {
       appendEOL: false,
       stripBOM: true,
-      EOL: '\n'
+      normalizeLineEndingsTo: "\r\n"
     };
 
     beforeEach(function() {
