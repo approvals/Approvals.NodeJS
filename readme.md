@@ -139,6 +139,13 @@ var defaultConfig = {
   // this allows you to force it to be stripped
   stripBOM: false
 
+  // If approvals determines things are different, it will replacement
+  // line endings CRLF with just LF and re-compare. If they are the same
+  // approvals will log a warning that the files are the same except for
+  // line endings. Flip this to `true` to fail tests if line-endings
+  // are different
+  failOnLineEndingDifferences: false,
+
   //DANGER: this can be used to force-approve a file during a test run.
   // Can be used for first time-run or if lots of tests are failing because
   // of a change you know is correct. AGAIN DANGER - don't ever check code
