@@ -1,7 +1,8 @@
 'use strict';
 
 var approvalOverrides = {
-  EOL:  "\n",
+  EOL: "\r\n",
+  normalizeLineEndingsTo: "\r\n",
   appendEOL: false
 };
 var approvals = require("../lib/Approvals");

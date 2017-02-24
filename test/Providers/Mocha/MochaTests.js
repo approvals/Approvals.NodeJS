@@ -8,6 +8,7 @@ describe('Mocha', function() {
     beforeEach(function() {
       approvals.configure({
           appendEOL: false,
+          normalizeLineEndingsTo: "\r\n",
           reporters: ["nodediff"]
         })
         .mocha();
