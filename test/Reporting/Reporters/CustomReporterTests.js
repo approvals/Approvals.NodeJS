@@ -21,11 +21,15 @@ var MyCustomReporter = function () {
   };
 };
 
-var globalCustomReporter = MyCustomReporter();
-
 var approvals = require('../../../lib/Approvals').mocha();
+var globalCustomReporter;
 
 describe("CustomReporter", function  () {
+
+  beforeEach(function() {
+    globalCustomReporter = MyCustomReporter();
+  });
+
   it("allows CustomReporter at method level", function  () {
 
     var calledCustomReporter = false;
@@ -51,8 +55,7 @@ describe("CustomReporter", function  () {
 
   it("uses global custom reporter", function(){
     approvals.configure({
-      reporters: [globalCustomReporter],
-      errorOnStaleApprovedFiles: false
+      reporters: [globalCustomReporter]
     });
 
     try {
@@ -66,8 +69,7 @@ describe("CustomReporter", function  () {
 
   it("uses global custom reporter manual verify", function(){
     approvals.configure({
-      reporters: [globalCustomReporter],
-      errorOnStaleApprovedFiles: false
+      reporters: [globalCustomReporter]
     });
 
     var didRaiseException = false;
