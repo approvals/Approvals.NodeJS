@@ -11,17 +11,6 @@ var paths = {
   sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
 };
 
-gulp.task('jscs', function() {
-  return gulp.src(paths.filesToLint)
-  .pipe($.jscs());
-});
-
-gulp.task('jscs-watch', ['jscs'], function() {
-  $.watch(paths.filesToLint, function () {
-    gulp.start('jscs');
-  });
-});
-
 gulp.task('lint-watch', ['lint'], function(){
   $.watch(paths.filesToLint, function () {
     gulp.start('lint');
@@ -30,11 +19,11 @@ gulp.task('lint-watch', ['lint'], function(){
 
 gulp.task('lint', function() {
   return gulp.src(paths.filesToLint)
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'));
+    .pipe($.eslint())
+    .pipe($.eslint.format());
 });
 
-gulp.task('test', ['lint', 'jscs'], function(){
+gulp.task('test', ['lint'], function(){
   return gulp.src(paths.mochaTests, { read: false })
   .pipe($.mocha({
     reporter: 'spec',
