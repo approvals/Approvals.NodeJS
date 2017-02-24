@@ -18,11 +18,11 @@ describe('MochaNamer', function () {
       var receivedFileName = namer.getReceivedFile();
 
       assert.equal(approvedFileName,
-      path.join("C:\\temp\\",
-        "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.approved.txt"));
+        path.join("C:\\temp\\",
+          "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.approved.txt"));
       assert.equal(receivedFileName,
-      path.join("C:\\temp\\",
-        "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.received.txt"));
+        path.join("C:\\temp\\",
+          "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.received.txt"));
     });
   });
 });
