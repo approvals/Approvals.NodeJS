@@ -23,8 +23,8 @@ describe('Reporter', function () {
             assert.deepEqual(args, [receivedFile, approvedFile]);
 
             return {
-              stdout: { on: function () {} },
-              stderr: { on: function () {} }
+              stdout: { on: function () { } },
+              stderr: { on: function () { } }
             };
 
           });

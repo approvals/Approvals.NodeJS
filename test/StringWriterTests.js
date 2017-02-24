@@ -27,7 +27,7 @@ describe('StringWriter', function () {
       var config = {};
       var stringWriter = new StringWriter(config, "HELLO");
 
-      var filePath = temp.path({suffix: '.txt'});
+      var filePath = temp.path({ suffix: '.txt' });
 
       stringWriter.write(filePath);
 
@@ -44,7 +44,7 @@ describe('StringWriter', function () {
       };
       var stringWriter = new StringWriter(config, "HELLO");
 
-      var filePath = temp.path({suffix: '.txt'});
+      var filePath = temp.path({ suffix: '.txt' });
 
       stringWriter.write(filePath);
 
@@ -61,7 +61,7 @@ describe('StringWriter', function () {
       };
       var stringWriter = new StringWriter(config, "HELLO\nThere\n");
 
-      var filePath = temp.path({suffix: '.txt'});
+      var filePath = temp.path({ suffix: '.txt' });
 
       stringWriter.write(filePath);
 
@@ -76,8 +76,8 @@ describe('StringWriter', function () {
       var config = {
       };
 
-      assert.throws(function(){
-        new StringWriter(config, {someObject:"someValue"});
+      assert.throws(function () {
+        new StringWriter(config, { someObject: "someValue" });
       });
     });
 

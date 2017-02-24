@@ -22,7 +22,7 @@ describe('Reporter', function () {
         var pathTrimmedCommand = command
           .replace("git.cmd'", "git'")
           .replace("git.exe'", "git'")
-        ;
+          ;
 
         var startTrim = pathTrimmedCommand.indexOf("git' diff");
         pathTrimmedCommand = "'" + pathTrimmedCommand.substr(startTrim);
