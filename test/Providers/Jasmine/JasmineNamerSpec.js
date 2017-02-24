@@ -4,10 +4,10 @@
 require("../../../lib/Approvals")
   .jasmine();
 
-describe('Jasmine Naming', function() {
+describe('Jasmine Naming', function () {
 
-  describe('uses describe', function() {
-    it('uses it', function() {
+  describe('uses describe', function () {
+    it('uses it', function () {
 
       // This sets up the '.name' property
       this.approvals.namer.getApprovedFile(".txt");

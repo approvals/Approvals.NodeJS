@@ -9,17 +9,17 @@ var _ = require('lodash');
 
 var cfg = require('../lib/config');
 
-describe("config.js - ", function(){
+describe("config.js - ", function () {
 
   var fsExistsSyncStub;
   var fsReadFileSyncStub;
 
-  beforeEach(function(){
+  beforeEach(function () {
     fsExistsSyncStub = null;
     cfg.reset();
   });
 
-  afterEach(function(){
+  afterEach(function () {
     if (fsExistsSyncStub) {
       fsExistsSyncStub.restore();
     }
@@ -29,49 +29,49 @@ describe("config.js - ", function(){
     }
   });
 
-  describe("when a config file does not exist in a user's home directory", function(){
-    beforeEach(function(){
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function(){
+  describe("when a config file does not exist in a user's home directory", function () {
+    beforeEach(function () {
+      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function () {
         return false;
       });
     });
 
-    it("should not find config in user home directory", function(){
+    it("should not find config in user home directory", function () {
       var configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.not.exist;
     });
 
-    it("should load default config", function(){
+    it("should load default config", function () {
       var configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(cfg.defaultConfig);
     });
 
   });
 
-  describe("when a config file exists in a user's home directory", function(){
+  describe("when a config file exists in a user's home directory", function () {
     var configToLoad;
-    beforeEach(function() {
+    beforeEach(function () {
       configToLoad = {
       };
 
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function(){
+      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function () {
         return true;
       });
 
-      fsReadFileSyncStub = sinon.stub(fs, 'readFileSync', function(){
+      fsReadFileSyncStub = sinon.stub(fs, 'readFileSync', function () {
         var data = typeof configToLoad === "string" ? configToLoad : JSON.stringify(configToLoad, null, '  ');
         return new Buffer(data);
       });
     });
 
-    it("should find config in user home directory", function() {
+    it("should find config in user home directory", function () {
       var configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.exist;
     });
 
-    it("should parse and return reporters array", function(){
+    it("should parse and return reporters array", function () {
       configToLoad = {
         reporters: [
           "gitdiff"
@@ -90,7 +90,7 @@ describe("config.js - ", function(){
     //  }).to.throw(/Error parsing (.*).approvalsConfig/);
     //});
 
-    it("should load user's config", function(){
+    it("should load user's config", function () {
       configToLoad = {
         myConfig: true
       };

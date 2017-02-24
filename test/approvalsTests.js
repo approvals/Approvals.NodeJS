@@ -12,7 +12,7 @@ describe('approvals', function () {
   describe('verify', function () {
     it('can verify some manual text', function () {
       var testName = "manualVerification";
-      var dataToVerify =  "some stuff here";
+      var dataToVerify = "some stuff here";
       approvals.verify(__dirname, testName, dataToVerify, approvalOverrides);
     });
   });
@@ -20,7 +20,7 @@ describe('approvals', function () {
   describe('verifyAsJSON', function () {
     it('can verify some manual text', function () {
       var testName = "manualVerificationAsJSON";
-      var dataToVerify =  {
+      var dataToVerify = {
         x: "some stuff here",
         y: 123
       };
