@@ -4,7 +4,7 @@ Approval Tests Library - Capturing Human Intelligence
 
 Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
 
-# Latest Builds
+## Latest Builds
 
  Service | Status
 ------------- | -------------
@@ -12,7 +12,7 @@ Linux ([Travis CI](https://travis-ci.org/)) | [![Build Status](https://travis-ci
 Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
 
 
-## Invoke via:
+## Invoke via
 
 - [Mocha](http://mochajs.org/) tests
 - [Jasmine](http://jasmine.github.io/) tests
@@ -25,41 +25,44 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 1. Create a project (folder)
 
-  ```
-  mkdir MyProject
-  cd MyProject`
-  ```
+    ```shell
+    mkdir MyProject
+    cd MyProject`
+    ```
 
-2. Install approvals
-  `npm install --save-dev approvals`
+1. Install approvals
 
-3. Install [Mocha](http://mochajs.org/) globally to execute our tests
+    ```shell
+    npm install --save-dev approvals
+    ```
 
-  ```
-  npm install -g mocha
-  ```
+1. Install [Mocha](http://mochajs.org/) globally to execute our tests
 
-4. Create a sample Mocha test file called `test.js`.
+    ```shell
+    npm install -g mocha
+    ```
 
-  ```javascript
-  require('approvals')
-    .mocha();
+1. Create a sample Mocha test file called `test.js`.
 
-  describe('When running some tests', function () {
-    it('should be able to use Approvals', function () {
-      var data = "Hello World!";
-      this.verify(data);  // or this.verifyAsJSON(data)
+    ```javascript
+    require('approvals')
+      .mocha();
+
+    describe('When running some tests', function () {
+      it('should be able to use Approvals', function () {
+        var data = "Hello World!";
+        this.verify(data);  // or this.verifyAsJSON(data)
+      });
     });
-  });
-  ```
+    ```
 
-5. Test the file with mocha.
+1. Test the file with mocha.
 
-  ```
-  mocha test.js
-  ```
+    ```shell
+    mocha test.js
+    ```
 
-6. You should be presented with a diff tool. (if not, you may need to install one)
+1. You should be presented with a diff tool. (if not, you may need to install one?)
 
 ## Documentation
 
@@ -72,9 +75,9 @@ The default configuration as defined below can be overridden by using the follow
 Priority is given the config at the bottom of the list (going up).
 
 1. Starting with the defaults (as shown below) and defined in [lib/config.js](lib/config.js).
-2. Override any defaults with config in a yaml or json file in `~/.approvalsConfig`.
-3. Then override with an `approvals.configure({...})` (not recommended in general).
-4. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overridden config...});`.
+1. Override any defaults with config in a yaml or json file in `~/.approvalsConfig`.
+1. Then override with an `approvals.configure({...})` (not recommended in general).
+1. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overridden config...});`.
 
 ```javascript
 var defaultConfig = {
@@ -158,33 +161,30 @@ var defaultConfig = {
 };
 ```
 
-```javascript
-require('approvals')
-  .mocha(); // or .jasmine();
-/* ... */
-```
+## Source Control
 
-#### Source Control
+The approvals tool can generate files that you'll want to configure source control ex: `.gitignore`.
 
-- `*.approved.*` files should be checked into source control.
 - `*.received.*` files should be **IGNORED**.
+- `*.approved.*` You'll likely want to keep the approved files in source control.
 
-  ##### Git
+### Git
 
   If you're using [Git](http://git-scm.com) add this to your `.gitignore`:
 
-  ```
+  ```text
   *.received.*
   ```
 
   Another issue that can crop up is the line-endings as git can change the files depending on checking out the file on linux/mac vs windows.
 
-  A possible fix for this is to add `*.approved.* binary` to your `.gitattributes`
+  A possible fix for this is to add `*.approved.* binary` to your `.gitattributes` (but that makes viewing diffs as you check in a pain).
 
 ## Contributing
 
-Check out the [guidlines](CONTRIBUTING.md)!
+Check out the [guidelines](CONTRIBUTING.md)!
 
 ## License
+
 Copyright (c) 2012-2015 Llewellyn Falco, Jason Jarrett
 Licensed under the Apache license.
