@@ -67,20 +67,20 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 ## Config (overriding)
 
-The default configuration as defined below can be overriden by using the following strategy.
+The default configuration as defined below can be overridden by using the following strategy.
 
 Priority is given the config at the bottom of the list (going up).
 
 1. Starting with the defaults (as shown below) and defined in [lib/config.js](lib/config.js).
 2. Override any defaults with config in a yaml or json file in `~/.approvalsConfig`.
 3. Then override with an `approvals.configure({...})` (not recommended in general).
-4. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overriden config...});`.
+4. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overridden config...});`.
 
 ```javascript
 var defaultConfig = {
   // The strategy for determining which reporter to use will likely
   // change at some point. For now, you can configure priority here.
-  // What'd I'd prefer is if each project has a configuraiton file
+  // What I'd prefer is if each project has a configuration file
   // and each user could setup a ~/.approvalConfig file
   // which would contain their preferred merge/diff tools
   reporters:  [
@@ -115,13 +115,23 @@ var defaultConfig = {
   // you can set this to something like "\n" or "\r\n"
   //
   // default value here of false or undefined will not apply any
-  // line-ending replacement beforw writing the approval received file
+  // line-ending replacement before writing the approval received file
   normalizeLineEndingsTo: false, // default
 
+  // If approvals determines things are different, it will replacement
+  // line endings CRLF with just LF and re-compare. If they are the same
+  // approvals will log a warning that the files are the same except for
+  // line endings. Flip this to `true` to fail tests if line-endings
+  // are different
+  failOnLineEndingDifferences: false,
+
   // Some diff tools automatically append an EOL to a merge file
-  // Setting this to true helps with those cases...
+  // Setting this to true helps with those cases... (Also see EOL below
+  // for what is appended)
   appendEOL: true,
 
+  // When appendEOL above is true, this value defines what will be appended at the end of the file.
+  // It's really a bad name as it's not End-of-Line... but -end-of-file err end-of-line-at-end-of-file :P
   EOL:  require('os').EOL,
 
   // This helps keep the project clean of files
@@ -138,13 +148,6 @@ var defaultConfig = {
   // Mark can be inserted and cause issues,
   // this allows you to force it to be stripped
   stripBOM: false
-
-  // If approvals determines things are different, it will replacement
-  // line endings CRLF with just LF and re-compare. If they are the same
-  // approvals will log a warning that the files are the same except for
-  // line endings. Flip this to `true` to fail tests if line-endings
-  // are different
-  failOnLineEndingDifferences: false,
 
   //DANGER: this can be used to force-approve a file during a test run.
   // Can be used for first time-run or if lots of tests are failing because
