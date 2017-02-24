@@ -107,7 +107,7 @@ describe('FileApprover', function () {
     var config = {
       appendEOL: false,
       stripBOM: true,
-      normalizeLineEndingsTo: "\r\n"
+      normalizeLineEndingsTo: "\n"
     };
 
     beforeEach(function() {
@@ -117,7 +117,7 @@ describe('FileApprover', function () {
       writer = new StringWriter(config, "\uFEFFHello Missing Byte Order Mark!\n");
       reporterFactory = function () {
         var x = ReporterFactory.loadReporter('gitdiff');
-        return x;
+        return [x];
       };
     });
 
