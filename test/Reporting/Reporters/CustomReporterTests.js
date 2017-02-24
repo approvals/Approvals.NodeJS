@@ -48,6 +48,7 @@ describe("CustomReporter", function () {
       });
 
     } catch (err) {
+      //
     }
 
     assert.ok(calledCustomReporter);
@@ -61,7 +62,7 @@ describe("CustomReporter", function () {
     try {
       this.verify('foo');
     } catch (err) {
-
+      //
     }
 
     assert.ok(globalCustomReporter.getWasReporterUsed());
