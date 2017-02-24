@@ -20,7 +20,8 @@ gulp.task('lint-watch', ['lint'], function(){
 gulp.task('lint', function() {
   return gulp.src(paths.filesToLint)
     .pipe($.eslint())
-    .pipe($.eslint.format());
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());
 });
 
 gulp.task('test', ['lint'], function(){
