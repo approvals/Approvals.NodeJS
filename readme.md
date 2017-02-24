@@ -70,14 +70,19 @@ Below is a simple getting started using Mocha. We now support Jasmine as well, j
 
 ## Config (overriding)
 
+Or more, controlling the behavior of approvals through various tweaks to configuration.
+
+Approvals uses the below configuration to drive it's behavior. How you communicate that configuration to approvals can happen in a number of ways.
+
 The default configuration as defined below can be overridden by using the following strategy.
 
-Priority is given the config at the bottom of the list (going up).
+> NOTE: Priority/order of config selection comes from the below list  where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
 
-1. Starting with the defaults (as shown below) and defined in [lib/config.js](lib/config.js).
-1. Override any defaults with config in a yaml or json file in `~/.approvalsConfig`.
+1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
+1. Override any defaults with config in a yaml or json file in you're home directory `~/.approvalsConfig`.
 1. Then override with an `approvals.configure({...})` (not recommended in general).
-1. Then passing any specific configuration at the test level as the last parameter in the `.verify(..., {...overridden config...});`.
+1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`.
+
 
 ```javascript
 var defaultConfig = {
