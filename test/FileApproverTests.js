@@ -26,39 +26,39 @@ var ShouldFailCustomReporter = function () {
 
 describe('FileApprover', function () {
 
-  describe("when two files match", function(){
+  describe("when two files match", function () {
 
     var namer;
     var reporterFactory;
     var writer;
     var config = { appendEOL: false };
 
-    beforeEach(function(){
+    beforeEach(function () {
       var dir = __dirname;
       var fileName = "FileApprover.should_verify_two_files_match";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
-      reporterFactory = function() {
-        return new ShouldFailCustomReporter();
+      reporterFactory = function () {
+        return [new ShouldFailCustomReporter()];
       };
     });
 
-    describe('when validating arguments', function(){
+    describe('when validating arguments', function () {
 
-      it("should validate namer (parameter 1)", function(){
-        expect(function(){
+      it("should validate namer (parameter 1)", function () {
+        expect(function () {
           FileApprover.verify(null);
         }).to.throw(Error, 'namer');
       });
 
-      it("should validate writer (parameter 2)", function(){
-        expect(function(){
+      it("should validate writer (parameter 2)", function () {
+        expect(function () {
           FileApprover.verify(namer, null);
         }).to.throw(Error, 'writer');
       });
 
-      it("should validate reporterFactory (parameter 3)", function(){
-        expect(function(){
+      it("should validate reporterFactory (parameter 3)", function () {
+        expect(function () {
           FileApprover.verify(namer, writer, null);
         }).to.throw(Error, 'reporterFactory');
       });
@@ -79,7 +79,7 @@ describe('FileApprover', function () {
     it('should raise an event with the approved file name', function (done) {
       var approvedFileName = namer.getApprovedFile(writer.getFileExtension());
 
-      process.once("approvalFileApproved", function(fileName){
+      process.once("approvalFileApproved", function (fileName) {
         assert.equal(fileName, approvedFileName);
 
         done();
@@ -92,14 +92,14 @@ describe('FileApprover', function () {
 
       writer = new StringWriter(config, "BYE");
 
-      assert.throws(function() {
+      assert.throws(function () {
         FileApprover.verify(namer, writer, reporterFactory);
       });
     });
 
   });
 
-  describe("when configuring the Byte Order Mark (BOM)", function(){
+  describe("when configuring the Byte Order Mark (BOM)", function () {
 
     var namer;
     var reporterFactory;
@@ -107,17 +107,17 @@ describe('FileApprover', function () {
     var config = {
       appendEOL: false,
       stripBOM: true,
-      EOL: '\n'
+      normalizeLineEndingsTo: "\n"
     };
 
-    beforeEach(function() {
+    beforeEach(function () {
       var dir = __dirname;
       var fileName = "FileApproverTests.ByteOrderMark";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "\uFEFFHello Missing Byte Order Mark!\n");
       reporterFactory = function () {
         var x = ReporterFactory.loadReporter('gitdiff');
-        return x;
+        return [x];
       };
     });
 
@@ -135,7 +135,7 @@ describe('FileApprover', function () {
     it('The approved file should have a BOM and the local file should not - This should raise an exception because we should be comparing BOMs', function () {
       config.stripBOM = false;
       writer = new StringWriter(config, "Hello Missing Byte Order Mark!\n");
-      expect(function() {
+      expect(function () {
         FileApprover.verify(namer, writer, reporterFactory, config);
       }).to.throw;
     });

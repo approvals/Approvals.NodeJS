@@ -8,25 +8,29 @@ var assert = require('assert');
 var MyCustomReporter = function () {
   var wasReporterUsed = false;
   return {
-    canReportOn: function(/*file*/){
+    canReportOn: function (/*file*/) {
       return true;
     },
-    report: function(/*approved, received*/){
+    report: function (/*approved, received*/) {
       wasReporterUsed = true;
     },
-    getWasReporterUsed: function(){
+    getWasReporterUsed: function () {
       return wasReporterUsed;
     },
     name: "globalCustomReporter"
   };
 };
 
-var globalCustomReporter = MyCustomReporter();
-
 var approvals = require('../../../lib/Approvals').mocha();
+var globalCustomReporter;
 
-describe("CustomReporter", function  () {
-  it("allows CustomReporter at method level", function  () {
+describe("CustomReporter", function () {
+
+  beforeEach(function () {
+    globalCustomReporter = MyCustomReporter();
+  });
+
+  it("allows CustomReporter at method level", function () {
 
     var calledCustomReporter = false;
 
@@ -34,40 +38,39 @@ describe("CustomReporter", function  () {
       this.verify('foo', {
         errorOnStaleApprovedFiles: false,
         reporters: [{
-          canReportOn: function(/*file*/){
+          canReportOn: function (/*file*/) {
             return true;
           },
-          report: function(/*approved, received*/){
+          report: function (/*approved, received*/) {
             calledCustomReporter = true;
           }
         }]
       });
 
     } catch (err) {
+      //
     }
 
     assert.ok(calledCustomReporter);
   });
 
-  it("uses global custom reporter", function(){
+  it("uses global custom reporter", function () {
     approvals.configure({
-      reporters: [globalCustomReporter],
-      errorOnStaleApprovedFiles: false
+      reporters: [globalCustomReporter]
     });
 
     try {
       this.verify('foo');
     } catch (err) {
-
+      //
     }
 
     assert.ok(globalCustomReporter.getWasReporterUsed());
   });
 
-  it("uses global custom reporter manual verify", function(){
+  it("uses global custom reporter manual verify", function () {
     approvals.configure({
-      reporters: [globalCustomReporter],
-      errorOnStaleApprovedFiles: false
+      reporters: [globalCustomReporter]
     });
 
     var didRaiseException = false;
@@ -82,7 +85,7 @@ describe("CustomReporter", function  () {
     assert.ok(globalCustomReporter.getWasReporterUsed());
   });
 
-  it("uses global custom reporter 2", function(){
+  it("uses global custom reporter 2", function () {
     approvals.configure({
       reporters: [globalCustomReporter],
       errorOnStaleApprovedFiles: false

@@ -11,37 +11,31 @@ var paths = {
   sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
 };
 
-gulp.task('jscs', function() {
-  return gulp.src(paths.filesToLint)
-  .pipe($.jscs());
-});
-
-gulp.task('jscs-watch', ['jscs'], function() {
-  $.watch(paths.filesToLint, function () {
-    gulp.start('jscs');
-  });
-});
-
-gulp.task('lint-watch', ['lint'], function(){
+gulp.task('lint-watch', ['lint'], function () {
   $.watch(paths.filesToLint, function () {
     gulp.start('lint');
   });
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', function () {
   return gulp.src(paths.filesToLint)
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'));
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());
 });
 
-gulp.task('test', ['lint', 'jscs'], function(){
+gulp.task('unitTest', function() {
   return gulp.src(paths.mochaTests, { read: false })
-  .pipe($.mocha({
-    reporter: 'spec',
-    slow: 500,
-    timeout: 5000,
-    globals: { }
-  }));
+    .pipe($.mocha({
+      reporter: 'spec',
+      slow: 500,
+      timeout: 5000,
+      globals: {}
+    }));
+})
+
+gulp.task('test', ['unitTest'], function () {
+  gulp.start('lint');
 });
 
 gulp.task('coverage', function (cb) {
@@ -50,15 +44,15 @@ gulp.task('coverage', function (cb) {
     .pipe($.istanbul.hookRequire())
     .on('finish', function () {
       gulp.src(paths.mochaTests, { read: false })
-      .pipe($.mocha({
-        reporter: 'dot',
-        timeout: 5000
-      }))
-      .pipe($.istanbul.writeReports()) // Creating the reports after tests ran
-      .on('finish', function() {
-        process.chdir(__dirname);
-        cb();
-      });
+        .pipe($.mocha({
+          reporter: 'dot',
+          timeout: 5000
+        }))
+        .pipe($.istanbul.writeReports()) // Creating the reports after tests ran
+        .on('finish', function () {
+          process.chdir(__dirname);
+          cb();
+        });
     });
 });
 

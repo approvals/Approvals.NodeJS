@@ -2,22 +2,22 @@
 
 var approvals = require("../../../lib/Approvals");
 
-describe('Mocha', function() {
+describe('Mocha', function () {
 
-  describe('when verifying some basic text', function() {
-    beforeEach(function() {
+  describe('when verifying some basic text', function () {
+    beforeEach(function () {
       approvals.configure({
-          appendEOL: false,
-          reporters: ["nodediff"]
-        })
-        .mocha();
+        appendEOL: false,
+        normalizeLineEndingsTo: "\n",
+        reporters: ["nodediff"]
+      }).mocha();
     });
 
-    it('should work', function() {
+    it('should work', function () {
       this.verify("Hello World!");
     });
 
-    it('should verifyAsJSON', function() {
+    it('should verifyAsJSON', function () {
       var value = {
         a: 1,
         b: "bar"
