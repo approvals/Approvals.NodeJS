@@ -6,6 +6,10 @@ node_js:
   - "6"
   - "7"
 
+os:
+  - linux
+  - osx
+
 before_script:
   - npm install -g gulp
 
