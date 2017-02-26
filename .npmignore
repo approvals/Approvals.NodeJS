@@ -1,8 +1,11 @@
 /node_modules/
 /test/
 /coverage/
+/typings/
+/.vscode/
 appveyor.yml
 .editorconfig
+.eslintrc
 .gitattributes
 .gitignore
 .jshintrc
