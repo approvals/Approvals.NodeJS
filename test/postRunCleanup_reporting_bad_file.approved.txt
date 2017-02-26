@@ -1,0 +1,3 @@
+Error: ERROR: Found stale approvals files: 
+  - should-not-exist.approved.txt
+
