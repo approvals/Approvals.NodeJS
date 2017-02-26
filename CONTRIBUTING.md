@@ -14,11 +14,11 @@ npm install
 gulp
 ```
 
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [gulp](https://github.com/gulpjs/gulp).
+In lieu of a formal styleguide, take care to maintain the existing coding style, most style rules enforce by [eslint](http://eslint.org/). Add unit tests for any new or changed functionality. Lint and test your code using [gulp](https://github.com/gulpjs/gulp).
 
-### How to release a new version.
+### How to release a new version
 
-> These are more notes for me (@staxmanade) so I can recall my steps for release
+> These are more notes for me (@staxmanade) so I can recall how to do a release
 
 # Inspect package before publish
 
