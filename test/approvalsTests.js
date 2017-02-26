@@ -1,11 +1,13 @@
 'use strict';
+var fs = require('fs');
+var path = require('path');
+var approvals = require("../lib/Approvals");
 
 var approvalOverrides = {
   EOL: "\r\n",
   normalizeLineEndingsTo: "\n",
   appendEOL: false
 };
-var approvals = require("../lib/Approvals");
 
 describe('approvals', function () {
 
@@ -25,6 +27,14 @@ describe('approvals', function () {
       // http://stackoverflow.com/questions/6926016/nodejs-saving-a-base64-encoded-image-to-disk
       var base64Data = logoBase46.replace(/^data:image\/png;base64,/, "");
       var imgBuffer = new Buffer(base64Data, 'base64');
+
+      approvals.verify(__dirname, "basic-image-test-png", imgBuffer);
+    });
+
+
+    it("should verify an image 2", function () {
+      var testImage = path.join(__dirname, "basic-image-test-png.approved.png");
+      var imgBuffer = fs.readFileSync(testImage);
 
       approvals.verify(__dirname, "basic-image-test-png", imgBuffer);
     });
