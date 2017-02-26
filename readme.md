@@ -2,7 +2,7 @@
 
 Approval Tests Library - Capturing Human Intelligence
 
-Learn more more about Approvals at [approvaltests.com](http://approvaltests.com)
+What is an approval test? Check out a brief [overview here](http://staxmanade.com/2015/01/approval-tests---overview/) or learn more more about Approvals at [approvaltests.com](http://approvaltests.com).
 
 ## Latest Builds
 
