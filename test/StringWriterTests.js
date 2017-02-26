@@ -1,8 +1,10 @@
 'use strict';
 
 var assert = require("assert");
+var expect = require('chai').expect;
 var StringWriter = require("../lib/StringWriter.js");
 var fs = require('fs');
+var sinon = require('sinon');
 var temp = require('temp');
 temp.track();
 // Write out contest to file (leveraging the Namer)
@@ -53,6 +55,34 @@ describe('StringWriter', function () {
         done();
       });
 
+    });
+
+    describe('test', function () {
+      var writeFileSyncStub;
+      beforeEach(function () {
+        writeFileSyncStub = sinon.stub(fs, 'writeFileSync', function () {
+          // do nothing
+        });
+      });
+
+      afterEach(function () {
+        writeFileSyncStub.restore();
+      });
+
+      it('should write out file and NOT append EOL but warn that it does not have the proper EOL (according to config)', function () {
+        var config = {
+          appendEOL: true,
+          EOL: "\r\n"
+        };
+        var expectedText = "HELLO\n";
+        var stringWriter = new StringWriter(config, expectedText);
+
+        var filePath = temp.path({ suffix: '.txt' });
+
+        stringWriter.write(filePath);
+
+        expect(stringWriter.outputText).to.equal(expectedText);
+      });
     });
 
     it('should write out file and replace line endings', function (done) {
