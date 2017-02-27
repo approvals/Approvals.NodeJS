@@ -57,6 +57,7 @@ gulp.task('coverage', function (cb) {
 
 gulp.task('coveralls', ['coverage'], function () {
   if (!process.env.CI) {
+    console.log("process.env.CI === {" + process.env.CI + "}. Skipping coveralls.");
     return;
   }
 
