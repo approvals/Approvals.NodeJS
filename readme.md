@@ -15,13 +15,13 @@ Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor
 ## Invoke via
 
 - [Mocha](http://mochajs.org/) tests
-- [Jasmine](http://jasmine.github.io/) tests
+- ~~[Jasmine](http://jasmine.github.io/) tests~~ (removed support due to lack of integration knowledge)
 - [Approvals API](https://github.com/approvals/Approvals.NodeJS/wiki/Manual-API) (`require('approvals').verify(...)`)
 - [Command line Utility](https://github.com/approvals/Approvals.NodeJS/wiki/Command-Line)
 
 ## Getting Started
 
-Below is a simple getting started using Mocha. We now support Jasmine as well, just replace mocha with Jasmine below and you should be able to get started.
+Below is a simple getting started using Mocha.
 
 1. Create a project (folder)
 

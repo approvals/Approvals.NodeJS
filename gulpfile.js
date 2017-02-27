@@ -6,7 +6,6 @@ var path = require('path');
 
 var paths = {
   mochaTests: ['test/**/*[Tt]ests.js'],
-  jasmineTests: ['test/**/*.Spec.js'],
   filesToLint: ['./lib/**/*.js', './test/**/*.js', 'gulpfile.js'],
   sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
 };
