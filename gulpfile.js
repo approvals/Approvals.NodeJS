@@ -56,13 +56,11 @@ gulp.task('coverage', function (cb) {
 });
 
 gulp.task('coveralls', ['coverage'], function () {
-  if (!process.env.CI) {
-    console.log("process.env.CI === {" + process.env.CI + "}. Skipping coveralls.");
-    return;
-  }
-
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe($.coveralls())
+    .on('error', function(err) {
+      console.error(err);
+    })
     .on('end', function () {
       console.log("Coverage published to coveralls.io");
     });
