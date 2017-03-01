@@ -4,6 +4,7 @@ var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
 var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
+var fs = require("fs");
 var expect = require('chai').expect;
 
 describe('ReporterFactory', function () {
@@ -93,6 +94,39 @@ describe('ReporterFactory', function () {
         delete validDummyReporter.report;
         ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+  });
+
+
+  describe("When loading every reporter:", function () {
+    var allReporters;
+    before(function () {
+      allReporters = fs.readdirSync(path.join(__dirname, '../../lib/Reporting/Reporters'))
+        .map(function (item) {
+          return item.substr(0, item.indexOf('Reporter.js'));
+        })
+        .map(function (reporterName) {
+          console.log("reporter", reporterName);
+          return {
+            name: reporterName,
+            reporter: ReporterFactory.loadReporter(reporterName)
+          };
+        });
+    });
+    it("Should load all the reporters on disk, verify they follow the basic contract etc...", function () {
+
+      allReporters.forEach(item => {
+        var reporter = item.reporter;
+        try {
+          ReporterFactory.assertValidReporter(reporter);
+        } catch (err) {
+          console.error(err);
+          throw new Error("Reporter " + item.name + " did not conform to Reporter interface");
+        }
+      });
+
+
     });
 
   });
