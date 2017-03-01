@@ -4,6 +4,7 @@ var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
 var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
+var expect = require('chai').expect;
 
 describe('ReporterFactory', function () {
 
@@ -56,6 +57,44 @@ describe('ReporterFactory', function () {
     it("should use the ReporterDiffAggregate", function () {
       ReporterFactory.loadReporter(textDiffReporters);
     });
+  });
+
+  describe('assertValidReporter a valid reporter', function (){
+    var validDummyReporter;
+
+    beforeEach(function () {
+      validDummyReporter = {
+        name: "validDummyReporter",
+        canReportOn: function () { return true; },
+        report: function () { }
+      };
+    });
+
+    it("should return true for a valid reporter", function () {
+      expect(ReporterFactory.assertValidReporter(validDummyReporter)).to.equal(true);
+    });
+
+    it("should raise an error when reporter is missing a name", function () {
+      expect(function () {
+        delete validDummyReporter.name;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+    it("should raise an error when reporter is missing a canReportOn", function () {
+      expect(function () {
+        delete validDummyReporter.canReportOn;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+    it("should raise an error when reporter is missing a report", function () {
+      expect(function () {
+        delete validDummyReporter.report;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
   });
 
 });
