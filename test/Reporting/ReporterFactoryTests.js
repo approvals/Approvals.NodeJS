@@ -102,6 +102,7 @@ describe('ReporterFactory', function () {
   describe("When loading every reporter:", function () {
     var allReporters;
     before(function () {
+      this.timeout(20000); //appveyor seems slow
       allReporters = fs.readdirSync(path.join(__dirname, '../../lib/Reporting/Reporters'))
         .map(function (item) {
           return item.substr(0, item.indexOf('Reporter.js'));
