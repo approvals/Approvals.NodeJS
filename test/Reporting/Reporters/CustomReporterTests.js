@@ -38,6 +38,7 @@ describe("CustomReporter", function () {
       this.verify('foo', {
         errorOnStaleApprovedFiles: false,
         reporters: [{
+          name: 'my-test-custom-reporter',
           canReportOn: function (/*file*/) {
             return true;
           },

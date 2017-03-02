@@ -4,6 +4,8 @@ var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
 var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
+var fs = require("fs");
+var expect = require('chai').expect;
 
 describe('ReporterFactory', function () {
 
@@ -56,6 +58,81 @@ describe('ReporterFactory', function () {
     it("should use the ReporterDiffAggregate", function () {
       ReporterFactory.loadReporter(textDiffReporters);
     });
+  });
+
+  describe('assertValidReporter a valid reporter', function (){
+    var validDummyReporter;
+
+    beforeEach(function () {
+      validDummyReporter = {
+        name: "validDummyReporter",
+        canReportOn: function () { return true; },
+        report: function () { }
+      };
+    });
+
+    it("should return true for a valid reporter", function () {
+      expect(ReporterFactory.assertValidReporter(validDummyReporter)).to.equal(true);
+    });
+
+    it("should raise an error when reporter is missing a name", function () {
+      expect(function () {
+        delete validDummyReporter.name;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+    it("should raise an error when reporter is missing a canReportOn", function () {
+      expect(function () {
+        delete validDummyReporter.canReportOn;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+    it("should raise an error when reporter is missing a report", function () {
+      expect(function () {
+        delete validDummyReporter.report;
+        ReporterFactory.assertValidReporter(validDummyReporter);
+      }).to.throw(Error, /A valid reporter should have a/);
+    });
+
+  });
+
+
+  describe("When loading every reporter:", function () {
+    var allReporters;
+    before(function () {
+      this.timeout(20000); //appveyor seems slow
+      allReporters = fs.readdirSync(path.join(__dirname, '../../lib/Reporting/Reporters'))
+        .map(function (item) {
+          return item.substr(0, item.indexOf('Reporter.js'));
+        })
+        .filter(function (reporterName) {
+          return reporterName !== 'visualstudio'; // this has issues running in C.I. environment due to edge
+        })
+        .map(function (reporterName) {
+          console.log("reporter", reporterName);
+          return {
+            name: reporterName,
+            reporter: ReporterFactory.loadReporter(reporterName)
+          };
+        });
+    });
+    it("Should load all the reporters on disk, verify they follow the basic contract etc...", function () {
+
+      allReporters.forEach(item => {
+        var reporter = item.reporter;
+        try {
+          ReporterFactory.assertValidReporter(reporter);
+        } catch (err) {
+          console.error(err);
+          throw new Error("Reporter " + item.name + " did not conform to Reporter interface");
+        }
+      });
+
+
+    });
+
   });
 
 });
