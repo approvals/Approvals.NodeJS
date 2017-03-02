@@ -4,6 +4,12 @@
 var shelljs = require('shelljs');
 var path = require('path');
 
+require('../lib/Approvals').configure({
+  shouldIgnoreStaleApprovedFile: function (fileName) {
+    return (fileName || '').indexOf('commandLineTest') >= 0
+  }
+})
+
 describe('Command Line', function () {
 
   it('Should run approvals CLI with basic text input', function (done) {
