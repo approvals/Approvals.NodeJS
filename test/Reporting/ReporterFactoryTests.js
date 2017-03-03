@@ -126,7 +126,7 @@ describe('ReporterFactory', function () {
           ReporterFactory.assertValidReporter(reporter);
         } catch (err) {
           console.error(err);
-          throw new Error("Reporter " + item.name + " did not conform to Reporter interface");
+          throw new Error("Reporter " + item.name + " did not conform to Reporter interface \n" + err);
         }
       });
 

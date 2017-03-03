@@ -84,6 +84,31 @@ The default configuration as defined below can be overridden by using the follow
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`.
 
 
+For example - using a specific reporter `p4merge`:
+
+```javascript
+it("should use a specific reporter", function () {
+  this.verify('some data', {
+    reporters: ['p4merge']
+  });
+});
+```
+
+Or if you need to use multiple reporters.
+
+```javascript
+var approvals = require('approvals');
+var MultiReporter = approvals.reporters.MultiReporter
+
+it("should use a multiple reporters", function () {
+  this.verify('some data', {
+    reporters: [
+      new MultiReporter(['p4merge', 'commandclipboard'])
+    ]
+  });
+});
+```
+
 ```javascript
 var defaultConfig = {
   // The strategy for determining which reporter to use will likely

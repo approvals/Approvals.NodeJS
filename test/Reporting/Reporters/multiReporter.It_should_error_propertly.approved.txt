@@ -1,0 +1,4 @@
+Error: There were multiple errors:
+
+  Error: This is an error message for reporter: temp-test-reporter - reporter 1
+  Error: This is an error message for reporter: temp-test-reporter - reporter 2
