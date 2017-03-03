@@ -10,6 +10,7 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
 ------------- | -------------
 Linux ([Travis CI](https://travis-ci.org/)) | [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
 Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
+Greenkeeper | [![Greenkeeper badge](https://badges.greenkeeper.io/approvals/Approvals.NodeJS.svg)](https://greenkeeper.io/)
 
 
 ## Invoke via
