@@ -41,13 +41,26 @@ describe('approvals', function () {
   });
 
   describe('verifyAsJSON', function () {
-    it('can verify some manual text', function () {
+    it('can verify some json object', function () {
       var testName = "manualVerificationAsJSON";
       var dataToVerify = {
         x: "some stuff here",
         y: 123
       };
       approvals.verifyAsJSON(__dirname, testName, dataToVerify, approvalOverrides);
+    });
+  });
+
+  describe('verifyAsJSONAndScrub', function () {
+    it('can verify and scrub some json object', function () {
+      var testName = "manualverifyAsJSONAndScrub";
+      var dataToVerify = {
+        x: "some stuff here",
+        y: 123,
+        sampleGuid: '3dda561f-903d-4a89-8c96-99ca6272e53d'
+      };
+
+      approvals.verifyAsJSONAndScrub(__dirname, testName, dataToVerify, approvals.scrubbers.guidScrubber, approvalOverrides);
     });
   });
 });
