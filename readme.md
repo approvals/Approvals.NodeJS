@@ -94,9 +94,8 @@ Below is a simple getting started using Mocha.
 
 ## API
 
-<!--BEGIN-API-->
-
-... TODO ...
+<!--BEGIN-API-DOCS-->
+<!--END-API-DOCS-->
 
 <a name="wiki">
 
