@@ -111,6 +111,8 @@ There are some other documentation items over in the github wiki:
 
 Any of the following reporter may suite your needs. Some support images, some only diffing text, some on mac and linux, some only on windows... Feel free to configure the system to automatically choose your favorite.
 
+
+<!--BEGIN-REPORTERS-LIST-->
     "beyondcompare",
     "copycommand",
     "diffmerge",
@@ -127,6 +129,7 @@ Any of the following reporter may suite your needs. Some support images, some on
     "tortoisemerge",
     "vimdiff",
     "visualstudio",
+<!--END-REPORTERS-LIST-->
 
 Along with the built-in reporters, you can create your own custom reporter just by taking this sample and filling out the interface with your custom reporters desired behavior.
 

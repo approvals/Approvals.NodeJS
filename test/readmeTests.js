@@ -21,7 +21,18 @@ describe("Readme", function () {
     newDocs += jsdoc2md.renderSync({ source: approvalsSource});
     newDocs += "\n<!--END-API-DOCS-->";
 
-    var resultingReadme = currentReadme.replace(/<!--BEGIN-API-DOCS-->[\s\S]*<!--END-API-DOCS-->/gm, newDocs);
+    var reporterList = "<!--BEGIN-REPORTERS-LIST-->";
+    reporterList += "\n<!-- GENERATED - DO NOT MODIFY THIS LIST -->";
+    reporterList += "\n<!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->";
+    reporterList += '\n"' + fs.readdirSync(path.join(__dirname, '../lib/Reporting/Reporters')).map(function (item) {
+      return item.substr(0, item.indexOf('Reporter.js'));
+    }).join("\",\n    \"") + '"';
+    reporterList += "\n<!--END-REPORTERS-LIST-->";
+
+    var resultingReadme = currentReadme
+      .replace(/<!--BEGIN-API-DOCS-->[\s\S]*<!--END-API-DOCS-->/gm, newDocs)
+      .replace(/<!--BEGIN-REPORTERS-LIST-->[\s\S]*<!--END-REPORTERS-LIST-->/gm, reporterList);
+
 
     var config = approvals.getConfig();
 
