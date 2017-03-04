@@ -106,31 +106,27 @@ There are some other documentation items over in the github wiki:
 ### Built-In Reporters
 Any of the following reporter may suite your needs. Some support images, some only diffing text, some on mac and linux, some only on windows... Feel free to configure the system to automatically choose your favorite.
 
+## Supported Diff Tools
 
-<!--BEGIN-REPORTERS-LIST-->
-<!-- GENERATED - DO NOT MODIFY THIS LIST -->
-<!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->
-```
-[
-    "beyondcompare",
-    "copycommand",
-    "diffmerge",
-    "donothing",
-    "gitdiff",
-    "icdiff",
-    "kdiff3",
-    "kompare",
-    "meld",
-    "multi",
-    "nodediff",
-    "opendiff",
-    "p4merge",
-    "tortoisemerge",
-    "vimdiff",
-    "visualstudio"
-]
-```
-<!--END-REPORTERS-LIST-->
+| approval name | Program        | Windows       | Mac/Linux  | Notes  |
+| ------------- | -------------- |:-------------:|:----------:| ------ |
+| `beyondcompare` | [Beyond Compare](http://www.scootersoftware.com/) | &#10003; | &#10003; | |
+| `copycommand` | [git diff](http://git-scm.com/docs/git-diff) (console diff) | &#10003; | &#10003; | Great for C.I. builds runs. |
+| `diffmerge` | [DiffMerge](https://sourcegear.com/diffmerge/) | &#10003; | &#10003; |  |
+| `donothing` |  | &#10003; | &#10003; | This one does what it says - nothing. |
+| `gitdiff` | [git diff](http://git-scm.com/docs/git-diff) (console diff) | &#10003; | &#10003; | Using git cli to diff files. Useful in C.I. builds |
+| `icdiff` | [Icdiff](https://github.com/jeffkaufman/icdiff) | &#10003; | &#10003; |  |
+| `kdiff3` | [KDiff3](http://kdiff3.sourceforge.net/) | &#10003; | &#10003; |  |
+| `kompare` | [Kompare](https://www.kde.org/applications/development/kompare/) | ? | &#10003; |  |
+| `meld` | [Meld](http://meldmerge.org/) | &#10003; | &#10003; |  |
+| `multi` |  | &#10003; | &#10003; | This allos you to run multiple reporters at the same time. EX: when verifying images you might like to use `p4merge` along with the `copycommand` reporter to get the copy CLI command to approve an image as well as view the diff in a tool. |
+| `nodediff` | [nodediff](https://github.com/kpdecker/jsdiff) (console diff) | &#10003; | &#10003; | colorized CLI output without a popup of a diff tool |
+| `opendiff` | [opendiff](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/opendiff.1.html) |  | &#10003; | |
+| `p4merge` | [p4merge](http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools) | &#10003; | &#10003; | |
+| `tortoisemerge` | [Tortise merge](http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-merge.html) | &#10003; | &#10003; | |
+| `vimdiff` |  | &#10003; | &#10003; |  |
+| `visualstudio` | [Visual Studio Diff tool](http://msdn.microsoft.com/en-us/library/bb385990.aspx) | &#10003; |  |
+
 
 ### Custom Reporter
 
