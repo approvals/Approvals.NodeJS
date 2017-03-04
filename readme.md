@@ -6,10 +6,10 @@
 - [Builds](#builds)
 - [Integrations](#integrations)
 - [Getting Started](#getting-started)
-- [API](#api)
 - [Wiki](#wiki)
 - [Reporters](#reporters)
 - [Configuration](#configuration)
+- [API](#api)
 - [Source Control](#source-control)
 - [Contributing](#contributing)
 - [License](#license)
@@ -89,131 +89,6 @@ Below is a simple getting started using Mocha.
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
 
-
-<a name="api" />
-
-## API
-
-<!--BEGIN-API-DOCS-->
-<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
-<!-- Update docs in the source ./lib/Approvals.js -->
-
-<a name="module_approvals"></a>
-
-## approvals
-Approvals module.
-
-
-* [approvals](#module_approvals)
-    * [.configure](#module_approvals.configure)
-    * [.getConfig](#module_approvals.getConfig) ⇒ <code>Object</code>
-    * [.verify](#module_approvals.verify)
-    * [.verifyAndScrub](#module_approvals.verifyAndScrub)
-    * [.verifyAsJSON](#module_approvals.verifyAsJSON)
-    * [.verifyAsJSONAndScrub](#module_approvals.verifyAsJSONAndScrub)
-    * [.mocha](#module_approvals.mocha)
-    * [.scrubbers](#module_approvals.scrubbers)
-
-<a name="module_approvals.configure"></a>
-
-### approvals.configure
-Allows you to provide overrides to the default configuration.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type |
-| --- | --- |
-| overrideOptions | <code>\*</code> | 
-
-<a name="module_approvals.getConfig"></a>
-
-### approvals.getConfig ⇒ <code>Object</code>
-Allows the creation of an approvals configuration object using any passed in options to override the defaults.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-**Returns**: <code>Object</code> - approvals config object with any options overridden.  
-
-| Param | Type |
-| --- | --- |
-| overrideOptions | <code>Object</code> | 
-
-<a name="module_approvals.verify"></a>
-
-### approvals.verify
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
-| testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
-| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
-
-<a name="module_approvals.verifyAndScrub"></a>
-
-### approvals.verifyAndScrub
-Use this to apply the scrubber function to any data before running verify.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
-| testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
-| scrubber | <code>\*</code> | An function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
-| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
-
-<a name="module_approvals.verifyAsJSON"></a>
-
-### approvals.verifyAsJSON
-You can pass as "data" any javascript object to be JSON.stringified and run verify against.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
-| testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
-| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
-
-<a name="module_approvals.verifyAsJSONAndScrub"></a>
-
-### approvals.verifyAsJSONAndScrub
-You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
-| testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
-| scrubber | <code>\*</code> | An function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
-| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
-
-<a name="module_approvals.mocha"></a>
-
-### approvals.mocha
-Configure approvals to hook into Mocha tests.
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
-
-<a name="module_approvals.scrubbers"></a>
-
-### approvals.scrubbers
-Gives access to several helpful scrubbers.
-TODO: document what's exported...
-
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-
-
-<!--END-API-DOCS-->
 
 <a name="wiki">
 
@@ -386,6 +261,138 @@ var defaultConfig = {
 
 };
 ```
+
+
+<a name="api" />
+
+## API
+
+<!--BEGIN-API-DOCS-->
+<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
+<!-- Update docs in the source ./lib/Approvals.js -->
+
+<a name="module_approvals"></a>
+
+## approvals
+Approvals module.
+
+
+* [approvals](#module_approvals)
+    * [.configure](#module_approvals.configure)
+    * [.getConfig](#module_approvals.getConfig) ⇒ <code>Object</code>
+    * [.verify](#module_approvals.verify)
+    * [.verifyAndScrub](#module_approvals.verifyAndScrub)
+    * [.verifyAsJSON](#module_approvals.verifyAsJSON)
+    * [.verifyAsJSONAndScrub](#module_approvals.verifyAsJSONAndScrub)
+    * [.mocha](#module_approvals.mocha)
+    * [.reporters](#module_approvals.reporters)
+    * [.scrubbers](#module_approvals.scrubbers)
+
+<a name="module_approvals.configure"></a>
+
+### approvals.configure
+Allows you to provide overrides to the default configuration.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type |
+| --- | --- |
+| overrideOptions | <code>\*</code> | 
+
+<a name="module_approvals.getConfig"></a>
+
+### approvals.getConfig ⇒ <code>Object</code>
+Allows the creation of an approvals configuration object using any passed in options to override the defaults.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Returns**: <code>Object</code> - approvals config object with any options overridden.  
+
+| Param | Type |
+| --- | --- |
+| overrideOptions | <code>Object</code> | 
+
+<a name="module_approvals.verify"></a>
+
+### approvals.verify
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="module_approvals.verifyAndScrub"></a>
+
+### approvals.verifyAndScrub
+Use this to apply the scrubber function to any data before running verify.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name safe string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
+| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="module_approvals.verifyAsJSON"></a>
+
+### approvals.verifyAsJSON
+You can pass as "data" any javascript object to be JSON.stringified and run verify against.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name safe string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="module_approvals.verifyAsJSONAndScrub"></a>
+
+### approvals.verifyAsJSONAndScrub
+You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name safe string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
+| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="module_approvals.mocha"></a>
+
+### approvals.mocha
+Configure approvals to hook into Mocha tests.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
+
+<a name="module_approvals.reporters"></a>
+
+### approvals.reporters
+`reporters` gives access to the `MultiReporter`
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+<a name="module_approvals.scrubbers"></a>
+
+### approvals.scrubbers
+Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+
+
+<!--END-API-DOCS-->
 
 <a name="source-control" />
 
