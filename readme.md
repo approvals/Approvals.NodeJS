@@ -1,10 +1,31 @@
-# Approvals
+# Approvals (Approval Tests for Node.js)
 
-Approval Tests Library - Capturing Human Intelligence
+##### Table of Contents
+
+- [Intro](#intro)
+- [Builds](#builds)
+- [Integrations](#integrations)
+- [Getting Started](#getting-started)
+- [API](#api)
+- [Wiki](#wiki)
+- [Reporters](#reporters)
+- [Configuration](#configuration)
+- [Source Control](#source-control)
+- [Contributing](#contributing)
+- [License](#license)
+
+
+<a name="intro" />
+
+## Intro
+
+Approval Tests Library - **Capturing Human Intelligence**
 
 What is an approval test? Check out a brief [overview here](http://staxmanade.com/2015/01/approval-tests---overview/) or learn more more about Approvals at [approvaltests.com](http://approvaltests.com).
 
-## Latest Builds
+<a name="build-details" />
+
+## Builds
 
  Service | Status
 ------------- | -------------
@@ -12,12 +33,16 @@ Linux ([Travis CI](https://travis-ci.org/)) | [![Build Status](https://travis-ci
 Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
 
 
-## Invoke via
+<a name="integrations" />
 
-- [Mocha](http://mochajs.org/) tests
+## Integrations
+
+- [Mocha](http://mochajs.org/) tests, see the getting-started
 - ~~[Jasmine](http://jasmine.github.io/) tests~~ (removed support due to lack of integration knowledge)
 - [Approvals API](https://github.com/approvals/Approvals.NodeJS/wiki/Manual-API) (`require('approvals').verify(...)`)
 - [Command line Utility](https://github.com/approvals/Approvals.NodeJS/wiki/Command-Line)
+
+<a name="getting-started" />
 
 ## Getting Started
 
@@ -64,11 +89,78 @@ Below is a simple getting started using Mocha.
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
 
-## Documentation
+
+<a name="api" />
+
+## API
+
+<!--BEGIN-API-->
+
+... TODO ...
+
+<a name="wiki">
+
+## Wiki
+
+There are some other documentation items over in the github wiki:
 
 [Approvals Github Wiki!](https://github.com/approvals/Approvals.NodeJS/wiki)
 
-## Config (overriding)
+<a name="reporters" />
+
+## Reporters
+
+Any of the following reporter may suite your needs. Some support images, some only diffing text, some on mac and linux, some only on windows... Feel free to configure the system to automatically choose your favorite.
+
+    "beyondcompare",
+    "copycommand",
+    "diffmerge",
+    "donothing",
+    "gitdiff",
+    "icdiff",
+    "kdiff3",
+    "kompare",
+    "meld",
+    "multi",
+    "nodediff",
+    "opendiff",
+    "p4merge",
+    "tortoisemerge",
+    "vimdiff",
+    "visualstudio",
+
+Along with the built-in reporters, you can create your own custom reporter just by taking this sample and filling out the interface with your custom reporters desired behavior.
+
+```
+    /* OR a custom reporter object. Below is an example custom reporter */
+    {
+      /**
+       * Determine if the file that needs to be reported on can be handled by this reporter object.
+       * @param {string} receivedFilePath - The path to a received file.
+       */
+      canReportOn(receivedFilePath) {
+        return true;
+      }
+
+      /**
+       * Apply the logic necessary to report a difference.
+       *  EX:
+       *     - Open a diff program using the approved & received files
+       *     - Generate and email a report showing the differences.
+       * @param {string} approvedFilePath - The path to a approved file.
+       * @param {string} receivedFilePath - The path to a received file.
+       */
+      // Actually execute the diff against the two files
+      report(approvedFilePath, receivedFilePath) {
+        // Do some reporting.
+        // Typicall by launching a diff tool
+      }
+    }
+```
+
+<a name="configuration" />
+
+## Configuration
 
 Or more, controlling the behavior of approvals through various tweaks to configuration.
 
@@ -76,15 +168,14 @@ Approvals uses the below configuration to drive it's behavior. How you communica
 
 The default configuration as defined below can be overridden by using the following strategy.
 
-> NOTE: Priority/order of config selection comes from the below list  where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
+> NOTE: Priority/order of config selection comes from the below list where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
 
 1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
-1. Override any defaults with config in a yaml or json file in you're home directory `~/.approvalsConfig`.
-1. Then override with an `approvals.configure({...})` (not recommended in general).
-1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`.
+1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in you're home directory `~/.approvalsConfig`.
+1. Overrides with an `approvals.configure({...})` (not a recommended approach).
+1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
 
-
-For example - using a specific reporter `p4merge`:
+Here's an example of using a single reporter `p4merge`, and overriding whatever is configured. This will only override this specific test.
 
 ```javascript
 it("should use a specific reporter", function () {
@@ -94,7 +185,9 @@ it("should use a specific reporter", function () {
 });
 ```
 
-Or if you need to use multiple reporters.
+If you have the need to execute multiple reporters on a single failure.
+
+Say you made an "awesomeDiffReporter" and wanted it to run that in combination with a "notifyTheBossViaEmailReporter" you can use the MultiReporter like below.
 
 ```javascript
 var approvals = require('approvals');
@@ -122,26 +215,7 @@ var defaultConfig = {
     "tortoisemerge",
     "nodediff",
     "gitdiff"
-
-/* OR a custom reporter object. Below describes the reporter object interface:
-
-  // If you want to provide a custom reporter
-  // you can't do this with the config yml file
-  // but can be passed anywhere a config object is accepted
-  // and must have the following interface
-  {
-
-    // this is used in exception reporting etc. Just give it a name :)
-    name: string;
-
-    // This is used to determine if the reporter can report on the specified file
-    // EX: an image differ vs a txt differ...
-    canReportOn(receivedFilePath: string): boolean;
-
-    // Actually execute the diff against the two files
-    report(approvedFilePath: string, receivedFilePath: string): void;
-  }
-*/
+    /* OR a custom reporter object. See the above example of how to create a custom reporter. */
   ],
 
   // If you need to normalize text file line-endings
@@ -191,9 +265,11 @@ var defaultConfig = {
 };
 ```
 
+<a name="source-control" />
+
 ## Source Control
 
-The approvals tool can generate files that you'll want to configure source control ex: `.gitignore`.
+The approvals tool generates 2 files and you likely want to ignore one and check in the other.
 
 - `*.received.*` files should be **IGNORED**.
 - `*.approved.*` You'll likely want to keep the approved files in source control.
@@ -210,11 +286,13 @@ The approvals tool can generate files that you'll want to configure source contr
 
   A possible fix for this is to add `*.approved.* binary` to your `.gitattributes` (but that makes viewing diffs as you check in a pain).
 
+<a name="contributing" />
+
 ## Contributing
 
 Check out the [guidelines](CONTRIBUTING.md)!
 
 ## License
 
-Copyright (c) 2012-2015 Llewellyn Falco, Jason Jarrett
+Copyright (c) 2012-2017 Llewellyn Falco, Jason Jarrett
 Licensed under the Apache license.
