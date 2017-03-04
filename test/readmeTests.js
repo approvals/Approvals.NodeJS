@@ -9,7 +9,7 @@ var jsdoc2md = require('jsdoc-to-markdown');
 
 describe("Readme", function () {
 
-  it.only("Should not allow the readme docs to get out of sync", function () {
+  it("Should not allow the readme docs to get out of sync", function () {
 
     var currentReadme = fs.readFileSync(path.join(__dirname, '../', 'readme.md')).toString()
 
