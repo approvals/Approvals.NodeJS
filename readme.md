@@ -284,6 +284,7 @@ Approvals module.
     * [.verifyAndScrub](#module_approvals.verifyAndScrub)
     * [.verifyAsJSON](#module_approvals.verifyAsJSON)
     * [.verifyAsJSONAndScrub](#module_approvals.verifyAsJSONAndScrub)
+    * [.verifyWithControl](#module_approvals.verifyWithControl)
     * [.mocha](#module_approvals.mocha)
     * [.reporters](#module_approvals.reporters)
     * [.scrubbers](#module_approvals.scrubbers)
@@ -366,6 +367,22 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 | data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
 | scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="module_approvals.verifyWithControl"></a>
+
+### approvals.verifyWithControl
+This allows you to take full control of naming and writing files before verifying.
+
+For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
+
+| Param | Type |
+| --- | --- |
+| namer | <code>Object</code> |
+| writer | <code>Object</code> |
+| [reporterFactory] | <code>function</code> |
+| [optionsOverride] | <code>Object</code> |
 
 <a name="module_approvals.mocha"></a>
 

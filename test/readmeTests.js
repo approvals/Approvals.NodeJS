@@ -1,7 +1,6 @@
 var path = require('path');
 var fs = require('fs');
 
-var FileApprover = require('../lib/FileApprover');
 var StringWriter = require("../lib/StringWriter");
 var ReporterFactory = require("../lib/Reporting/ReporterFactory");
 var approvals = require('../lib/Approvals');
@@ -50,8 +49,7 @@ describe("Readme", function () {
     var reporterFactory = function () {
       return [ReporterFactory.loadReporter(config.reporters)];
     };
-
-    FileApprover.verify(namer, writer, reporterFactory, config);
+    approvals.verifyWithControl(namer, writer, reporterFactory, config);
   });
 
 });
