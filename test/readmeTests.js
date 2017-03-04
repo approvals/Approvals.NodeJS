@@ -9,7 +9,7 @@ var jsdoc2md = require('jsdoc-to-markdown');
 
 describe("Readme", function () {
 
-  it("Should not allow the readme docs to get out of sync", function () {
+  it.only("Should not allow the readme docs to get out of sync", function () {
 
     var currentReadme = fs.readFileSync(path.join(__dirname, '../', 'readme.md')).toString()
 
@@ -18,8 +18,8 @@ describe("Readme", function () {
     var newDocs = "<!--BEGIN-API-DOCS-->";
     newDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
     newDocs += "\n<!-- Update docs in the source ./lib/Approvals.js -->";
-    newDocs += jsdoc2md.renderSync({ source: approvalsSource});
-    newDocs += "\n<!--END-API-DOCS-->";
+    newDocs += "\n\n" + jsdoc2md.renderSync({ source: approvalsSource, 'no-cache': true});
+    newDocs += "\n\n<!--END-API-DOCS-->";
 
     var reporterList = "<!--BEGIN-REPORTERS-LIST-->";
     reporterList += "\n<!-- GENERATED - DO NOT MODIFY THIS LIST -->";

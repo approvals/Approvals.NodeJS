@@ -96,14 +96,30 @@ Below is a simple getting started using Mocha.
 
 <!--BEGIN-API-DOCS-->
 <!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
-<!-- Update docs in the source ./lib/Approvals.js -->## Functions
+<!-- Update docs in the source ./lib/Approvals.js -->
+
+## Functions
 
 <dl>
 <dt><a href="#configure">configure(overrideOptions)</a></dt>
 <dd><p>Allows you to provide overrides to the default configuration.</p>
 </dd>
+<dt><a href="#getConfig">getConfig(overrideOptions)</a> ⇒ <code>Object</code></dt>
+<dd><p>Allows the creation of an approvals configuration object using any passed in options to override the defaults.</p>
+</dd>
 <dt><a href="#mochaExport">mochaExport(optionalBaseDir)</a></dt>
 <dd><p>Configure approvals to hook into Mocha tests.</p>
+</dd>
+<dt><a href="#verifyAndScrub">verifyAndScrub(dirName, testName, data, scrubber, optionsOverride)</a></dt>
+<dd><p>Use this to apply the scrubber function to any data before running verify.</p>
+</dd>
+<dt><a href="#verify">verify(dirName, testName, data, optionsOverride)</a></dt>
+<dd></dd>
+<dt><a href="#verifyAsJSON">verifyAsJSON(dirName, testName, data, optionsOverride)</a></dt>
+<dd><p>You can pass as &quot;data&quot; any javascript object to be JSON.stringified and run verify against.</p>
+</dd>
+<dt><a href="#verifyAsJSONAndScrub">verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride)</a></dt>
+<dd><p>You can pass as &quot;data&quot; any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.</p>
 </dd>
 </dl>
 
@@ -118,6 +134,18 @@ Allows you to provide overrides to the default configuration.
 | --- | --- |
 | overrideOptions | <code>\*</code> | 
 
+<a name="getConfig"></a>
+
+## getConfig(overrideOptions) ⇒ <code>Object</code>
+Allows the creation of an approvals configuration object using any passed in options to override the defaults.
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - approvals config object with any options overridden.  
+
+| Param | Type |
+| --- | --- |
+| overrideOptions | <code>Object</code> | 
+
 <a name="mochaExport"></a>
 
 ## mochaExport(optionalBaseDir)
@@ -128,6 +156,63 @@ Configure approvals to hook into Mocha tests.
 | Param | Type | Description |
 | --- | --- | --- |
 | optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
+
+<a name="verifyAndScrub"></a>
+
+## verifyAndScrub(dirName, testName, data, scrubber, optionsOverride)
+Use this to apply the scrubber function to any data before running verify.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| scrubber | <code>\*</code> | An function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
+| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="verify"></a>
+
+## verify(dirName, testName, data, optionsOverride)
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="verifyAsJSON"></a>
+
+## verifyAsJSON(dirName, testName, data, optionsOverride)
+You can pass as "data" any javascript object to be JSON.stringified and run verify against.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
+
+<a name="verifyAsJSONAndScrub"></a>
+
+## verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride)
+You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| scrubber | <code>\*</code> | An function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
+| optionsOverride | <code>\*</code> | an object that can contain configurational overrides as defined in the approvals configuration object. |
+
 
 
 <!--END-API-DOCS-->
