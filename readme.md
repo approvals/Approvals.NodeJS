@@ -109,7 +109,9 @@ Any of the following reporter may suite your needs. Some support images, some on
 <!--BEGIN-REPORTERS-LIST-->
 <!-- GENERATED - DO NOT MODIFY THIS LIST -->
 <!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->
-"beyondcompare",
+```
+[
+    "beyondcompare",
     "copycommand",
     "diffmerge",
     "donothing",
@@ -125,6 +127,8 @@ Any of the following reporter may suite your needs. Some support images, some on
     "tortoisemerge",
     "vimdiff",
     "visualstudio"
+]
+```
 <!--END-REPORTERS-LIST-->
 
 Along with the built-in reporters, you can create your own custom reporter just by taking this sample and filling out the interface with your custom reporters desired behavior.

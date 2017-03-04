@@ -27,9 +27,13 @@ describe("Readme", function () {
     var reporterList = "<!--BEGIN-REPORTERS-LIST-->";
     reporterList += "\n<!-- GENERATED - DO NOT MODIFY THIS LIST -->";
     reporterList += "\n<!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->";
-    reporterList += '\n"' + fs.readdirSync(path.join(__dirname, '../lib/Reporting/Reporters')).map(function (item) {
+    reporterList += "\n```";
+    reporterList += "\n[";
+    reporterList += '\n    "' + fs.readdirSync(path.join(__dirname, '../lib/Reporting/Reporters')).map(function (item) {
       return item.substr(0, item.indexOf('Reporter.js'));
     }).join("\",\n    \"") + '"';
+    reporterList += "\n]";
+    reporterList += "\n```";
     reporterList += "\n<!--END-REPORTERS-LIST-->";
 
     var resultingReadme = currentReadme
