@@ -95,6 +95,41 @@ Below is a simple getting started using Mocha.
 ## API
 
 <!--BEGIN-API-DOCS-->
+<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
+<!-- Update docs in the source ./lib/Approvals.js -->## Functions
+
+<dl>
+<dt><a href="#configure">configure(overrideOptions)</a></dt>
+<dd><p>Allows you to provide overrides to the default configuration.</p>
+</dd>
+<dt><a href="#mochaExport">mochaExport(optionalBaseDir)</a></dt>
+<dd><p>Configure approvals to hook into Mocha tests.</p>
+</dd>
+</dl>
+
+<a name="configure"></a>
+
+## configure(overrideOptions)
+Allows you to provide overrides to the default configuration.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| overrideOptions | <code>\*</code> | 
+
+<a name="mochaExport"></a>
+
+## mochaExport(optionalBaseDir)
+Configure approvals to hook into Mocha tests.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
+
+
 <!--END-API-DOCS-->
 
 <a name="wiki">
@@ -113,7 +148,9 @@ Any of the following reporter may suite your needs. Some support images, some on
 
 
 <!--BEGIN-REPORTERS-LIST-->
-    "beyondcompare",
+<!-- GENERATED - DO NOT MODIFY THIS LIST -->
+<!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->
+"beyondcompare",
     "copycommand",
     "diffmerge",
     "donothing",
@@ -128,7 +165,7 @@ Any of the following reporter may suite your needs. Some support images, some on
     "p4merge",
     "tortoisemerge",
     "vimdiff",
-    "visualstudio",
+    "visualstudio"
 <!--END-REPORTERS-LIST-->
 
 Along with the built-in reporters, you can create your own custom reporter just by taking this sample and filling out the interface with your custom reporters desired behavior.
