@@ -15,10 +15,15 @@ describe("Readme", function () {
 
     var approvalsSource = fs.readFileSync(path.join(__dirname, '../lib', 'Approvals.js')).toString();
 
+    var jsdocsOutput = jsdoc2md.renderSync({ source: approvalsSource, 'no-cache': true})
+    jsdocsOutput = jsdocsOutput.split('\n').map(function (line) {
+      return line.replace(/\s+$/, '');
+    }).join('\n');
+
     var newDocs = "<!--BEGIN-API-DOCS-->";
     newDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
     newDocs += "\n<!-- Update docs in the source ./lib/Approvals.js -->";
-    newDocs += "\n\n" + jsdoc2md.renderSync({ source: approvalsSource, 'no-cache': true});
+    newDocs += "\n\n" + jsdocsOutput;
     newDocs += "\n\n<!--END-API-DOCS-->";
 
     var reporterList = "<!--BEGIN-REPORTERS-LIST-->";

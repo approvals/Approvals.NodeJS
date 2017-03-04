@@ -293,28 +293,28 @@ Approvals module.
 ### approvals.configure
 Allows you to provide overrides to the default configuration.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type |
 | --- | --- |
-| overrideOptions | <code>\*</code> | 
+| overrideOptions | <code>\*</code> |
 
 <a name="module_approvals.getConfig"></a>
 
 ### approvals.getConfig ⇒ <code>Object</code>
 Allows the creation of an approvals configuration object using any passed in options to override the defaults.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
-**Returns**: <code>Object</code> - approvals config object with any options overridden.  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Returns**: <code>Object</code> - approvals config object with any options overridden.
 
 | Param | Type |
 | --- | --- |
-| overrideOptions | <code>Object</code> | 
+| overrideOptions | <code>Object</code> |
 
 <a name="module_approvals.verify"></a>
 
 ### approvals.verify
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -328,7 +328,7 @@ Allows the creation of an approvals configuration object using any passed in opt
 ### approvals.verifyAndScrub
 Use this to apply the scrubber function to any data before running verify.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -343,7 +343,7 @@ Use this to apply the scrubber function to any data before running verify.
 ### approvals.verifyAsJSON
 You can pass as "data" any javascript object to be JSON.stringified and run verify against.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -357,7 +357,7 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 ### approvals.verifyAsJSONAndScrub
 You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -372,7 +372,7 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 ### approvals.mocha
 Configure approvals to hook into Mocha tests.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -383,13 +383,13 @@ Configure approvals to hook into Mocha tests.
 ### approvals.reporters
 `reporters` gives access to the `MultiReporter`
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 <a name="module_approvals.scrubbers"></a>
 
 ### approvals.scrubbers
 Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>  
+**Kind**: static property of <code>[approvals](#module_approvals)</code>
 
 
 <!--END-API-DOCS-->
