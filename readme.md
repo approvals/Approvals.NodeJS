@@ -300,6 +300,13 @@ Allows you to provide overrides to the default configuration.
 | --- | --- |
 | overrideOptions | <code>\*</code> |
 
+**Example**
+```js
+var approvals = require('approvals');
+approvals.configure({
+  reporters: ['p4merge']
+});
+```
 <a name="module_approvals.getConfig"></a>
 
 ### approvals.getConfig ⇒ <code>Object</code>
@@ -324,6 +331,18 @@ Allows the creation of an approvals configuration object using any passed in opt
 | data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
+**Example**
+```js
+// basic approval test
+var approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
+```
+**Example**
+```js
+// basic approval test providing an option to override configuration
+var approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
+```
 <a name="module_approvals.verifyAndScrub"></a>
 
 ### approvals.verifyAndScrub
@@ -339,6 +358,18 @@ Use this to apply the scrubber function to any data before running verify.
 | scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
+**Example**
+```js
+// basic approval test with a custom scrubber
+var approvals = require('approvals');
+var scrubber = approvals.scrubbers.multiScrubber([
+   function (data) {
+     return (data || '').replace("some text", "some other text");
+   },
+   approvals.scrubbers.guidScrubber // to remove guids from the received data
+});
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
+```
 <a name="module_approvals.verifyAsJSON"></a>
 
 ### approvals.verifyAsJSON
@@ -353,6 +384,11 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 | data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
+**Example**
+```js
+var approvals = require('approvals');
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
+```
 <a name="module_approvals.verifyAsJSONAndScrub"></a>
 
 ### approvals.verifyAsJSONAndScrub
@@ -368,6 +404,18 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 | scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
+**Example**
+```js
+// basic approval test with a custom scrubber
+var approvals = require('approvals');
+var scrubber = approvals.scrubbers.multiScrubber([
+   function (data) {
+     return (data || '').replace("some text", "some other text");
+   },
+   approvals.scrubbers.guidScrubber // to remove guids from the received data
+});
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
+```
 <a name="module_approvals.verifyWithControl"></a>
 
 ### approvals.verifyWithControl
@@ -401,6 +449,10 @@ Configure approvals to hook into Mocha tests.
 `reporters` gives access to the `MultiReporter`
 
 **Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Example**
+```js
+var MultiReporter = approvals.reporters.MultiReporter
+```
 <a name="module_approvals.scrubbers"></a>
 
 ### approvals.scrubbers

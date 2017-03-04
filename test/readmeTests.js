@@ -2,7 +2,6 @@ var path = require('path');
 var fs = require('fs');
 
 var StringWriter = require("../lib/StringWriter");
-var ReporterFactory = require("../lib/Reporting/ReporterFactory");
 var approvals = require('../lib/Approvals');
 var jsdoc2md = require('jsdoc-to-markdown');
 
@@ -46,10 +45,7 @@ describe("Readme", function () {
       getApprovedFile: function () { return path.join(__dirname, '..', "readme.md"); }
     }
 
-    var reporterFactory = function () {
-      return [ReporterFactory.loadReporter(config.reporters)];
-    };
-    approvals.verifyWithControl(namer, writer, reporterFactory, config);
+    approvals.verifyWithControl(namer, writer);
   });
 
 });
