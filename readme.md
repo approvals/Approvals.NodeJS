@@ -103,6 +103,7 @@ There are some other documentation items over in the github wiki:
 
 ## Reporters
 
+### Built-In Reporters
 Any of the following reporter may suite your needs. Some support images, some only diffing text, some on mac and linux, some only on windows... Feel free to configure the system to automatically choose your favorite.
 
 
@@ -130,6 +131,8 @@ Any of the following reporter may suite your needs. Some support images, some on
 ]
 ```
 <!--END-REPORTERS-LIST-->
+
+### Custom Reporter
 
 Along with the built-in reporters, you can create your own custom reporter just by taking this sample and filling out the interface with your custom reporters desired behavior.
 
