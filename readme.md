@@ -6,6 +6,7 @@
 - [Builds](#builds)
 - [Integrations](#integrations)
 - [Getting Started](#getting-started)
+- [CLI](#cli)
 - [Wiki](#wiki)
 - [Reporters](#reporters)
 - [Configuration](#configuration)
@@ -90,6 +91,60 @@ Below is a simple getting started using Mocha.
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
 
+<a name="cli">
+
+## CLI
+
+Approvals.NodeJS has a version that can be run as a command line tool.
+
+You can check out the `Examples` section of the below CLI help. Or a blog post introducing the tool here: [Approval Tests - Command Line Tool (CLI)](http://staxmanade.com/2015/02/approval-tests---command-line-tool--cli-/).
+
+### Install Approvals CLI
+
+```
+npm install -g approvals
+```
+
+### CLI Help
+
+By running `approvals --help`
+
+<!--BEGIN-CLI-DOCS-->
+<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
+<!-- Update docs in the source ./bin/help.md -->
+```
+
+# Usage
+
+`approvals testName [options]`
+
+        **[-f | --forceapproveall]**   : Skip the approve step and apply the results to the .approved.txt file (good for a first time run)
+
+        **[--reporter difftool]**      : supports multiple EX: `--reporter opendiff --reporter gitdiff`
+
+        **[--outdir]**                 : dir to place approval file - defaults to current directory
+
+        **[--verbose]**                : extra debug info
+
+        **TODO:**                      : We need to extend the supported args to include other approval options. (file an [issue](https://github.com/approvals/Approvals.NodeJS/issues) if you need one that's not here)
+
+# Examples
+
+## Simple hello world
+
+  echo 'Hello World!' | approvals helloWorldTest
+
+## Specify diff reporter (great for C.I.)
+
+  echo 'Hello World!' | approvals helloWorldTest --reporter gitdiff
+
+## Multiple diff reporters
+
+  echo 'Hello World!' | approvals helloWorldTest --reporter gitdiff --reporter p4merge
+
+```
+
+<!--END-CLI-DOCS-->
 
 <a name="wiki">
 

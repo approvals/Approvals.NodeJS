@@ -10,6 +10,9 @@ describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", function () {
 
     var currentReadme = fs.readFileSync(path.join(__dirname, '../', 'readme.md')).toString()
+    var cliDocsRaw = fs.readFileSync(path.join(__dirname, '../bin', 'help.md')).toString()
+
+    cliDocsRaw = cliDocsRaw.replace(/&nbsp;/g, ' ');
 
     var approvalsSource = fs.readFileSync(path.join(__dirname, '../lib', 'Approvals.js')).toString();
 
@@ -23,6 +26,15 @@ describe("Readme", function () {
     newDocs += "\n<!-- Update docs in the source ./lib/Approvals.js -->";
     newDocs += "\n\n" + jsdocsOutput;
     newDocs += "\n\n<!--END-API-DOCS-->";
+
+    var cliDocs = "<!--BEGIN-CLI-DOCS-->";
+    cliDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
+    cliDocs += "\n<!-- Update docs in the source ./bin/help.md -->";
+    cliDocs += "\n```";
+    cliDocs += "\n\n" + cliDocsRaw;
+    cliDocs += "\n```";
+    cliDocs += "\n\n<!--END-CLI-DOCS-->";
+
 
     var reporterList = "<!--BEGIN-REPORTERS-LIST-->";
     reporterList += "\n<!-- GENERATED - DO NOT MODIFY THIS LIST -->";
@@ -38,6 +50,7 @@ describe("Readme", function () {
 
     var resultingReadme = currentReadme
       .replace(/<!--BEGIN-API-DOCS-->[\s\S]*<!--END-API-DOCS-->/gm, newDocs)
+      .replace(/<!--BEGIN-CLI-DOCS-->[\s\S]*<!--END-CLI-DOCS-->/gm, cliDocs)
       .replace(/<!--BEGIN-REPORTERS-LIST-->[\s\S]*<!--END-REPORTERS-LIST-->/gm, reporterList);
 
 
