@@ -31,7 +31,7 @@ function errAndExit(msg) {
 
 if (printHelp) {
   printHelpMessage();
-  process.kill();
+  process.exit();
 }
 
 if (verbose) {
