@@ -22,7 +22,7 @@
 
 Approval Tests Library - **Capturing Human Intelligence**
 
-What is an approval test? Check out a brief [overview here](http://staxmanade.com/2015/01/approval-tests---overview/) or learn more more about Approvals at [approvaltests.com](http://approvaltests.com).
+What is an approval test? Check out a brief [overview here](http://staxmanade.com/2015/01/approval-tests---overview/) or learn more about Approvals at [approvaltests.com](http://approvaltests.com).
 
 <a name="build-details" />
 
@@ -174,7 +174,7 @@ Any of the following reporter may suite your needs. Some support images, some on
 | `kdiff3` | [KDiff3](http://kdiff3.sourceforge.net/) | &#10003; | &#10003; |  |
 | `kompare` | [Kompare](https://www.kde.org/applications/development/kompare/) | ? | &#10003; |  |
 | `meld` | [Meld](http://meldmerge.org/) | &#10003; | &#10003; |  |
-| `multi` |  | &#10003; | &#10003; | This allos you to run multiple reporters at the same time. EX: when verifying images you might like to use `p4merge` along with the `copycommand` reporter to get the copy CLI command to approve an image as well as view the diff in a tool. |
+| `multi` |  | &#10003; | &#10003; | This allows you to run multiple reporters at the same time. EX: when verifying images, you might like to use `p4merge` along with the `copycommand` reporter to get the copy CLI command to approve an image as well as view the diff in a tool. |
 | `nodediff` | [nodediff](https://github.com/kpdecker/jsdiff) (console diff) | &#10003; | &#10003; | colorized CLI output without a popup of a diff tool |
 | `opendiff` | [opendiff](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/opendiff.1.html) |  | &#10003; | |
 | `p4merge` | [p4merge](http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools) | &#10003; | &#10003; | |
@@ -203,13 +203,13 @@ Along with the built-in reporters, you can create your own custom reporter just 
        *  EX:
        *     - Open a diff program using the approved & received files
        *     - Generate and email a report showing the differences.
-       * @param {string} approvedFilePath - The path to a approved file.
+       * @param {string} approvedFilePath - The path to an approved file.
        * @param {string} receivedFilePath - The path to a received file.
        */
       // Actually execute the diff against the two files
       report(approvedFilePath, receivedFilePath) {
         // Do some reporting.
-        // Typicall by launching a diff tool
+        // Typically by launching a diff tool
       }
     }
 ```
@@ -220,14 +220,14 @@ Along with the built-in reporters, you can create your own custom reporter just 
 
 Or more, controlling the behavior of approvals through various tweaks to configuration.
 
-Approvals uses the below configuration to drive it's behavior. How you communicate that configuration to approvals can happen in a number of ways.
+Approvals uses the below configuration to drive its behavior. How you communicate that configuration to approvals can happen in several ways.
 
 The default configuration as defined below can be overridden by using the following strategy.
 
 > NOTE: Priority/order of config selection comes from the below list where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
 
 1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
-1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in you're home directory `~/.approvalsConfig`.
+1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in your home directory `~/.approvalsConfig`.
 1. Overrides with an `approvals.configure({...})` (not a recommended approach).
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
 
