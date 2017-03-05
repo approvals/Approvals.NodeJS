@@ -12,7 +12,9 @@ describe("Readme", function () {
     var currentReadme = fs.readFileSync(path.join(__dirname, '../', 'readme.md')).toString()
     var cliDocsRaw = fs.readFileSync(path.join(__dirname, '../bin', 'help.md')).toString()
 
-    cliDocsRaw = cliDocsRaw.replace(/&nbsp;/g, ' ');
+    cliDocsRaw = cliDocsRaw
+      .replace(/&nbsp;/g, ' ')
+      .replace(/\*\*/g, '');
 
     var approvalsSource = fs.readFileSync(path.join(__dirname, '../lib', 'Approvals.js')).toString();
 
