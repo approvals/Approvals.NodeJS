@@ -7,7 +7,6 @@
 - [Integrations](#integrations)
 - [Getting Started](#getting-started)
 - [CLI](#cli)
-- [Wiki](#wiki)
 - [Reporters](#reporters)
 - [Configuration](#configuration)
 - [API](#api)
@@ -41,8 +40,9 @@ Greenkeeper | [![Greenkeeper badge](https://badges.greenkeeper.io/approvals/Appr
 
 - [Mocha](http://mochajs.org/) tests, see the getting-started
 - ~~[Jasmine](http://jasmine.github.io/) tests~~ (removed support due to lack of integration knowledge)
-- [Approvals API](https://github.com/approvals/Approvals.NodeJS/wiki/Manual-API) (`require('approvals').verify(...)`)
-- [Command line Utility](https://github.com/approvals/Approvals.NodeJS/wiki/Command-Line)
+- [Approvals API](https://github.com/approvals/Approvals.NodeJS/
+/Manual-API) (`require('approvals').verify(...)`)
+- [Command line Utility](#cli)
 
 <a name="getting-started" />
 
@@ -145,14 +145,6 @@ By running `approvals --help`
 ```
 
 <!--END-CLI-DOCS-->
-
-<a name="wiki">
-
-## Wiki
-
-There are some other documentation items over in the github wiki:
-
-[Approvals Github Wiki!](https://github.com/approvals/Approvals.NodeJS/wiki)
 
 <a name="reporters" />
 
