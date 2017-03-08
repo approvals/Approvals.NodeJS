@@ -62,7 +62,7 @@ describe('multiReporter', function () {
     try {
       multiReporter.report("asdf", "bsdf");
     } catch (error) {
-      this.verify(error.toString(), {
+      approvals.verify(__dirname, 'It_should_error_properly', error.toString(), {
         reporters: ['p4merge'],
         appendEOL: true,
         EOL: '\n'
