@@ -353,10 +353,7 @@ Allows you to provide overrides to the default configuration.
 
 **Example**
 ```js
-var approvals = require('approvals');
-approvals.configure({
-  reporters: ['p4merge']
-});
+var approvals = require('approvals');approvals.configure({  reporters: ['p4merge']});
 ```
 <a name="module_approvals.getConfig"></a>
 
@@ -384,15 +381,11 @@ Allows the creation of an approvals configuration object using any passed in opt
 
 **Example**
 ```js
-// basic approval test
-var approvals = require('approvals');
-approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
+// basic approval testvar approvals = require('approvals');approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
 ```
 **Example**
 ```js
-// basic approval test providing an option to override configuration
-var approvals = require('approvals');
-approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
+// basic approval test providing an option to override configurationvar approvals = require('approvals');approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
 ```
 <a name="module_approvals.verifyAndScrub"></a>
 
@@ -411,15 +404,7 @@ Use this to apply the scrubber function to any data before running verify.
 
 **Example**
 ```js
-// basic approval test with a custom scrubber
-var approvals = require('approvals');
-var scrubber = approvals.scrubbers.multiScrubber([
-   function (data) {
-     return (data || '').replace("some text", "some other text");
-   },
-   approvals.scrubbers.guidScrubber // to remove guids from the received data
-});
-approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
+// basic approval test with a custom scrubbervar approvals = require('approvals');var scrubber = approvals.scrubbers.multiScrubber([   function (data) {     return (data || '').replace("some text", "some other text");   },   approvals.scrubbers.guidScrubber // to remove guids from the received data});approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
 ```
 <a name="module_approvals.verifyAsJSON"></a>
 
@@ -437,8 +422,7 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 
 **Example**
 ```js
-var approvals = require('approvals');
-approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
+var approvals = require('approvals');approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
 ```
 <a name="module_approvals.verifyAsJSONAndScrub"></a>
 
@@ -457,22 +441,12 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 
 **Example**
 ```js
-// basic approval test with a custom scrubber
-var approvals = require('approvals');
-var scrubber = approvals.scrubbers.multiScrubber([
-   function (data) {
-     return (data || '').replace("some text", "some other text");
-   },
-   approvals.scrubbers.guidScrubber // to remove guids from the received data
-});
-approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
+// basic approval test with a custom scrubbervar approvals = require('approvals');var scrubber = approvals.scrubbers.multiScrubber([   function (data) {     return (data || '').replace("some text", "some other text");   },   approvals.scrubbers.guidScrubber // to remove guids from the received data});approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
 ```
 <a name="module_approvals.verifyWithControl"></a>
 
 ### approvals.verifyWithControl
-This allows you to take full control of naming and writing files before verifying.
-
-For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+This allows you to take full control of naming and writing files before verifying.For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
 
 **Kind**: static property of <code>[approvals](#module_approvals)</code>
 

@@ -57,6 +57,9 @@ describe("Readme", function () {
 
 
     var config = approvals.getConfig();
+    config.EOL = '\n';
+    config.normalizeLineEndingsTo = '\n';
+    console.log(config);
 
     var writer = new StringWriter(config, resultingReadme);
     var namer = {
@@ -64,7 +67,7 @@ describe("Readme", function () {
       getApprovedFile: function () { return path.join(__dirname, '..', "readme.md"); }
     }
 
-    approvals.verifyWithControl(namer, writer);
+    approvals.verifyWithControl(namer, writer, null, config);
   });
 
 });
