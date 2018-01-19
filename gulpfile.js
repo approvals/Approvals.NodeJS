@@ -29,7 +29,7 @@ gulp.task('unitTest', function() {
       reporter: 'spec',
       slow: 500,
       timeout: 5000,
-      globals: {}
+      //globals: {}
     }));
 })
 
