@@ -41,6 +41,7 @@ describe('approvals', function () {
   });
 
   describe('verifyAsJSON', function () {
+
     it('can verify some json object', function () {
       var testName = "manualVerificationAsJSON";
       var dataToVerify = {
@@ -64,6 +65,7 @@ describe('approvals', function () {
       };
       approvals.verifyAsJSON(__dirname, testName, dataToVerify2, approvalOverrides);
     });
+
   });
 
   describe('verifyAsJSONAndScrub', function () {
