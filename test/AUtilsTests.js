@@ -3,6 +3,7 @@
 var utils = require("../lib/AUtils");
 var os = require("../lib/osTools");
 var assert = require("assert");
+var expect = require('chai').expect;
 
 describe('AUtils', function () {
 
@@ -59,6 +60,47 @@ describe('AUtils', function () {
       var fixed = utils.fixFilePathSlashes(before);
 
       assert.equal(fixed, expected);
+    });
+  });
+
+
+  describe('stringifyKeysInOrder', function () {
+    var expected = `{
+  "a": 1,
+  "aSub": {
+    "a": 1,
+    "z": 2
+  },
+  "arr": [
+    1,
+    2
+  ],
+  "b": 2
+}`;
+    it("should return proper string with keys in order", function () {
+      var result = utils.stringifyKeysInOrder({
+        a: 1,
+        aSub: {
+          a: 1,
+          z: 2
+        },
+        arr: [1,2],
+        b: 2
+      });
+      expect(result).to.equal(expected);
+    });
+
+    it("should return proper string with keys in order", function () {
+      var result = utils.stringifyKeysInOrder({
+        b: 2,
+        arr: [1,2],
+        aSub: {
+          z: 2,
+          a: 1
+        },
+        a: 1,
+      });
+      expect(result).to.equal(expected);
     });
   });
 });

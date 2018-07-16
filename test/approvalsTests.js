@@ -49,6 +49,21 @@ describe('approvals', function () {
       };
       approvals.verifyAsJSON(__dirname, testName, dataToVerify, approvalOverrides);
     });
+
+    it('can be run with same JSON but keys ordered differently', function () {
+      var testName = "manualVerificationAsJSON-Ordered";
+      var dataToVerify = {
+        x: "some stuff here",
+        y: 123
+      };
+      approvals.verifyAsJSON(__dirname, testName, dataToVerify, approvalOverrides);
+
+      var dataToVerify2 = {
+        y: 123,
+        x: "some stuff here"
+      };
+      approvals.verifyAsJSON(__dirname, testName, dataToVerify2, approvalOverrides);
+    });
   });
 
   describe('verifyAsJSONAndScrub', function () {
