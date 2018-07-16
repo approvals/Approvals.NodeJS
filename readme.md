@@ -345,7 +345,7 @@ Approvals module.
 ### approvals.configure
 Allows you to provide overrides to the default configuration.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type |
 | --- | --- |
@@ -353,14 +353,17 @@ Allows you to provide overrides to the default configuration.
 
 **Example**
 ```js
-var approvals = require('approvals');approvals.configure({  reporters: ['p4merge']});
+var approvals = require('approvals');
+approvals.configure({
+  reporters: ['p4merge']
+});
 ```
 <a name="module_approvals.getConfig"></a>
 
 ### approvals.getConfig ⇒ <code>Object</code>
 Allows the creation of an approvals configuration object using any passed in options to override the defaults.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 **Returns**: <code>Object</code> - approvals config object with any options overridden.
 
 | Param | Type |
@@ -370,85 +373,108 @@ Allows the creation of an approvals configuration object using any passed in opt
 <a name="module_approvals.verify"></a>
 
 ### approvals.verify
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
 | testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| data | <code>string</code> \| <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
 **Example**
 ```js
-// basic approval testvar approvals = require('approvals');approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
+// basic approval test
+var approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
 ```
 **Example**
 ```js
-// basic approval test providing an option to override configurationvar approvals = require('approvals');approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
+// basic approval test providing an option to override configuration
+var approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
 ```
 <a name="module_approvals.verifyAndScrub"></a>
 
 ### approvals.verifyAndScrub
 Use this to apply the scrubber function to any data before running verify.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
 | testName | <code>string</code> | A file name safe string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| data | <code>string</code> \| <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
 | scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
 **Example**
 ```js
-// basic approval test with a custom scrubbervar approvals = require('approvals');var scrubber = approvals.scrubbers.multiScrubber([   function (data) {     return (data || '').replace("some text", "some other text");   },   approvals.scrubbers.guidScrubber // to remove guids from the received data});approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
+// basic approval test with a custom scrubber
+var approvals = require('approvals');
+var scrubber = approvals.scrubbers.multiScrubber([
+   function (data) {
+     return (data || '').replace("some text", "some other text");
+   },
+   approvals.scrubbers.guidScrubber // to remove guids from the received data
+});
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
 ```
 <a name="module_approvals.verifyAsJSON"></a>
 
 ### approvals.verifyAsJSON
 You can pass as "data" any javascript object to be JSON.stringified and run verify against.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
 | testName | <code>string</code> | A file name safe string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| data | <code>string</code> \| <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
 **Example**
 ```js
-var approvals = require('approvals');approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
+var approvals = require('approvals');
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
 ```
 <a name="module_approvals.verifyAsJSONAndScrub"></a>
 
 ### approvals.verifyAsJSONAndScrub
 You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
 | testName | <code>string</code> | A file name safe string to call the file associated with this test. |
-| data | <code>string</code> &#124; <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
+| data | <code>string</code> \| <code>Buffer</code> | This can be any JavaScript object/array that will be JSON.stringified before running verify |
 | scrubber | <code>\*</code> | A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files. |
 | optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
 
 **Example**
 ```js
-// basic approval test with a custom scrubbervar approvals = require('approvals');var scrubber = approvals.scrubbers.multiScrubber([   function (data) {     return (data || '').replace("some text", "some other text");   },   approvals.scrubbers.guidScrubber // to remove guids from the received data});approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
+// basic approval test with a custom scrubber
+var approvals = require('approvals');
+var scrubber = approvals.scrubbers.multiScrubber([
+   function (data) {
+     return (data || '').replace("some text", "some other text");
+   },
+   approvals.scrubbers.guidScrubber // to remove guids from the received data
+});
+approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
 ```
 <a name="module_approvals.verifyWithControl"></a>
 
 ### approvals.verifyWithControl
-This allows you to take full control of naming and writing files before verifying.For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+This allows you to take full control of naming and writing files before verifying.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type |
 | --- | --- |
@@ -462,7 +488,7 @@ This allows you to take full control of naming and writing files before verifyin
 ### approvals.mocha
 Configure approvals to hook into Mocha tests.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -473,7 +499,7 @@ Configure approvals to hook into Mocha tests.
 ### approvals.reporters
 `reporters` gives access to the `MultiReporter`
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 **Example**
 ```js
 var MultiReporter = approvals.reporters.MultiReporter
@@ -483,7 +509,7 @@ var MultiReporter = approvals.reporters.MultiReporter
 ### approvals.scrubbers
 Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
 
-**Kind**: static property of <code>[approvals](#module_approvals)</code>
+**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 
 <!--END-API-DOCS-->

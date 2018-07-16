@@ -61,7 +61,7 @@ describe("Readme", function () {
     config.normalizeLineEndingsTo = '\n';
     console.log(config);
 
-    var writer = new StringWriter(config, resultingReadme);
+    var writer = new StringWriter(config, resultingReadme.replace(/(?:\r\n|\r|\n)/g, '\n'));
     var namer = {
       getReceivedFile: function () { return path.join(__dirname, '..', "readme.received.md"); },
       getApprovedFile: function () { return path.join(__dirname, '..', "readme.md"); }
