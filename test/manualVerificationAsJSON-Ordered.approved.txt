@@ -1,5 +1,4 @@
 {
-  "sampleGuid": "**Scrubbed-GUID**",
   "x": "some stuff here",
   "y": 123
 }
