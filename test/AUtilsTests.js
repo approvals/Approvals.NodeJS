@@ -75,7 +75,17 @@ describe('AUtils', function () {
     1,
     2
   ],
-  "b": 2
+  "b": 2,
+  "objArr": [
+    {
+      "a": 1,
+      "b": 2
+    },
+    {
+      "a": 1,
+      "b": 2
+    }
+  ]
 }`;
     it("should return proper string with keys in order", function () {
       var result = utils.stringifyKeysInOrder({
@@ -84,6 +94,16 @@ describe('AUtils', function () {
           a: 1,
           z: 2
         },
+        objArr: [
+          {
+            a: 1,
+            b: 2
+          },
+          {
+            b: 2,
+            a: 1
+          }
+        ],
         arr: [1,2],
         b: 2
       });
@@ -98,6 +118,16 @@ describe('AUtils', function () {
           z: 2,
           a: 1
         },
+        objArr: [
+          {
+            b: 2,
+            a: 1
+          },
+          {
+            b: 2,
+            a: 1
+          }
+        ],
         a: 1,
       });
       expect(result).to.equal(expected);
