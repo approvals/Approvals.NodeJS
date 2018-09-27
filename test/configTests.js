@@ -31,7 +31,7 @@ describe("config.js - ", function () {
 
   describe("when a config file does not exist in a user's home directory", function () {
     beforeEach(function () {
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function () {
+      fsExistsSyncStub = sinon.stub(fs, 'existsSync').callsFake(function () {
         return false;
       });
     });
@@ -55,11 +55,11 @@ describe("config.js - ", function () {
       configToLoad = {
       };
 
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync', function () {
+      fsExistsSyncStub = sinon.stub(fs, 'existsSync').callsFake(function () {
         return true;
       });
 
-      fsReadFileSyncStub = sinon.stub(fs, 'readFileSync', function () {
+      fsReadFileSyncStub = sinon.stub(fs, 'readFileSync').callsFake(function () {
         var data = typeof configToLoad === "string" ? configToLoad : JSON.stringify(configToLoad, null, '  ');
         return new Buffer(data);
       });

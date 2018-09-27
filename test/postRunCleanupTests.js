@@ -23,7 +23,7 @@ describe('postRunCleanup', function() {
     ];
 
     beforeEach(function () {
-      globSyncStub = sinon.stub(glob, 'sync', function() {
+      globSyncStub = sinon.stub(glob, 'sync').callsFake(function() {
         return [
           'should-not-exist.approved.txt',
           'C:\\Users\\jason\\code\\Approvals.NodeJS\\test\\should-exist-windows.approved.txt',
