@@ -20,17 +20,17 @@ describe('GenericDiffReporterBase', function () {
   describe('default base behavior of', function () {
     describe('isReporterAvailable', function () {
       it('should report true if the app is found', function () {
-        sandbox.stub(fs, 'existsSync', () => true);
+        sandbox.stub(fs, 'existsSync').callsFake(() => true);
         expect(reporter.isReporterAvailable()).to.equal(true);
       });
 
       it('should report false if the app is not found', function () {
-        sandbox.stub(fs, 'existsSync', () => false);
+        sandbox.stub(fs, 'existsSync').callsFake(() => false);
         expect(reporter.isReporterAvailable()).to.equal(false);
       });
 
       it('should only look up on fs once', function () {
-        sandbox.stub(fs, 'existsSync', () => false);
+        sandbox.stub(fs, 'existsSync').callsFake(() => false);
 
         reporter.isReporterAvailable()
         reporter.isReporterAvailable()
