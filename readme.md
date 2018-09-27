@@ -38,9 +38,7 @@ Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor
 ## Integrations
 
 - [Mocha](http://mochajs.org/) tests, see the getting-started
-- ~~[Jasmine](http://jasmine.github.io/) tests~~ (removed support due to lack of integration knowledge)
-- [Approvals API](https://github.com/approvals/Approvals.NodeJS/
-/Manual-API) (`require('approvals').verify(...)`)
+- [Approvals API](#api) (`require('approvals').verify(...)`)
 - [Command line Utility](#cli)
 
 <a name="getting-started" />
