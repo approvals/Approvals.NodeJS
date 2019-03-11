@@ -69,6 +69,7 @@ describe('AUtils', function () {
   "a": 1,
   "aSub": {
     "a": 1,
+    "a-null-value": null,
     "z": 2
   },
   "arr": [
@@ -92,7 +93,8 @@ describe('AUtils', function () {
         a: 1,
         aSub: {
           a: 1,
-          z: 2
+          z: 2,
+          "a-null-value": null
         },
         objArr: [
           {
@@ -116,7 +118,8 @@ describe('AUtils', function () {
         arr: [1,2],
         aSub: {
           z: 2,
-          a: 1
+          a: 1,
+          "a-null-value": null
         },
         objArr: [
           {
