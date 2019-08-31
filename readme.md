@@ -241,7 +241,7 @@ var MultiReporter = approvals.reporters.MultiReporter
 it("should use a multiple reporters", function () {
   this.verify('some data', {
     reporters: [
-      new MultiReporter(['p4merge', 'commandclipboard'])
+      new MultiReporter(['p4merge', 'copycommand'])
     ]
   });
 });
