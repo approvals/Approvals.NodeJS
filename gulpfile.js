@@ -33,8 +33,9 @@ gulp.task('unitTest', function() {
     }));
 })
 
-gulp.task('test', gulp.series('unitTest', function () {
+gulp.task('test', gulp.series('unitTest', done => {
   gulp.series('lint');
+  done();
 }));
 
 gulp.task('coverage', function (cb) {
