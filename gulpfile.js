@@ -10,18 +10,18 @@ var paths = {
   sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
 };
 
-gulp.task('lint-watch', ['lint'], function () {
-  $.watch(paths.filesToLint, function () {
-    gulp.start('lint');
-  });
-});
-
 gulp.task('lint', function () {
   return gulp.src(paths.filesToLint)
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.eslint.failAfterError());
 });
+
+gulp.task('lint-watch', gulp.series('lint', function () {
+  $.watch(paths.filesToLint, function () {
+    gulp.start('lint');
+  });
+}));
 
 gulp.task('unitTest', function() {
   return gulp.src(paths.mochaTests, { read: false })
@@ -33,9 +33,9 @@ gulp.task('unitTest', function() {
     }));
 })
 
-gulp.task('test', ['unitTest'], function () {
+gulp.task('test', gulp.series('unitTest', function () {
   gulp.start('lint');
-});
+}));
 
 gulp.task('coverage', function (cb) {
   gulp.src(paths.sourceJSFilesForCodeCoverage)
@@ -55,7 +55,7 @@ gulp.task('coverage', function (cb) {
     });
 });
 
-gulp.task('coveralls', ['coverage'], function () {
+gulp.task('coveralls', gulp.series('coverage', function () {
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe($.coveralls())
     .on('error', function(err) {
@@ -64,6 +64,6 @@ gulp.task('coveralls', ['coverage'], function () {
     .on('end', function () {
       console.log("Coverage published to coveralls.io");
     });
-});
+}));
 
-gulp.task('default', ["test"]);
+gulp.task('default', gulp.series("test"));
