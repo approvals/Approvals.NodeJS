@@ -33,6 +33,7 @@
   "scripts": {
     "test": "gulp",
     "install": "node install_dependencies.js",
+    "lint": "eslint './lib/**/*.js' './test/**/*.js'",
     "release": "np"
   },
   "dependencies": {
