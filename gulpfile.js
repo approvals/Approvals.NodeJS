@@ -1,10 +1,10 @@
 'use strict';
 
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var path = require('path');
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
+const path = require('path');
 
-var paths = {
+const paths = {
   mochaTests: ['test/**/*[Tt]ests.js'],
   filesToLint: ['./lib/**/*.js', './test/**/*.js', 'gulpfile.js'],
   sourceJSFilesForCodeCoverage: ['./lib/**/*.js']
