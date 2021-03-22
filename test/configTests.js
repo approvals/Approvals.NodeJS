@@ -61,7 +61,7 @@ describe("config.js - ", function () {
 
       fsReadFileSyncStub = sinon.stub(fs, 'readFileSync').callsFake(function () {
         var data = typeof configToLoad === "string" ? configToLoad : JSON.stringify(configToLoad, null, '  ');
-        return new Buffer(data);
+        return Buffer.from(data);
       });
     });
 

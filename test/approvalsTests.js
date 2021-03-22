@@ -26,7 +26,7 @@ describe('approvals', function () {
       // copied how to save a base64 image to disk by using
       // http://stackoverflow.com/questions/6926016/nodejs-saving-a-base64-encoded-image-to-disk
       var base64Data = logoBase46.replace(/^data:image\/png;base64,/, "");
-      var imgBuffer = new Buffer(base64Data, 'base64');
+      var imgBuffer = Buffer.from(base64Data, 'base64');
 
       approvals.verify(__dirname, "basic-image-test-png", imgBuffer);
     });
