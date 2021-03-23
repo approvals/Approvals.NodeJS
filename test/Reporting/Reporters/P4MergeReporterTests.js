@@ -29,7 +29,7 @@ describe('Reporter', function () {
           spawn: function (command, args) {
 
             assert.equal(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
-            assert.deepEqual(args, [receivedFile, approvedFile]);
+            assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
             return {
               stdout: { on: function () { } },

@@ -15,7 +15,7 @@
 //       reporter.report(approvedFile, receivedFile, {
 //         spawn: function (command, args) {
 //           assert.equal(command, "C:/Program Files/Perforce/p4merge.exe");
-//           assert.deepEqual(args, [receivedFile, approvedFile]);
+//           assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 //         }
 //       });
 

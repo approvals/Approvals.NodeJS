@@ -22,7 +22,7 @@ describe('Reporter', function () {
           spawn: function (command, args) {
 
             assert.ok(command.toLowerCase().indexOf("opendiff") >= 0);
-            assert.deepEqual(args, [receivedFile, approvedFile]);
+            assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
             return {
               status: 0,
@@ -46,7 +46,7 @@ describe('Reporter', function () {
             spawn: function (command, args) {
 
               assert.ok(command.toLowerCase().indexOf("opendiff") >= 0);
-              assert.deepEqual(args, [receivedFile, approvedFile]);
+              assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
               return {
                 status: 1,
