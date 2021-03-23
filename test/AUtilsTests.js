@@ -84,7 +84,7 @@ describe('AUtils', function () {
     },
     {
       "a": 1,
-      "b": 2
+      "b": null
     }
   ]
 }`;
@@ -102,7 +102,7 @@ describe('AUtils', function () {
             b: 2
           },
           {
-            b: 2,
+            b: null,
             a: 1
           }
         ],
@@ -127,7 +127,7 @@ describe('AUtils', function () {
             a: 1
           },
           {
-            b: 2,
+            b: null,
             a: 1
           }
         ],
