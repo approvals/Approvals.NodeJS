@@ -29,9 +29,8 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
 
  Service | Status
 ------------- | -------------
-Linux ([Travis CI](https://travis-ci.org/)) | [![Build Status](https://travis-ci.org/approvals/Approvals.NodeJS.png?branch=master)](https://travis-ci.org/approvals/Approvals.NodeJS)
+Github Linux | [![Build & Test](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml)
 Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
-
 
 <a name="integrations" />
 
