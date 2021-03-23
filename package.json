@@ -32,9 +32,12 @@
   },
   "scripts": {
     "test": "gulp",
+    "test2": "npm run mocha && npm run lint",
     "install": "node install_dependencies.js",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
-    "release": "np"
+    "release": "np",
+    "mocha": "mocha 'test/**/*[Tt]ests.js'",
+    "coverage": "nyc npm run mocha"
   },
   "dependencies": {
     "callsite": "^1.0.0",
@@ -49,7 +52,6 @@
     "mkdirp": "^1.0.4",
     "msee": "^0.3.5",
     "natives": "^1.1.6",
-    "npm-check-updates": "^11.3.0",
     "shelljs": "^0.8.4",
     "temp": "^0.9.4",
     "user-home": "^2.0.0"
@@ -71,6 +73,8 @@
     "jsdoc-to-markdown": "^7.0.0",
     "mocha": "^8.3.2",
     "np": "^7.4.0",
+    "npm-check-updates": "^11.3.0",
+    "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "sinon": "^10.0.0"
   },

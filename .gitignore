@@ -32,6 +32,7 @@ node_modules
 #Visual Studio files
 *.suo
 
+.nyc_output/
 coverage/
 
 .node-version
