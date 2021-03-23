@@ -33,10 +33,7 @@ gulp.task('unitTest', function() {
     }));
 })
 
-gulp.task('test', gulp.series('unitTest', done => {
-  gulp.series('lint');
-  done();
-}));
+gulp.task('test', gulp.series('unitTest', 'lint'));
 
 gulp.task('coverage', function (cb) {
   gulp.src(paths.sourceJSFilesForCodeCoverage)
