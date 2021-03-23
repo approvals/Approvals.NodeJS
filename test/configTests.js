@@ -43,6 +43,7 @@ describe("config.js - ", function () {
     });
 
     it("should load default config", function () {
+      cfg.reset();
       var configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(cfg.defaultConfig);
     });
@@ -95,6 +96,7 @@ describe("config.js - ", function () {
         myConfig: true
       };
       var expectedConfig = _.defaults(configToLoad, cfg.defaultConfig);
+      cfg.reset();
       var configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(expectedConfig);
     });
