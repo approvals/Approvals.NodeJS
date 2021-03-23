@@ -55,7 +55,7 @@ describe('Reporter', function () {
               };
             }
           });
-        }).to.throw(/Could not launch diff tool: /);
+        }).to.throw(/Could not launch diff tool/);
 
       });
     });
