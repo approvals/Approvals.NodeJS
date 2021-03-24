@@ -5,3 +5,4 @@
 * [ ] Add limit on number of reporters that get launched
 * [ ] Add support for setting .json file extension (for example)
 * [ ] Determine if we want to keep or revert the sync spawn diff tool launching.
+* [ ] Add [prettier](https://prettier.io/docs/en/install.html) and format project source code
