@@ -5,4 +5,5 @@
 * [ ] Add limit on number of reporters that get launched
 * [ ] Add support for setting .json file extension (for example)
 * [ ] Fix Error message in GeneridDiffReporterBase when not spawnSync (spawn is used). (stderr/out is not logging correctly).
-* [ ] Look at the .net multi-copy reporter?
+* [ ] Look at the all failing test clipboard reporter? SEE: https://github.com/approvals/ApprovalTests.Net/blob/master/src/ApprovalTests/Reporters/AllFailingTestsClipboardReporter.cs
+* [ ] adjust how icdiffReporter (remove use of shelljs).
