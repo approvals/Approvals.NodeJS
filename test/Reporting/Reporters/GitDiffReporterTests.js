@@ -15,22 +15,23 @@ describe('Reporter', function () {
       var approved = path.join(__dirname, "a.txt");
       var received = path.join(__dirname, "b.txt");
 
-      reporter.report(approved, received, {
-        spawn: function (exe, args) {
+      reporter.spawn = (exe, args) => {
 
-          expect(args).to.deep.equal([
-            'diff',
-            '--no-index',
-            '--',
-            received,
-            approved
-          ]);
+        expect(args).to.deep.equal([
+          'diff',
+          '--no-index',
+          '--',
+          received,
+          approved
+        ]);
 
-          return {
-            status: 0 // success
-          };
-        }
-      });
+        return {
+          status: 0 // success
+        };
+
+      };
+
+      reporter.report(approved, received);
 
     });
 

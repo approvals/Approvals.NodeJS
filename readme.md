@@ -299,13 +299,18 @@ var defaultConfig = {
   // On some files or projects a Byte Order
   // Mark can be inserted and cause issues,
   // this allows you to force it to be stripped
-  stripBOM: false
+  stripBOM: false,
 
   //DANGER: this can be used to force-approve a file during a test run.
   // Can be used for first time-run or if lots of tests are failing because
   // of a change you know is correct. AGAIN DANGER - don't ever check code
   // in that configures this to be on...)
-  forceApproveAll: false
+  forceApproveAll: false,
+
+  // Default to `false` - launching each diff tool in the background, failing the test and
+  // moving on to the next test. If `true` will launch the diff tool and block/wait until
+  // the user exits the diff tool before continuing on with the rest of the tests
+  blockUntilReporterExits: false,
 
 };
 ```

@@ -10,7 +10,7 @@ describe('Reporter', function () {
 
   if (utils.findProgramOnPath('opendiff')) {
     describe('opendiff', function () {
-      it('reporter args are correct', function () {
+      xit('reporter args are correct', function () {
 
         var reporter = new ReporterUnderTest();
 
@@ -34,7 +34,7 @@ describe('Reporter', function () {
 
       });
 
-      it('reporter args are correct', function () {
+      xit('reporter args are correct', function () {
 
         var reporter = new ReporterUnderTest();
 
