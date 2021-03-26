@@ -10,7 +10,7 @@ describe('GenericDiffReporterBase', function () {
 
   beforeEach(function () {
     sandbox = sinon.createSandbox();
-    reporter = new GenericDiffReporterBase();
+    reporter = new GenericDiffReporterBase("test");
   });
 
   afterEach(function () {
