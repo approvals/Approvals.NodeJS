@@ -4,3 +4,4 @@
 * [ ] Move to GitHub Actions - Publishing
 * [ ] Add limit on number of reporters that get launched
 * [ ] Add support for setting .json file extension (for example)
+* [ ] Fix Error message in GeneridDiffReporterBase when not spawnSync (spawn is used). (stderr/out is not logging correctly).
