@@ -255,12 +255,12 @@ var defaultConfig = {
   // What I'd prefer is if each project has a configuration file
   // and each user could setup a ~/.approvalConfig file
   // which would contain their preferred merge/diff tools
-  reporters:  [
+  reporters: [
     "opendiff",
     "p4merge",
     "tortoisemerge",
     "nodediff",
-    "gitdiff"
+    "gitdiff",
     /* OR a custom reporter object. See the above example of how to create a custom reporter. */
   ],
 
@@ -309,12 +309,13 @@ var defaultConfig = {
   forceApproveAll: false,
 
   // Default to `false` - launching each diff tool in the background, failing the test and
-  // moving on to the next test. If `true` will launch the diff tool and block/wait until
-  // the user exits the diff tool before continuing on with the rest of the tests
+  // moving on to the next test. If `true` will launch the diff tool and block/wait (if diff tool supports this) until
+  // the user exits the diff tool before continuing on with the rest of the tests.
   blockUntilReporterExits: false,
 
   // The number of reporters (diff tools) launched before before approval tests stops launching new reporters.
   // This is to avoid overloading a system with too many processes.
+  // NOTE: This value is only used if `blockUntilReporterExits` is `false`.
   maxLaunches: 10
 
 };
