@@ -28,7 +28,7 @@ describe('Reporter', function () {
         reporter.report(approvedFile, receivedFile, {
           spawn: function (command, args) {
 
-            assert.equal(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
+            assert.strictEqual(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
             assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
             return {

@@ -21,7 +21,7 @@ describe('All reporters must conform to naming convention', function () {
   it("should all have prefix names lower case", function () {
     allReporterFiles.forEach(function (item) {
       var prefix = item.replace("Reporter.js", "");
-      assert.equal(prefix, prefix.toLowerCase());
+      assert.strictEqual(prefix, prefix.toLowerCase());
     });
   });
 });

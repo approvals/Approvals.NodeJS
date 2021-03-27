@@ -18,10 +18,10 @@ describe('MochaNamer', function () {
       var approvedFileName = namer.getApprovedFile();
       var receivedFileName = namer.getReceivedFile();
 
-      assert.equal(approvedFileName,
+      assert.strictEqual(approvedFileName,
         path.join(fullTestFilePathStub,
           "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.approved.txt"));
-      assert.equal(receivedFileName,
+      assert.strictEqual(receivedFileName,
         path.join(fullTestFilePathStub,
           "MochaNamer.when_given_a_mocha_context.should_generate_correct_name.received.txt"));
     });

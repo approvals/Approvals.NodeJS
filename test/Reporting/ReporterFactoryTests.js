@@ -37,7 +37,7 @@ describe('ReporterFactory', function () {
 
   it('Should load all reporters', function () {
     var reporters = ReporterFactory.loadAllReporters(allAvailableDiffReporters);
-    assert.equal(reporters.length, allAvailableDiffReporters.length);
+    assert.strictEqual(reporters.length, allAvailableDiffReporters.length);
   });
 
   it("should be able to report on a txt file", function () {

@@ -26,7 +26,7 @@ describe('Reporter', function () {
             var startTrim = command.indexOf("icdiff");
             command = "'" + command.substr(startTrim);
 
-            assert.equal(command, expectedCommand);
+            assert.strictEqual(command, expectedCommand);
             return {};
           }
         });
