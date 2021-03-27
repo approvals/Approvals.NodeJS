@@ -59,7 +59,7 @@ describe('AUtils', function () {
 
       var fixed = utils.fixFilePathSlashes(before);
 
-      assert.equal(fixed, expected);
+      assert.strictEqual(fixed, expected);
     });
   });
 

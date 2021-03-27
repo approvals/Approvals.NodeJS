@@ -1,0 +1,11 @@
+{
+    "check-coverage": true,
+    "reporter": "html",
+    "include": [
+        "lib/**/*.js"
+    ],
+    "branches": 68,
+    "lines": 86,
+    "functions": 86,
+    "statements": 86
+}

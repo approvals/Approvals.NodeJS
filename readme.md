@@ -170,6 +170,7 @@ Any of the following reporter may suite your needs. Some support images, some on
 | `tortoisemerge` | [Tortise merge](http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-merge.html) | &#10003; | &#10003; | |
 | `vimdiff` |  | &#10003; | &#10003; |  |
 | `visualstudio` | [Visual Studio Diff tool](http://msdn.microsoft.com/en-us/library/bb385990.aspx) | &#10003; |  |
+| `vscode` | [Visual Studio Code Diff tool](https://code.visualstudio.com/) | &#10003; | &#10003; |
 
 
 ### Custom Reporter
@@ -217,7 +218,7 @@ The default configuration as defined below can be overridden by using the follow
 
 1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
 1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in your home directory `~/.approvalsConfig`.
-1. Overrides with an `approvals.configure({...})` (not a recommended approach).
+1. You can then call [`approvals.configure({...})`](#module_approvals.configure).
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
 
 Here's an example of using a single reporter `p4merge`, and overriding whatever is configured. This will only override this specific test.
@@ -254,12 +255,12 @@ var defaultConfig = {
   // What I'd prefer is if each project has a configuration file
   // and each user could setup a ~/.approvalConfig file
   // which would contain their preferred merge/diff tools
-  reporters:  [
+  reporters: [
     "opendiff",
     "p4merge",
     "tortoisemerge",
     "nodediff",
-    "gitdiff"
+    "gitdiff",
     /* OR a custom reporter object. See the above example of how to create a custom reporter. */
   ],
 
@@ -299,13 +300,23 @@ var defaultConfig = {
   // On some files or projects a Byte Order
   // Mark can be inserted and cause issues,
   // this allows you to force it to be stripped
-  stripBOM: false
+  stripBOM: false,
 
   //DANGER: this can be used to force-approve a file during a test run.
   // Can be used for first time-run or if lots of tests are failing because
   // of a change you know is correct. AGAIN DANGER - don't ever check code
   // in that configures this to be on...)
-  forceApproveAll: false
+  forceApproveAll: false,
+
+  // Default to `false` - launching each diff tool in the background, failing the test and
+  // moving on to the next test. If `true` will launch the diff tool and block/wait (if diff tool supports this) until
+  // the user exits the diff tool before continuing on with the rest of the tests.
+  blockUntilReporterExits: false,
+
+  // The number of reporters (diff tools) launched before before approval tests stops launching new reporters.
+  // This is to avoid overloading a system with too many processes.
+  // NOTE: This value is only used if `blockUntilReporterExits` is `false`.
+  maxLaunches: 10
 
 };
 ```

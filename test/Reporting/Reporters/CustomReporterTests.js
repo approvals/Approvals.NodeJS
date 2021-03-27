@@ -94,7 +94,7 @@ describe("CustomReporter", function () {
 
     var reporter = this.approvals.getCurrentReporters()[0];
 
-    assert.equal(reporter.name, "globalCustomReporter");
+    assert.strictEqual(reporter.name, "globalCustomReporter");
   });
 
 });

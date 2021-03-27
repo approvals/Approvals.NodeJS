@@ -12,9 +12,11 @@
 //       var approvedFile = __dirname + "/a.txt";
 //       var receivedFile = __dirname + "/b.txt";
 
-//       reporter.report(approvedFile, receivedFile, function (command, args) {
-//         assert.equal(command, "C:/Program Files/Perforce/p4merge.exe");
-//         assert.deepEqual(args, [receivedFile, approvedFile]);
+//       reporter.report(approvedFile, receivedFile, {
+//         spawn: function (command, args) {
+//           assert.strictEqual(command, "C:/Program Files/Perforce/p4merge.exe");
+//           assert.deepStrictEqual(args, [receivedFile, approvedFile]);
+//         }
 //       });
 
 //     });

@@ -12,9 +12,9 @@ describe('Namer', function () {
       var fileName = "foo.js";
       var namer = new Namer(pathWithoutTrailingSlash, fileName);
 
-      assert.equal(namer.getReceivedFile("txt"), path.join("C:\\temp", "foo.js.received.txt"));
+      assert.strictEqual(namer.getReceivedFile("txt"), path.join("C:\\temp", "foo.js.received.txt"));
 
-      assert.equal(namer.getApprovedFile("png"), path.join("C:\\temp", "foo.js.approved.png"));
+      assert.strictEqual(namer.getApprovedFile("png"), path.join("C:\\temp", "foo.js.approved.png"));
     });
 
     it('should clean up not normalized input', function () {
@@ -22,7 +22,7 @@ describe('Namer', function () {
       var fileName = "foo.js.";
       var namer = new Namer(pathWithoutTrailingSlash, fileName);
 
-      assert.equal(namer.getReceivedFile(".txt"), path.join("C:\\temp", "foo.js.received.txt"));
+      assert.strictEqual(namer.getReceivedFile(".txt"), path.join("C:\\temp", "foo.js.received.txt"));
     });
   });
 });

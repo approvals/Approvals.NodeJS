@@ -80,7 +80,7 @@ describe('FileApprover', function () {
       var approvedFileName = namer.getApprovedFile(writer.getFileExtension());
 
       process.once("approvalFileApproved", function (fileName) {
-        assert.equal(fileName, approvedFileName);
+        assert.strictEqual(fileName, approvedFileName);
 
         done();
       });

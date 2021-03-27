@@ -25,16 +25,18 @@ describe('Reporter', function () {
       var receivedFile = path.join(__dirname, "b.txt");
 
       if (reporter.canReportOn(receivedFile)) {
-        reporter.report(approvedFile, receivedFile, function (command, args) {
+        reporter.report(approvedFile, receivedFile, {
+          spawn: function (command, args) {
 
-          assert.equal(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
-          assert.deepEqual(args, [receivedFile, approvedFile]);
+            assert.strictEqual(command.toLowerCase(), "c:/program files/perforce/p4merge.exe");
+            assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
-          return {
-            stdout: { on: function () { } },
-            stderr: { on: function () { } }
-          };
+            return {
+              stdout: { on: function () { } },
+              stderr: { on: function () { } }
+            };
 
+          }
         });
       }
 

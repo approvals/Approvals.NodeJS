@@ -2,7 +2,7 @@
 
 //git diff --no-index -- test\Reporters\a.txt test\Reporters\b.txt
 
-var assert = require("assert");
+var expect = require("chai").expect;
 var path = require("path");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/gitdiffReporter.js");
 
@@ -15,21 +15,24 @@ describe('Reporter', function () {
       var approved = path.join(__dirname, "a.txt");
       var received = path.join(__dirname, "b.txt");
 
-      var expectedCommand = "'git' diff --no-index -- '" + received + "' '" + approved + "'";
+      reporter.spawn = (exe, args) => {
 
-      reporter.report(approved, received, function (command) {
+        expect(args).to.deep.equal([
+          'diff',
+          '--no-index',
+          '--',
+          received,
+          approved
+        ]);
 
-        var pathTrimmedCommand = command
-          .replace("git.cmd'", "git'")
-          .replace("git.exe'", "git'")
-          ;
+        return {
+          status: 0 // success
+        };
 
-        var startTrim = pathTrimmedCommand.indexOf("git' diff");
-        pathTrimmedCommand = "'" + pathTrimmedCommand.substr(startTrim);
+      };
 
-        assert.equal(pathTrimmedCommand, expectedCommand);
-        return {};
-      });
+      reporter.report(approved, received);
+
     });
 
   });

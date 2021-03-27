@@ -17,12 +17,12 @@ describe('StringWriter', function () {
   describe('', function () {
     it('should default to type of txt', function () {
       var stringWriter = new StringWriter(defaultConfig, "HELLO");
-      assert.equal(stringWriter.getFileExtension(), "txt");
+      assert.strictEqual(stringWriter.getFileExtension(), "txt");
     });
 
     it('should allow type to be specified', function () {
       var stringWriter = new StringWriter(defaultConfig, "HELLO", "html");
-      assert.equal(stringWriter.getFileExtension(), "html");
+      assert.strictEqual(stringWriter.getFileExtension(), "html");
     });
 
     it('should write out file', function (done) {
@@ -34,7 +34,7 @@ describe('StringWriter', function () {
       stringWriter.write(filePath);
 
       fs.readFile(filePath, 'utf8', function (err, data) {
-        assert.equal(data, "HELLO");
+        assert.strictEqual(data, "HELLO");
         done();
       });
     });
@@ -51,7 +51,7 @@ describe('StringWriter', function () {
       stringWriter.write(filePath);
 
       fs.readFile(filePath, 'utf8', function (err, data) {
-        assert.equal(data, "HELLO" + "EndOfLineConfig");
+        assert.strictEqual(data, "HELLO" + "EndOfLineConfig");
         done();
       });
 
@@ -96,7 +96,7 @@ describe('StringWriter', function () {
       stringWriter.write(filePath);
 
       fs.readFile(filePath, 'utf8', function (err, data) {
-        assert.equal(data, "HELLO\r\nThere\r\n");
+        assert.strictEqual(data, "HELLO\r\nThere\r\n");
         done();
       });
 
