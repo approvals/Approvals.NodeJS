@@ -8,6 +8,7 @@
 * [ ] Figure out what file-type version to update to
 * [ ] Move tests to GitHub Actions - Windows
 * [ ] Look at the all failing test clipboard reporter? SEE: https://github.com/approvals/ApprovalTests.Net/blob/master/src/ApprovalTests/Reporters/AllFailingTestsClipboardReporter.cs
+* [ ] Research vimdiff reporter (does it even work?)
 
 
 # Done
