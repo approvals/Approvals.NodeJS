@@ -1,5 +1,4 @@
 # Priority
-* [ ] Fix Error message in GeneridDiffReporterBase when not spawnSync (spawn is used). (stderr/out is not logging correctly).
 * [ ] Fix the method-level config from stomping on the global configuration values.
 * [ ] adjust how icdiffReporter (remove use of shelljs).
 
@@ -15,3 +14,4 @@
 * [x] Move to GitHub Actions - Linux
 * [x] Move to GitHub Actions - Publishing
 * [x] Add limit on number of reporters that get launched
+* [x] Fix Error message in GeneridDiffReporterBase when not spawnSync (spawn is used). (stderr/out is not logging correctly).
