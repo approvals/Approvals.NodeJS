@@ -312,7 +312,7 @@ var defaultConfig = {
   // the user exits the diff tool before continuing on with the rest of the tests
   blockUntilReporterExits: false,
 
-  // Then number of reporters (diff tools) launched before before approval tests stops launching new reporters.
+  // The number of reporters (diff tools) launched before before approval tests stops launching new reporters.
   // This is to avoid overloading a system with too many processes.
   maxLaunches: 10
 
