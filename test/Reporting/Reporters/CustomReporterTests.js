@@ -56,12 +56,12 @@ describe("CustomReporter", function () {
   });
 
   it("uses global custom reporter", function () {
-    approvals.configure({
+    const config = approvals.getConfig({
       reporters: [globalCustomReporter]
     });
 
     try {
-      this.verify('foo');
+      this.verify('foo', config);
     } catch (err) {
       //
     }
@@ -70,13 +70,13 @@ describe("CustomReporter", function () {
   });
 
   it("uses global custom reporter manual verify", function () {
-    approvals.configure({
+    const config = approvals.getConfig({
       reporters: [globalCustomReporter]
     });
 
     var didRaiseException = false;
     try {
-      approvals.verify(__dirname, "CustomReporter.uses_global_custom_reporter_manual_verify", 'foo');
+      approvals.verify(__dirname, "CustomReporter.uses_global_custom_reporter_manual_verify", 'foo', config);
     } catch (err) {
       didRaiseException = true;
     }
