@@ -218,7 +218,7 @@ The default configuration as defined below can be overridden by using the follow
 
 1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
 1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in your home directory `~/.approvalsConfig`.
-1. Overrides with an `approvals.configure({...})` (not a recommended approach).
+1. You can then call [`approvals.configure({...})`](#module_approvals.configure).
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
 
 Here's an example of using a single reporter `p4merge`, and overriding whatever is configured. This will only override this specific test.
