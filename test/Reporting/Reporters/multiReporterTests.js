@@ -63,9 +63,8 @@ describe('multiReporter', function () {
       multiReporter.report("asdf", "bsdf");
     } catch (error) {
       approvals.verify(__dirname, 'It_should_error_properly', error.toString(), {
-        reporters: ['p4merge'],
         appendEOL: true,
-        EOL: '\n'
+        failOnLineEndingDifferences: false
       });
     }
   });
