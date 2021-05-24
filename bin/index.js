@@ -94,5 +94,6 @@ opts.forceApproveAll = !!(autils.hasCommandLineArgument("--forceapproveall") || 
 // now capture standard in and verify against it
 process.stdin.pipe(es.mapSync(function(data) {
   var dataToVerify = data.toString();
-  approvals.verify(outdir, testname, dataToVerify, opts);
+  approvals.configure(opts);
+  approvals.verify(outdir, testname, dataToVerify);
 }));

@@ -1,5 +1,5 @@
 # Priority
-* [ ] Fix the method-level config from stomping on the global configuration values.
+* [x] Fix the method-level config from stomping on the global configuration values.
 * [ ] adjust how icdiffReporter (remove use of shelljs).
 
 # V-Next
