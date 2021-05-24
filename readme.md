@@ -50,8 +50,7 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
  Service | Status
 ------------- | -------------
 Package | [![npm version](https://badge.fury.io/js/approvals.svg)](https://badge.fury.io/js/approvals)
-Github Linux | [![Build & Test](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml)
-Windows ([AppVeyor](http://appveyor.com)) | [![Build status](https://ci.appveyor.com/api/projects/status/fwyi6sryl03h9em6)](https://ci.appveyor.com/project/JasonJarrett/approvals-nodejs)
+Github (Linux, Mac, Windows) | [![Build & Test](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml)
 
 <a name="integrations" />
 
