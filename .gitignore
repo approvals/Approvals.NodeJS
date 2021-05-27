@@ -39,3 +39,6 @@ coverage/
 
 # VS Code settings folder
 .settings/
+
+# IntelliJ
+.idea/
