@@ -74,7 +74,9 @@ describe('approvals', function () {
       var dataToVerify = {
         x: "some stuff here",
         y: 123,
-        sampleGuid: '3dda561f-903d-4a89-8c96-99ca6272e53d'
+        sampleGuid: '3dda561f-903d-4a89-8c96-99ca6272e53d',
+        sampleGuid2: '11111111-1111-1111-1111-111111111111',
+        sampleGuidRepeated: '3dda561f-903d-4a89-8c96-99ca6272e53d'
       };
 
       approvals.verifyAsJSONAndScrub(__dirname, testName, dataToVerify, approvals.scrubbers.guidScrubber, approvalOverrides);

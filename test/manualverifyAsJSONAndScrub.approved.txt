@@ -1,5 +1,7 @@
 {
-  "sampleGuid": "**Scrubbed-GUID**",
+  "sampleGuid": "guid_1",
+  "sampleGuid2": "guid_2",
+  "sampleGuidRepeated": "guid_1",
   "x": "some stuff here",
   "y": 123
 }
