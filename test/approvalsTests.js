@@ -38,6 +38,13 @@ describe('approvals', function () {
 
       approvals.verify(__dirname, "basic-image-test-png", imgBuffer);
     });
+
+    it("should use a overridden file name extension", function () {
+      var testName = "overridden file extension";
+      var dataToVerify = "<html><body>Hello, world!</body></html>"
+      let overrideWithFileExtension = Object.assign({ fileExtension: "html" }, approvalOverrides);
+      approvals.verify(__dirname, testName, dataToVerify, overrideWithFileExtension)
+    });
   });
 
   describe('verifyAsJSON', function () {
