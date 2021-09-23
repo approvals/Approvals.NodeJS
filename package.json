@@ -73,7 +73,7 @@
     "jsdoc-to-markdown": "^7.0.1",
     "mocha": "^8.3.2",
     "np": "^7.4.0",
-    "npm-check-updates": "https://github.com/raineorshine/npm-check-updates",
+    "npm-check-updates": "^11.3.0",
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "sinon": "^10.0.0"
