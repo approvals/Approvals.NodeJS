@@ -54,8 +54,7 @@
     "mkdirp": "^1.0.4",
     "natives": "^1.1.6",
     "shelljs": "^0.8.4",
-    "temp": "^0.9.4",
-    "user-home": "^2.0.0"
+    "temp": "^0.9.4"
   },
   "devDependencies": {
     "chai": "^4.3.4",
@@ -72,12 +71,12 @@
     "gulp-mocha": "^8.0.0",
     "gulp-watch": "^5.0.1",
     "jsdoc-to-markdown": "^7.0.1",
-    "mocha": "^8.3.2",
+    "mocha": "^10.0.0",
     "np": "^7.4.0",
     "npm-check-updates": "^12.5.11",
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^10.0.0"
+    "sinon": "^14.0.0"
   },
   "keywords": [
     "Approve",
