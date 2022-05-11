@@ -15,8 +15,13 @@ function printHelpMessage(){
     console.log("printing help...");
   }
 
-  var helpFile = require('path').join(__dirname, 'help.md');
-  var output = require('msee').parseFile(helpFile);
+  var helpFile = require('fs').readFileSync(require('path').join(__dirname, 'help.md')).toString();
+  var marked = require('marked');
+  var TerminalRenderer = require('marked-terminal');
+  marked.setOptions({
+    renderer: new TerminalRenderer()
+  });
+    var output = marked.parse(helpFile);
 
   // Some spacing formatting cleanup
   output = output.replace(/&nbsp;/g, ' ');
