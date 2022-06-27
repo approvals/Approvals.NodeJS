@@ -5,6 +5,7 @@
 var chalk = require('chalk');
 var es = require('event-stream');
 var autils = require('../lib/AUtils');
+var fs = require('fs');
 
 var verbose = process.argv.indexOf('--verbose') >= 0;
 var printHelp = process.argv.indexOf('--help') >= 0;
@@ -16,7 +17,7 @@ function printHelpMessage(){
   }
 
   var helpFile = require('path').join(__dirname, 'help.md');
-  var output = require('msee').parseFile(helpFile);
+  var output = fs.readFileSync(helpFile).toString();
 
   // Some spacing formatting cleanup
   output = output.replace(/&nbsp;/g, ' ');
