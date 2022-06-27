@@ -44,7 +44,7 @@
     "chalk": "^4.1.0",
     "diff": "^5.1.0",
     "event-stream": "^4.0.1",
-    "file-type": "^4.1.0",
+    "file-type": "^4.4.0",
     "glob": "^8.0.3",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
