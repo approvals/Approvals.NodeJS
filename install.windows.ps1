@@ -12,7 +12,6 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/javascr
 cd C:\Code\ApprovalTests.NodeJS
 npm install
 npm install -g gulp
-gulp coveralls
 
 # Done
 cls
