@@ -22,11 +22,11 @@ jobs:
           - macos-latest
           - windows-latest
         node-version:
-          - 12
-          - 13
           - 14
           - 15
           - 16
+          - 17
+          - 18
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         architecture:
           - x64
