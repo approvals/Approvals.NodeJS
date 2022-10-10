@@ -27,8 +27,31 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - name: Determine version from git tag
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: set version
+        run: |
+          TEMP_FILE=$(mktemp)
+          jq ".version |= \"${{ steps.version.outputs.tag }}\"" package.json > "$TEMP_FILE" || exit 1
+          mv "$TEMP_FILE" package.json
+      - name: Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
+          git checkout -b temp
+          git fetch
+          git checkout main
+          git merge temp
+          remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+          branch="main"
+          git push "${remote}" ${branch} || echo "nothing to push"
+        shell: bash
+      - name: publish
+        run: |
+          npm ci
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
