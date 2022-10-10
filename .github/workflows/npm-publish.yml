@@ -37,7 +37,8 @@ jobs:
           mv "$TEMP_FILE" package.json
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: ${{ steps.version.outputs.tag }}   
+          commit_message: ${{ steps.version.outputs.tag }}
+          branch: master
       - name: publish
         run: |
           npm ci
