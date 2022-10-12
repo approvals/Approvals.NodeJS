@@ -43,3 +43,4 @@ coverage/
 
 # TypeScript output
 *.d.ts
+lib/Core/*.js
