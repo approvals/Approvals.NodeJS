@@ -4,21 +4,21 @@ class FileOptions {
     this.options = options;
   }
 
-  withFileExtention(extensionWithDot: string) : Options{
-    return  this.options.modify("FileExtention", extensionWithDot);
+  withFileExtention(extensionWithDot: string): Options {
+    return this.options.modify("FileExtention", extensionWithDot);
 
   }
 
-  getFileExtension() : string {
+  getFileExtension(): string {
     return this.options.get("FileExtention", () => ".txt")
   }
 }
 
-export class Options{
-  protected fields: {[n: string]: any };
- constructor() {
+export class Options {
+  protected fields: { [n: string]: any };
+  constructor() {
     this.fields = {}
- }
+  }
 
   modify(key: string, value: any): Options {
     const next = new Options();
@@ -32,8 +32,8 @@ export class Options{
     return new FileOptions(this);
   }
 
-  get<Type>(key: string, default1: () => Type):Type {
-    if (this.fields[key] == undefined){
+  get<Type>(key: string, default1: () => Type): Type {
+    if (this.fields[key] == undefined) {
       return default1();
     }
     return this.fields[key]
