@@ -1,5 +1,6 @@
 *.swp
 *~
+.idea/
 
 # WebMatrix automatically adds this Robots.txt file (booo)
 Robots.txt
@@ -39,3 +40,7 @@ coverage/
 
 # VS Code settings folder
 .settings/
+
+# TypeScript output
+*.d.ts
+lib/Core/*.js

@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm run build
       - run: npm test
 
   publish-npm:
@@ -27,8 +28,23 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - name: Determine version from git tag
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: set version
+        run: |
+          TEMP_FILE=$(mktemp)
+          jq ".version |= \"${{ steps.version.outputs.tag }}\"" package.json > "$TEMP_FILE" || exit 1
+          mv "$TEMP_FILE" package.json
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ${{ steps.version.outputs.tag }}
+          branch: master
+      - name: publish
+        run: |
+          npm ci
+          npm run build
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 

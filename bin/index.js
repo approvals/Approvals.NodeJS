@@ -21,7 +21,7 @@ function printHelpMessage(){
   marked.setOptions({
     renderer: new TerminalRenderer()
   });
-    var output = marked.parse(helpFile);
+  var output = marked.parse(helpFile);
 
   // Some spacing formatting cleanup
   output = output.replace(/&nbsp;/g, ' ');

@@ -2,7 +2,6 @@
 
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
-const path = require('path');
 
 const paths = {
   mochaTests: ['test/**/*[Tt]ests.js'],
@@ -52,16 +51,5 @@ gulp.task('coverage', function (cb) {
         });
     });
 });
-
-gulp.task('coveralls', gulp.series('coverage', function () {
-  return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
-    .pipe($.coveralls())
-    .on('error', function(err) {
-      console.error(err);
-    })
-    .on('end', function () {
-      console.log("Coverage published to coveralls.io");
-    });
-}));
 
 gulp.task('default', gulp.series("test"));
