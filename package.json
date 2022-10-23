@@ -33,7 +33,7 @@
   "scripts": {
     "build": "tsc",
     "test": "gulp",
-    "test3" : "jest",
+    "testJest" : "jest",
     "test2": "npm run mocha && npm run lint",
     "install": "node install_dependencies.js",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",

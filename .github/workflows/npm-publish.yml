@@ -18,6 +18,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - run: npm run testJest
 
   publish-npm:
     needs: build
