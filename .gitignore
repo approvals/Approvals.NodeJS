@@ -44,3 +44,6 @@ coverage/
 # TypeScript output
 *.d.ts
 lib/Core/*.js
+lib/Utilities/
+test/Utilities/
+lib/Providers/Jest

@@ -1,1 +1,2 @@
 lib/Core/*.js
+lib/Providers/Jest/*.js
