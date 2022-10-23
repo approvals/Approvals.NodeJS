@@ -1,0 +1,2 @@
+=> method_with_inputs(number = 1, name = Susan)
+<= method_with_inputs()

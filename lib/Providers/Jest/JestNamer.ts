@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals";
 import path from "path";
-import Namer from "../../Namer";
+const Namer:any = require( "../../Namer");
 
 export function convertToFilename(name: string):string {
     const forbidden = "\\/:?\"<>|' ";
@@ -12,7 +12,7 @@ export function convertToFilename(name: string):string {
     return name;
 }
 
-export function getJestNamer(): Namer{
+export function getJestNamer(): typeof Namer{
     const state = expect.getState();
     const file = path.parse(state.testPath as string);
     const testPath = file.dir;

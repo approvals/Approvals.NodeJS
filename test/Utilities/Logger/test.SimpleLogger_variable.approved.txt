@@ -1,0 +1,2 @@
+variable: dalmatians = 101 <Number>
+variable: dalmatians = 101
