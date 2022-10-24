@@ -1,7 +1,7 @@
 {
   "name": "approvals",
   "description": "Approval Tests Library - Capturing Human Intelligence",
-  "version": "v4.0.5",
+  "version": "v4.1.1",
   "homepage": "http://approvaltests.com",
   "author": {
     "name": "Jason Jarrett",
@@ -33,7 +33,7 @@
   "scripts": {
     "build": "tsc",
     "test": "gulp",
-    "testJest" : "jest",
+    "testJest": "jest",
     "test2": "npm run mocha && npm run lint",
     "install": "node install_dependencies.js",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
