@@ -1,5 +1,5 @@
 const StringWriter = require("../../StringWriter");
-const approvals = require("../../approvals");
+const approvals = require("../../Approvals");
 import { Options } from "../../Core/Options";
 import { getJestNamer } from "./JestNamer";
 
