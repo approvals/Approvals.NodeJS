@@ -5,10 +5,10 @@ var assert = require('assert');
 var fs = require('fs');
 var expect = require('chai').expect;
 
-var Namer = require("../lib/Namer.js");
-var StringWriter = require("../lib/StringWriter.js");
-var FileApprover = require("../lib/FileApprover.js");
-var ReporterFactory = require("../lib/Reporting/ReporterFactory.js");
+var Namer = require("../lib/Namer");
+var StringWriter = require("../lib/StringWriter");
+var FileApprover = require("../lib/FileApprover");
+var ReporterFactory = require("../lib/Reporting/ReporterFactory");
 
 var ShouldFailCustomReporter = function () {
 

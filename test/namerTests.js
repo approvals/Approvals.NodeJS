@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var path = require("path");
-var Namer = require("../lib/Namer.js");
+var Namer = require("../lib/Namer");
 
 describe('Namer', function () {
 
