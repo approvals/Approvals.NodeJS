@@ -47,3 +47,4 @@ lib/Core/*.js
 lib/Utilities/
 test/Utilities/
 lib/Providers/Jest
+lib/Namer.js
