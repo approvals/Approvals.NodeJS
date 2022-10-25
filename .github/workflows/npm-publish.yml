@@ -15,10 +15,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-      - run: npm run testJest
+      - run: build_and_test.sh
 
   publish-npm:
     needs: build
@@ -43,8 +40,7 @@ jobs:
           branch: master
       - name: publish
         run: |
-          npm ci
-          npm run build
+          build_and_test.sh
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

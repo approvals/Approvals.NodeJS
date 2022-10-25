@@ -32,8 +32,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "gulp",
-    "testJest": "jest",
+    "test": "gulp && jest",
     "test2": "npm run mocha && npm run lint",
     "install": "node install_dependencies.js",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
