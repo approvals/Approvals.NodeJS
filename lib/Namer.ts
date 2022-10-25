@@ -2,7 +2,7 @@
 
 var pathUtil = require('path');
 
-class Namer {
+export class Namer {
 
   private path: string;
   private name: string;
