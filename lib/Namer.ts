@@ -1,6 +1,6 @@
 'use strict';
 
-var pathUtil = require('path');
+import path from 'path';
 
 export class Namer {
 
@@ -18,7 +18,7 @@ export class Namer {
   pathCreator(type: string, ext: string) {
     ext = ext || 'txt';
     var cleanedExt = ext[0] === '.' ? ext.substring(1) : ext;
-    return pathUtil.join(this.path, (this.name + "." + type + "." + cleanedExt));
+    return path.join(this.path, (this.name + "." + type + "." + cleanedExt));
   }
 
   getReceivedFile(ext: string) {
