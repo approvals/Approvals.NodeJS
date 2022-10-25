@@ -1,3 +1,4 @@
+lib/Namer.js
 lib/Core/*.js
 lib/Providers/Jest/*.js
 lib/Utilities/*.js
