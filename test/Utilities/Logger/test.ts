@@ -109,9 +109,9 @@ describe("SimpleLogger", () => {
 
                 // end-snippet
                 for (number = number; 0 <= number; number--) {
-                    console.log(number)
+                    process.stdout.write(`${number} \n`)
                 }
-                console.log(announcement)
+                process.stdout.write(`${announcement}\n`)
             },
             () => `number = ${number}, announcement = ${announcement}`);
     }
@@ -123,7 +123,7 @@ describe("SimpleLogger", () => {
     // begin-snippet: method_with_inputs
     function method_with_inputs(number: number, name:string) {
         SimpleLogger.use_markers(() => {
-            console.log(`${number}) ${name}`)
+            process.stdout.write(`${number}) ${name}`)
         }, `number = ${number}, name = ${name}`);
     }
 
