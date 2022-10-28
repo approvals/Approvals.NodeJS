@@ -45,7 +45,7 @@ export class LoggingInstance {
     private previous_timestamp: Date | null = null;
 
     constructor() {
-        this.logger = console.log;
+        this.logger =  (s) => process.stdout.write(s);
         this.timer = () => new Date();
     }
 
