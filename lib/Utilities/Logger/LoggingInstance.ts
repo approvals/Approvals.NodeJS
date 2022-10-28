@@ -58,10 +58,9 @@ export class LoggingInstance {
         return stringWrapper;
     }
 
-    use_markers(additional_stack: number, code: () => void, parameters: string | (() => string) ="" ) {
+    use_markers<T>(additional_stack: number, code: () => T, parameters: string | (() => string) ="" , logReturnValue: boolean = false): T {
         if (!this.toggles.markers) {
-            code();
-            return;
+            return code();
         }
         const name = getCallingMethod(additional_stack + 1);
         let parameterText = "";
@@ -72,14 +71,19 @@ export class LoggingInstance {
             parameterText = parameters;
         }
         this.log_line(`=> ${name}(${parameterText})`)
-        this.withTabbing(code)
+        const returnValue = this.withTabbing(code)
         if (typeof parameters === 'function'){
             parameterText = parameters();
         }
         else {
-            parameterText = ""
+            parameterText = "";
         }
-        this.log_line(`<= ${name}(${parameterText})`)
+        let returnText = "";
+        if (logReturnValue){
+            returnText = `: ${returnValue}`
+        }
+        this.log_line(`<= ${name}(${parameterText})${returnText}`)
+        return returnValue;
     }
 
     variable(name: string, value: any, showTypes: boolean) {
@@ -120,11 +124,12 @@ export class LoggingInstance {
         return "  ".repeat(this.tabs);
     }
 
-    private withTabbing(code: () => void) {
+    private withTabbing<T>(code: () => T) :T{
 
         this.tabs += 1;
-        code();
+        const returnValue = code();
         this.tabs -= 1;
+        return returnValue;
     }
 
     hour_glass() {

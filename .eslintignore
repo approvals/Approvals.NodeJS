@@ -4,3 +4,4 @@ lib/Providers/Jest/*.js
 lib/Utilities/*.js
 lib/Utilities/Logger/*.js
 test/Utilities/Logger/*.js
+test/Providers/Jest/*.js

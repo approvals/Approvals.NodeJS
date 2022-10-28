@@ -12,6 +12,12 @@ function logVariables() {
 }
 
 
+function methodWithReturnValue(name:string, age: number): string {
+    return SimpleLogger.use_markers(() => {
+        return `${name} is ${age} years old today.`
+    }, `name: ${name}, age: ${age}`, true);
+
+}
 
 describe("SimpleLogger", () => {
     test("variable with list", () => {
@@ -170,4 +176,8 @@ describe("SimpleLogger", () => {
             //SimpleLogger.warning(text)
             SimpleLogger.warning(exception)
         });
+
+    verifySimpleLogger("Markers with return values", () => {
+        methodWithReturnValue("Llewellyn", 29);
+    })
 });
