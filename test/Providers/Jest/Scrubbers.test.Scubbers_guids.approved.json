@@ -1,0 +1,18 @@
+{
+  "people": [
+    {
+      "id": "<guid_1>",
+      "name": "Eve"
+    },
+    {
+      "id": "<guid_2>",
+      "name": "Kane",
+      "mother": "<guid_1>"
+    },
+    {
+      "id": "<guid_3>",
+      "name": "Kane",
+      "mother": "<guid_1>"
+    }
+  ]
+}

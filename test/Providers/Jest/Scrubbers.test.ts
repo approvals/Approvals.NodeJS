@@ -1,6 +1,5 @@
-import {describe, expect, test} from "@jest/globals";
+import {describe, test} from "@jest/globals";
 import {verify, verifyAsJson} from "../../../lib/Providers/Jest/JestApprovals";
-import {convertToFilename} from "../../../lib/Providers/Jest/JestNamer";
 import {Options} from "../../../lib/Core/Options";
 import {StringUtils} from "../../../lib/Utilities/StringUtils";
 import {Scrubbers} from "../../../lib/Scrubbers/Scrubbers";
@@ -25,7 +24,7 @@ describe("Scubbers", () => {
                     mother: "58f471f1-8b1f-413c-8971-21cb23bfc8f2"
                 }]
         };
-        verifyAsJson(text, new Options().withScrubber(Scrubbers.scrubAllGuids));
+        verifyAsJson(text, new Options().withScrubber(Scrubbers.createGuidScrubber()));
     });
 
 });
