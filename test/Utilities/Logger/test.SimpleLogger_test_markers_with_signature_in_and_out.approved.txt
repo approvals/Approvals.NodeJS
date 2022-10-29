@@ -1,2 +1,0 @@
-=> method_with_inputs_and_outputs(number = 10, announcement = Blast off)
-<= method_with_inputs_and_outputs(number = -1, announcement = Blast off)

@@ -1,8 +1,0 @@
-=> logVariables()
-  variable: names<Array>.length = 2
-    names[0] = Jacqueline <String>
-    names[1] = Llewellyn <String>
-  variable: names.length = 2
-    names[0] = Jacqueline
-    names[1] = Llewellyn
-<= logVariables()
