@@ -20,6 +20,14 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - windows-latest
+        include:
+          - os: ubuntu-latest
+            script_name: .\build_and_test.sh
+          - os: macos-latest
+            script_name: .\build_and_test.sh
+          - os: windows-latest
+            script_name: build_and_test.cmd
+
         node-version:
           - 14
           - 15
@@ -36,7 +44,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: ./build_and_test.sh
+    - run: ${{ matrix.script_name }}
 
   auto-merge:
     needs: build
