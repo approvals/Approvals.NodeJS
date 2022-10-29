@@ -15,7 +15,7 @@ function __(regExp: RegExp, strings: string[]): DateFormat {
 }
 
 export class DataScrubber {
-    static get_supported_formats(): DateFormat[] {
+    static getSupportedFormats(): DateFormat[] {
         return [
             __(/[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2}/g,
                 ["Tue May 13 16:30:00"])
@@ -41,9 +41,9 @@ export class DataScrubber {
         ];
     }
 
-    static get_scrubber_for(example: string): Scrubber {
+    static getScrubberFor(example: string): Scrubber {
         let supported = ""
-        for (let format of DataScrubber.get_supported_formats()) {
+        for (let format of DataScrubber.getSupportedFormats()) {
             const scrubber = this.create(format.regex);
             const scrubbed = scrubber(example);
             if (scrubbed === "<date_1>") {
@@ -51,11 +51,12 @@ export class DataScrubber {
             }
             supported += `    ${format.examples[0]} | ${format.regex} \n`;
         }
-        throw new Error(`No match found for '${example}'.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 \n Current supported formats are: \n${supported}`)
+        throw new Error(`No match found for '${example}'.\n Feel free to add your date at https://github.com/approvals/Approvals.NodeJS/issues/139 \n Current supported formats are: \n${supported}`)
     }
 
     private static create(regex: RegExp): Scrubber {
         return Scrubbers.createReqexScrubber(regex, t => `<date_${t}>`);
 
     }
+
 }

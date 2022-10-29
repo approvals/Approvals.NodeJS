@@ -32,9 +32,9 @@ describe("Scubbers", () => {
         verifyAsJson(text, new Options().withScrubber(Scrubbers.createReqexScrubber(/\([\s\S]+\)/ig, "crazy")));
     });
     test('dates', () => {
-        for (let format of DataScrubber.get_supported_formats()) {
+        for (let format of DataScrubber.getSupportedFormats()) {
             for (let example of format.examples) {
-                const scrubber = DataScrubber.get_scrubber_for(example);
+                const scrubber = DataScrubber.getScrubberFor(example);
                 expect(scrubber(example)).toBe("<date_1>")
             }
         }

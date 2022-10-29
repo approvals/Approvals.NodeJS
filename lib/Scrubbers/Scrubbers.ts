@@ -1,3 +1,5 @@
+import {DataScrubber} from "./DateScrubber";
+
 export type Scrubber = (t: string) => string;
 
 type ReplacementFunction = (index: number) => string;
@@ -36,15 +38,17 @@ export class Scrubbers {
      * This method exists as a convenient way to get an example scrubber for you to use.
      * To use this template, simply inline the method in your IDE.
      */
-    static templatesForRegexScrubberWithLambda(): Scrubber {
-        return this.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, t => `<your replacement_${t}>`);
-    }
+    static templates = class {
+        static regexScrubberWithLambda(): Scrubber {
+            return Scrubbers.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, t => `<your replacement_${t}>`);
+        }
 
-    /**
-     * This method exists as a convenient way to get an example scrubber for you to use.
-     * To use this template, simply inline the method in your IDE.
-     */
-    static templatesForRegexScrubber(): Scrubber {
-        return this.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, `<your replacement>`);
+        static regexScrubber(): Scrubber {
+            return Scrubbers.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, `<your replacement>`);
+        }
+
+        static dateScrubber(): Scrubber {
+            return DataScrubber.getScrubberFor("2014/05/13 16:30:59.786");
+        }
     }
 }
