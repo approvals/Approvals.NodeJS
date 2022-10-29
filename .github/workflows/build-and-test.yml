@@ -26,7 +26,7 @@ jobs:
           - os: macos-latest
             script_name: ./build_and_test.sh
           - os: windows-latest
-            script_name: build_and_test.bat
+            script_name: .\build_and_test.bat
 
         node-version:
           - 14
