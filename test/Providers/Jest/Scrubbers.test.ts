@@ -1,8 +1,9 @@
-import {describe, test} from "@jest/globals";
+import {describe, expect, test} from "@jest/globals";
 import {verify, verifyAsJson} from "../../../lib/Providers/Jest/JestApprovals";
 import {Options} from "../../../lib/Core/Options";
 import {StringUtils} from "../../../lib/Utilities/StringUtils";
 import {Scrubbers} from "../../../lib/Scrubbers/Scrubbers";
+import {DataScrubber} from "../../../lib/Scrubbers/DateScrubber";
 
 
 describe("Scubbers", () => {
@@ -30,4 +31,13 @@ describe("Scubbers", () => {
         const text = "Here is some (｡◕ ∀ ◕｡) text";
         verifyAsJson(text, new Options().withScrubber(Scrubbers.createReqexScrubber(/\([\s\S]+\)/ig, "crazy")));
     });
+    test('dates', () => {
+        for (let format of DataScrubber.get_supported_formats()) {
+            for (let example of format.examples) {
+                const scrubber = DataScrubber.get_scrubber_for(example);
+                expect(scrubber(example)).toBe("<date_1>")
+            }
+        }
+    });
+
 });
