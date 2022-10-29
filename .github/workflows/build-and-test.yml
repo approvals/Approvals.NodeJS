@@ -22,11 +22,11 @@ jobs:
           - windows-latest
         include:
           - os: ubuntu-latest
-            script_name: .\build_and_test.sh
+            script_name: ./build_and_test.sh
           - os: macos-latest
-            script_name: .\build_and_test.sh
+            script_name: ./build_and_test.sh
           - os: windows-latest
-            script_name: build_and_test.cmd
+            script_name: build_and_test.bat
 
         node-version:
           - 14
