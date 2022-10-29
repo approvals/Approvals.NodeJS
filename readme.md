@@ -277,6 +277,7 @@ var defaultConfig = {
   // and each user could setup a ~/.approvalConfig file
   // which would contain their preferred merge/diff tools
   reporters: [
+    "BeyondCompare",
     "diffmerge",
     "p4merge",
     "tortoisemerge",
@@ -342,7 +343,7 @@ var defaultConfig = {
 
 };
 ```
-<sup><a href='/lib/config.js#L10-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_config' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/lib/config.js#L10-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_config' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <a name="api" />
