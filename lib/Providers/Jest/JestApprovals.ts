@@ -7,7 +7,7 @@ import { getJestNamer } from "./JestNamer";
 export function verify(sut: any, options?: Options): void {
     const config = approvals.getConfig();
     options = options || new Options()
-    const writer = new StringWriter(config,  `${sut}`, options.forFile().getFileExtension());
+    const writer = new StringWriter(config,  options.scrub(`${sut}`), options.forFile().getFileExtension());
     approvals.verifyWithControl(getJestNamer(), writer, null, config);
 }
 

@@ -1,3 +1,5 @@
+import {Scrubber} from "../Scrubbers/Scrubbers";
+
 class FileOptions {
   private options: Options;
   constructor(options: Options) {
@@ -39,4 +41,14 @@ export class Options {
     return this.fields[key]
 
   }
+
+    withScrubber(scrubber: Scrubber) {
+        return this.modify("Scrubber", scrubber);
+    }
+    getScrubber(): Scrubber {
+    return this.get("Scrubber", () => t => t);
+    }
+    scrub(text: string): string {
+      return this.getScrubber()(text);
+    }
 }

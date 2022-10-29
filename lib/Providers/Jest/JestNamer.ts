@@ -1,18 +1,18 @@
-import { expect } from "@jest/globals";
+import {expect} from "@jest/globals";
 import path from "path";
-const Namer:any = require( "../../Namer");
+import {StringUtils} from "../../Utilities/StringUtils";
 
-export function convertToFilename(name: string):string {
+const Namer: any = require("../../Namer");
+
+export function convertToFilename(name: string): string {
     const forbidden = "\\/:?\"<>|' ";
     for (let forbiddenKey of forbidden) {
-        while (name.includes(forbiddenKey)) {
-            name = name.replace(forbiddenKey, "_");
-        }
+        name = StringUtils.replaceAll(name, forbiddenKey, "_");
     }
     return name;
 }
 
-export function getJestNamer(): typeof Namer{
+export function getJestNamer(): typeof Namer {
     const state = expect.getState();
     const file = path.parse(state.testPath as string);
     const testPath = file.dir;
