@@ -44,7 +44,7 @@ coverage/
 # TypeScript output
 *.d.ts
 lib/Core/*.js
-lib/Utilities/
-test/Utilities/
-lib/Providers/Jest
+lib/Utilities/*.js
+test/Utilities/*.js
+lib/Providers/Jest/*.js
 lib/Namer.js
