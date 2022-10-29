@@ -48,3 +48,4 @@ lib/Utilities/*.js
 test/Utilities/*.js
 lib/Providers/Jest/*.js
 lib/Namer.js
+lib/Scrubbers/Scrubbers.js
