@@ -45,7 +45,8 @@ coverage/
 *.d.ts
 lib/Core/*.js
 lib/Utilities/**/*.js
-test/Utilities/**/.js
+test/Utilities/**/**.js
 lib/Providers/Jest/**.js
+test/Providers/Jest/**.js
 lib/Namer.js
 lib/Scrubbers/Scrubbers.js
