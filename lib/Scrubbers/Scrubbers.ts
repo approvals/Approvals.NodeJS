@@ -1,6 +1,8 @@
 export type Scrubber = (t: string) => string;
 
-function _replaceRegex(text: string, regex: RegExp, replacement: (index: number) => string): string {
+type ReplacementFunction = (index: number) => string;
+
+function _replaceRegex(text: string, regex: RegExp, replacement: ReplacementFunction): string {
     const capturedGuids: string[] = []
 
     const result = text.replace(regex, match => {
@@ -16,8 +18,13 @@ function _replaceRegex(text: string, regex: RegExp, replacement: (index: number)
 
 export class Scrubbers {
 
-    static createReqexScrubber(regex: RegExp, replacement: (index: number) => string | string): Scrubber {
-        return t => _replaceRegex(t, regex, replacement)
+    static createReqexScrubber(regex: RegExp, replacement: (string | ReplacementFunction)): Scrubber {
+        if (typeof replacement === 'function') {
+            return t => _replaceRegex(t, regex, replacement as ReplacementFunction)
+        } else {
+            const replacementString = replacement as string;
+            return t => _replaceRegex(t, regex, s => replacementString)
+        }
     }
 
     static createGuidScrubber(): Scrubber {

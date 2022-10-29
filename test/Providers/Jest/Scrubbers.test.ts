@@ -26,5 +26,8 @@ describe("Scubbers", () => {
         };
         verifyAsJson(text, new Options().withScrubber(Scrubbers.createGuidScrubber()));
     });
-
+    test('regex', () => {
+        const text = "Here is some (｡◕ ∀ ◕｡) text";
+        verifyAsJson(text, new Options().withScrubber(Scrubbers.createReqexScrubber(/\([\s\S]+\)/ig, "crazy")));
+    });
 });
