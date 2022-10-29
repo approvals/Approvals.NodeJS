@@ -5,7 +5,7 @@ class Toggles {
     public queries: boolean;
     public messages: boolean;
     public variables: boolean;
-    public hour_glass: boolean;
+    public hourglass: boolean;
     public events: boolean;
     public markers: boolean;
 
@@ -13,7 +13,7 @@ class Toggles {
         this.queries = show;
         this.messages = show;
         this.variables = show;
-        this.hour_glass = show;
+        this.hourglass = show;
         this.markers = show;
         this.events = show;
     }
@@ -39,26 +39,26 @@ export class LoggingInstance {
     private counter: number = 0;
     private tabs: number = 0;
     private toggles = new Toggles(true);
-    public log_stack_traces: boolean = true;
-    private log_with_timestamps: boolean = true;
+    public logStackTraces: boolean = true;
+    private logWithTimestamps: boolean = true;
     public timer: () => Date;
-    private previous_timestamp: Date | null = null;
+    private previousTimestamp: Date | null = null;
 
     constructor() {
         this.logger =  (s) => process.stdout.write(s);
         this.timer = () => new Date();
     }
 
-    log_to_string(): StringWrapper {
+    logToString(): StringWrapper {
 
         const stringWrapper = new StringWrapper();
-        this.log_with_timestamps = false;
-        this.log_stack_traces = false;
+        this.logWithTimestamps = false;
+        this.logStackTraces = false;
         this.logger = (t) => stringWrapper.append(t)
         return stringWrapper;
     }
 
-    use_markers<T>(additional_stack: number, code: () => T, parameters: string | (() => string) ="" , logReturnValue: boolean = false): T {
+    useMarkers<T>(additional_stack: number, code: () => T, parameters: string | (() => string) ="" , logReturnValue: boolean = false): T {
         if (!this.toggles.markers) {
             return code();
         }
@@ -70,7 +70,7 @@ export class LoggingInstance {
         else {
             parameterText = parameters;
         }
-        this.log_line(`=> ${name}(${parameterText})`)
+        this.logLine(`=> ${name}(${parameterText})`)
         const returnValue = this.withTabbing(code)
         if (typeof parameters === 'function'){
             parameterText = parameters();
@@ -82,7 +82,7 @@ export class LoggingInstance {
         if (logReturnValue){
             returnText = `: ${returnValue}`
         }
-        this.log_line(`<= ${name}(${parameterText})${returnText}`)
+        this.logLine(`<= ${name}(${parameterText})${returnText}`)
         return returnValue;
     }
 
@@ -97,24 +97,24 @@ export class LoggingInstance {
         }
 
         if (Array.isArray(value)) {
-            this.log_line(`variable: ${name}${toType(value, '')}.length = ${value.length}`)
+            this.logLine(`variable: ${name}${toType(value, '')}.length = ${value.length}`)
             this.withTabbing(() => {
                 value.forEach((v, i) => {
                     this.logger(`${this.getTabs()}${name}[${i}] = ${v}${toType(v)}\n`);
                 });
             });
         } else {
-            this.log_line(`variable: ${name} = ${value}${toType(value)}`)
+            this.logLine(`variable: ${name} = ${value}${toType(value)}`)
 
         }
     }
 
-    private log_line(text: string, use_timestamps: boolean = true) {
+    private logLine(text: string, use_timestamps: boolean = true) {
         if (this.counter != 0) {
             this.logger("\n")
         }
         this.counter = 0
-        const timestamp = use_timestamps ? this.get_timestamp() : "";
+        const timestamp = use_timestamps ? this.getTimestamp() : "";
         const output_message = `${timestamp}${this.getTabs()}${text}\n`
         this.logger(output_message)
 
@@ -132,8 +132,8 @@ export class LoggingInstance {
         return returnValue;
     }
 
-    hour_glass() {
-        if (!this.toggles.hour_glass) {
+    hourglass() {
+        if (!this.toggles.hourglass) {
             return;
         }
 
@@ -154,7 +154,7 @@ export class LoggingInstance {
     }
 
 
-    show_all(show: boolean) {
+    showAll(show: boolean) {
         this.toggles = new Toggles(show);
     }
 
@@ -162,91 +162,91 @@ export class LoggingInstance {
         if (!this.toggles.events) {
             return;
         }
-        this.log_line(`event: ${event_name}`)
+        this.logLine(`event: ${event_name}`)
     }
 
-    show_queries(show: boolean) {
+    showQueries(show: boolean) {
         this.toggles.queries = show
     }
 
-    show_markers(show: boolean) {
+    showMarkers(show: boolean) {
         this.toggles.markers = show
     }
 
-    show_events(show: boolean) {
+    showEvents(show: boolean) {
         this.toggles.events = show
     }
 
-    show_messages(show: boolean) {
+    showMessages(show: boolean) {
         this.toggles.messages = show
     }
 
-    show_variables(show: boolean) {
+    showVariables(show: boolean) {
         this.toggles.variables = show
     }
 
-    show_hour_glass(show: boolean) {
-        this.toggles.hour_glass = show
+    showHourglass(show: boolean) {
+        this.toggles.hourglass = show
     }
 
     warning(exception: Error | string) {
         const warning_stars = "*".repeat(91);
         const text = null;
-        this.log_line(warning_stars, false);
-        if (this.log_with_timestamps) {
-            this.log_line("", true)
+        this.logLine(warning_stars, false);
+        if (this.logWithTimestamps) {
+            this.logLine("", true)
         }
         if (text) {
-            this.log_line(`Message:${text}`, false)
+            this.logLine(`Message:${text}`, false)
         }
         if (exception) {
             let stack_trace = "";
-            if (this.log_stack_traces) {
+            if (this.logStackTraces) {
                 // todo: grab stack trace
                 stack_trace = exception.toString()
 
             } else {
                 stack_trace = `${exception}`;
             }
-            this.log_line(stack_trace,  false)
+            this.logLine(stack_trace,  false)
         }
-        this.log_line(warning_stars,  false)
+        this.logLine(warning_stars,  false)
     }
 
     query(queryText: string) {
         if (!this.toggles.queries) {
             return;
         }
-        this.log_line(`Sql: ${queryText}`)
+        this.logLine(`Sql: ${queryText}`)
     }
 
     message(messageText: string) {
         if (!this.toggles.messages) {
             return;
         }
-        this.log_line(`message: ${messageText}`)
+        this.logLine(`message: ${messageText}`)
     }
 
-    show_timestamps(show: boolean) {
-        this.log_with_timestamps = show;
+    showTimestamps(show: boolean) {
+        this.logWithTimestamps = show;
 
     }
 
-    private get_timestamp() {
-        if (! this.log_with_timestamps){
+    private getTimestamp() {
+        if (! this.logWithTimestamps){
             return "";
         }
 
         const time1 = this.timer();
         const time = time1.toISOString();
         let diff_millseconds = 0;
-        if (this.previous_timestamp != null){
-            diff_millseconds= time1.getTime() - this.previous_timestamp.getTime();
+        if (this.previousTimestamp != null){
+            diff_millseconds= time1.getTime() - this.previousTimestamp.getTime();
         }
         const diff_display = `~${String(diff_millseconds).padStart(6,"0")}ms`
         let time_text = `${time}`.replace("T", " ").substring(0, 19);
         const timestamp = `[${time_text} ${diff_display}] `
-        this.previous_timestamp = time1
+        this.previousTimestamp = time1
         return timestamp
     }
 }

@@ -9,58 +9,58 @@ export class SimpleLogger {
 
     static _wrapper: Wrapper<LoggingInstance> = new SingleWrapper(new LoggingInstance())
 
-    static show_queries(show: boolean) {
-        this._wrapper.get().show_queries(show);
+    static showQueries(show: boolean) {
+        this._wrapper.get().showQueries(show);
 
     }
 
-    static show_markers(show: boolean) {
-        this._wrapper.get().show_markers(show);
+    static showMarkers(show: boolean) {
+        this._wrapper.get().showMarkers(show);
     }
 
-    static show_events(show: boolean) {
-        this._wrapper.get().show_events(show);
+    static showEvents(show: boolean) {
+        this._wrapper.get().showEvents(show);
     }
 
-    static show_messages(show: boolean) {
-        this._wrapper.get().show_messages(show);
+    static showMessages(show: boolean) {
+        this._wrapper.get().showMessages(show);
     }
 
-    static show_variables(show: boolean) {
-        this._wrapper.get().show_variables(show);
-
-    }
-
-    static show_hour_glass(show: boolean) {
-        this._wrapper.get().show_hour_glass(show);
+    static showVariables(show: boolean) {
+        this._wrapper.get().showVariables(show);
 
     }
 
-    static register_logger(log_method: (text:string) => void): void {
+    static showHourglass(show: boolean) {
+        this._wrapper.get().showHourglass(show);
+
+    }
+
+    static registerLogger(log_method: (text:string) => void): void {
         this._wrapper.get().logger = log_method
     }
 
-    static log_to_string(): StringWrapper {
+    static logToString(): StringWrapper {
         this._wrapper = new SingleWrapper(new LoggingInstance());
-        return SimpleLogger._wrapper.get().log_to_string()
+        return SimpleLogger._wrapper.get().logToString()
 
     }
 
-    static use_markers<T>(code: () => T, parameters: (string | (() => string)) = "", logReturnValue: boolean = false): T {
-        return this._wrapper.get().use_markers(1, code, parameters, logReturnValue);
+    static useMarkers<T>(code: () => T, parameters: (string | (() => string)) = "", logReturnValue: boolean = false): T {
+        return this._wrapper.get().useMarkers(1, code, parameters, logReturnValue);
     }
 
     static variable(name: string, value: any, show_types: boolean = false) {
         SimpleLogger._wrapper.get().variable(name, value, show_types)
     }
 
-    static hour_glass() {
-        this._wrapper.get().hour_glass();
+    static hourglass() {
+        this._wrapper.get().hourglass();
 
     }
 
-    static show_all(show: boolean) {
-        this._wrapper.get().show_all(show);
+    static showAll(show: boolean) {
+        this._wrapper.get().showAll(show);
     }
 
     static event(text: string) {
@@ -82,7 +82,7 @@ export class SimpleLogger {
 
     }
 
-    static show_timestamps(show: boolean) {
-        this._wrapper.get().show_timestamps(show);
+    static showTimestamps(show: boolean) {
+        this._wrapper.get().showTimestamps(show);
     }
 }
