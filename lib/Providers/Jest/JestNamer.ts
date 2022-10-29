@@ -5,7 +5,7 @@ const Namer:any = require( "../../Namer");
 export function convertToFilename(name: string):string {
     const forbidden = "\\/:?\"<>|' ";
     for (let forbiddenKey of forbidden) {
-        if (name.includes(forbiddenKey)) {
+        while (name.includes(forbiddenKey)) {
             name = name.replace(forbiddenKey, "_");
         }
     }

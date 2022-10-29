@@ -6,7 +6,6 @@ import { getJestNamer } from "./JestNamer";
 
 export function verify(sut: any, options?: Options): void {
     const config = approvals.getConfig();
-    //config.reporters = ["diffmerge"];
     options = options || new Options()
     const writer = new StringWriter(config,  `${sut}`, options.forFile().getFileExtension());
     approvals.verifyWithControl(getJestNamer(), writer, null, config);
