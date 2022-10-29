@@ -5,7 +5,6 @@
 var chalk = require('chalk');
 var es = require('event-stream');
 var autils = require('../lib/AUtils');
-var fs = require('fs');
 
 var verbose = process.argv.indexOf('--verbose') >= 0;
 var printHelp = process.argv.indexOf('--help') >= 0;
@@ -16,8 +15,13 @@ function printHelpMessage(){
     console.log("printing help...");
   }
 
-  var helpFile = require('path').join(__dirname, 'help.md');
-  var output = fs.readFileSync(helpFile).toString();
+  var helpFile = require('fs').readFileSync(require('path').join(__dirname, 'help.md')).toString();
+  var marked = require('marked');
+  var TerminalRenderer = require('marked-terminal');
+  marked.setOptions({
+    renderer: new TerminalRenderer()
+  });
+  var output = marked.parse(helpFile);
 
   // Some spacing formatting cleanup
   output = output.replace(/&nbsp;/g, ' ');
