@@ -31,4 +31,20 @@ export class Scrubbers {
         const guidReqex: RegExp = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig
         return this.createReqexScrubber(guidReqex, t => `<guid_${t}>`);
     }
+
+    /**
+     * This method exists as a convenient way to get an example scrubber for you to use.
+     * To use this template, simply inline the method in your IDE.
+     */
+    static templatesForRegexScrubberWithLambda(): Scrubber {
+        return this.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, t => `<your replacement_${t}>`);
+    }
+
+    /**
+     * This method exists as a convenient way to get an example scrubber for you to use.
+     * To use this template, simply inline the method in your IDE.
+     */
+    static templatesForRegexScrubber(): Scrubber {
+        return this.createReqexScrubber(/your pattern here: [a-zA-Z]+d{4}/ig, `<your replacement>`);
+    }
 }
