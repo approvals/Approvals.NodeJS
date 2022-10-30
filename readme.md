@@ -85,7 +85,7 @@ Below is a simple getting started using Mocha.
     npm install -g mocha
     ```
 
-1. Create a sample Mocha test file called `test.js`.
+1. Create a sample Mocha test file called `SimpleLogger.test.js`.
 
     ```javascript
     require('approvals')
@@ -102,7 +102,7 @@ Below is a simple getting started using Mocha.
 1. Test the file with mocha.
 
     ```shell
-    mocha test.js
+    mocha SimpleLogger.test.js
     ```
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
