@@ -1,4 +1,4 @@
-import {DataScrubber} from "./DateScrubber";
+import {DateScrubber} from "./DateScrubber";
 
 export type Scrubber = (t: string) => string;
 
@@ -48,7 +48,7 @@ export class Scrubbers {
         }
 
         static dateScrubber(): Scrubber {
-            return DataScrubber.getScrubberFor("2014/05/13 16:30:59.786");
+            return DateScrubber.getScrubberFor("2014/05/13 16:30:59.786");
         }
     }
 }

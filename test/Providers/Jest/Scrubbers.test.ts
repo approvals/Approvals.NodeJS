@@ -3,7 +3,7 @@ import {verify, verifyAsJson} from "../../../lib/Providers/Jest/JestApprovals";
 import {Options} from "../../../lib/Core/Options";
 import {StringUtils} from "../../../lib/Utilities/StringUtils";
 import {Scrubbers} from "../../../lib/Scrubbers/Scrubbers";
-import {DataScrubber} from "../../../lib/Scrubbers/DateScrubber";
+import {DateScrubber} from "../../../lib/Scrubbers/DateScrubber";
 
 
 describe("Scubbers", () => {
@@ -32,9 +32,9 @@ describe("Scubbers", () => {
         verifyAsJson(text, new Options().withScrubber(Scrubbers.createReqexScrubber(/\([\s\S]+\)/ig, "crazy")));
     });
     test('dates', () => {
-        for (let format of DataScrubber.getSupportedFormats()) {
+        for (let format of DateScrubber.getSupportedFormats()) {
             for (let example of format.examples) {
-                const scrubber = DataScrubber.getScrubberFor(example);
+                const scrubber = DateScrubber.getScrubberFor(example);
                 expect(scrubber(example)).toBe("<date_1>")
             }
         }

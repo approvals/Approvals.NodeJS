@@ -14,7 +14,7 @@ function __(regExp: RegExp, strings: string[]): DateFormat {
     return new DateFormat(regExp, strings);
 }
 
-export class DataScrubber {
+export class DateScrubber {
     static getSupportedFormats(): DateFormat[] {
         return [
             __(/[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2}/g,
@@ -44,7 +44,7 @@ export class DataScrubber {
 
     static getScrubberFor(example: string): Scrubber {
         let supported = ""
-        for (let format of DataScrubber.getSupportedFormats()) {
+        for (let format of DateScrubber.getSupportedFormats()) {
             const scrubber = this.create(format.regex);
             const scrubbed = scrubber(example);
             if (scrubbed === "<date_1>") {
