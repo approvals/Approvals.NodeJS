@@ -38,6 +38,7 @@ export class DataScrubber {
             , __(/\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}Z/g, ["2020-09-10T08:07:89Z"])
             , __(/\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z/g, ["2020-09-10T01:23:45.678Z"])
             , __(/\d{8}T\d{6}Z/g, ["20210505T091112Z"])
+            , __(/[a-zA-Z]{3}, \d{2} [a-zA-Z]{3} \d{4} \d{2}:\d{2}:\d{2} [a-zA-Z]{3}/g, ["Sun, 06 Nov 2022 11:23:20 GMT"])
         ];
     }
 
@@ -54,7 +55,7 @@ export class DataScrubber {
         throw new Error(`No match found for '${example}'.\n Feel free to add your date at https://github.com/approvals/Approvals.NodeJS/issues/139 \n Current supported formats are: \n${supported}`)
     }
 
-    private static create(regex: RegExp): Scrubber {
+    public static create(regex: RegExp): Scrubber {
         return Scrubbers.createReqexScrubber(regex, t => `<date_${t}>`);
 
     }
