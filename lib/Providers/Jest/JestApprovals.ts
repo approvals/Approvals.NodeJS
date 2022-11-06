@@ -18,3 +18,25 @@ export function verifyAsJson(data: any, options?: Options): void {
     options = options.forFile().withFileExtention(".json")
     verify(text, options);
 }
+
+export function printArray<T>(header: string, list: T[], formatter: (element: T) => string) {
+    let text = "";
+    if (header){
+        text = header + "\n\n\n";
+    }
+    for (let t of list) {
+        text += formatter(t) + "\n"
+    }
+    return text;
+
+}
+
+export function verifyAll<T>(header:string, list: T[], formatter?: ((element: T) => string), options?: Options): void{
+    let count = 0;
+    function defaultFormatter(t:T):string{
+        return `[${count++}] => ${t}`;
+    }
+    formatter = formatter || defaultFormatter;
+    const text = printArray(header, list, formatter);
+    verify(text, options);
+}
