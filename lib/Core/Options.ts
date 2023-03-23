@@ -67,7 +67,7 @@ export class Options {
     }
 
     getConfig(config: any): any {
-        const modifier = this.get("ConfigModifier", () => t => t);
+        const modifier = this.get("ConfigModifier", () => (t: any) => t);
         return modifier(config);
     }
 
