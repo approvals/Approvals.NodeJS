@@ -1,4 +1,5 @@
-import {Scrubber, Scrubbers} from "./Scrubbers";
+import {Scrubbers} from "./Scrubbers";
+import type {Scrubber} from "./Scrubbers";
 
 class DateFormat {
     public regex: RegExp;
