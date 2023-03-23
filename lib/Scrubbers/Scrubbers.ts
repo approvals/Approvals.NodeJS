@@ -25,7 +25,7 @@ export class Scrubbers {
             return t => _replaceRegex(t, regex, replacement as ReplacementFunction)
         } else {
             const replacementString = replacement as string;
-            return t => _replaceRegex(t, regex, s => replacementString)
+            return t => _replaceRegex(t, regex, () => replacementString)
         }
     }
 
