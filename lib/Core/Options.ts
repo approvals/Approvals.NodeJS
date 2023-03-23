@@ -1,4 +1,8 @@
 import type {Scrubber} from "../Scrubbers/Scrubbers";
+import {Namer} from "../Namer";
+import {getJestNamer} from "../Providers/Jest/JestNamer";
+
+export type ConfigModifier = (t: any) => any;
 
 class FileOptions {
     private options: Options;
@@ -56,5 +60,22 @@ export class Options {
     scrub(text: string): string {
         const scrubber = this.getScrubber();
         return scrubber(text);
+    }
+
+    withConfig(configModifier: ConfigModifier): Options {
+        return this.modify("ConfigModifier", configModifier);
+    }
+
+    getConfig(config: any): any {
+        const modifier = this.get("ConfigModifier", () => t => t);
+        return modifier(config);
+    }
+
+    withNamer(namer: Namer): Options {
+        return this.modify("Namer", namer);
+    }
+
+    getNamer(): Namer {
+        return this.get("Namer", () => getJestNamer());
     }
 }

@@ -1,7 +1,7 @@
 import {describe, expect, test} from "@jest/globals";
 import {verify, verifyAll, verifyAsJson} from "../../../lib/Providers/Jest/JestApprovals";
 import {convertToFilename} from "../../../lib/Providers/Jest/JestNamer";
-
+import {ConfigModifier, Options} from "../../../lib/Core/Options";
 
 
 describe("JestApprovals", () => {
@@ -26,5 +26,17 @@ describe("verifyAll", ( )=>{
     test("default formatter", ()=> {
         const digits = ["a","b","c"];
         verifyAll("Print", digits);
+    });
+});
+
+describe("Options", () => {
+    test('handles configuration', () => {
+        let configModifier: ConfigModifier = c => {
+            c.reporters = ["beyondcompare"]
+            return c;
+        };
+        let options = new Options();
+        options = options.withConfig(configModifier);
+        verify("Hello from sub-directory", options);
     });
 });

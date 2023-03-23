@@ -7,11 +7,12 @@ const approvals = require("../../Approvals");
 
 
 export function verify(sut: any, options?: Options): void {
-    const config = approvals.getConfig();
     options = options || new Options()
+    const config = options.getConfig(approvals.getConfig());
     const scrubbed = options.scrub(`${sut}`);
     const writer = new StringWriter(config,  scrubbed, options.forFile().getFileExtension());
-    approvals.verifyWithControl(getJestNamer(), writer, null, config);
+    let namer = options.getNamer();
+    approvals.verifyWithControl(namer, writer, null, config);
 }
 
 export function verifyAsJson(data: any, options?: Options): void {
