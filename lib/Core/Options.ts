@@ -1,4 +1,4 @@
-import {Scrubber} from "../Scrubbers/Scrubbers";
+import type {Scrubber} from "../Scrubbers/Scrubbers";
 
 class FileOptions {
     private options: Options;
