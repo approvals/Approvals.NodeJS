@@ -55,7 +55,6 @@ export class Options {
 
     scrub(text: string): string {
         const scrubber = this.getScrubber();
-        const code = "" + scrubber;
         return scrubber(text);
     }
 }
