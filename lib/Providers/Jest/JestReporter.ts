@@ -1,7 +1,9 @@
 import {expect} from "@jest/globals";
+import {ApprovalFailureReporter} from "../../Core/ApprovalFailureReporter";
+
 const fs = require('fs');
 
-export class JestReporter {
+export class JestReporter implements ApprovalFailureReporter {
     name: string = "JestReporter";
 
     canReportOn() {
