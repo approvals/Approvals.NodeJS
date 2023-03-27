@@ -64,6 +64,12 @@ Github (Linux, Mac, Windows) | [![Build & Test](https://github.com/approvals/App
 
 ## Getting Started
 
+### Jest Typescript Starter Project
+
+If you want to jump start a new project, clone the [Jest Starter Project](https://github.com/approvals/ApprovalTests.TypeScript.Jest.StarterProject)
+
+### Mocha
+
 Below is a simple getting started using Mocha.
 
 1. Create a project (folder)
