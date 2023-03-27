@@ -7,6 +7,8 @@
   * [Badges](#badges)
   * [Integrations](#integrations)
   * [Getting Started](#getting-started)
+    * [Jest Typescript Starter Project](#jest-typescript-starter-project)
+    * [Mocha](#mocha)
   * [CLI](#cli)
     * [Install Approvals CLI](#install-approvals-cli)
     * [CLI Help](#cli-help)
