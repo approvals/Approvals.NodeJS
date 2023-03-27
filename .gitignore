@@ -51,3 +51,4 @@ test/Providers/Jest/**.js
 lib/Namer.js
 lib/Scrubbers/Scrubbers.js
 lib/Scrubbers/DateScrubber.js
+/yarn.lock
