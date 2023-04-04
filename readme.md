@@ -115,6 +115,12 @@ Below is a simple getting started using Mocha.
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
 
+<a name="documentation">
+
+## Documentation
+
+If using Jest, see [more documentation here](docs/README.md).
+
 <a name="cli">
 
 ## CLI

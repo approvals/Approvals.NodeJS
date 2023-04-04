@@ -50,3 +50,13 @@ describe("Combinations", () => {
         verifyAllCombinations9((a, b, c, d, e, f, g, h, i) => "" + a + b + c + d + e + f + g + h + i, [1, 2], [2, 3], [2, 3], [2, 3], [2, 3], [2, 3], [2, 3], [8, 7], [9, 8]);
     });
 });
+
+describe('documentation', () => {
+    // begin-snippet: CombinationsStartingPoint
+    test('CombinationsStartingPoint', () => {
+        const inputs1 = ["input1.value1", "input1.value2"];
+        const inputs2 = ["input2.value1", "input2.value2", "input2.value3"];
+        verifyAllCombinations2((a, b) => `placeholder for ${a}, ${b}`, inputs1, inputs2);
+    });
+    // end-snippet
+});

@@ -1,0 +1,6 @@
+[input1.value1,input2.value1] => placeholder for input1.value1, input2.value1
+[input1.value1,input2.value2] => placeholder for input1.value1, input2.value2
+[input1.value1,input2.value3] => placeholder for input1.value1, input2.value3
+[input1.value2,input2.value1] => placeholder for input1.value2, input2.value1
+[input1.value2,input2.value2] => placeholder for input1.value2, input2.value2
+[input1.value2,input2.value3] => placeholder for input1.value2, input2.value3
