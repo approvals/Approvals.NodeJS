@@ -1,5 +1,5 @@
 import type {Scrubber} from "../Scrubbers/Scrubbers";
-import {Namer} from "../Namer";
+import type {Namer} from "../Namer";
 import {getJestNamer} from "../Providers/Jest/JestNamer";
 
 export type ConfigModifier = (t: any) => any;
