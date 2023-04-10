@@ -1,6 +1,5 @@
 import {printArray, printJson} from "../../Utilities/Printers";
 import {Options} from "../../Core/Options";
-import {getJestNamer} from "./JestNamer";
 
 const StringWriter = require("../../StringWriter");
 const approvals = require("../../Approvals");
