@@ -1,4 +1,15 @@
 import {printArray, printJson} from "../../Utilities/Printers";
+/* ^^^ If the above line is failing, please add
+# 1. Jest Config
+```
+"transformIgnorePatterns": ["node_modules/@3ds"]
+```
+
+# 2. tsconfig.json
+```
+    "esModuleInterop": true
+```
+*/
 import {Options} from "../../Core/Options";
 
 const StringWriter = require("../../StringWriter");
