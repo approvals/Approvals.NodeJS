@@ -31,9 +31,7 @@ jobs:
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: set version
         run: |
-          TEMP_FILE=$(mktemp)
-          jq ".version |= \"${{ steps.version.outputs.tag }}\"" package.json > "$TEMP_FILE" || exit 1
-          mv "$TEMP_FILE" package.json
+          ./updateVersion.sh ${{ steps.version.outputs.tag }}
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: ${{ steps.version.outputs.tag }}
