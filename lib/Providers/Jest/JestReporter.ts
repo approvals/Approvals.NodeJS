@@ -1,5 +1,5 @@
 import {expect} from "@jest/globals";
-import {ApprovalFailureReporter} from "../../Core/ApprovalFailureReporter";
+import type {ApprovalFailureReporter} from "../../Core/ApprovalFailureReporter";
 
 const fs = require('fs');
 
