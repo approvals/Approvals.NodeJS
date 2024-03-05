@@ -48,6 +48,7 @@ lib/Utilities/**/*.js
 test/Utilities/**/**.js
 lib/Providers/Jest/**.js
 test/Providers/Jest/**.js
+test/Providers/Mocha/Typescript/**.js
 lib/Namer.js
 lib/Scrubbers/Scrubbers.js
 lib/Scrubbers/DateScrubber.js
