@@ -1,6 +1,7 @@
 lib/Namer.js
 lib/Core/*.js
 lib/Providers/Jest/*.js
+lib/Providers/Mocha/*.js
 lib/Scrubbers/Scrubbers.js
 lib/Scrubbers/DateScrubber.js
 lib/Utilities/*.js

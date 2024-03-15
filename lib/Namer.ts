@@ -4,8 +4,8 @@ import path from 'path';
 
 export class Namer {
 
-  private path: string;
-  private name: string;
+  protected path: string;
+  protected name: string;
 
   constructor(path: string, name: string) {
     path = path || '';

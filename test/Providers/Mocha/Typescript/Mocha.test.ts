@@ -1,6 +1,9 @@
 //require('approvals').mocha();
 
+import {it2, verify} from "../../../../lib/Providers/Mocha/MochaApprovals";
+
 const assert = require('assert');
+// import { describe, it } from 'mocha';
 
 describe("Mocha Typescript Approvals", () => {
 
@@ -8,6 +11,11 @@ describe("Mocha Typescript Approvals", () => {
     // verify("Hello From Approvals");
     assert.equal(2, 2);
   });
+
+   //  it2("verify approvals", () => {
+   //      verify("Hello From Approvals");
+   //      // get the test name of the current mocha test
+   // });
 });
 
 

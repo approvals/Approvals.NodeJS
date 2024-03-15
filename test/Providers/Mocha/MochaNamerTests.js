@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var path = require('path');
-var MochaNamer = require("../../../lib/Providers/Mocha/MochaNamer.js");
+var { MochaNamer } = require("../../../lib/Providers/Mocha/MochaNamer");
 
 describe('MochaNamer', function () {
 

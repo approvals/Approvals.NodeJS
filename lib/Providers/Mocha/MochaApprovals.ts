@@ -11,15 +11,24 @@ import {printArray, printJson} from "../../Utilities/Printers";
 ```
 */
 import {Options} from "../../Core/Options";
-import {getJestNamer} from "./JestNamer";
+import {MochaNamer} from "./MochaNamer";
+import mocha from 'mocha';
 
 const StringWriter = require("../../StringWriter");
 const approvals = require("../../Approvals");
+let mochaTest: any = null;
 
+export function it2(label: string, test: () => void): void {
+    mocha.it(label, function () {
+        mochaTest = this;
+        console.log("Mocha Test: ", mochaTest.test.name);
+        test();
+    });
+}
 
 export function verify(sut: any, options?: Options): void {
     options = options || new Options()
-    options = options.withNamer(getJestNamer());
+    options = options.withNamer(new MochaNamer(mochaTest.test));
     const config = options.getConfig(approvals.getConfig());
     const scrubbed = options.scrub(`${sut}`);
     const writer = new StringWriter(config,  scrubbed, options.forFile().getFileExtension());

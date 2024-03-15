@@ -1,6 +1,5 @@
 import type {Scrubber} from "../Scrubbers/Scrubbers";
-import type {Namer} from "../Namer";
-import {getJestNamer} from "../Providers/Jest/JestNamer";
+const Namer: any = require("../Namer");
 
 export type ConfigModifier = (t: any) => any;
 
@@ -71,11 +70,11 @@ export class Options {
         return modifier(config);
     }
 
-    withNamer(namer: Namer): Options {
+    withNamer(namer: typeof Namer): Options {
         return this.modify("Namer", namer);
     }
 
-    getNamer(): Namer {
-        return this.get("Namer", () => getJestNamer());
+    getNamer(): typeof Namer {
+        return this.get("Namer", () => new Namer('',''));
     }
 }
