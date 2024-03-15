@@ -54,7 +54,6 @@
     "marked-terminal": "^5.1.1",
     "minimist": "^1.2.5",
     "mkdirp": "^1.0.4",
-    "natives": "^1.1.6",
     "shelljs": "^0.8.4",
     "temp": "^0.9.4",
     "ts-jest": "^29.0.3"
