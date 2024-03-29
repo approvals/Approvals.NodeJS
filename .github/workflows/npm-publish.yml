@@ -32,7 +32,7 @@ jobs:
       - name: set version
         run: |
           ./updateVersion.sh ${{ steps.version.outputs.tag }}
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ${{ steps.version.outputs.tag }}
           branch: master
