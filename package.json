@@ -73,7 +73,7 @@
     "gulp-load-plugins": "^2.0.7",
     "gulp-mocha": "^9.0.0",
     "gulp-watch": "^5.0.1",
-    "jsdoc-to-markdown": "^7.0.1",
+    "jsdoc-to-markdown": "^8.0.1",
     "mocha": "^10.0.0",
     "np": "^8.0.4",
     "npm-check-updates": "^16.10.15",
