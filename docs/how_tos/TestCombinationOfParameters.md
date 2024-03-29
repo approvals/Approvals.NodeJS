@@ -31,7 +31,7 @@ it will call the function being tested with all
 1. Copy this starter text, and adjust for the number of inputs that you have.
 
 <!-- snippet: CombinationsStartingPoint -->
-<a id='snippet-combinationsstartingpoint'></a>
+<a id='snippet-CombinationsStartingPoint'></a>
 ```ts
 test('CombinationsStartingPoint', () => {
     const inputs1 = ["input1.value1", "input1.value2"];
@@ -39,7 +39,7 @@ test('CombinationsStartingPoint', () => {
     verifyAllCombinations2((a, b) => `placeholder for ${a}, ${b}`, inputs1, inputs2);
 });
 ```
-<sup><a href='/test/Providers/Jest/CombinationApprovals.test.ts#L55-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-combinationsstartingpoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/Providers/Jest/CombinationApprovals.test.ts#L55-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
