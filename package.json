@@ -43,7 +43,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "chalk": "^4.1.0",
-    "diff": "^5.1.0",
+    "diff": "^5.2.0",
     "event-stream": "^4.0.1",
     "file-type": "^10.0.0",
     "glob": "^10.3.12",
