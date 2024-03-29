@@ -76,7 +76,7 @@
     "jsdoc-to-markdown": "^8.0.1",
     "mocha": "^10.0.0",
     "np": "^10.0.2",
-    "npm-check-updates": "^16.10.15",
+    "npm-check-updates": "^16.14.18",
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "sinon": "^17.0.1",
