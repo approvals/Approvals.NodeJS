@@ -209,6 +209,7 @@ Any of the following reporter may suite your needs. Some support images, some on
 | `vimdiff` |  | &#10003; | &#10003; |  |
 | `visualstudio` | [Visual Studio Diff tool](http://msdn.microsoft.com/en-us/library/bb385990.aspx) | &#10003; |  |
 | `vscode` | [Visual Studio Code Diff tool](https://code.visualstudio.com/) | &#10003; | &#10003; |
+| `vscodium` | [VSCodium Diff tool](https://vscodium.com/) | &#10003; | &#10003; |
 
 
 ### Custom Reporter
