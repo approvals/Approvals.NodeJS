@@ -1,39 +1,40 @@
-'use strict';
-
-class DiffReporterAggregate {
-  constructor(reporters) {
-    this.reporters = reporters;
-    this.name = "DiffReporterAggregate [" + reporters.map(function (item) { return item.name; }).join(', ') + "]";
-  }
-
-  getReporter(file) {
-    var firstReporter = null;
-    var reporters = this.reporters;
-
-    for (var i = 0; i < reporters.length; i++) {
-      var reporter = reporters[i];
-      if (reporter.canReportOn(file)) {
-        firstReporter = reporter;
-        break;
-      }
-    }
-    return firstReporter;
-  }
-
-  canReportOn(file) {
-    return !!this.getReporter(file);
-  }
-
-  report(approved, received, options) {
-    var reporter = this.getReporter(received);
-
-    if (reporter) {
-      return reporter.report(approved, received, options);
-    } else {
-      throw new Error("No reporter found!");
-    }
-  }
-
+interface Reporter {
+    name: string;
+    canReportOn(file: string): boolean;
+    report(approved: string, received: string, options?: any): void;
 }
 
-module.exports = DiffReporterAggregate;
+class DiffReporterAggregate {
+    private reporters: Reporter[];
+    public name: string;
+
+    constructor(reporters: Reporter[]) {
+        this.reporters = reporters;
+        this.name = `DiffReporterAggregate [${reporters.map(item => item.name).join(', ')}]`;
+    }
+
+    getReporter(file: string): Reporter | null {
+        for (const reporter of this.reporters) {
+            if (reporter.canReportOn(file)) {
+                return reporter;
+            }
+        }
+        return null;
+    }
+
+    canReportOn(file: string): boolean {
+        return !!this.getReporter(file);
+    }
+
+    report(approved: string, received: string, options?: any): void {
+        const reporter = this.getReporter(received);
+
+        if (reporter) {
+            reporter.report(approved, received, options);
+        } else {
+            throw new Error("No reporter found!");
+        }
+    }
+}
+
+export = DiffReporterAggregate;
