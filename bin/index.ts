@@ -80,7 +80,7 @@ if (verbose) {
   console.log('reporters: ', reporters || 'undefined (but will fallback to approvals preconfigure defaults)');
 }
 
-var opts = {};
+const opts: any = {};
 if (reporters) {
   opts.reporters = reporters;
 }

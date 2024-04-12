@@ -43,6 +43,7 @@ coverage/
 
 # TypeScript output
 *.d.ts
+bin/*.js
 lib/Core/*.js
 lib/Utilities/**/*.js
 test/Utilities/**/**.js
