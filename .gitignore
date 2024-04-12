@@ -45,6 +45,7 @@ coverage/
 *.d.ts
 bin/*.js
 lib/Core/*.js
+lib/Writers/*.js
 lib/Utilities/**/*.js
 test/Utilities/**/**.js
 lib/Providers/**/**.js

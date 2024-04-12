@@ -1,4 +1,5 @@
 lib/Namer.js
+lib/Writers/*.js
 lib/Core/*.js
 lib/Providers/**/*.js
 lib/Scrubbers/Scrubbers.js
