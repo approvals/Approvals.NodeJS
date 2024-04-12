@@ -1,6 +1,7 @@
 lib/Namer.js
 lib/Writers/*.js
 lib/Core/*.js
+lib/Reporting/*.js
 lib/Providers/**/*.js
 lib/Scrubbers/Scrubbers.js
 lib/Scrubbers/DateScrubber.js

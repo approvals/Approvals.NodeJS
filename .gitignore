@@ -49,6 +49,7 @@ lib/Writers/*.js
 lib/Utilities/**/*.js
 test/Utilities/**/**.js
 lib/Providers/**/**.js
+lib/Reporting/*.js
 test/Providers/Jest/**.js
 test/Providers/Mocha/Typescript/**.js
 lib/Namer.js
