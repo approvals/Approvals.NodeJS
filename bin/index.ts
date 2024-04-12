@@ -1,104 +1,97 @@
 #!/usr/bin/env ts-node
 /// <reference path="../typings/node/node.d.ts"/>
-'use strict';
+import chalk from 'chalk';
+import es from 'event-stream';
+import * as autils from '../lib/AUtils';
+import fs from 'fs';
+import path from 'path';
+import marked from 'marked';
+import TerminalRenderer from 'marked-terminal';
+import minimist from 'minimist';
+import approvals from '../lib/Approvals';
 
-var chalk = require('chalk');
-var es = require('event-stream');
-var autils = require('../lib/AUtils');
+const verbose = process.argv.includes('--verbose');
+const printHelp = process.argv.includes('--help');
 
-var verbose = process.argv.indexOf('--verbose') >= 0;
-var printHelp = process.argv.indexOf('--help') >= 0;
+function printHelpMessage() {
+    if (verbose) {
+        console.log("printing help...");
+    }
 
-function printHelpMessage(){
+    const helpFile = fs.readFileSync(path.join(__dirname, 'help.md'), 'utf8');
+    marked.setOptions({
+        renderer: new TerminalRenderer()
+    });
+    let output = marked.parse(helpFile) as string;
 
-  if (verbose) {
-    console.log("printing help...");
-  }
-
-  var helpFile = require('fs').readFileSync(require('path').join(__dirname, 'help.md')).toString();
-  var marked = require('marked');
-  var TerminalRenderer = require('marked-terminal');
-  marked.setOptions({
-    renderer: new TerminalRenderer()
-  });
-  var output = marked.parse(helpFile);
-
-  // Some spacing formatting cleanup
-  output = output.replace(/&nbsp;/g, ' ');
-  console.log(output);
+    output = output.replace(/&nbsp;/g, ' ');
+    console.log(output);
 }
 
-function errAndExit(msg) {
-  printHelpMessage();
-  console.log(chalk.red(msg));
-  process.exit(1);
+function errAndExit(msg: string): void {
+    printHelpMessage();
+    console.log(chalk.red(msg));
+    process.exit(1);
 }
 
 if (printHelp) {
-  printHelpMessage();
-  process.exit();
+    printHelpMessage();
+    process.exit();
 }
 
 if (verbose) {
-  console.log('process.argv: ', process.argv);
+    console.log('process.argv: ', process.argv);
 }
 
-var argv = require('minimist')(process.argv.slice(2), {
-  alias: {
-    'reporters': ['r']
-  },
-  boolean: ['verbose']
+const argv = minimist(process.argv.slice(2), {
+    alias: {
+        'reporters': ['r']
+    },
+    boolean: ['verbose']
 });
+
 if (verbose) {
-  console.log('parsed args: ', argv);
+    console.log('parsed args: ', argv);
 }
 
-var reporters = argv.reporter;
+let reporters = argv.reporter as string | string[];
 if (typeof reporters === 'string') {
-  // single argument case is a string - multiple is an array already
-  reporters = [reporters];
+    reporters = [reporters];
 }
 
-var testname = argv._[0];
+const testname = argv._[0];
 if (!testname) {
-  errAndExit('Missing parameter: supply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory');
+    errAndExit('Missing parameter: supply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory');
 }
 
-var outdir = argv.outdir || process.cwd();
-if (!require('fs').existsSync(outdir)) {
-  errAndExit('Directory not found: ' + outdir);
+const outdir = argv.outdir || process.cwd();
+if (!fs.existsSync(outdir)) {
+    errAndExit('Directory not found: ' + outdir);
 }
 
-// we don't want to error on stale approved files by default because this basically runs 1 test at a time
-// and we would end up with a bunch of noise.
-var errorOnStaleApprovedFiles = argv.errorOnStaleApprovedFiles === 'true';
+const errorOnStaleApprovedFiles = argv.errorOnStaleApprovedFiles === 'true';
 
 if (verbose) {
-  console.log('outdir: ', outdir);
-  console.log('errorOnStaleApprovedFiles: ', errorOnStaleApprovedFiles);
-  console.log('testname: ', testname);
-  console.log('reporters: ', reporters || 'undefined (but will fallback to approvals preconfigure defaults)');
+    console.log('outdir: ', outdir);
+    console.log('errorOnStaleApprovedFiles: ', errorOnStaleApprovedFiles);
+    console.log('testname: ', testname);
+    console.log('reporters: ', reporters || 'undefined (but will fallback to approvals preconfigure defaults)');
 }
 
 const opts: any = {};
 if (reporters) {
-  opts.reporters = reporters;
+    opts.reporters = reporters;
 }
 opts.errorOnStaleApprovedFiles = errorOnStaleApprovedFiles;
 
 if (verbose) {
-  console.log('approval opts: ', opts);
+    console.log('approval opts: ', opts);
 }
 
-// TODO: add other approval options in... or find a way to dynamically add them.
+opts.forceApproveAll = autils.hasCommandLineArgument("--forceapproveall") || autils.hasCommandLineArgument("-f");
 
-var approvals = require('../lib/Approvals');
-
-opts.forceApproveAll = !!(autils.hasCommandLineArgument("--forceapproveall") || autils.hasCommandLineArgument("-f"));
-
-// now capture standard in and verify against it
-process.stdin.pipe(es.mapSync(function(data) {
-  var dataToVerify = data.toString();
-  approvals.configure(opts);
-  approvals.verify(outdir, testname, dataToVerify);
+process.stdin.pipe(es.mapSync((data: Buffer) => {
+    const dataToVerify = data.toString();
+    approvals.configure(opts);
+    approvals.verify(outdir, testname, dataToVerify);
 }));
