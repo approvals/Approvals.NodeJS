@@ -1,6 +1,5 @@
 import type {Scrubber} from "../Scrubbers/Scrubbers";
-const Namer: any = require("../Namer");
-
+import {Namer} from "../Namer";
 export type ConfigModifier = (t: any) => any;
 
 class FileOptions {
