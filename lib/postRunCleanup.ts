@@ -34,7 +34,7 @@ module.exports = function (config, approvedFilesMap) {
 
         var getAllDirectoriesOfApprovedFiles = unique(normalizedApprovedFilePaths.map(function (file) { return path.dirname(file); })) // get just the directory of each
 
-        var discoveredApprovalFiles = [];
+        var discoveredApprovalFiles: any = [];
         getAllDirectoriesOfApprovedFiles.forEach(function (folder) {
             return glob.sync(folder + "**/*.approved.*").forEach(function (file) {
                 if (discoveredApprovalFiles.indexOf(file) === -1) {
