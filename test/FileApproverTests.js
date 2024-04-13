@@ -116,7 +116,7 @@ describe('FileApprover', function () {
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "\uFEFFHello Missing Byte Order Mark!\n");
       reporterFactory = function () {
-        var x = ReporterFactory.loadReporter('gitdiff');
+        var x = ReporterFactory.ReporterFactory.loadReporter('gitdiff');
         return [x];
       };
     });

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as cfg from '../config';
 import StringWriter from "../StringWriter.js";
 import FileApprover from "../FileApprover.js";
-import ReporterFactory from "../Reporting/ReporterFactory.js";
+import {ReporterFactory} from "../Reporting/ReporterFactory.js";
 import * as aUtils from '../AUtils';
 
 interface ApprovalsExtras {

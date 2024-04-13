@@ -13,7 +13,7 @@ describe('AggregateReporter', function () {
     this.timeout(60000); // just a test to see if it can pass on AppVeyor?
     var file = path.join(__dirname, "a.txt");
 
-    var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
+    var reporters = ReporterFactory.ReporterFactory.loadAllReporters(textDiffReporters);
 
     var reporterX = new DiffReporterAggregate(reporters);
     var canReportOn = reporterX.canReportOn(file);

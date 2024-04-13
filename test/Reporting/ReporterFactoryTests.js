@@ -21,13 +21,13 @@ describe('ReporterFactory', function () {
 
   it('Should load specific reporters', function () {
     allAvailableDiffReporters.forEach(function (differ) {
-      ReporterFactory.loadReporter(differ);
+      ReporterFactory.ReporterFactory.loadReporter(differ);
     });
   });
 
   it('Should report all available if incorrect name specified', function () {
     try {
-      ReporterFactory.loadReporter('wat?');
+      ReporterFactory.ReporterFactory.loadReporter('wat?');
     } catch (e) {
       if (e.message.indexOf("Error loading reporter or reporter not found [wat?]. Try one of the following") === -1) {
         throw e;
@@ -36,13 +36,13 @@ describe('ReporterFactory', function () {
   });
 
   it('Should load all reporters', function () {
-    var reporters = ReporterFactory.loadAllReporters(allAvailableDiffReporters);
+    var reporters = ReporterFactory.ReporterFactory.loadAllReporters(allAvailableDiffReporters);
     assert.strictEqual(reporters.length, allAvailableDiffReporters.length);
   });
 
   it("should be able to report on a txt file", function () {
 
-    var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
+    var reporters = ReporterFactory.ReporterFactory.loadAllReporters(textDiffReporters);
 
     reporters.forEach(function (reporter) {
 
@@ -56,7 +56,7 @@ describe('ReporterFactory', function () {
 
   describe("When loading an array of reporters", function () {
     it("should use the ReporterDiffAggregate", function () {
-      ReporterFactory.loadReporter(textDiffReporters);
+      ReporterFactory.ReporterFactory.loadReporter(textDiffReporters);
     });
   });
 
@@ -72,27 +72,27 @@ describe('ReporterFactory', function () {
     });
 
     it("should return true for a valid reporter", function () {
-      expect(ReporterFactory.assertValidReporter(validDummyReporter)).to.equal(true);
+      expect(ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter)).to.equal(true);
     });
 
     it("should raise an error when reporter is missing a name", function () {
       expect(function () {
         delete validDummyReporter.name;
-        ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
 
     it("should raise an error when reporter is missing a canReportOn", function () {
       expect(function () {
         delete validDummyReporter.canReportOn;
-        ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
 
     it("should raise an error when reporter is missing a report", function () {
       expect(function () {
         delete validDummyReporter.report;
-        ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
 
@@ -114,7 +114,7 @@ describe('ReporterFactory', function () {
           console.log("reporter", reporterName);
           return {
             name: reporterName,
-            reporter: ReporterFactory.loadReporter(reporterName)
+            reporter: ReporterFactory.ReporterFactory.loadReporter(reporterName)
           };
         });
     });
@@ -123,7 +123,7 @@ describe('ReporterFactory', function () {
       allReporters.forEach(item => {
         var reporter = item.reporter;
         try {
-          ReporterFactory.assertValidReporter(reporter);
+          ReporterFactory.ReporterFactory.assertValidReporter(reporter);
         } catch (err) {
           console.error(err);
           throw new Error("Reporter " + item.name + " did not conform to Reporter interface \n" + err);
