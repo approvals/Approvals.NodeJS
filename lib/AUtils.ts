@@ -1,197 +1,153 @@
-'use strict';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as shell from 'shelljs';
+import * as osTools from './osTools';
 
-var fs = require('fs');
-var path = require('path');
-var shell = require('shelljs');
-var osTools = require('./osTools');
+interface CachedProgramLookups {
+    [programName: string]: string | null;
+}
 
-var _cachedProgramLookups = {};
+const _cachedProgramLookups: CachedProgramLookups = {};
 
-var createEmptyFileIfNotExists = function (file) {
-  if (!fs.existsSync(file)) {
-
-    var ext = (path.extname(file) || '').toLowerCase();
-
-    if (ext === '.png') {
-      fs.writeFileSync(file, fs.readFileSync(path.join(__dirname, 'DummyApprovedFiles', 'UnapprovedImage.png')));
-    } else {
-      // Assume it's a text file
-      fs.writeFileSync(file, "");
+const createEmptyFileIfNotExists = (file: string): void => {
+    if (!fs.existsSync(file)) {
+        const ext = (path.extname(file) || '').toLowerCase();
+        if (ext === '.png') {
+            fs.writeFileSync(file, fs.readFileSync(path.join(__dirname, 'DummyApprovedFiles', 'UnapprovedImage.png')));
+        } else {
+            fs.writeFileSync(file, "");
+        }
     }
-  }
 };
 
-var assertFileExists = function (file) {
-  if (!fs.existsSync(file)) {
-    throw new Error("File not found: " + file);
-  }
+const assertFileExists = (file: string): void => {
+    if (!fs.existsSync(file)) {
+        throw new Error("File not found: " + file);
+    }
 };
 
-var hasCommandLineArgument = function (arg) {
-  return !!(process.argv || []).filter(function (val) {
-    return (val || '').toLowerCase() === arg;
-  }).length;
+const hasCommandLineArgument = (arg: string): boolean => {
+    return process.argv.some((val) => (val || '').toLowerCase() === arg);
 };
 
-// copied and modified from http://stackoverflow.com/questions/10225399/check-if-a-file-is-binary-or-ascii-with-node-js
-var isBinaryFile = function (buffer) {
-
-  var charCode, contentStartUTF8, i, _i, _ref;
-  contentStartUTF8 = buffer.toString('utf8', 0, 24);
-
-  for (i = _i = 0, _ref = contentStartUTF8.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-    charCode = contentStartUTF8.charCodeAt(i);
-    if (charCode === 65533 || charCode <= 8) {
-      return true;
+const isBinaryFile = (buffer: Buffer): boolean => {
+    const contentStartUTF8 = buffer.toString('utf8', 0, 24);
+    for (let i = 0, _ref = contentStartUTF8.length; i < _ref; i++) {
+        const charCode = contentStartUTF8.charCodeAt(i);
+        if (charCode === 65533 || charCode <= 8) {
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 };
 
-var trimExtension = function (filePath) {
-  if (!filePath) {
-    return filePath;
-  }
-  var i = filePath.lastIndexOf('.');
-  var ext = (i < 0) ? '' : filePath.substr(i);
-  if (ext) {
-    return filePath.substring(0, filePath.length - ext.length);
-  }
-  return filePath;
+const trimExtension = (filePath: string): string => {
+    if (!filePath) return filePath;
+    const i = filePath.lastIndexOf('.');
+    const ext = i < 0 ? '' : filePath.substr(i);
+    return ext ? filePath.substring(0, filePath.length - ext.length) : filePath;
 };
 
-var findProgramOnPath = function (programName) {
-
-  // eslint-disable-next-line no-prototype-builtins
-  if (_cachedProgramLookups.hasOwnProperty(programName)) {
-    return _cachedProgramLookups[programName];
-  }
-  var output = shell.exec(osTools.findProgramPathCommand + " " + programName, { silent: true });
-
-  var result = null;
-  if (output) {
-    var file = output.split("\n")[0].trim();
-
-    var fixedFile = fixFilePathSlashes(file);
-    if (fs.existsSync(fixedFile)) {
-      result = fixedFile;
+const findProgramOnPath = (programName: string): string | null => {
+    if (_cachedProgramLookups.hasOwnProperty(programName)) {
+        return _cachedProgramLookups[programName];
     }
-  }
-
-  if (!result) {
-    var pathMinusExtension = trimExtension(programName);
-
-    if (pathMinusExtension !== programName) {
-      result = findProgramOnPath(pathMinusExtension);
+    const output = shell.exec(`${osTools.findProgramPathCommand} ${programName}`, { silent: true });
+    let result: string | null = null;
+    if (output.stdout) {
+        const file = output.stdout.split("\n")[0].trim();
+        const fixedFile = fixFilePathSlashes(file);
+        if (fs.existsSync(fixedFile)) {
+            result = fixedFile;
+        }
     }
-  }
-
-  _cachedProgramLookups[programName] = result;
-  return result;
+    if (!result) {
+        const pathMinusExtension = trimExtension(programName);
+        if (pathMinusExtension !== programName) {
+            result = findProgramOnPath(pathMinusExtension);
+        }
+    }
+    _cachedProgramLookups[programName] = result;
+    return result;
 };
 
-var searchForExecutable = function (folderInProgramInFiles, fileName) {
-
-  if (arguments.length === 1) {
-    fileName = folderInProgramInFiles;
-    folderInProgramInFiles = null;
-  }
-
-  var programOnPath = findProgramOnPath(fileName);
-  if (programOnPath) {
-    return programOnPath;
-  }
-
-  var searchedInPaths = [];
-
-  //TODO: find a way to get at the environment variables for ProgramFiles and ProgramFiles(x86)
-  // for now hard code it...
-
-  function findInPath(root, dir, file) {
-    var fullPath = path.join(root, dir, file);
-    var fixedFullPath = fixFilePathSlashes(fullPath);
-
-    searchedInPaths.push(fixedFullPath);
-
-    if (fs.existsSync(fixedFullPath)) {
-      return fixedFullPath;
+const searchForExecutable = (folderInProgramInFiles?: string, fileName?: string): string | null => {
+    if (!fileName) {
+        fileName = folderInProgramInFiles;
+        folderInProgramInFiles = undefined;
     }
-    return null;
-  }
-
-  function lookInProgramFiles(fileName_) {
-    if (osTools.platform.isWindows) {
-      var tryVar = findInPath("C:/Program Files", folderInProgramInFiles || '', fileName_);
-      if (tryVar) {
-        return tryVar;
-      }
-
-      tryVar = findInPath("C:/Program Files (x86)", folderInProgramInFiles || '', fileName_);
-      if (tryVar) {
-        return tryVar;
-      }
+    const programOnPath = findProgramOnPath(fileName!);
+    if (programOnPath) {
+        return programOnPath;
     }
-
-    return null;
-  }
-
-  var fileFound = lookInProgramFiles(fileName);
-  if (fileFound) {
-    return fileFound;
-  }
-
-  var suffix = ".exe";
-  if (fileName.indexOf(suffix, fileName.length - suffix.length) === -1) {
-    fileFound = lookInProgramFiles(fileName + ".exe");
+    const lookInProgramFiles = (fileName_: string): string | null => {
+        if (osTools.platform.isWindows) {
+            let tryVar = findInPath("C:/Program Files", folderInProgramInFiles || '', fileName_);
+            if (tryVar) {
+                return tryVar;
+            }
+            tryVar = findInPath("C:/Program Files (x86)", folderInProgramInFiles || '', fileName_);
+            if (tryVar) {
+                return tryVar;
+            }
+        }
+        return null;
+    };
+    const findInPath = (root: string, dir: string, file: string): string | null => {
+        const fullPath = path.join(root, dir, file);
+        const fixedFullPath = fixFilePathSlashes(fullPath);
+        if (fs.existsSync(fixedFullPath)) {
+            return fixedFullPath;
+        }
+        return null;
+    };
+    let fileFound = lookInProgramFiles(fileName!);
     if (fileFound) {
-      return fileFound;
+        return fileFound;
     }
-  }
-
-  //	console.log("Searched in paths:", searchedInPaths);
-
-  return null;
-};
-
-var fixFilePathSlashes = function (path_) {
-  return (path_ || '').replace(/\\/g, '/');
-};
-
-var recursivelyOrderKeys = function(unordered) {
-  if (unordered === null) {
+    const suffix = ".exe";
+    if (!fileName!.endsWith(suffix)) {
+        fileFound = lookInProgramFiles(fileName! + suffix);
+        if (fileFound) {
+            return fileFound;
+        }
+    }
     return null;
-  }
+};
 
-  if (Array.isArray(unordered)) {
-    unordered.forEach(function (item, index) {
-      unordered[index] = recursivelyOrderKeys(item);
-    });
+const fixFilePathSlashes = (path_: string): string => {
+    return path_.replace(/\\/g, '/');
+};
+
+const recursivelyOrderKeys = (unordered: any): any => {
+    if (unordered === null) {
+        return null;
+    }
+    if (Array.isArray(unordered)) {
+        return unordered.map(recursivelyOrderKeys);
+    }
+    if (typeof unordered === 'object' && unordered !== null) {
+        const ordered: { [key: string]: any } = {};
+        Object.keys(unordered).sort().forEach((key) => {
+            ordered[key] = recursivelyOrderKeys(unordered[key]);
+        });
+        return ordered;
+    }
     return unordered;
-  }
-
-  if (unordered !== null && typeof unordered === 'object') {
-    var ordered = {};
-    Object.keys(unordered).sort().forEach(function(key) {
-      ordered[key] = recursivelyOrderKeys(unordered[key]);
-    });
-    return ordered;
-  }
-
-  return unordered;
 };
 
-var stringifyKeysInOrder = function(data) {
-  var sortedData = recursivelyOrderKeys(data);
-  return JSON.stringify(sortedData, null, '  ');
+const stringifyKeysInOrder = (data: any): string => {
+    const sortedData = recursivelyOrderKeys(data);
+    return JSON.stringify(sortedData, null, '  ');
 };
 
-module.exports = {
-  createEmptyFileIfNotExists: createEmptyFileIfNotExists,
-  assertFileExists: assertFileExists,
-  hasCommandLineArgument: hasCommandLineArgument,
-  isBinaryFile: isBinaryFile,
-  findProgramOnPath: findProgramOnPath,
-  searchForExecutable: searchForExecutable,
-  fixFilePathSlashes: fixFilePathSlashes,
-  stringifyKeysInOrder: stringifyKeysInOrder
+export {
+    createEmptyFileIfNotExists,
+    assertFileExists,
+    hasCommandLineArgument,
+    isBinaryFile,
+    findProgramOnPath,
+    searchForExecutable,
+    fixFilePathSlashes,
+    stringifyKeysInOrder
 };
