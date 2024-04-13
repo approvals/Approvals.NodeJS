@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import * as yaml from 'js-yaml';
 import { ReportLaunchingCircuitBreaker } from './Reporting/ReportLaunchingCircuitBreaker';
 
-interface Config {
+export interface Config {
     reporters: string[],
     normalizeLineEndingsTo: boolean | string,
     failOnLineEndingDifferences: boolean,

@@ -30,7 +30,7 @@ const hasCommandLineArgument = (arg: string): boolean => {
     return process.argv.some((val) => (val || '').toLowerCase() === arg);
 };
 
-const isBinaryFile = (buffer: Buffer): boolean => {
+const isBinaryFile = (buffer: Buffer | String): boolean => {
     const contentStartUTF8 = buffer.toString('utf8', 0, 24);
     for (let i = 0, _ref = contentStartUTF8.length; i < _ref; i++) {
         const charCode = contentStartUTF8.charCodeAt(i);
