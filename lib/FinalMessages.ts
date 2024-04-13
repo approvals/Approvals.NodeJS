@@ -1,7 +1,7 @@
 
 const messages: string[] = [];
 
-class FinalMessages {
+export class FinalMessages {
 
   static addMessage(message) {
     messages.push(message);

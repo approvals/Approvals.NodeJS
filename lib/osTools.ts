@@ -1,17 +1,11 @@
-/// <reference path="../typings/node/node.d.ts"/>
-'use strict';
+// Remove the reference path as TypeScript should be configured to recognize node types globally via `tsconfig.json`
 
-var isWindows = (process.platform.indexOf('win') === 0);
+// Detect OS-specific features using TypeScript.
+const isWindows = process.platform.startsWith('win');
 
-exports.platform = {
-  isWindows: isWindows,
-  isMac: process.platform === 'darwin'
+export const platform = {
+    isWindows: isWindows,
+    isMac: process.platform === 'darwin'
 };
 
-var findProgramPathCommand = "which";
-
-if (isWindows) {
-  findProgramPathCommand = "where";
-}
-
-exports.findProgramPathCommand = findProgramPathCommand;
+export let findProgramPathCommand = isWindows ? "where" : "which";
