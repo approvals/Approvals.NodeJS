@@ -4,7 +4,7 @@ var isWin = !!process.platform.match(/^win/);
 console.log();
 
 if (isWin) {
-  var cmd = spawn('npm.cmd', ['install', 'edge'], { cwd: __dirname });
+  var cmd = spawn('cmd', ['/C', 'npm.cmd', 'install', 'edge'], { cwd: __dirname });
 
   cmd.stdout.on('data', function (data) {
     console.log('' + data);
