@@ -1,5 +1,5 @@
 
-const messages = [];
+const messages: string[] = [];
 
 class FinalMessages {
 
