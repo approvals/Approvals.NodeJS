@@ -1,142 +1,97 @@
-'use strict';
+import fs from 'fs';
+import chalk from 'chalk';
+import {Options} from "./Core/Options";
 
-var fs = require('fs');
-var chalk = require('chalk');
-
-function normalizeLineEndings(value) {
-  return value.replace(/(?:\r\n|\r|\n)/g, '\n');
+interface Namer {
+    getApprovedFile(ext: string): string;
+    getReceivedFile(ext: string): string;
 }
 
+interface Writer {
+    getFileExtension(): string;
+    write(filePath: string): void;
+}
 
-exports.verify = function (namer, writer, reporterFactory, options) {
+interface Reporter {
+    canReportOn(fileName: string): boolean;
+    report(approvedFileName: string, receivedFileName: string, options: Options): void;
+    name: string;
+}
 
-  if (!namer) {
-    throw new Error("missing argument 'namer'");
-  }
-  if (!writer) {
-    throw new Error("missing argument 'writer'");
-  }
-  if (!reporterFactory) {
-    throw new Error("missing argument 'reporterFactory'");
-  }
+interface Options {
+    stripBOM?: boolean;
+    forceApproveAll?: boolean;
+    failOnLineEndingDifferences?: boolean;
+    shouldIgnoreStaleApprovedFile?(fileName: string): boolean;
+}
 
-  var stripBOM = (options && options.stripBOM);
-  var forceApproveAll = (options && options.forceApproveAll);
-  var failOnLineEndingDifferences = (options && options.failOnLineEndingDifferences);
+function normalizeLineEndings(value: string): string {
+    return value.replace(/(?:\r\n|\r|\n)/g, '\n');
+}
 
-  var approvedFileName = namer.getApprovedFile(writer.getFileExtension());
-  var receivedFileName = namer.getReceivedFile(writer.getFileExtension());
-
-  writer.write(receivedFileName);
-
-  if (forceApproveAll) {
-    console.log(chalk.yellow("WARNING: force approving: " + approvedFileName));
-    writer.write(approvedFileName);
-  }
-
-  var selectFirstCompatibleReporter = function () {
-    const allReporters = reporterFactory();
-
-    var reporter = allReporters.filter(function (reporterCandidate) {
-      return reporterCandidate.canReportOn(receivedFileName);
-    })[0];
-
-    if (!reporter) {
-      throw new Error("\nNo compatible reporter found in configured list [" + allReporters.map(r => r.name).join(',') + "] for: " + receivedFileName);
+export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Options): void {
+    if (!namer || !writer || !reporterFactory) {
+        throw new Error("Missing required arguments: 'namer', 'writer', or 'reporterFactory'.");
     }
-    return reporter;
-  };
-
-  var throwReporterError = function (msg) {
-    var reporter = selectFirstCompatibleReporter();
-
-    var reporterError;
-    try {
-      reporter.report(approvedFileName, receivedFileName, options);
-    } catch (ex) {
-      reporterError = "\nError raised by reporter [" + reporter.name + "]: " + ex + "\n";
+    if (!options) {
+        options = {}
     }
 
-    throw new Error((reporterError ? (reporterError + "\n") : "") + msg + ": \nApproved: " + approvedFileName + "\nReceived: " + receivedFileName + '\n');
-  };
+    const approvedFileName = namer.getApprovedFile(writer.getFileExtension());
+    const receivedFileName = namer.getReceivedFile(writer.getFileExtension());
 
-  if (!fs.existsSync(approvedFileName)) {
-    throwReporterError("Approved file does not exist: " + approvedFileName);
-  }
+    writer.write(receivedFileName);
 
-  if (!stripBOM) {
-    if (fs.statSync(approvedFileName).size !== fs.statSync(receivedFileName).size && failOnLineEndingDifferences) {
-      throwReporterError("File sizes do not match");
-    }
-  }
-
-  var approvedFileContents = fs.readFileSync(approvedFileName, 'utf8') || "";
-  var receivedFileContents = fs.readFileSync(receivedFileName, 'utf8') || "";
-
-  // Remove a Byte Order Mark if configured
-  if (stripBOM) {
-    approvedFileContents = approvedFileContents.replace(/^\uFEFF/, '');
-    receivedFileContents = receivedFileContents.replace(/^\uFEFF/, '');
-  }
-
-  var approvedFileBufferNormalized = approvedFileContents;
-  var receivedFileBufferNormalized = receivedFileContents;
-
-  if (approvedFileContents.length === 0 && receivedFileContents.length > 0) {
-    throwReporterError("Approved file is blank.");
-  }
-
-  let testBufferLength = true;
-
-  if (failOnLineEndingDifferences) {
-
-    if (approvedFileContents !== receivedFileContents) {
-
-      throwReporterError("Files do not match");
-
+    if ( options.forceApproveAll) {
+        console.log(chalk.yellow(`WARNING: Force approving: ${approvedFileName}`));
+        writer.write(approvedFileName);
     }
 
-  } else {
+    const selectFirstCompatibleReporter = (): Reporter => {
+        const allReporters = reporterFactory();
+        const reporter = allReporters.find(reporter => reporter.canReportOn(receivedFileName));
+        if (!reporter) {
+            throw new Error(`No compatible reporter found in configured list [${allReporters.map(r => r.name).join(', ')}] for: ${receivedFileName}`);
+        }
+        return reporter;
+    };
 
-    if (approvedFileContents !== receivedFileContents) {
+    const throwReporterError = (msg: string): never => {
+        const reporter = selectFirstCompatibleReporter();
+        try {
+            reporter.report(approvedFileName, receivedFileName, options);
+        } catch (ex) {
+            const reporterError = `Error raised by reporter [${reporter.name}]: ${ex}`;
+            throw new Error(`${reporterError}\n${msg}\nApproved: ${approvedFileName}\nReceived: ${receivedFileName}`);
+        }
+        throw new Error(msg);
+    };
 
-      // attempt to compare with normalized line endings
-      approvedFileBufferNormalized = normalizeLineEndings(approvedFileContents);
-      receivedFileBufferNormalized = normalizeLineEndings(receivedFileContents);
+    if (!fs.existsSync(approvedFileName)) {
+        throwReporterError(`Approved file does not exist: ${approvedFileName}`);
+    }
 
-      if (approvedFileBufferNormalized === receivedFileBufferNormalized) {
+    let approvedFileContents = fs.readFileSync(approvedFileName, 'utf8') || "";
+    let receivedFileContents = fs.readFileSync(receivedFileName, 'utf8') || "";
 
-        // debug...
-        // console.log('************')
-        // console.log('Approved:', JSON.stringify(approvedFileBuffer.toString()))
-        // console.log('Received:', JSON.stringify(receivedFileBuffer.toString()))
-        // console.log('**')
-        // console.log('Approved:', JSON.stringify(approvedFileBufferNormalized))
-        // console.log('Received:', JSON.stringify(receivedFileBufferNormalized))
-        // console.log('**')
-        // console.log('Approved:', approvedFileBufferNormalized)
-        // console.log('Received:', receivedFileBufferNormalized)
-        // console.log('************')
+    if (options.stripBOM) {
+        approvedFileContents = approvedFileContents.replace(/^\uFEFF/, '');
+        receivedFileContents = receivedFileContents.replace(/^\uFEFF/, '');
+    }
 
-        console.warn("Files differ by line-endings: \nApproved: " + approvedFileName + "\nReceived: " + receivedFileName + '\nIf you want to fail this test when they differ, set the approvals config option { failOnLineEndingDifferences: true }');
-
-        testBufferLength = false;
-
-      } else {
+    if (options.failOnLineEndingDifferences && approvedFileContents !== receivedFileContents) {
         throwReporterError("Files do not match.");
-      }
-
     }
 
-  }
+    const approvedFileBufferNormalized = normalizeLineEndings(approvedFileContents);
+    const receivedFileBufferNormalized = normalizeLineEndings(receivedFileContents);
 
-  if (testBufferLength && (approvedFileContents.length !== receivedFileContents.length)) {
-    throwReporterError("Files do not match.");
-  }
+    if (approvedFileBufferNormalized !== receivedFileBufferNormalized) {
+        throwReporterError("Files do not match.");
+    }
 
-  // delete the received file
-  fs.unlinkSync(receivedFileName);
+    // Delete the received file
+    fs.unlinkSync(receivedFileName);
 
-  process.emit("approvalFileApproved", approvedFileName);
-
-};
+    process.emit("approvalFileApproved", approvedFileName);
+}
