@@ -2,19 +2,10 @@ import glob from "glob";
 
 var path = require('path');
 
-var unique = function (items) {
-    var o = {}, i, l = items.length, r = [];
-    for (i = 0; i < l; i += 1) {
-        o[items[i]] = items[i];
-    }
-    for (i in o) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (o.hasOwnProperty(i)) {
-            r.push(o[i]);
-        }
-    }
-    return r;
-};
+function unique<T>(items: T[]): T[] {
+    return [...new Set(items)];
+}
+
 
 var normalizeFilePath = function (filePath) {
     return (filePath || '').replace(/\\/g, "/");
