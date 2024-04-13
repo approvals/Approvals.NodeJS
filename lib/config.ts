@@ -19,6 +19,7 @@ interface Config {
     maxLaunches: number
 }
 
+// begin-snippet: default_config
 const defaultConfig: Config = {
     reporters: [
         "BeyondCompare",
@@ -40,6 +41,7 @@ const defaultConfig: Config = {
     blockUntilReporterExits: false,
     maxLaunches: 10
 };
+// end-snippet
 
 function getHomeApprovalConfig(): Config | null {
     const homeConfigPath = path.join(os.homedir(), '.approvalsConfig');
