@@ -13,7 +13,7 @@ describe('MochaNamer', function () {
       var namer = new MochaNamer(this);
 
       // hack the path (for testing purposes);
-      namer.path = fullTestFilePathStub;
+      namer.basePath = fullTestFilePathStub;
 
       var approvedFileName = namer.getApprovedFile();
       var receivedFileName = namer.getReceivedFile();

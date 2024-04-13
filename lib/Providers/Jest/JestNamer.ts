@@ -1,8 +1,7 @@
 import {expect} from "@jest/globals";
 import path from "path";
 import {StringUtils} from "../../Utilities/StringUtils";
-
-const Namer: any = require("../../Namer");
+import {Namer} from "../../Namer";
 
 export function convertToFilename(name: string): string {
     const forbidden = "\\/:?\"<>|' ";

@@ -1,6 +1,6 @@
 import path from "path";
 
-const Namer: any = require("../../Namer");
+import { Namer } from "../../Namer";
 
 export interface MochaTest {
     file: string;
@@ -20,7 +20,7 @@ export class MochaNamer extends Namer {
         super('', '');
 
         this.ctx = mochaTest;
-        this.path = overrideBasePath || path.dirname(mochaTest.file);
+        this.basePath = overrideBasePath || path.dirname(mochaTest.file);
     }
 
     getFullTestName(testContext: MochaTest): string {

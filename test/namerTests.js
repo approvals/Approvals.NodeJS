@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var path = require("path");
-var Namer = require("../lib/Namer");
+var Namer = require("../lib/Namer").Namer;
 
 describe('Namer', function () {
 
