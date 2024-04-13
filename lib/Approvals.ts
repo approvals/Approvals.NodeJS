@@ -6,13 +6,12 @@
  * @module approvals
  */
 
-
+import { StringWriter } from './StringWriter';
 var cfg = require('./config');
 var callsite = require('callsite');
 var path = require('path');
 var postRunCleanup = require('./postRunCleanup');
 var ManualNamer = require('./ManualNamer');
-var StringWriter = require("./StringWriter");
 var BinaryWriter = require('./Writers/BinaryWriter');
 var FileApprover = require("./FileApprover");
 var ReporterFactory = require("./Reporting/ReporterFactory");

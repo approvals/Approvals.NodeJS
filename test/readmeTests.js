@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 
-var StringWriter = require("../lib/StringWriter");
+var StringWriter = require("../lib/StringWriter").StringWriter;
 var approvals = require('../lib/Approvals');
 var jsdoc2md = require('jsdoc-to-markdown');
 

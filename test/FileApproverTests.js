@@ -6,7 +6,7 @@ var fs = require('fs');
 var expect = require('chai').expect;
 
 var Namer = require("../lib/Namer");
-var StringWriter = require("../lib/StringWriter");
+var StringWriter = require("../lib/StringWriter").StringWriter;
 var FileApprover = require("../lib/FileApprover");
 var ReporterFactory = require("../lib/Reporting/ReporterFactory");
 
