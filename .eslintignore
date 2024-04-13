@@ -10,3 +10,4 @@ lib/Utilities/Logger/*.js
 test/Utilities/Logger/*.js
 test/Providers/Jest/*.js
 test/Providers/Mocha/Typescript/*.js
+lib/config.js
