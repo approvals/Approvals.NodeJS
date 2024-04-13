@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as _ from 'lodash';
 import * as yaml from 'js-yaml';
-import { setMaxLaunch } from './Reporting/ReportLaunchingCircuitBreaker';
+import { ReportLaunchingCircuitBreaker } from './Reporting/ReportLaunchingCircuitBreaker';
 
 interface Config {
     reporters: string[],
@@ -80,7 +80,7 @@ currentConfigObj = getConfig();
 
 function processConfig(config: Config): void {
     if (config.maxLaunches) {
-        setMaxLaunch(config.maxLaunches);
+        ReportLaunchingCircuitBreaker.setMaxLaunch(config.maxLaunches);
     }
 }
 
