@@ -20,7 +20,7 @@ interface TestCaseContext {
     verifyAsJSON: VerifyFunction;
 }
 
-export = function (Namer: any, usageSample: string, dirName: string) {
+export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName: string) {
     if (!fs.existsSync(dirName)) {
         fs.mkdirSync(dirName);
     }

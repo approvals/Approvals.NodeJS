@@ -7,6 +7,7 @@
  */
 
 import { StringWriter } from './StringWriter';
+import {beforeEachVerifierBase} from "./Providers/BeforeEachVerifierBase";
 var cfg = require('./config');
 var callsite = require('callsite');
 var path = require('path');
@@ -80,9 +81,9 @@ var mochaExport = function (optionalBaseDir) {
 
   var { MochaNamer } = require("./Providers/Mocha/MochaNamer");
   var Namer = MochaNamer
-  var baseVerifier = require("./Providers/BeforeEachVerifierBase.js");
+  var {beforeEachVerifierBase} = require("./Providers/BeforeEachVerifierBase.js");
 
-  baseVerifier(Namer, "require('Approvals').mocha();", optionalBaseDir);
+    beforeEachVerifierBase(Namer, "require('Approvals').mocha();", optionalBaseDir);
 
   return module.exports;
 };
