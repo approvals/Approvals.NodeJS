@@ -1,4 +1,4 @@
-import { addKeyMessage } from "../FinalMessages";
+import { FinalMessages } from "../FinalMessages";
 import NodeDiffReporter from './Reporters/nodediffReporter';
 
 let maxLaunch = 10;
@@ -25,7 +25,7 @@ export class ReportLaunchingCircuitBreaker {
     static check(approved: string, received: string, options: any): boolean {
         if (this.isLimitExceeded()) {
             reroutedCount++;
-            addKeyMessage("maxLaunches", `config.maxLaunches (${maxLaunch}) exceeded: ${reroutedCount} diff(s) shown in console above...`);
+            FinalMessages.addKeyMessage("maxLaunches", `config.maxLaunches (${maxLaunch}) exceeded: ${reroutedCount} diff(s) shown in console above...`);
             (new NodeDiffReporter()).report(approved, received, options);
             return true;
         }
