@@ -289,7 +289,7 @@ it("should use a multiple reporters", function () {
 <!-- snippet: default_config -->
 <a id='snippet-default_config'></a>
 ```ts
-const defaultConfig: Config = {
+export const defaultConfig: Config = {
     reporters: [
         "BeyondCompare",
         "diffmerge",
