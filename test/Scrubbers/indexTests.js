@@ -1,4 +1,4 @@
-var Scrubbers = require("../../lib/Scrubbers/index");
+var {Scrubbers} = require("../../lib/Scrubbers/Scrubbers");
 var expect = require('chai').expect;
 
 describe('Scrubbers', function () {

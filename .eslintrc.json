@@ -104,5 +104,8 @@
     "no-new-func": 0,
     "no-new-wrappers": 0,
     "no-invalid-this": 0
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

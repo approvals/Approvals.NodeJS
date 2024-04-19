@@ -8,6 +8,8 @@
 
 import { StringWriter } from './StringWriter';
 import {beforeEachVerifierBase} from "./Providers/BeforeEachVerifierBase";
+import {Scrubbers}  from "./Scrubbers/Scrubbers";
+
 var cfg = require('./config');
 var callsite = require('callsite');
 var path = require('path');
@@ -70,7 +72,6 @@ var getConfig = function(overrideOptions) {
   return cfg.getConfig(overrideOptions);
 }
 
-var scrubbers = require('./Scrubbers');
 
 var mochaExport = function (optionalBaseDir) {
 
@@ -110,7 +111,7 @@ var reportersExport = {
 
 var verifyAndScrub = function (dirName, testName, data, scrubber, optionsOverride) {
 
-  scrubber = scrubber || scrubbers.noScrubber;
+  scrubber = scrubber || Scrubbers.noScrubber;
 
   // backwards compatible option
   if (Array.isArray(optionsOverride)) {
@@ -286,6 +287,6 @@ module.exports = {
   /**
    * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
    */
-  scrubbers: scrubbers
+  scrubbers: Scrubbers
 
 }
