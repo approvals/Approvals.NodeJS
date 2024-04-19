@@ -7,11 +7,11 @@ function unique<T>(items: T[]): T[] {
 }
 
 
-var normalizeFilePath = function (filePath) {
+function normalizeFilePath(filePath) {
     return (filePath || '').replace(/\\/g, "/");
 }
 
-module.exports = function (config, approvedFilesMap) {
+export function postRunCleanup(config, approvedFilesMap) {
 
     var options = config;
 
@@ -23,7 +23,9 @@ module.exports = function (config, approvedFilesMap) {
         // normalize file paths for searching (windows vs *nix)...
         var normalizedApprovedFilePaths = approvedFilesMap.map(normalizeFilePath);
 
-        var getAllDirectoriesOfApprovedFiles = unique(normalizedApprovedFilePaths.map(function (file) { return path.dirname(file); })) // get just the directory of each
+        var getAllDirectoriesOfApprovedFiles = unique(normalizedApprovedFilePaths.map(function (file) {
+            return path.dirname(file);
+        })) // get just the directory of each
 
         var discoveredApprovalFiles: any = [];
         getAllDirectoriesOfApprovedFiles.forEach(function (folder) {
@@ -49,6 +51,5 @@ module.exports = function (config, approvedFilesMap) {
             throw new Error('ERROR: Found stale approvals files: \n  - ' + staleApprovals.join('\n  - ') + '\n');
         }
     }
-
-};
+}
 

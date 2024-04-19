@@ -4,7 +4,7 @@ var glob = require('glob');
 var sinon = require('sinon');
 var approvals = require('../lib/Approvals');
 
-var postRunCleanup = require('../lib/postRunCleanup');
+var {postRunCleanup} = require('../lib/postRunCleanup');
 
 describe('postRunCleanup', function() {
 

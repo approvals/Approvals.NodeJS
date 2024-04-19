@@ -11,7 +11,7 @@ import {beforeEachVerifierBase} from "./Providers/BeforeEachVerifierBase";
 var cfg = require('./config');
 var callsite = require('callsite');
 var path = require('path');
-var postRunCleanup = require('./postRunCleanup');
+var {postRunCleanup} = require('./postRunCleanup');
 var ManualNamer = require('./ManualNamer').ManualNamer;
 var { BinaryWriter } = require('./Writers/BinaryWriter');
 var FileApprover = require("./FileApprover");
