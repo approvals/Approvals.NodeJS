@@ -20,7 +20,7 @@ export interface Config {
 }
 
 // begin-snippet: default_config
-const defaultConfig: Config = {
+export const defaultConfig: Config = {
     reporters: [
         "BeyondCompare",
         "diffmerge",
@@ -43,7 +43,7 @@ const defaultConfig: Config = {
 };
 // end-snippet
 
-function getHomeApprovalConfig(): Config | null {
+export function getHomeApprovalConfig(): Config | null {
     const homeConfigPath = path.join(os.homedir(), '.approvalsConfig');
     if (fs.existsSync(homeConfigPath)) {
         const configFileData = fs.readFileSync(homeConfigPath).toString();
@@ -58,23 +58,23 @@ function getHomeApprovalConfig(): Config | null {
 
 let currentConfigObj: Config;
 
-function getConfig(configOverrides?: Partial<Config>): Config {
+export function getConfig(configOverrides?: Partial<Config>): Config {
     const homeConfig = getHomeApprovalConfig() || {};
     const resultConfig = _.defaults(configOverrides || {}, currentConfigObj || {}, homeConfig, defaultConfig);
     return resultConfig as Config;
 }
 
-function configure(overrideOptions?: Partial<Config>): Config {
+export function configure(overrideOptions?: Partial<Config>): Config {
     currentConfigObj = getConfig(overrideOptions);
     processConfig(currentConfigObj);
     return currentConfigObj;
 }
 
-function currentConfig(): Config {
+export function currentConfig(): Config {
     return currentConfigObj;
 }
 
-function reset(): void {
+export function reset(): void {
     currentConfigObj = _.defaults({}, getHomeApprovalConfig(), defaultConfig)
 }
 
@@ -86,11 +86,3 @@ function processConfig(config: Config): void {
     }
 }
 
-export {
-    getConfig,
-    getHomeApprovalConfig,
-    defaultConfig,
-    configure,
-    currentConfig,
-    reset
-};

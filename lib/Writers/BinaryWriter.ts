@@ -8,7 +8,7 @@ interface Config {
     [key: string]: any;
 }
 
-class BinaryWriter {
+export class BinaryWriter {
     private config: Config;
     private outputData: Buffer;
     private _ext?: string;
@@ -36,4 +36,3 @@ class BinaryWriter {
     }
 }
 
-export = BinaryWriter;
