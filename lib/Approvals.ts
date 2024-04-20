@@ -12,7 +12,8 @@ import {Scrubbers}  from "./Scrubbers/Scrubbers";
 
 import  * as cfg from "./config";
 
-var callsite = require('callsite');
+import callsite from "callsite";
+
 var path = require('path');
 var {postRunCleanup} = require('./postRunCleanup');
 var ManualNamer = require('./ManualNamer').ManualNamer;
