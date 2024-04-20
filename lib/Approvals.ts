@@ -16,7 +16,8 @@ import callsite from "callsite";
 
 import {ManualNamer} from "./ManualNamer";
 
-var path = require('path');
+import path from "path";
+
 var {postRunCleanup} = require('./postRunCleanup');
 var { BinaryWriter } = require('./Writers/BinaryWriter');
 var FileApprover = require("./FileApprover");
