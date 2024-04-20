@@ -29,7 +29,11 @@ function normalizeLineEndings(value: string): string {
     return value.replace(/(?:\r\n|\r|\n)/g, '\n');
 }
 
-export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Options): void {
+export class FileApprover{
+
+
+
+static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Options): void {
     if (!namer || !writer || !reporterFactory) {
         throw new Error("Missing required arguments: 'namer', 'writer', or 'reporterFactory'.");
     }
@@ -94,4 +98,8 @@ export function verify(namer: Namer, writer: Writer, reporterFactory: () => Repo
     fs.unlinkSync(receivedFileName);
 
     process.emit("approvalFileApproved", approvedFileName);
+}}
+
+export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Options): void {
+    FileApprover.verify(namer, writer, reporterFactory, options);
 }
