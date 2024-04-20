@@ -24,7 +24,7 @@ import {BinaryWriter} from "./Writers/BinaryWriter";
 
 import * as FileApprover from "./FileApprover";
 
-import * as ReporterFactory from "./Reporting/ReporterFactory";
+import {ReporterFactory} from "./Reporting/ReporterFactory";
 
 import {stringifyKeysInOrder} from "./AUtils";
 
@@ -162,7 +162,7 @@ var verifyWithControl = function (namer, writer, reporterFactory, optionsOverrid
     var newOptions = cfg.getConfig(optionsOverride);
 
     reporterFactory = reporterFactory || function () {
-        return [ReporterFactory.ReporterFactory.loadReporter(newOptions.reporters)];
+        return [ReporterFactory.loadReporter(newOptions.reporters)];
     };
 
     FileApprover.verify(namer, writer, reporterFactory, newOptions);
