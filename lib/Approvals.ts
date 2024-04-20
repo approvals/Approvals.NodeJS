@@ -14,9 +14,10 @@ import  * as cfg from "./config";
 
 import callsite from "callsite";
 
+import {ManualNamer} from "./ManualNamer";
+
 var path = require('path');
 var {postRunCleanup} = require('./postRunCleanup');
-var ManualNamer = require('./ManualNamer').ManualNamer;
 var { BinaryWriter } = require('./Writers/BinaryWriter');
 var FileApprover = require("./FileApprover");
 var ReporterFactory = require("./Reporting/ReporterFactory");
