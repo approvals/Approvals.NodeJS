@@ -10,7 +10,8 @@ import { StringWriter } from './StringWriter';
 import {beforeEachVerifierBase} from "./Providers/BeforeEachVerifierBase";
 import {Scrubbers}  from "./Scrubbers/Scrubbers";
 
-var cfg = require('./config');
+import  * as cfg from "./config";
+
 var callsite = require('callsite');
 var path = require('path');
 var {postRunCleanup} = require('./postRunCleanup');
