@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as fs from 'fs';
 import * as cfg from '../config';
 import StringWriter from "../StringWriter.js";
-import {verify} from "../FileApprover.js";
+import {FileApprover} from "../FileApprover";
 import {ReporterFactory} from "../Reporting/ReporterFactory.js";
 import * as aUtils from '../AUtils';
 
@@ -54,7 +54,7 @@ export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName:
             };
 
             const writer = new StringWriter(newOptions, data);
-            verify(namer, writer, reporterFactory);
+            FileApprover.verify(namer, writer, reporterFactory);
         };
 
         this.verifyAsJSON = function (data: any, overrideOptions?: any) {
