@@ -7,7 +7,6 @@
  */
 
 import {StringWriter} from './StringWriter';
-import {beforeEachVerifierBase} from "./Providers/BeforeEachVerifierBase";
 import {Scrubbers} from "./Scrubbers/Scrubbers";
 import * as cfg from "./config";
 import callsite from "callsite";
