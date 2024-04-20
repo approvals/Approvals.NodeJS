@@ -139,15 +139,15 @@ function verify(dirName, testName, data, optionsOverride) {
     return verifyAndScrub(dirName, testName, data, null, optionsOverride);
 }
 
-var verifyAsJSON = function (dirName, testName, data, optionsOverride) {
+function verifyAsJSON(dirName, testName, data, optionsOverride) {
     return verifyAsJSONAndScrub(dirName, testName, data, null, optionsOverride);
-};
+}
 
-var verifyAsJSONAndScrub = function (dirName, testName, data, scrubber, optionsOverride) {
+function verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride) {
     return verifyAndScrub(dirName, testName, stringifyKeysInOrder(data), scrubber, optionsOverride);
-};
+}
 
-var verifyWithControl = function (namer, writer, reporterFactory, optionsOverride) {
+function verifyWithControl(namer, writer, reporterFactory, optionsOverride) {
     var newOptions = cfg.getConfig(optionsOverride);
 
     reporterFactory = reporterFactory || function () {
@@ -155,7 +155,9 @@ var verifyWithControl = function (namer, writer, reporterFactory, optionsOverrid
     };
 
     FileApprover.verify(namer, writer, reporterFactory, newOptions);
-};
+}
+
+/********************** exports **************************/
 
 module.exports = {
     /**
