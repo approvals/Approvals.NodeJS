@@ -34,7 +34,7 @@ if (typeof beforeEach === "function") {
 }
 
 // keep track of approved files we run into with tests
-var listOfApprovedFiles = [];
+var listOfApprovedFiles: string[] = [];
 process.on("approvalFileApproved", function (fileName) {
     if (listOfApprovedFiles.indexOf(fileName) === -1) {
         listOfApprovedFiles.push(fileName);
@@ -61,17 +61,17 @@ process.on('exit', function () {
 
 });
 
-var configure = function (overrideOptions) {
+function configure(overrideOptions) {
     cfg.configure(overrideOptions);
     return module.exports;
-};
+}
 
-var getConfig = function (overrideOptions) {
+function getConfig(overrideOptions) {
     return cfg.getConfig(overrideOptions);
 }
 
 
-var mochaExport = function (optionalBaseDir) {
+function mochaExport(optionalBaseDir) {
 
     // if not providing a base dir, fallback to the current calling code's directory
     if (!optionalBaseDir) {
@@ -85,11 +85,11 @@ var mochaExport = function (optionalBaseDir) {
     beforeEachVerifierBase(Namer, "require('Approvals').mocha();", optionalBaseDir);
 
     return module.exports;
-};
+}
 
-var jasmineExport = function () {
+function jasmineExport() {
     throw new Error("Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...")
-};
+}
 
 var reportersExport = {
 
@@ -107,7 +107,7 @@ var reportersExport = {
     MultiReporter: require('./Reporting/Reporters/multiReporter')
 }
 
-var verifyAndScrub = function (dirName, testName, data, scrubber, optionsOverride) {
+function verifyAndScrub(dirName, testName, data, scrubber, optionsOverride) {
 
     scrubber = scrubber || Scrubbers.noScrubber;
 
@@ -133,11 +133,11 @@ var verifyAndScrub = function (dirName, testName, data, scrubber, optionsOverrid
         writer = new StringWriter(newOptions, data);
     }
     verifyWithControl(namer, writer, null, newOptions);
-};
+}
 
-var verify = function (dirName, testName, data, optionsOverride) {
+function verify(dirName, testName, data, optionsOverride) {
     return verifyAndScrub(dirName, testName, data, null, optionsOverride);
-};
+}
 
 var verifyAsJSON = function (dirName, testName, data, optionsOverride) {
     return verifyAsJSONAndScrub(dirName, testName, data, null, optionsOverride);
