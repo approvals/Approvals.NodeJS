@@ -15,7 +15,7 @@ import {ManualNamer} from "./ManualNamer";
 import path from "path";
 import {postRunCleanup} from "./postRunCleanup";
 import {BinaryWriter} from "./Writers/BinaryWriter";
-import * as FileApprover from "./FileApprover";
+import {FileApprover} from "./FileApprover";
 import {ReporterFactory} from "./Reporting/ReporterFactory";
 import {stringifyKeysInOrder} from "./AUtils";
 import {FinalMessages} from "./FinalMessages";
