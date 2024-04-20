@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as fs from 'fs';
 import * as cfg from '../config';
-import StringWriter from "../StringWriter.js";
+import {StringWriter} from "../StringWriter";
 import {FileApprover} from "../FileApprover";
 import {ReporterFactory} from "../Reporting/ReporterFactory.js";
 import * as aUtils from '../AUtils';
