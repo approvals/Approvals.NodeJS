@@ -41,30 +41,25 @@ process.on("approvalFileApproved", function (fileName) {
     }
 });
 
-process.on('exit', function () {
-    var options = cfg.currentConfig();
-
+process.on('exit', function (): void {
+    const options = cfg.currentConfig();
     postRunCleanup(options, listOfApprovedFiles);
-
     const finalMessages = FinalMessages.getMessages();
     if (finalMessages.length) {
-        console.log("******************************")
-        console.log("* Approvals Report: WARNING!")
-
-        finalMessages.forEach((message) => {
+        console.log("******************************");
+        console.log("* Approvals Report: WARNING!");
+        finalMessages.forEach((message: string) => {
             console.log(`*  - ${message}`);
         });
-
-        console.log("******************************")
-
+        console.log("******************************");
     }
-
 });
 
-function configure(overrideOptions) {
+function configure(overrideOptions: cfg.Config): typeof module.exports {
     cfg.configure(overrideOptions);
     return module.exports;
 }
+
 
 function getConfig(overrideOptions) {
     return cfg.getConfig(overrideOptions);
