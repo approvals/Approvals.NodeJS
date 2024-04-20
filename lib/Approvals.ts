@@ -28,7 +28,7 @@ import * as ReporterFactory from "./Reporting/ReporterFactory";
 
 import * as aUtils from "./AUtils";
 
-var FinalMessages = require('./FinalMessages');
+import {FinalMessages} from "./FinalMessages";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or

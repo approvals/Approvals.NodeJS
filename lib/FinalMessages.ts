@@ -17,5 +17,3 @@ export class FinalMessages {
   }
 
 }
-
-module.exports = FinalMessages;
