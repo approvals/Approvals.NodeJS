@@ -18,11 +18,16 @@ import {ManualNamer} from "./ManualNamer";
 
 import path from "path";
 
-var {postRunCleanup} = require('./postRunCleanup');
-var { BinaryWriter } = require('./Writers/BinaryWriter');
-var FileApprover = require("./FileApprover");
-var ReporterFactory = require("./Reporting/ReporterFactory");
-var aUtils = require('./AUtils');
+import {postRunCleanup} from "./postRunCleanup";
+
+import {BinaryWriter} from "./Writers/BinaryWriter";
+
+import * as FileApprover from "./FileApprover";
+
+import * as ReporterFactory from "./Reporting/ReporterFactory";
+
+import * as aUtils from "./AUtils";
+
 var FinalMessages = require('./FinalMessages');
 
 
