@@ -1,22 +1,10 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import {Config} from "./config";
+import {Namer} from "./Core/Namer";
+import {Writer} from "./Core/Writer";
+import {Reporter} from "./Core/Reporter";
 
-export interface Namer {
-    getApprovedFile(ext: string): string;
-    getReceivedFile(ext: string): string;
-}
-
-export interface Writer {
-    getFileExtension(): string;
-    write(filePath: string): void;
-}
-
-export interface Reporter {
-    canReportOn(fileName: string): boolean;
-    report(approvedFileName: string, receivedFileName: string, options: Options): void;
-    name: string;
-}
 
 interface Options {
     stripBOM?: boolean;
@@ -97,7 +85,7 @@ static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], o
     // Delete the received file
     fs.unlinkSync(receivedFileName);
 
-    process.emit("approvalFileApproved", approvedFileName);
+   process.emit("approvalFileApproved" , approvedFileName);
 }}
 
 export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Partial<Config>): void {

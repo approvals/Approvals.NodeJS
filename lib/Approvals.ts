@@ -13,10 +13,13 @@ import {ManualNamer} from "./ManualNamer";
 import path from "path";
 import {postRunCleanup} from "./postRunCleanup";
 import {BinaryWriter} from "./Writers/BinaryWriter";
-import {FileApprover, Namer, Writer, Reporter} from "./FileApprover";
+import {FileApprover} from "./FileApprover";
+import {Namer} from "./Core/Namer";
 import {ReporterFactory} from "./Reporting/ReporterFactory";
 import {stringifyKeysInOrder} from "./AUtils";
 import {FinalMessages} from "./FinalMessages";
+import {Writer} from "./Core/Writer";
+import {Reporter} from "./Core/Reporter";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
@@ -132,7 +135,7 @@ function verify(dirName: string, testName: string, data: BinaryWriter | string, 
 }
 
 function verifyAsJSON(dirName: string, testName: string, data: BinaryWriter | string, optionsOverride: any) {
-    return verifyAsJSONAndScrub(dirName, testName, data, null, optionsOverride);
+    return verifyAsJSONAndScrub(dirName, testName, data, Scrubbers.noScrubber, optionsOverride);
 }
 
 function verifyAsJSONAndScrub(dirName: string, testName: string, data: BinaryWriter | string, scrubber: Scrubber, optionsOverride: any): void {
@@ -140,7 +143,7 @@ function verifyAsJSONAndScrub(dirName: string, testName: string, data: BinaryWri
 }
 
 function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: () => Reporter[], optionsOverride?: Partial<cfg.Config>) {
-    var newOptions = cfg.getConfig(optionsOverride);
+    const newOptions = cfg.getConfig(optionsOverride);
 
     reporterFactory = reporterFactory || function () {
         return [ReporterFactory.loadReporter(newOptions.reporters)];
@@ -156,7 +159,7 @@ module.exports = {
      * Allows you to provide overrides to the default configuration.
      *
      * @example
-     * var approvals = require('approvals');
+     * const approvals = require('approvals');
      * approvals.configure({
      *   reporters: ['p4merge']
      * });
@@ -176,12 +179,12 @@ module.exports = {
      *
      * @example
      * // basic approval test
-     * var approvals = require('approvals');
+     * const approvals = require('approvals');
      * approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
      *
      * @example
      * // basic approval test providing an option to override configuration
-     * var approvals = require('approvals');
+     * const approvals = require('approvals');
      * approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
      *
      * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
@@ -196,8 +199,8 @@ module.exports = {
      *
      * @example
      * // basic approval test with a custom scrubber
-     * var approvals = require('approvals');
-     * var scrubber = approvals.scrubbers.multiScrubber([
+     * const approvals = require('approvals');
+     * const scrubber = approvals.scrubbers.multiScrubber([
      *    function (data) {
      *      return (data || '').replace("some text", "some other text");
      *    },
@@ -217,7 +220,7 @@ module.exports = {
      * You can pass as "data" any javascript object to be JSON.stringified and run verify against.
      *
      * @example
-     * var approvals = require('approvals');
+     * const approvals = require('approvals');
      * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
      *
      * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
@@ -232,8 +235,8 @@ module.exports = {
 
      * @example
      * // basic approval test with a custom scrubber
-     * var approvals = require('approvals');
-     * var scrubber = approvals.scrubbers.multiScrubber([
+     * const approvals = require('approvals');
+     * const scrubber = approvals.scrubbers.multiScrubber([
      *    function (data) {
      *      return (data || '').replace("some text", "some other text");
      *    },
@@ -272,7 +275,7 @@ module.exports = {
      * `reporters` gives access to the `MultiReporter`
      *
      * @example
-     * var MultiReporter = approvals.reporters.MultiReporter
+     * const MultiReporter = approvals.reporters.MultiReporter
      */
     reporters: reportersExport,
 

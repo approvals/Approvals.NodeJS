@@ -353,7 +353,7 @@ Allows you to provide overrides to the default configuration.
 
 **Example**
 ```js
-var approvals = require('approvals');
+const approvals = require('approvals');
 approvals.configure({
   reporters: ['p4merge']
 });
@@ -385,13 +385,13 @@ Allows the creation of an approvals configuration object using any passed in opt
 **Example**
 ```js
 // basic approval test
-var approvals = require('approvals');
+const approvals = require('approvals');
 approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
 ```
 **Example**
 ```js
 // basic approval test providing an option to override configuration
-var approvals = require('approvals');
+const approvals = require('approvals');
 approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
 ```
 <a name="module_approvals.verifyAndScrub"></a>
@@ -412,8 +412,8 @@ Use this to apply the scrubber function to any data before running verify.
 **Example**
 ```js
 // basic approval test with a custom scrubber
-var approvals = require('approvals');
-var scrubber = approvals.scrubbers.multiScrubber([
+const approvals = require('approvals');
+const scrubber = approvals.scrubbers.multiScrubber([
    function (data) {
      return (data || '').replace("some text", "some other text");
    },
@@ -437,7 +437,7 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 
 **Example**
 ```js
-var approvals = require('approvals');
+const approvals = require('approvals');
 approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
 ```
 <a name="module_approvals.verifyAsJSONAndScrub"></a>
@@ -458,8 +458,8 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 **Example**
 ```js
 // basic approval test with a custom scrubber
-var approvals = require('approvals');
-var scrubber = approvals.scrubbers.multiScrubber([
+const approvals = require('approvals');
+const scrubber = approvals.scrubbers.multiScrubber([
    function (data) {
      return (data || '').replace("some text", "some other text");
    },
@@ -502,7 +502,7 @@ Configure approvals to hook into Mocha tests.
 **Kind**: static property of [<code>approvals</code>](#module_approvals)
 **Example**
 ```js
-var MultiReporter = approvals.reporters.MultiReporter
+const MultiReporter = approvals.reporters.MultiReporter
 ```
 <a name="module_approvals.scrubbers"></a>
 
