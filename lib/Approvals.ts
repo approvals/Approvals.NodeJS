@@ -1,4 +1,3 @@
-'use strict';
 /*jshint freeze:false */
 
 /**
@@ -23,7 +22,7 @@ import {FinalMessages} from "./FinalMessages";
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
 // they won't get a helpful error. So we put this in there - just in case"
 if (typeof beforeEach === "function") {
-    beforeEach(function () {
+    beforeEach(function (): void {
         if (!this) {
             return;
         }
@@ -35,7 +34,7 @@ if (typeof beforeEach === "function") {
 
 // keep track of approved files we run into with tests
 var listOfApprovedFiles: string[] = [];
-process.on("approvalFileApproved", function (fileName) {
+process.on("approvalFileApproved", function (fileName): void {
     if (listOfApprovedFiles.indexOf(fileName) === -1) {
         listOfApprovedFiles.push(fileName);
     }
@@ -60,13 +59,11 @@ function configure(overrideOptions: cfg.Config): typeof module.exports {
     return module.exports;
 }
 
-
-function getConfig(overrideOptions) {
+function getConfig(overrideOptions?: cfg.Config): cfg.Config {
     return cfg.getConfig(overrideOptions);
 }
 
-
-function mochaExport(optionalBaseDir) {
+function mochaExport(optionalBaseDir?: string) : typeof module.exports {
 
     // if not providing a base dir, fallback to the current calling code's directory
     if (!optionalBaseDir) {
@@ -82,7 +79,7 @@ function mochaExport(optionalBaseDir) {
     return module.exports;
 }
 
-function jasmineExport() {
+function jasmineExport(): void {
     throw new Error("Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...")
 }
 
@@ -102,7 +99,7 @@ var reportersExport = {
     MultiReporter: require('./Reporting/Reporters/multiReporter')
 }
 
-function verifyAndScrub(dirName, testName, data, scrubber, optionsOverride) {
+function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| string, scrubber: (data) => any, optionsOverride: any): void {
 
     scrubber = scrubber || Scrubbers.noScrubber;
 
@@ -130,8 +127,8 @@ function verifyAndScrub(dirName, testName, data, scrubber, optionsOverride) {
     verifyWithControl(namer, writer, null, newOptions);
 }
 
-function verify(dirName, testName, data, optionsOverride) {
-    return verifyAndScrub(dirName, testName, data, null, optionsOverride);
+function verify(dirName: string, testName: string, data: BinaryWriter | string, optionsOverride: any): void {
+    return verifyAndScrub(dirName, testName, data, Scrubbers.noScrubber, optionsOverride);
 }
 
 function verifyAsJSON(dirName, testName, data, optionsOverride) {
