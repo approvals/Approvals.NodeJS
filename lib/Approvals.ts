@@ -17,7 +17,6 @@ import {FileApprover, Namer, Writer, Reporter} from "./FileApprover";
 import {ReporterFactory} from "./Reporting/ReporterFactory";
 import {stringifyKeysInOrder} from "./AUtils";
 import {FinalMessages} from "./FinalMessages";
-import {Options} from "./Core/Options";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
