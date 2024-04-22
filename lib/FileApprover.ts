@@ -2,17 +2,17 @@ import fs from 'fs';
 import chalk from 'chalk';
 import {Options} from "./Core/Options";
 
-interface Namer {
+export interface Namer {
     getApprovedFile(ext: string): string;
     getReceivedFile(ext: string): string;
 }
 
-interface Writer {
+export interface Writer {
     getFileExtension(): string;
     write(filePath: string): void;
 }
 
-interface Reporter {
+export interface Reporter {
     canReportOn(fileName: string): boolean;
     report(approvedFileName: string, receivedFileName: string, options: Options): void;
     name: string;

@@ -6,17 +6,18 @@
  */
 
 import {StringWriter} from './StringWriter';
-import {Scrubbers} from "./Scrubbers/Scrubbers";
+import {Scrubber, Scrubbers} from "./Scrubbers/Scrubbers";
 import * as cfg from "./config";
 import callsite from "callsite";
 import {ManualNamer} from "./ManualNamer";
 import path from "path";
 import {postRunCleanup} from "./postRunCleanup";
 import {BinaryWriter} from "./Writers/BinaryWriter";
-import {FileApprover} from "./FileApprover";
+import {FileApprover, Namer, Writer, Reporter} from "./FileApprover";
 import {ReporterFactory} from "./Reporting/ReporterFactory";
 import {stringifyKeysInOrder} from "./AUtils";
 import {FinalMessages} from "./FinalMessages";
+import {Options} from "./Core/Options";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
@@ -122,7 +123,7 @@ function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| s
     } else {
         data = scrubber(data);
 
-        writer = new StringWriter(newOptions, data);
+        writer = new StringWriter(newOptions, data as string);
     }
     verifyWithControl(namer, writer, null, newOptions);
 }
@@ -131,15 +132,15 @@ function verify(dirName: string, testName: string, data: BinaryWriter | string, 
     return verifyAndScrub(dirName, testName, data, Scrubbers.noScrubber, optionsOverride);
 }
 
-function verifyAsJSON(dirName, testName, data, optionsOverride) {
+function verifyAsJSON(dirName: string, testName: string, data: BinaryWriter | string, optionsOverride: any) {
     return verifyAsJSONAndScrub(dirName, testName, data, null, optionsOverride);
 }
 
-function verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride) {
+function verifyAsJSONAndScrub(dirName: string, testName: string, data: BinaryWriter | string, scrubber: Scrubber, optionsOverride: any): void {
     return verifyAndScrub(dirName, testName, stringifyKeysInOrder(data), scrubber, optionsOverride);
 }
 
-function verifyWithControl(namer, writer, reporterFactory, optionsOverride) {
+function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: () => Reporter[], optionsOverride?: Options) {
     var newOptions = cfg.getConfig(optionsOverride);
 
     reporterFactory = reporterFactory || function () {
