@@ -1,5 +1,6 @@
 import type {Scrubber} from "../Scrubbers/Scrubbers";
 import {Namer} from "../Namer";
+import {Config} from "../config";
 export type ConfigModifier = (t: any) => any;
 
 class FileOptions {
@@ -64,16 +65,16 @@ export class Options {
         return this.modify("ConfigModifier", configModifier);
     }
 
-    getConfig(config: any): any {
+    getConfig(config: any): Config {
         const modifier = this.get("ConfigModifier", () => (t: any) => t);
         return modifier(config);
     }
 
-    withNamer(namer: typeof Namer): Options {
+    withNamer(namer: Namer): Options {
         return this.modify("Namer", namer);
     }
 
-    getNamer(): typeof Namer {
+    getNamer(): Namer {
         return this.get("Namer", () => new Namer('',''));
     }
 }

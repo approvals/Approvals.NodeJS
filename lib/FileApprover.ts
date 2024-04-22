@@ -1,6 +1,5 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import {Options} from "./Core/Options";
 import {Config} from "./config";
 
 export interface Namer {
@@ -34,7 +33,7 @@ export class FileApprover{
 
 
 
-static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Config): void {
+static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Partial<Config>): void {
     if (!namer || !writer || !reporterFactory) {
         throw new Error("Missing required arguments: 'namer', 'writer', or 'reporterFactory'.");
     }
@@ -101,6 +100,6 @@ static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], o
     process.emit("approvalFileApproved", approvedFileName);
 }}
 
-export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Options): void {
+export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Partial<Config>): void {
     FileApprover.verify(namer, writer, reporterFactory, options);
 }
