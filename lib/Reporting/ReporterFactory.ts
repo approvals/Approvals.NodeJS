@@ -1,15 +1,12 @@
 import DiffReporterAggregate from './DiffReporterAggregate';
 import { readdirSync } from 'fs';
+import {Reporter} from "../Core/Reporter";
 
-interface Reporter {
-    name: string;
-    canReportOn: (fileName: string) => boolean;
-    report: (approvedFilePath: string, receivedFilePath: string) => void;
-}
+export type ReporterLoader = () => Reporter[];
 
 export class ReporterFactory {
 
-    static loadReporter(name: string | string[]): Reporter | DiffReporterAggregate  {
+    static loadReporter(name: string | string[]): Reporter  {
         if (Array.isArray(name)) {
             const reporters = ReporterFactory.loadAllReporters(name);
             return new DiffReporterAggregate(reporters);

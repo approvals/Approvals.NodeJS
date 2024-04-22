@@ -4,7 +4,7 @@ import {Config} from "./config";
 import {Namer} from "./Core/Namer";
 import {Writer} from "./Core/Writer";
 import {Reporter} from "./Core/Reporter";
-
+import {ReporterLoader} from "./Reporting/ReporterFactory";
 
 interface Options {
     stripBOM?: boolean;
@@ -21,7 +21,7 @@ export class FileApprover{
 
 
 
-static verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Partial<Config>): void {
+static verify(namer: Namer, writer: Writer, reporterFactory: ReporterLoader, options?: Partial<Config>): void {
     if (!namer || !writer || !reporterFactory) {
         throw new Error("Missing required arguments: 'namer', 'writer', or 'reporterFactory'.");
     }

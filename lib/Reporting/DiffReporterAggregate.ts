@@ -1,10 +1,7 @@
-interface Reporter {
-    name: string;
-    canReportOn(file: string): boolean;
-    report(approved: string, received: string, options?: any): void;
-}
+import {Reporter} from "../Core/Reporter";
 
-class DiffReporterAggregate {
+
+class DiffReporterAggregate implements Reporter {
     private reporters: Reporter[];
     public name: string;
 
