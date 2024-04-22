@@ -140,7 +140,7 @@ function verifyAsJSONAndScrub(dirName: string, testName: string, data: BinaryWri
     return verifyAndScrub(dirName, testName, stringifyKeysInOrder(data), scrubber, optionsOverride);
 }
 
-function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: () => Reporter[], optionsOverride?: Options) {
+function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: () => Reporter[], optionsOverride?: Partial<cfg.Config>) {
     var newOptions = cfg.getConfig(optionsOverride);
 
     reporterFactory = reporterFactory || function () {
