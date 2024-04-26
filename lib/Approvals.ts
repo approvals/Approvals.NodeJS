@@ -23,6 +23,8 @@ import {stringifyKeysInOrder} from "./AUtils";
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
 // they won't get a helpful error. So we put this in there - just in case"
+import {MochaNamer} from "./Providers/Mocha/MochaNamer";
+
 if (typeof beforeEach === "function") {
     beforeEach(function (): void {
         if (!this) {
@@ -72,8 +74,8 @@ function mochaExport(optionalBaseDir?: string) : typeof module.exports {
         optionalBaseDir = path.dirname(callsite()[1].getFileName());
     }
 
-    const {MochaNamer} = require("./Providers/Mocha/MochaNamer");
-    const {beforeEachVerifierBase} = require("./Providers/BeforeEachVerifierBase.js");
+
+    const {beforeEachVerifierBase} = require("./Providers/BeforeEachVerifierBase");
 
     beforeEachVerifierBase(MochaNamer, "require('Approvals').mocha();", optionalBaseDir);
 
