@@ -5,20 +5,20 @@
  * @module approvals
  */
 
-import {StringWriter} from './StringWriter';
-import {Scrubber, Scrubbers} from "./Scrubbers/Scrubbers";
-import * as cfg from "./config";
 import callsite from "callsite";
-import {ManualNamer} from "./ManualNamer";
 import path from "path";
-import {postRunCleanup} from "./postRunCleanup";
+import * as cfg from "./config";
 import {BinaryWriter} from "./Writers/BinaryWriter";
 import {FileApprover} from "./FileApprover";
+import {FinalMessages} from "./FinalMessages";
+import {ManualNamer} from "./ManualNamer";
 import {Namer} from "./Core/Namer";
 import {ReporterFactory, ReporterLoader} from "./Reporting/ReporterFactory";
-import {stringifyKeysInOrder} from "./AUtils";
-import {FinalMessages} from "./FinalMessages";
+import {Scrubber, Scrubbers} from "./Scrubbers/Scrubbers";
+import {StringWriter} from './StringWriter';
 import {Writer} from "./Core/Writer";
+import {postRunCleanup} from "./postRunCleanup";
+import {stringifyKeysInOrder} from "./AUtils";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
