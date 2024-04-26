@@ -20,7 +20,7 @@ interface TestCaseContext {
     verifyAsJSON: VerifyFunction;
 }
 
-export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName: string) {
+export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName: string) :void {
     if (!fs.existsSync(dirName)) {
         fs.mkdirSync(dirName);
     }
@@ -31,7 +31,9 @@ export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName:
         throw new Error(`Invalid directory [${dirName}]. Try using the following syntax. > ${usageSample}`);
     }
 
-    beforeEach(function (this: TestCaseContext) {
+    beforeEach(beforeEachLoaderFunction);
+
+    function beforeEachLoaderFunction() {
         const approvalsExtras: ApprovalsExtras = {
             getCurrentReporters: function (options?: any) {
                 options = options || cfg.currentConfig();
@@ -61,5 +63,5 @@ export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName:
             this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
         };
 
-    });
+    }
 };
