@@ -21,34 +21,34 @@ interface TestCaseContext {
 }
 
 function beforeEachLoaderFunction(Namer: any, dirName: string, that: any): void {
-    const approvalsExtras: ApprovalsExtras = {
-        getCurrentReporters: function (options?: any) {
-            options = options || cfg.currentConfig();
-            const reporterCandidates = ReporterFactory.loadAllReporters(options.reporters);
-            return reporterCandidates;
-        }
-    };
-
     // Tack on an approvals property so we can add on some
     // helper approvals goo this is mostly used for the test.
-    that.approvals = approvalsExtras;
+    that.approvals = {getCurrentReporters};
+    that.verify = verify;
+    that.verifyAsJSON = verifyAsJSON;
 
-    that.verify = function (data: any, overrideOptions?: any) {
+    function getCurrentReporters(options?: any) {
+        options = options || cfg.currentConfig();
+        const reporterCandidates = ReporterFactory.loadAllReporters(options.reporters);
+        return reporterCandidates;
+    }
+    function verify(data: any, overrideOptions?: any) {
         const namer = new Namer(this, dirName);
 
         const newOptions = _.defaults(overrideOptions || {}, cfg.currentConfig());
 
         const reporterFactory = function () {
-            return approvalsExtras.getCurrentReporters(newOptions);
+            return {getCurrentReporters}.getCurrentReporters(newOptions);
         };
 
         const writer = new StringWriter(newOptions, data);
         FileApprover.verify(namer, writer, reporterFactory);
-    };
+    }
 
-    that.verifyAsJSON = function (data: any, overrideOptions?: any) {
+
+    function verifyAsJSON(data: any, overrideOptions?: any) {
         this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
-    };
+    }
 
 }
 export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName: string) :void {
