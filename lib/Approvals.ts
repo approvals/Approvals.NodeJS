@@ -15,11 +15,10 @@ import {postRunCleanup} from "./postRunCleanup";
 import {BinaryWriter} from "./Writers/BinaryWriter";
 import {FileApprover} from "./FileApprover";
 import {Namer} from "./Core/Namer";
-import {ReporterFactory} from "./Reporting/ReporterFactory";
+import {ReporterFactory, ReporterLoader} from "./Reporting/ReporterFactory";
 import {stringifyKeysInOrder} from "./AUtils";
 import {FinalMessages} from "./FinalMessages";
 import {Writer} from "./Core/Writer";
-import {Reporter} from "./Core/Reporter";
 
 
 // if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
@@ -36,7 +35,7 @@ if (typeof beforeEach === "function") {
 }
 
 // keep track of approved files we run into with tests
-var listOfApprovedFiles: string[] = [];
+const listOfApprovedFiles: string[] = [];
 process.on("approvalFileApproved", function (fileName): void {
     if (listOfApprovedFiles.indexOf(fileName) === -1) {
         listOfApprovedFiles.push(fileName);
@@ -73,11 +72,10 @@ function mochaExport(optionalBaseDir?: string) : typeof module.exports {
         optionalBaseDir = path.dirname(callsite()[1].getFileName());
     }
 
-    var {MochaNamer} = require("./Providers/Mocha/MochaNamer");
-    var Namer = MochaNamer
-    var {beforeEachVerifierBase} = require("./Providers/BeforeEachVerifierBase.js");
+    const {MochaNamer} = require("./Providers/Mocha/MochaNamer");
+    const {beforeEachVerifierBase} = require("./Providers/BeforeEachVerifierBase.js");
 
-    beforeEachVerifierBase(Namer, "require('Approvals').mocha();", optionalBaseDir);
+    beforeEachVerifierBase(MochaNamer, "require('Approvals').mocha();", optionalBaseDir);
 
     return module.exports;
 }
@@ -86,7 +84,7 @@ function jasmineExport(): void {
     throw new Error("Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...")
 }
 
-var reportersExport = {
+const reportersExport = {
 
     /**
      * This allows access to the MultiReporter constructor.
@@ -102,7 +100,7 @@ var reportersExport = {
     MultiReporter: require('./Reporting/Reporters/multiReporter')
 }
 
-function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| string, scrubber: (data) => any, optionsOverride: any): void {
+function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| string, scrubber: Scrubber, optionsOverride: any): void {
 
     scrubber = scrubber || Scrubbers.noScrubber;
 
@@ -111,19 +109,19 @@ function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| s
         optionsOverride = {
             reporters: optionsOverride
         };
-        var stringReporters = JSON.stringify(optionsOverride.reporters);
+        const stringReporters = JSON.stringify(optionsOverride.reporters);
         console.error("For the last arg of the approvals.verify(...) function, if you passed in an array of reporters, something like [\"opendiff\",\"nodediff\"], this has been deprecated and replaced by passing in a config object. Please re-evaluate if you can remove this parameter alltogether and use individual user configs in ~/.approvalConfig, if not then replace this: " + stringReporters + " with this { reporters: " + stringReporters + "}.");
     }
 
-    var newOptions = cfg.getConfig(optionsOverride);
+    const newOptions = cfg.getConfig(optionsOverride);
 
-    var namer = new ManualNamer(dirName, testName);
+    const namer = new ManualNamer(dirName, testName);
 
-    var writer;
+    let writer : Writer;
     if (data instanceof Buffer) {
         writer = new BinaryWriter(newOptions, data);
     } else {
-        data = scrubber(data);
+        data = scrubber(data as string);
 
         writer = new StringWriter(newOptions, data as string);
     }
@@ -142,14 +140,14 @@ function verifyAsJSONAndScrub(dirName: string, testName: string, data: BinaryWri
     return verifyAndScrub(dirName, testName, stringifyKeysInOrder(data), scrubber, optionsOverride);
 }
 
-function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: () => Reporter[], optionsOverride?: Partial<cfg.Config>) {
+function verifyWithControl(namer: Namer, writer: Writer, reporterFactory?: ReporterLoader | null, optionsOverride?: Partial<cfg.Config>) {
     const newOptions = cfg.getConfig(optionsOverride);
 
-    reporterFactory = reporterFactory || function () {
+    const loader = reporterFactory as ReporterLoader || function () {
         return [ReporterFactory.loadReporter(newOptions.reporters)];
     };
 
-    FileApprover.verify(namer, writer, reporterFactory, newOptions);
+    FileApprover.verify(namer, writer, loader, newOptions);
 }
 
 /********************** exports **************************/
