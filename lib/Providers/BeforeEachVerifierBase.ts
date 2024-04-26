@@ -6,23 +6,8 @@ import {FileApprover} from "../FileApprover";
 import {ReporterFactory} from "../Reporting/ReporterFactory";
 import * as aUtils from '../AUtils';
 
-interface ApprovalsExtras {
-    getCurrentReporters(options?: any): any[];
-}
-
-interface VerifyFunction {
-    (data: any, overrideOptions?: any): void;
-}
-
-interface TestCaseContext {
-    approvals: ApprovalsExtras;
-    verify: VerifyFunction;
-    verifyAsJSON: VerifyFunction;
-}
-
 function beforeEachLoaderFunction(Namer: any, dirName: string, that: any): void {
-    // Tack on an approvals property so we can add on some
-    // helper approvals goo this is mostly used for the test.
+    // Add methods to the test context
     that.approvals = {getCurrentReporters};
     that.verify = verify;
     that.verifyAsJSON = verifyAsJSON;
@@ -44,7 +29,6 @@ function beforeEachLoaderFunction(Namer: any, dirName: string, that: any): void 
         const writer = new StringWriter(newOptions, data);
         FileApprover.verify(namer, writer, reporterFactory);
     }
-
 
     function verifyAsJSON(data: any, overrideOptions?: any) {
         this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
