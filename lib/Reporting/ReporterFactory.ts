@@ -14,7 +14,6 @@ export class ReporterFactory {
 
         name = name.toLowerCase();
 
-
         try {
             const ReporterCtor = require(`./Reporters/${name}Reporter`);
             return new ReporterCtor();

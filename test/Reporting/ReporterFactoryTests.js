@@ -108,14 +108,20 @@ describe('ReporterFactory', function () {
       this.timeout(20000); //appveyor seems slow
       allReporters = fs.readdirSync(path.join(__dirname, '../../lib/Reporting/Reporters'))
         .map(function (item) {
-          if (item.indexOf('Reporter.js') === -1) {
+          if (item.indexOf('Reporter.d.ts') === -1) {
+            // ignore the typescript definition file
+          }
+          if (item.indexOf('Reporter.ts') !== -1) {
             return item.substr(0, item.indexOf('Reporter.ts'));
-          } else {
+          } else if (item.indexOf('Reporter.js') !== -1) {
             return item.substr(0, item.indexOf('Reporter.js'));
           }
         })
         .filter(function (reporterName) {
           return reporterName !== 'visualstudio'; // this has issues running in C.I. environment due to edge
+        })
+        .filter(function (reporterName) {
+          return !!reporterName;
         })
         .map(function (reporterName) {
           console.log("reporter", reporterName);
