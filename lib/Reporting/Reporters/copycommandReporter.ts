@@ -1,47 +1,49 @@
+import {Reporter as ReporterBase} from '../../Core/Reporter';
 
-class Reporter {
-  constructor() {
+class Reporter implements ReporterBase {
+    public name: string;
 
-    this.name = "CopyCommand";
-  }
-
-  canReportOn() {
-    return true;
-  }
-
-  report(approvedFilePath, receivedFilePath) {
-
-    var programs = {
-      'win32': {
-        clipboard: 'clip',
-        fileCopy: 'copy'
-      },
-      'linux': {
-        clipboard: 'xclip -selection clipboard',
-        fileCopy: 'copy'
-      },
-      'darwin': {
-        clipboard: 'pbcopy',
-        fileCopy: 'cp'
-      }
-    };
-
-    var selectedPrograms = programs[process.platform];
-
-    // EX: "copy my-file.received.txt my-file.approved.txt"
-    var copyFragment = "'" + receivedFilePath + "' '" + approvedFilePath + "'";
-
-    if (selectedPrograms) {
-      var cp = require('child_process');
-      cp.execSync(selectedPrograms.clipboard, {
-        input: selectedPrograms.fileCopy + ' ' + copyFragment
-      });
-    } else {
-      // some sort of fallback copy command logged to the console
-      console.log('cp ' + copyFragment);
+    constructor() {
+        this.name = "CopyCommand";
     }
 
-  }
+    canReportOn(): boolean {
+        return true;
+    }
+
+    report(approvedFilePath, receivedFilePath): void {
+
+        const programs = {
+            'win32': {
+                clipboard: 'clip',
+                fileCopy: 'copy'
+            },
+            'linux': {
+                clipboard: 'xclip -selection clipboard',
+                fileCopy: 'copy'
+            },
+            'darwin': {
+                clipboard: 'pbcopy',
+                fileCopy: 'cp'
+            }
+        };
+
+        const selectedPrograms = programs[process.platform];
+
+        // EX: "copy my-file.received.txt my-file.approved.txt"
+        const copyFragment = "'" + receivedFilePath + "' '" + approvedFilePath + "'";
+
+        if (selectedPrograms) {
+            const cp = require('child_process');
+            cp.execSync(selectedPrograms.clipboard, {
+                input: selectedPrograms.fileCopy + ' ' + copyFragment
+            });
+        } else {
+            // some sort of fallback copy command logged to the console
+            console.log('cp ' + copyFragment);
+        }
+
+    }
 
 }
 
