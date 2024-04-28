@@ -4,7 +4,7 @@
 
 var assert = require("assert");
 var path = require("path");
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/icdiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/icdiffReporter");
 
 describe('Reporter', function () {
   describe('icdiff', function () {

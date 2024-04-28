@@ -4,7 +4,7 @@
 
 var expect = require("chai").expect;
 var path = require("path");
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/gitdiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/gitdiffReporter");
 
 describe('Reporter', function () {
   describe('git diff', function () {

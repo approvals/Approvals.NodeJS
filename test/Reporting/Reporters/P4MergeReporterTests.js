@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var path = require("path");
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/p4mergeReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/p4mergeReporter");
 //var sinon = require('sinon');
 
 describe('Reporter', function () {

@@ -4,7 +4,7 @@ var utils = require("../../../lib/AUtils");
 var assert = require("assert");
 var path = require("path");
 var { expect } = require('chai');
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/opendiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/opendiffReporter");
 
 describe('Reporter', function () {
 

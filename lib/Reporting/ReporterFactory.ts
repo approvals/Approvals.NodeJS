@@ -16,7 +16,7 @@ export class ReporterFactory {
 
         let ReporterCtor;
         try {
-            ReporterCtor = require(`./Reporters/${name}Reporter.js`);
+            ReporterCtor = require(`./Reporters/${name}Reporter`);
         } catch (e) {
             const allFiles = readdirSync(__dirname);
             let availableReporters = "";

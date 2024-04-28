@@ -2,7 +2,7 @@
 
 var expect = require("chai").expect;
 var path = require("path");
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/vimdiffReporter.js");
+var ReporterUnderTest = require("../../../lib/Reporting/Reporters/vimdiffReporter");
 
 describe('Reporter', function () {
   describe('vimdiff', function () {
