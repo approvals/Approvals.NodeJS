@@ -10,6 +10,8 @@ describe('All reporters must conform to naming convention', function () {
       .forEach(function (file) {
         if (file.indexOf("Reporter.js") > -1) {
           allReporterFiles.push(file);
+        }else if (file.indexOf("Reporter.ts") > -1) {
+          allReporterFiles.push(file);
         }
       });
   });

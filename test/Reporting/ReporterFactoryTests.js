@@ -60,14 +60,17 @@ describe('ReporterFactory', function () {
     });
   });
 
-  describe('assertValidReporter a valid reporter', function (){
+  describe('assertValidReporter a valid reporter', function () {
     var validDummyReporter;
 
     beforeEach(function () {
       validDummyReporter = {
         name: "validDummyReporter",
-        canReportOn: function () { return true; },
-        report: function () { }
+        canReportOn: function () {
+          return true;
+        },
+        report: function () {
+        }
       };
     });
 
@@ -105,7 +108,11 @@ describe('ReporterFactory', function () {
       this.timeout(20000); //appveyor seems slow
       allReporters = fs.readdirSync(path.join(__dirname, '../../lib/Reporting/Reporters'))
         .map(function (item) {
-          return item.substr(0, item.indexOf('Reporter.js'));
+          if (item.indexOf('Reporter.js') === -1) {
+            return item.substr(0, item.indexOf('Reporter.ts'));
+          } else {
+            return item.substr(0, item.indexOf('Reporter.js'));
+          }
         })
         .filter(function (reporterName) {
           return reporterName !== 'visualstudio'; // this has issues running in C.I. environment due to edge
