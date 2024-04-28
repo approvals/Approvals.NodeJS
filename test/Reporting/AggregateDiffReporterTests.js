@@ -1,9 +1,9 @@
 'use strict';
 
-var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
+var ReporterFactory = require("../../lib/Reporting/ReporterFactory");
 var assert = require("assert");
 var path = require("path");
-var DiffReporterAggregate = require("../../lib/Reporting/DiffReporterAggregate.js");
+var DiffReporterAggregate = require("../../lib/Reporting/DiffReporterAggregate");
 
 describe('AggregateReporter', function () {
 

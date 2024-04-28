@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var expect = require('chai').expect;
-var StringWriter = require("../lib/StringWriter.js").StringWriter;
+var StringWriter = require("../lib/StringWriter").StringWriter;
 var fs = require('fs');
 var sinon = require('sinon');
 var temp = require('temp');

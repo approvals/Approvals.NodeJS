@@ -1,6 +1,6 @@
 'use strict';
 
-var ReporterFactory = require("../../lib/Reporting/ReporterFactory.js");
+var ReporterFactory = require("../../lib/Reporting/ReporterFactory");
 var os = require("../../lib/osTools");
 var assert = require("assert");
 var path = require("path");
