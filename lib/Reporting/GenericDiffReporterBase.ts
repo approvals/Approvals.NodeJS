@@ -11,7 +11,7 @@ interface CmdOptions {
 
 class GenericDiffReporterBase {
     name: string;
-    exePath?: string;
+    public exePath?: string | null;
     private _reporterFileLookedUp: boolean;
     private _reporterFileLookedUpAndFound: boolean;
 
