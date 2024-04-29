@@ -11,7 +11,7 @@ interface CmdOptions {
 
 class GenericDiffReporterBase {
     name: string;
-    public exePath?: string | null;
+    public exePath: string = "";
     private _reporterFileLookedUp: boolean;
     private _reporterFileLookedUpAndFound: boolean;
 
@@ -32,7 +32,7 @@ class GenericDiffReporterBase {
 
         this._reporterFileLookedUp = true;
 
-        if (!fs.existsSync(this.exePath!)) {
+        if (!fs.existsSync(this.exePath)) {
             return false;
         }
         this._reporterFileLookedUpAndFound = true;
@@ -105,13 +105,12 @@ class GenericDiffReporterBase {
         const spawnMethod = options.blockUntilReporterExits ? this.spawnSync.bind(this) : this.spawn.bind(this);
         autils.createEmptyFileIfNotExists(approved);
 
-        const exe = this.exePath!;
         const cmdOptions = options.cmdOptionOverrides;
         const args = options.cmdArgs || [received, approved];
 
-        console.log('CMD: ', exe, args.join(' '));
+        console.log('CMD: ', this.exePath, args.join(' '));
 
-        spawnMethod(exe, args, cmdOptions);
+        spawnMethod(this.exePath, args, cmdOptions);
     }
 }
 

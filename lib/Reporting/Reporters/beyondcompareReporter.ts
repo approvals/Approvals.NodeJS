@@ -1,4 +1,5 @@
-var autils = require('../../AUtils');
+import {searchForExecutable} from "../../AUtils";
+
 var osTool = require('../../osTools');
 var shelljs = require('shelljs');
 var GenericDiffReporterBase = require('../GenericDiffReporterBase');
@@ -9,20 +10,20 @@ class Reporter extends GenericDiffReporterBase {
 
     super("BeyondCompare");
 
-    var app = null;
+    var app:string = "";
     if (osTool.platform.isMac) {
       try {
         app = shelljs.ls('/Applications/Beyond Compare.app/Contents/MacOS/bcomp')[0];
       } catch (err) {
         console.error(err);
       }
-      app = app || autils.searchForExecutable("bcomp");
+      app = app || searchForExecutable("bcomp");
     } else if (osTool.platform.isWindows) {
-      app = autils.searchForExecutable("Beyond Compare 4", "BCompare.exe")
-        || autils.searchForExecutable("Beyond Compare 3", "BCompare.exe");
+      app = searchForExecutable("Beyond Compare 4", "BCompare.exe")
+        || searchForExecutable("Beyond Compare 3", "BCompare.exe");
     }
 
-    app = app || autils.searchForExecutable("bcomp");
+    app = app || searchForExecutable("bcomp");
 
     this.exePath = app;
 

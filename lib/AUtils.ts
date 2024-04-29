@@ -71,7 +71,7 @@ const findProgramOnPath = (programName: string): string | null => {
     return result;
 };
 
-const searchForExecutable = (folderInProgramInFiles?: string, fileName?: string): string | null => {
+const searchForExecutable = (folderInProgramInFiles?: string, fileName?: string): string => {
     if (!fileName) {
         fileName = folderInProgramInFiles;
         folderInProgramInFiles = undefined;
@@ -112,7 +112,7 @@ const searchForExecutable = (folderInProgramInFiles?: string, fileName?: string)
             return fileFound;
         }
     }
-    return null;
+    return "";
 };
 
 const fixFilePathSlashes = (path_: string): string => {
