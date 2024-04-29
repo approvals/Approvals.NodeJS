@@ -1,6 +1,6 @@
-import {Reporter as ReporterBase} from '../../Core/Reporter';
+import {Reporter} from "../../Core/Reporter";
 
-class Reporter implements ReporterBase {
+export default class CopyCommandReporter implements Reporter {
     public name: string;
 
     constructor() {
@@ -47,4 +47,3 @@ class Reporter implements ReporterBase {
 
 }
 
-module.exports = Reporter;
