@@ -9,7 +9,7 @@ class Reporter extends GenericDiffReporterBase {
 
     super("BeyondCompare");
 
-    var app:string = "";
+    let app:string = "";
     if (platform.isMac) {
       try {
         app = shelljs.ls('/Applications/Beyond Compare.app/Contents/MacOS/bcomp')[0];

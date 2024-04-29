@@ -9,12 +9,6 @@ on:
   pull_request:
     branches: [ master ]
   workflow_dispatch:
-#    inputs:
-#      myCommit:
-#        description: 'Commit SHA1'
-#        required: true
-#        default: 'undefined'
-#        type: string
 
 jobs:
   build:
@@ -23,23 +17,21 @@ jobs:
       fail-fast: false
       matrix:
         os:
-         # - ubuntu-latest
+          - ubuntu-latest
           - macos-latest
-         # - windows-latest
+          - windows-latest
 
         node-version:
           - 18
-#          - 19
-#          - 20
-#          - 21
+          - 19
+          - 20
+          - 21
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         architecture:
           - x64
 
     steps:
     - uses: actions/checkout@v4
-#      with:
-#        ref: ${{ inputs.myCommit }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
