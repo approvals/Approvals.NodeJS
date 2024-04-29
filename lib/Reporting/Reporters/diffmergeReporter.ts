@@ -1,29 +1,25 @@
-'use strict';
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-var shelljs = require('shelljs');
-var osTools = require('../../osTools');
+import GenericDiffReporterBase from '../GenericDiffReporterBase';
+import * as shelljs from 'shelljs';
+import {platform} from "../../osTools";
+import {searchForExecutable} from "../../AUtils";
 
 class Reporter extends GenericDiffReporterBase {
 
-  constructor() {
+    constructor() {
+        super("DiffMerge");
 
-    super("DiffMerge");
+        let app: string | null = null;
+        if (platform.isMac) {
+            try {
+                app = shelljs.ls('/Applications/DiffMerge.app/Contents/MacOS/DiffMerge')[0];
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
-    var app = null;
-    if (osTools.platform.isMac) {
-      try {
-        app = shelljs.ls('/Applications/DiffMerge.app/Contents/MacOS/DiffMerge')[0];
-      } catch (err) {
-        console.error(err);
-      }
+        this.exePath = app || searchForExecutable("DiffMerge");
     }
-
-    this.exePath = app || autils.searchForExecutable("DiffMerge");
-
-  }
-
 }
 
-module.exports = Reporter;
+export = Reporter;
