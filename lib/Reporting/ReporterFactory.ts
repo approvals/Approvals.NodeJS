@@ -16,7 +16,10 @@ export class ReporterFactory {
 
         try {
             const ReporterCtor = require(`./Reporters/${name}Reporter`);
-            return new ReporterCtor();
+            if (!ReporterCtor.default) {
+                return new ReporterCtor();
+            }
+            return new ReporterCtor.default();
         } catch (e) {
             const allFiles = readdirSync(__dirname);
             const availableReporters = allFiles

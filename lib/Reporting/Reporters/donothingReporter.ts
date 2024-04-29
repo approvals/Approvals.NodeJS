@@ -1,19 +1,17 @@
 'use strict';
 
-class Reporter {
-  constructor() {
-    this.name = "DoNothing";
-    this.exePath = "echo";
-  }
+import {Reporter} from "../../Core/Reporter";
 
-  canReportOn () {
-    return true;
-  }
+export default class DoNothingReporter implements Reporter {
+    name: string = "DoNothing";
 
-  report() {
-    // Do nothing
-  }
+    canReportOn() {
+        return true;
+    }
 
+    report() {
+        // Do nothing
+    }
 }
 
-module.exports = Reporter;
+
