@@ -3,7 +3,7 @@ import {platform} from "../../osTools";
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import shelljs from "shelljs";
 
-class Reporter extends GenericDiffReporterBase {
+export default class BeyondCompareReporter extends GenericDiffReporterBase {
 
   constructor() {
 
@@ -30,4 +30,3 @@ class Reporter extends GenericDiffReporterBase {
 
 }
 
-module.exports = Reporter;
