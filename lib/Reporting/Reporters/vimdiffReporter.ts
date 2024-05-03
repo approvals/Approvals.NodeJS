@@ -4,7 +4,7 @@
 var autils = require('../../AUtils');
 var GenericDiffReporterBase = require('../GenericDiffReporterBase');
 
-class Reporter extends GenericDiffReporterBase {
+export default class Reporter extends GenericDiffReporterBase {
 
   constructor() {
 
@@ -30,5 +30,3 @@ class Reporter extends GenericDiffReporterBase {
   }
 
 }
-
-module.exports = Reporter;
