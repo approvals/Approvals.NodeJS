@@ -85,7 +85,7 @@ static verify(namer: Namer, writer: Writer, reporterFactory: ReporterLoader, opt
     // Delete the received file
     fs.unlinkSync(receivedFileName);
 
-   process.emit("approvalFileApproved" , approvedFileName);
+    (process.emit as Function)('approvalFileApproved', approvedFileName);
 }}
 
 export function verify(namer: Namer, writer: Writer, reporterFactory: () => Reporter[], options?: Partial<Config>): void {
