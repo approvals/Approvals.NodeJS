@@ -1,19 +1,21 @@
 'use strict';
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-var shelljs = require('shelljs');
-var fs = require('fs');
-var osTools = require('../../osTools');
 
-export default class Reporter extends GenericDiffReporterBase {
+import fs from "fs";
+
+import shelljs from "shelljs";
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {platform} from "../../osTools";
+import {searchForExecutable} from "../../AUtils";
+
+export default class P4MergeReporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("P4Merge");
 
     var app = null;
-    if (osTools.platform.isMac) {
+    if (platform.isMac) {
 
       try {
         app = shelljs.ls('/Applications/p4merge.app/Contents/Resources/launchp4merge')[0];
@@ -33,7 +35,7 @@ export default class Reporter extends GenericDiffReporterBase {
       }
     }
 
-    this.exePath = app || autils.searchForExecutable("Perforce", "p4merge.exe");
+    this.exePath = app || searchForExecutable("Perforce", "p4merge.exe");
 
   }
 
