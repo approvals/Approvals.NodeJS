@@ -1,8 +1,6 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {createEmptyFileIfNotExists, searchForExecutable} from "../../AUtils";
 
-
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
 
 export default class Reporter extends GenericDiffReporterBase {
 
@@ -10,7 +8,7 @@ export default class Reporter extends GenericDiffReporterBase {
 
     super("VimDiff");
 
-    this.exePath = autils.searchForExecutable("vim");
+    this.exePath = searchForExecutable("vim");
 
   }
 
@@ -23,7 +21,7 @@ export default class Reporter extends GenericDiffReporterBase {
       stdio: 'inherit'
     };
 
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
 
     return super.report(approved, received, options);
 
