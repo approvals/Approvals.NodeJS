@@ -1,21 +1,15 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {searchForExecutable} from "../../AUtils";
 
-/**
- * Meld reporter (linux)
- */
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-
-class Reporter extends GenericDiffReporterBase {
+export default class MeldReporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("Meld");
 
-    this.exePath = autils.searchForExecutable("meld");
+    this.exePath = searchForExecutable("meld");
 
   }
 
 }
 
-module.exports = Reporter;
