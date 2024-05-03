@@ -8,7 +8,7 @@ import path from 'path';
 import marked from 'marked';
 import TerminalRenderer from 'marked-terminal';
 import minimist from 'minimist';
-import * as approvals from '../lib/Approvals';
+var approvals = require('../lib/Approvals');
 
 const verbose = process.argv.includes('--verbose');
 const printHelp = process.argv.includes('--help');
