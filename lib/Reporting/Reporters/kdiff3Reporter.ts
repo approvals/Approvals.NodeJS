@@ -1,22 +1,15 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {searchForExecutable} from "../../AUtils";
 
-/**
- * Kdiff3 reporter
- */
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-
-class Reporter extends GenericDiffReporterBase {
+export default  class Kdiff3Reporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("Kdiff3");
 
-    this.exePath = autils.searchForExecutable("kdiff3");
+    this.exePath = searchForExecutable("kdiff3");
 
   }
 
 }
-
-module.exports = Reporter;
