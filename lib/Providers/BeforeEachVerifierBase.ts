@@ -5,8 +5,11 @@ import {StringWriter} from "../StringWriter";
 import {FileApprover} from "../FileApprover";
 import {ReporterFactory} from "../Reporting/ReporterFactory";
 import * as aUtils from '../AUtils';
-
-function beforeEachLoaderFunction(Namer: any, dirName: string, that: any): void {
+import {Namer} from "../Core/Namer";
+interface INamerConstructor {
+    new (any, string?): Namer; // Assuming INamerInstance is another interface that specifies the instance structure
+}
+function beforeEachLoaderFunction(Namer: INamerConstructor, dirName: string, that: any): void {
     // Add methods to the test context
     that.approvals = {getCurrentReporters};
     that.verify = verify;
@@ -35,7 +38,8 @@ function beforeEachLoaderFunction(Namer: any, dirName: string, that: any): void 
     }
 
 }
-export function beforeEachVerifierBase(Namer: any, usageSample: string, dirName: string) :void {
+
+export function beforeEachVerifierBase(Namer: INamerConstructor, usageSample: string, dirName: string) :void {
     if (!fs.existsSync(dirName)) {
         fs.mkdirSync(dirName);
     }

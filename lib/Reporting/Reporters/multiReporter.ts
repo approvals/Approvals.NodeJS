@@ -1,8 +1,10 @@
-'use strict';
+import {Reporter} from "../../Core/Reporter";
 
 var ReporterFactory = require('../ReporterFactory');
 
-class MultiReporter {
+export default class MultiReporter {
+    private reporters: Reporter[];
+    private name: string;
   constructor(reporters) {
     reporters = reporters || [];
     if (!Array.isArray(reporters)) {
@@ -21,7 +23,7 @@ class MultiReporter {
   }
 
   report(approvedFilePath, receivedFilePath, options) {
-    var errors = [];
+    var errors: any[] = [];
     this.reporters.forEach(function (reporter) {
       try {
         reporter.report(approvedFilePath, receivedFilePath, options);
@@ -43,4 +45,3 @@ class MultiReporter {
 
 }
 
-module.exports = MultiReporter;

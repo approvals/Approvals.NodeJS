@@ -97,7 +97,7 @@ const reportersExport: { MultiReporter: any } = {
      *   ]
      * });
      */
-    MultiReporter: require('./Reporting/Reporters/multiReporter')
+    MultiReporter: require('./Reporting/Reporters/multiReporter').default
 }
 
 function verifyAndScrub(dirName: string, testName: string, data: BinaryWriter| string, scrubber: Scrubber, optionsOverride: any): void {

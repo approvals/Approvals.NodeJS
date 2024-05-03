@@ -5,7 +5,6 @@ describe('multiReporter', function () {
 
   it("should use a multiple reporter", function () {
 
-    // var MultiReporter = require('../../../lib/Reporting/Reporters/multiReporter');
     var MultiReporter = approvals.reporters.MultiReporter;
     var MyCustomReporter = function () {
       var wasReporterUsed = false;
