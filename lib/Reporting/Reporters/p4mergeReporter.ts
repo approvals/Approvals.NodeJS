@@ -6,7 +6,7 @@ var shelljs = require('shelljs');
 var fs = require('fs');
 var osTools = require('../../osTools');
 
-class Reporter extends GenericDiffReporterBase {
+export default class Reporter extends GenericDiffReporterBase {
 
   constructor() {
 
@@ -38,5 +38,3 @@ class Reporter extends GenericDiffReporterBase {
   }
 
 }
-
-module.exports = Reporter;
