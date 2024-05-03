@@ -1,10 +1,7 @@
-'use strict';
+import {searchForExecutable} from "../../AUtils";
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
 
-
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-
-class Reporter extends GenericDiffReporterBase {
+export default class TortoiseMergeReporter extends GenericDiffReporterBase {
 
   constructor() {
 
@@ -18,11 +15,11 @@ class Reporter extends GenericDiffReporterBase {
       'TortoiseGitMerge.exe',
       'TortoiseMerge.exe'
     ];
-    var path = null;
+    let path: string = "";
 
     for (var i = 0; i < rootPaths.length; i++) {
       for (var j = 0; j < exeNames.length; j++) {
-        path = autils.searchForExecutable(rootPaths[i], exeNames[j]);
+        path = searchForExecutable(rootPaths[i], exeNames[j]);
         if (path) {
           break;
         }
@@ -37,4 +34,3 @@ class Reporter extends GenericDiffReporterBase {
 
 }
 
-module.exports = Reporter;
