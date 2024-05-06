@@ -1,17 +1,15 @@
+import {searchForExecutable} from "../../AUtils";
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
 
-class Reporter extends GenericDiffReporterBase {
+export default class OpenDiffReporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("opendiff");
 
-    this.exePath = autils.searchForExecutable("", "opendiff");
+    this.exePath = searchForExecutable("", "opendiff");
 
   }
 
 }
-
-module.exports = Reporter;
