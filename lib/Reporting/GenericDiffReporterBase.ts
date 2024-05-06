@@ -2,6 +2,7 @@ import * as childProcess from 'child_process';
 import * as fs from 'fs';
 import * as autils from '../AUtils';
 import reportingLaunchingCircuitBreaker from './ReportLaunchingCircuitBreaker';
+import { ChildProcessWithoutNullStreams } from 'child_process';
 
 interface CmdOptions {
     blockUntilReporterExits?: boolean;
@@ -58,7 +59,7 @@ class GenericDiffReporterBase {
         return !isBinary;
     }
 
-    spawn(exe: string, args: string[], cmdOptions?: any): void {
+    spawn(exe: string, args: string[], cmdOptions?: any): ChildProcessWithoutNullStreams  {
         const process = childProcess.spawn(exe, args, cmdOptions);
 
         let stdout = '';
@@ -79,6 +80,8 @@ class GenericDiffReporterBase {
                 console.log('\n============\nstderr:\n============\n' + stderr + "\n============\n");
             }
         });
+
+        return process;
     }
 
     spawnSync(exe: string, args: string[], cmdOptions?: any): void {
