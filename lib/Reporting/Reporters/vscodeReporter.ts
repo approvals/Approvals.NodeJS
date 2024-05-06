@@ -1,26 +1,24 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {platform} from "../../osTools";
+import {createEmptyFileIfNotExists, searchForExecutable} from "../../AUtils";
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-var ostools = require('../../osTools');
-
-class Reporter extends GenericDiffReporterBase {
+export default class VSCodeReporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("vscode");
 
-    if (ostools.platform.isWindows) {
-      this.exePath = autils.searchForExecutable('code.cmd');
+    if (platform.isWindows) {
+      this.exePath = searchForExecutable('code.cmd');
     } else {
-      this.exePath = autils.searchForExecutable('code');
+      this.exePath = searchForExecutable('code');
     }
 
   }
 
   report(approved, received, options) {
 
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
 
     options.cmdArgs = ['-n', '--diff', received, approved];
     options.cmdOptionOverrides = {
@@ -31,5 +29,3 @@ class Reporter extends GenericDiffReporterBase {
 
   }
 }
-
-module.exports = Reporter;
