@@ -1,7 +1,6 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {createEmptyFileIfNotExists, searchForExecutable} from "../../AUtils";
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
 
 class Reporter extends GenericDiffReporterBase {
 
@@ -9,7 +8,7 @@ class Reporter extends GenericDiffReporterBase {
 
     super("GitDiff");
 
-    this.exePath = autils.searchForExecutable("Git/cmd", "git");
+    this.exePath = searchForExecutable("Git/cmd", "git");
 
   }
 
@@ -17,7 +16,7 @@ class Reporter extends GenericDiffReporterBase {
 
     options = options || {};
 
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
     console.log(this.exePath);
 
     options.cmdArgs = ['diff', '--no-index', '--', received, approved];
