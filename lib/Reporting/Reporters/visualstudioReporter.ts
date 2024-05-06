@@ -36,12 +36,9 @@ export default class VisualStudioReporter extends GenericDiffReporterBase {
 
   report(approved, received) {
 
-    const spawn = this.spawn;
     createEmptyFileIfNotExists(approved);
 
-    var exe = this.exePath;
-
-    var ps = spawn(exe, ["/diff", received, approved], {
+    const ps = this.spawn(this.exePath, ["/diff", received, approved], {
       detached: true
     });
 
