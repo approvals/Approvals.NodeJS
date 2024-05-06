@@ -10,7 +10,7 @@ interface CmdOptions {
     cmdArgs?: string[];
 }
 
-class GenericDiffReporterBase {
+export default class GenericDiffReporterBase {
     name: string;
     public exePath: string = "";
     private _reporterFileLookedUp: boolean;
@@ -116,5 +116,3 @@ class GenericDiffReporterBase {
         spawnMethod(this.exePath, args, cmdOptions);
     }
 }
-
-export = GenericDiffReporterBase;

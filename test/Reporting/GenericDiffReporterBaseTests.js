@@ -1,7 +1,7 @@
 var fs = require('fs');
 var expect = require("chai").expect;
 //var path = require("path");
-var GenericDiffReporterBase = require("../../lib/Reporting/GenericDiffReporterBase");
+var GenericDiffReporterBase = require("../../lib/Reporting/GenericDiffReporterBase").default;
 var sinon = require('sinon');
 
 describe('GenericDiffReporterBase', function () {
