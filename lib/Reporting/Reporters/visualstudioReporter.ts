@@ -1,16 +1,14 @@
-'use strict';
+import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {createEmptyFileIfNotExists} from "../../AUtils";
+import {platform} from "../../osTools";
 
-var autils = require('../../AUtils');
-var GenericDiffReporterBase = require('../GenericDiffReporterBase');
-var ostools = require('../../osTools');
-
-class Reporter extends GenericDiffReporterBase {
+export default class VisualStudioReporter extends GenericDiffReporterBase {
 
   constructor() {
 
     super("VisualStudio");
 
-    if (ostools.platform.isWindows) {
+    if (platform.isWindows) {
 
       var edge = require('edge');
 
@@ -29,7 +27,7 @@ class Reporter extends GenericDiffReporterBase {
 
   canReportOn(fileName) {
 
-    if (ostools.platform.isWindows) {
+    if (platform.isWindows) {
       return super.canReportOn(fileName);
     }
 
@@ -39,7 +37,7 @@ class Reporter extends GenericDiffReporterBase {
   report(approved, received) {
 
     const spawn = this.spawn;
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
 
     var exe = this.exePath;
 
@@ -57,5 +55,3 @@ class Reporter extends GenericDiffReporterBase {
 
   }
 }
-
-module.exports = Reporter;
