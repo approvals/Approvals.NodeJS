@@ -15,7 +15,7 @@ export class MochaNamer extends Namer {
         if (!mochaTest) {
             throw new Error("Mocha test context was not supplied");
         }
-        mochaTest = mochaTest.test || mochaTest;
+        mochaTest = mochaTest.test;
 
         super('', '');
 
