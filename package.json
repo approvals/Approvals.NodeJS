@@ -62,6 +62,7 @@
     "ts-jest": "^29.0.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.6",
     "chai": "^4.4.1",
     "coveralls": "^3.1.0",
