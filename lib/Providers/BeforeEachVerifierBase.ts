@@ -5,11 +5,11 @@ import {StringWriter} from "../StringWriter";
 import {FileApprover} from "../FileApprover";
 import {ReporterFactory} from "../Reporting/ReporterFactory";
 import * as aUtils from '../AUtils';
-import {Namer} from "../Core/Namer";
-interface INamerConstructor {
-    new (any, string?): Namer; // Assuming INamerInstance is another interface that specifies the instance structure
-}
-function beforeEachLoaderFunction(Namer: INamerConstructor, dirName: string, that: any): void {
+
+import {MochaNamer} from "./Mocha/MochaNamer";
+
+
+function beforeEachLoaderFunction(Namer: typeof MochaNamer, dirName: string, that: any): void {
     // Add methods to the test context
     that.approvals = {getCurrentReporters};
     that.verify = verify;
@@ -21,7 +21,9 @@ function beforeEachLoaderFunction(Namer: INamerConstructor, dirName: string, tha
         return reporterCandidates;
     }
     function verify(data: any, overrideOptions?: any) {
-        const namer = new Namer(this, dirName);
+        // @ts-ignore
+        const context = this as Mocha.Context;
+        const namer = new Namer(context, dirName);
 
         const newOptions = _.defaults(overrideOptions || {}, cfg.currentConfig());
 
@@ -34,12 +36,13 @@ function beforeEachLoaderFunction(Namer: INamerConstructor, dirName: string, tha
     }
 
     function verifyAsJSON(data: any, overrideOptions?: any) {
+        // @ts-ignore
         this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
     }
 
 }
 
-export function beforeEachVerifierBase(Namer: INamerConstructor, usageSample: string, dirName: string) :void {
+export function beforeEachVerifierBase(Namer: typeof MochaNamer, usageSample: string, dirName: string) :void {
     if (!fs.existsSync(dirName)) {
         fs.mkdirSync(dirName);
     }
