@@ -15,12 +15,11 @@ export class MochaNamer extends Namer {
         if (!mochaTest) {
             throw new Error("Mocha test context was not supplied");
         }
-        mochaTest = mochaTest.test;
 
         super('', '');
 
-        this.ctx = mochaTest;
-        this.basePath = overrideBasePath || path.dirname(mochaTest.file);
+        this.ctx = mochaTest.test;
+        this.basePath = overrideBasePath || path.dirname(this.ctx.file);
     }
 
     getFullTestName(testContext: MochaTest): string {
