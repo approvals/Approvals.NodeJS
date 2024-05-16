@@ -83,7 +83,7 @@
     "npm-check-updates": "^16.14.18",
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^17.0.1",
+    "sinon": "^18.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.4.3"
   },
