@@ -1,6 +1,4 @@
-import glob from "glob";
-
-var path = require("path");
+import path from "path";
 
 function unique<T>(items: T[]): T[] {
   return [...new Set(items)];

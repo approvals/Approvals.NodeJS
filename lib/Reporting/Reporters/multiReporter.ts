@@ -1,10 +1,9 @@
 import { Reporter } from "../../Core/Reporter";
+import {ReporterFactory} from "../ReporterFactory";
 
-var ReporterFactory = require("../ReporterFactory");
-
-export default class MultiReporter {
+export default class MultiReporter implements Reporter{
   private reporters: Reporter[];
-  private name: string;
+  public name: string;
   constructor(reporters) {
     reporters = reporters || [];
     if (!Array.isArray(reporters)) {
@@ -12,7 +11,7 @@ export default class MultiReporter {
     }
 
     this.reporters =
-      ReporterFactory.ReporterFactory.loadAllReporters(reporters);
+      ReporterFactory.loadAllReporters(reporters);
 
     this.name =
       "Multi (" +

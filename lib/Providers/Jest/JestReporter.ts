@@ -1,7 +1,7 @@
 import { expect } from "@jest/globals";
 import type { ApprovalFailureReporter } from "../../Core/ApprovalFailureReporter";
+import fs from "fs";
 
-const fs = require("fs");
 
 export class JestReporter implements ApprovalFailureReporter {
   name: string = "JestReporter";

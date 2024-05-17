@@ -14,7 +14,7 @@ import { Options } from "../../Core/Options";
 import { getJestNamer } from "./JestNamer";
 
 import { StringWriter } from "../../StringWriter";
-const approvals = require("../../Approvals");
+import * as approvals from "../../Approvals";
 
 export function verify(sut: any, options?: Options): void {
   options = options || new Options();
