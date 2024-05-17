@@ -14,8 +14,10 @@ import { Options } from "../../Core/Options";
 import { MochaNamer } from "./MochaNamer";
 import mocha from "mocha";
 
-const StringWriter = require("../../StringWriter");
-const approvals = require("../../Approvals");
+import StringWriter from "../../StringWriter";
+
+import * as approvals from "../../Approvals";
+
 let mochaTest: any = null;
 
 export function it2(label: string, test: () => void): void {
