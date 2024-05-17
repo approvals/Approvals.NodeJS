@@ -1,43 +1,42 @@
 # Approvals (Approval Tests for Node.js)
 
 <!-- toc -->
-
 ## Contents
 
-- [Intro](#intro)
-- [Badges](#badges)
-- [Integrations](#integrations)
-- [Getting Started](#getting-started)
-  - [Jest Typescript Starter Project](#jest-typescript-starter-project)
-  - [Mocha](#mocha)
-- [Documentation](#documentation)
-- [CLI](#cli)
-  - [Install Approvals CLI](#install-approvals-cli)
-  - [CLI Help](#cli-help)
-- [Simple hello world](#simple-hello-world)
-- [Specify diff reporter (great for C.I.)](#specify-diff-reporter-great-for-ci)
-- [Multiple diff reporters](#multiple-diff-reporters)
-- [Reporters](#reporters)
-  - [Built-In Reporters](#built-in-reporters)
-- [Supported Diff Tools](#supported-diff-tools)
-  - [Custom Reporter](#custom-reporter)
-- [Configuration](#configuration)
-- [API](#api)
-- [approvals](#approvals)
-  - [approvals.configure](#approvalsconfigure)
-  - [approvals.getConfig ⇒ <code>Object</code>](#approvalsgetconfig--codeobjectcode)
-  - [approvals.verify](#approvalsverify)
-  - [approvals.verifyAndScrub](#approvalsverifyandscrub)
-  - [approvals.verifyAsJSON](#approvalsverifyasjson)
-  - [approvals.verifyAsJSONAndScrub](#approvalsverifyasjsonandscrub)
-  - [approvals.verifyWithControl](#approvalsverifywithcontrol)
-  - [approvals.mocha](#approvalsmocha)
-  - [approvals.reporters](#approvalsreporters)
-  - [approvals.scrubbers](#approvalsscrubbers)
-- [Source Control](#source-control)
-  - [Git](#git)
-- [Contributing](#contributing)
-- [License](#license)<!-- endToc -->
+  * [Intro](#intro)
+  * [Badges](#badges)
+  * [Integrations](#integrations)
+  * [Getting Started](#getting-started)
+    * [Jest Typescript Starter Project](#jest-typescript-starter-project)
+    * [Mocha](#mocha)
+  * [Documentation](#documentation)
+  * [CLI](#cli)
+    * [Install Approvals CLI](#install-approvals-cli)
+    * [CLI Help](#cli-help)
+  * [Simple hello world](#simple-hello-world)
+  * [Specify diff reporter (great for C.I.)](#specify-diff-reporter-great-for-ci)
+  * [Multiple diff reporters](#multiple-diff-reporters)
+  * [Reporters](#reporters)
+    * [Built-In Reporters](#built-in-reporters)
+  * [Supported Diff Tools](#supported-diff-tools)
+    * [Custom Reporter](#custom-reporter)
+  * [Configuration](#configuration)
+  * [API](#api)
+  * [approvals](#approvals)
+    * [approvals.configure](#approvalsconfigure)
+    * [approvals.getConfig ⇒ <code>Object</code>](#approvalsgetconfig--codeobjectcode)
+    * [approvals.verify](#approvalsverify)
+    * [approvals.verifyAndScrub](#approvalsverifyandscrub)
+    * [approvals.verifyAsJSON](#approvalsverifyasjson)
+    * [approvals.verifyAsJSONAndScrub](#approvalsverifyasjsonandscrub)
+    * [approvals.verifyWithControl](#approvalsverifywithcontrol)
+    * [approvals.mocha](#approvalsmocha)
+    * [approvals.reporters](#approvalsreporters)
+    * [approvals.scrubbers](#approvalsscrubbers)
+  * [Source Control](#source-control)
+    * [Git](#git)
+  * [Contributing](#contributing)
+  * [License](#license)<!-- endToc -->
 
 <a name="intro" />
 
@@ -286,9 +285,7 @@ it("should use a multiple reporters", function () {
 ```
 
 <!-- snippet: default_config -->
-
 <a id='snippet-default_config'></a>
-
 ```ts
 export const defaultConfig: Config = {
   reporters: [
@@ -312,9 +309,7 @@ export const defaultConfig: Config = {
   maxLaunches: 10,
 };
 ```
-
 <sup><a href='/lib/config.ts#L22-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_config' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 <a name="api" />
