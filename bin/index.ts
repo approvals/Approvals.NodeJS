@@ -1,5 +1,4 @@
 #!/usr/bin/env ts-node
-/// <reference path="../typings/node/node.d.ts"/>
 import chalk from 'chalk';
 import es from 'event-stream';
 import * as autils from '../lib/AUtils';

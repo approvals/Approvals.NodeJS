@@ -1,12 +1,14 @@
-'use strict';
 
-var fs = require('fs');
-var chalk = require('chalk');
-var jsdiff = require('diff');
+import fs from "fs";
 
-var autils = require('../../AUtils');
+import chalk from "chalk";
+
+import jsdiff from "diff";
+import {assertFileExists, createEmptyFileIfNotExists, isBinaryFile} from "../../AUtils";
+
 
 class Reporter {
+    private name: string;
 
   constructor() {
 
@@ -17,9 +19,9 @@ class Reporter {
 
   canReportOn(fileName) {
 
-    autils.assertFileExists(fileName);
+    assertFileExists(fileName);
 
-    var isBinary = autils.isBinaryFile(fileName);
+    var isBinary = isBinaryFile(fileName);
     if (isBinary) {
       return false;
     }
@@ -29,7 +31,7 @@ class Reporter {
 
   report(approved, received) {
 
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
 
     var approvedText = fs.readFileSync(approved).toString();
     var receivedText = fs.readFileSync(received).toString();
@@ -43,7 +45,7 @@ class Reporter {
       // green for additions, red for deletions
       // grey for common parts
       var color = part.added ? 'green' :
-        part.removed ? 'red' : 'gray';
+          part.removed ? 'red' : 'gray';
 
       process.stdout.write(chalk[color](part.value));
 
