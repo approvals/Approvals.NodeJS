@@ -1,5 +1,5 @@
 import { FinalMessages } from "../FinalMessages";
-import NodeDiffReporter from './Reporters/nodediffReporter';
+import NodeDiffReporter from "./Reporters/nodediffReporter";
 
 let maxLaunch = 10;
 let currentCount = 0;

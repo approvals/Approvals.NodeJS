@@ -2,4 +2,4 @@
 
 touch bin/index.js
 chmod a+x bin/index.js
-sh -c "$(cat build_and_test.bat)"
+sh -ce "$(cat build_and_test.bat)"

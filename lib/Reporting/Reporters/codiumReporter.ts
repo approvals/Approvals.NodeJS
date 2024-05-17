@@ -1,6 +1,6 @@
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import {platform} from "../../osTools";
-import {searchForExecutable} from "../../AUtils";
+import {createEmptyFileIfNotExists, searchForExecutable} from "../../AUtils";
 
  export default class CodiumReporter extends GenericDiffReporterBase {
     constructor() {
@@ -14,7 +14,7 @@ import {searchForExecutable} from "../../AUtils";
     }
 
     report(approved, received, options) {
-        autils.createEmptyFileIfNotExists(approved);
+        createEmptyFileIfNotExists(approved);
 
         options.cmdArgs = ["-n", "--diff", received, approved];
         options.cmdOptionOverrides = {
