@@ -11,6 +11,11 @@ jobs:
         dotnet tool install --global MarkdownSnippets.Tool
         mdsnippets ${GITHUB_WORKSPACE}
       shell: bash
+    - name: Prettier
+      run: |
+        npm install -g prettier
+        prettier --write .
+      shell: bash
     - name: Push changes
       run: |
         git config --local user.email "action@github.com"
