@@ -1,7 +1,7 @@
 export interface ApprovalFailureReporter {
-    name: string;
+  name: string;
 
-    canReportOn(): boolean;
+  canReportOn(): boolean;
 
-    report(approvedFilePath: string, receivedFilePath: string): void;
+  report(approvedFilePath: string, receivedFilePath: string): void;
 }

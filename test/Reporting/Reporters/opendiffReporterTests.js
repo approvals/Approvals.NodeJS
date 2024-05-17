@@ -1,17 +1,15 @@
-'use strict';
+"use strict";
 
 var utils = require("../../../lib/AUtils");
 var assert = require("assert");
 var path = require("path");
-var { expect } = require('chai');
+var { expect } = require("chai");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/opendiffReporter");
 
-describe('Reporter', function () {
-
-  if (utils.findProgramOnPath('opendiff')) {
-    describe('opendiff', function () {
-      xit('reporter args are correct', function () {
-
+describe("Reporter", function () {
+  if (utils.findProgramOnPath("opendiff")) {
+    describe("opendiff", function () {
+      xit("reporter args are correct", function () {
         var reporter = new ReporterUnderTest();
 
         var approvedFile = path.join(__dirname, "a.txt");
@@ -20,22 +18,19 @@ describe('Reporter', function () {
         assert.ok(reporter.report);
         reporter.report(approvedFile, receivedFile, {
           spawn: function (command, args) {
-
             assert.ok(command.toLowerCase().indexOf("opendiff") >= 0);
             assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
             return {
               status: 0,
-              stdout: { on: function () { } },
-              stderr: { on: function () { } }
+              stdout: { on: function () {} },
+              stderr: { on: function () {} },
             };
-          }
+          },
         });
-
       });
 
-      xit('reporter args are correct', function () {
-
+      xit("reporter args are correct", function () {
         var reporter = new ReporterUnderTest();
 
         var approvedFile = path.join(__dirname, "a.txt");
@@ -44,19 +39,19 @@ describe('Reporter', function () {
         expect(() => {
           reporter.report(approvedFile, receivedFile, {
             spawn: function (command, args) {
-
               assert.ok(command.toLowerCase().indexOf("opendiff") >= 0);
               assert.deepStrictEqual(args, [receivedFile, approvedFile]);
 
               return {
                 status: 1,
-                stdout: Buffer.from(''),
-                stderr: Buffer.from('xcode-select: error: tool \'opendiff\' requires Xcode, but active developer directory \'/Library/Developer/CommandLineTools\' is a command line tools instance'),
+                stdout: Buffer.from(""),
+                stderr: Buffer.from(
+                  "xcode-select: error: tool 'opendiff' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance",
+                ),
               };
-            }
+            },
           });
         }).to.throw(/Could not launch diff tool/);
-
       });
     });
   }

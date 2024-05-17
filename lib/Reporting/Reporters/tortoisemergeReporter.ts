@@ -1,20 +1,12 @@
-import {searchForExecutable} from "../../AUtils";
+import { searchForExecutable } from "../../AUtils";
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 
 export default class TortoiseMergeReporter extends GenericDiffReporterBase {
-
   constructor() {
-
     super("TortoiseMerge");
 
-    var rootPaths = [
-      "TortoiseGit/bin",
-      "TortoiseSVN/bin"
-    ];
-    var exeNames = [
-      'TortoiseGitMerge.exe',
-      'TortoiseMerge.exe'
-    ];
+    var rootPaths = ["TortoiseGit/bin", "TortoiseSVN/bin"];
+    var exeNames = ["TortoiseGitMerge.exe", "TortoiseMerge.exe"];
     let path: string = "";
 
     for (var i = 0; i < rootPaths.length; i++) {
@@ -29,8 +21,5 @@ export default class TortoiseMergeReporter extends GenericDiffReporterBase {
       }
     }
     this.exePath = path;
-
   }
-
 }
-

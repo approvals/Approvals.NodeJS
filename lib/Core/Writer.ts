@@ -1,5 +1,5 @@
 export interface Writer {
-    getFileExtension(): string;
+  getFileExtension(): string;
 
-    write(filePath: string): void;
+  write(filePath: string): void;
 }

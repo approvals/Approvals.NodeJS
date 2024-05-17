@@ -1,23 +1,17 @@
-var {Scrubbers} = require("../../lib/Scrubbers/Scrubbers");
-var expect = require('chai').expect;
+var { Scrubbers } = require("../../lib/Scrubbers/Scrubbers");
+var expect = require("chai").expect;
 
-describe('Scrubbers', function () {
-
-  describe('multiScrubber', function () {
-
-    it('should use each scrubber', () => {
-
+describe("Scrubbers", function () {
+  describe("multiScrubber", function () {
+    it("should use each scrubber", () => {
       const multiScrubber = Scrubbers.multiScrubber([
-        (input) => input.replace('a', 'A'),
-        (input) => input.replace('b', 'B')
+        (input) => input.replace("a", "A"),
+        (input) => input.replace("b", "B"),
       ]);
 
       const result = multiScrubber("a b c");
 
-      expect(result).to.equal('A B c');
-
+      expect(result).to.equal("A B c");
     });
-
   });
-
 });

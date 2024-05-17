@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 /// <reference path="../../../typings/node/node.d.ts"/>
 /// <reference path="../../../typings/mocha/mocha.d.ts"/>
-var expect = require('chai').expect;
+var expect = require("chai").expect;
 
-var assert = require('assert');
+var assert = require("assert");
 var MyCustomReporter = function () {
   var wasReporterUsed = false;
   return {
@@ -17,37 +17,36 @@ var MyCustomReporter = function () {
     getWasReporterUsed: function () {
       return wasReporterUsed;
     },
-    name: "globalCustomReporter"
+    name: "globalCustomReporter",
   };
 };
 
-var approvals = require('../../../lib/Approvals').mocha();
+var approvals = require("../../../lib/Approvals").mocha();
 var globalCustomReporter;
 
 describe("CustomReporter", function () {
-
   beforeEach(function () {
     globalCustomReporter = MyCustomReporter();
   });
 
   it("allows CustomReporter at method level", function () {
-
     var calledCustomReporter = false;
 
     try {
-      this.verify('foo', {
+      this.verify("foo", {
         errorOnStaleApprovedFiles: false,
-        reporters: [{
-          name: 'my-test-custom-reporter',
-          canReportOn: function (/*file*/) {
-            return true;
+        reporters: [
+          {
+            name: "my-test-custom-reporter",
+            canReportOn: function (/*file*/) {
+              return true;
+            },
+            report: function (/*approved, received*/) {
+              calledCustomReporter = true;
+            },
           },
-          report: function (/*approved, received*/) {
-            calledCustomReporter = true;
-          }
-        }]
+        ],
       });
-
     } catch (err) {
       //
     }
@@ -57,11 +56,11 @@ describe("CustomReporter", function () {
 
   it("uses global custom reporter", function () {
     const config = approvals.getConfig({
-      reporters: [globalCustomReporter]
+      reporters: [globalCustomReporter],
     });
 
     try {
-      this.verify('foo', config);
+      this.verify("foo", config);
     } catch (err) {
       //
     }
@@ -71,12 +70,17 @@ describe("CustomReporter", function () {
 
   it("uses global custom reporter manual verify", function () {
     const config = approvals.getConfig({
-      reporters: [globalCustomReporter]
+      reporters: [globalCustomReporter],
     });
 
     var didRaiseException = false;
     try {
-      approvals.verify(__dirname, "CustomReporter.uses_global_custom_reporter_manual_verify", 'foo', config);
+      approvals.verify(
+        __dirname,
+        "CustomReporter.uses_global_custom_reporter_manual_verify",
+        "foo",
+        config,
+      );
     } catch (err) {
       didRaiseException = true;
     }
@@ -89,12 +93,11 @@ describe("CustomReporter", function () {
   it("uses global custom reporter 2", function () {
     approvals.configure({
       reporters: [globalCustomReporter],
-      errorOnStaleApprovedFiles: false
+      errorOnStaleApprovedFiles: false,
     });
 
     var reporter = this.approvals.getCurrentReporters()[0];
 
     assert.strictEqual(reporter.name, "globalCustomReporter");
   });
-
 });

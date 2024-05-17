@@ -3,9 +3,10 @@
 # Combinations Approvals
 
 <!-- toc -->
+
 ## Contents
 
-  * [Links](#links)<!-- endToc -->
+- [Links](#links)<!-- endToc -->
 
 ## Links
 

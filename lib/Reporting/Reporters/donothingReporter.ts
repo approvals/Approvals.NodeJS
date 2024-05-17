@@ -1,17 +1,15 @@
-'use strict';
+"use strict";
 
-import {Reporter} from "../../Core/Reporter";
+import { Reporter } from "../../Core/Reporter";
 
 export default class DoNothingReporter implements Reporter {
-    name: string = "DoNothing";
+  name: string = "DoNothing";
 
-    canReportOn() {
-        return true;
-    }
+  canReportOn() {
+    return true;
+  }
 
-    report() {
-        // Do nothing
-    }
+  report() {
+    // Do nothing
+  }
 }
-
-

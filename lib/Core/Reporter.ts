@@ -1,9 +1,13 @@
-import {Config} from "../config";
+import { Config } from "../config";
 
 export interface Reporter {
-    canReportOn(fileName: string): boolean;
+  canReportOn(fileName: string): boolean;
 
-    report(approvedFileName: string, receivedFileName: string, options: Partial<Config>): void;
+  report(
+    approvedFileName: string,
+    receivedFileName: string,
+    options: Partial<Config>,
+  ): void;
 
-    name: string;
+  name: string;
 }

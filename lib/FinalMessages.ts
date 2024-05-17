@@ -1,8 +1,6 @@
-
 const messages: string[] = [];
 
 export class FinalMessages {
-
   static addMessage(message) {
     messages.push(message);
   }
@@ -13,7 +11,6 @@ export class FinalMessages {
 
   static getMessages() {
     //return messages;
-    return Object.keys(messages).map(x => messages[x]);
+    return Object.keys(messages).map((x) => messages[x]);
   }
-
 }

@@ -1,24 +1,32 @@
-import {Reporter} from "../../Core/Reporter";
+import { Reporter } from "../../Core/Reporter";
 
-var ReporterFactory = require('../ReporterFactory');
+var ReporterFactory = require("../ReporterFactory");
 
 export default class MultiReporter {
-    private reporters: Reporter[];
-    private name: string;
+  private reporters: Reporter[];
+  private name: string;
   constructor(reporters) {
     reporters = reporters || [];
     if (!Array.isArray(reporters)) {
       throw new Error("reporters arguments is not an array of reporters");
     }
 
-    this.reporters = ReporterFactory.ReporterFactory.loadAllReporters(reporters);
+    this.reporters =
+      ReporterFactory.ReporterFactory.loadAllReporters(reporters);
 
-    this.name = "Multi (" + this.reporters.map(function (r) { return r.name; }).join(', ') + ')';
+    this.name =
+      "Multi (" +
+      this.reporters
+        .map(function (r) {
+          return r.name;
+        })
+        .join(", ") +
+      ")";
   }
 
-  canReportOn (fileName) {
+  canReportOn(fileName) {
     return this.reporters.every(function (reporter) {
-      return reporter.canReportOn(fileName)
+      return reporter.canReportOn(fileName);
     });
   }
 
@@ -35,13 +43,15 @@ export default class MultiReporter {
     if (errors.length === 1) {
       throw errors[0];
     } else if (1 < errors.length) {
-      var errorMessage = 'There were multiple errors:\n\n' + errors.map(err => {
-        return '  ' + err.toString();
-      }).join('\n');
+      var errorMessage =
+        "There were multiple errors:\n\n" +
+        errors
+          .map((err) => {
+            return "  " + err.toString();
+          })
+          .join("\n");
 
-      throw new Error(errorMessage)
+      throw new Error(errorMessage);
     }
   }
-
 }
-

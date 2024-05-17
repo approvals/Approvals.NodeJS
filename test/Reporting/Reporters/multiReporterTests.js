@@ -1,10 +1,8 @@
-var approvals = require('../../../lib/Approvals');
-var expect = require('chai').expect;
+var approvals = require("../../../lib/Approvals");
+var expect = require("chai").expect;
 
-describe('multiReporter', function () {
-
+describe("multiReporter", function () {
   it("should use a multiple reporter", function () {
-
     var MultiReporter = approvals.reporters.MultiReporter;
     var MyCustomReporter = function () {
       var wasReporterUsed = false;
@@ -18,7 +16,7 @@ describe('multiReporter', function () {
         getWasReporterUsed: function () {
           return wasReporterUsed;
         },
-        name: "temp-test-reporter"
+        name: "temp-test-reporter",
       };
     };
 
@@ -33,9 +31,7 @@ describe('multiReporter', function () {
     expect(r2.getWasReporterUsed()).to.equal(true);
   });
 
-
   it("It should error propertly", function () {
-
     var MultiReporter = approvals.reporters.MultiReporter;
     var MyCustomReporter = function (name) {
       var wasReporterUsed = false;
@@ -44,12 +40,14 @@ describe('multiReporter', function () {
           return true;
         },
         report: function (/*approved, received*/) {
-          throw new Error("This is an error message for reporter: " + this.name);
+          throw new Error(
+            "This is an error message for reporter: " + this.name,
+          );
         },
         getWasReporterUsed: function () {
           return wasReporterUsed;
         },
-        name: "temp-test-reporter - " + name
+        name: "temp-test-reporter - " + name,
       };
     };
 
@@ -61,11 +59,15 @@ describe('multiReporter', function () {
     try {
       multiReporter.report("asdf", "bsdf");
     } catch (error) {
-      approvals.verify(__dirname, 'It_should_error_properly', error.toString(), {
-        appendEOL: true,
-        failOnLineEndingDifferences: false
-      });
+      approvals.verify(
+        __dirname,
+        "It_should_error_properly",
+        error.toString(),
+        {
+          appendEOL: true,
+          failOnLineEndingDifferences: false,
+        },
+      );
     }
   });
-
 });
