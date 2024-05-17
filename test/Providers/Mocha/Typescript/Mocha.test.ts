@@ -2,7 +2,7 @@
 
 import { it2, verify } from "../../../../lib/Providers/Mocha/MochaApprovals";
 
-const assert = require("assert");
+import assert from "assert";
 // import { describe, it } from 'mocha';
 
 describe("Mocha Typescript Approvals", () => {
