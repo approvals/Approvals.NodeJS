@@ -4,7 +4,7 @@ import * as path from "path";
 import * as _ from "lodash";
 import * as yaml from "js-yaml";
 import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircuitBreaker";
-import {ApprovalFailureReporter} from "./Core/ApprovalFailureReporter";
+import { ApprovalFailureReporter } from "./Core/ApprovalFailureReporter";
 
 export interface Config {
   reporters: (string | ApprovalFailureReporter)[];
