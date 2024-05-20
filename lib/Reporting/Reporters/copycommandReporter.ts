@@ -1,5 +1,5 @@
 import { Reporter } from "../../Core/Reporter";
-import {execSync} from "node:child_process";
+import { execSync } from "node:child_process";
 
 export default class CopyCommandReporter implements Reporter {
   public name: string;
@@ -35,7 +35,7 @@ export default class CopyCommandReporter implements Reporter {
       "'" + receivedFilePath + "' '" + approvedFilePath + "'";
 
     if (selectedPrograms) {
-        execSync(selectedPrograms.clipboard, {
+      execSync(selectedPrograms.clipboard, {
         input: selectedPrograms.fileCopy + " " + copyFragment,
       });
     } else {

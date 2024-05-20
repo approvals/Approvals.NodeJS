@@ -1,7 +1,7 @@
 import { Reporter } from "../../Core/Reporter";
-import {ReporterFactory} from "../ReporterFactory";
+import { ReporterFactory } from "../ReporterFactory";
 
-export default class MultiReporter implements Reporter{
+export default class MultiReporter implements Reporter {
   private reporters: Reporter[];
   public name: string;
   constructor(reporters) {
@@ -10,8 +10,7 @@ export default class MultiReporter implements Reporter{
       throw new Error("reporters arguments is not an array of reporters");
     }
 
-    this.reporters =
-      ReporterFactory.loadAllReporters(reporters);
+    this.reporters = ReporterFactory.loadAllReporters(reporters);
 
     this.name =
       "Multi (" +
