@@ -29,7 +29,7 @@ import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 /**
  * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
  */
-export { Scrubbers } ;
+export { Scrubbers as scrubbers} ;
 
 
 if (typeof beforeEach === "function") {
