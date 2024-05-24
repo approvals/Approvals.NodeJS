@@ -1,9 +1,7 @@
-"use strict";
+import fs from "fs";
+import assert from "assert";
 
-var fs = require("fs");
-var assert = require("assert");
-
-var allReporterFiles = [];
+const allReporterFiles: string[] = [];
 describe("All reporters must conform to naming convention", function () {
   beforeEach(function () {
     fs.readdirSync(__dirname + "/../../../lib/Reporting/Reporters").forEach(
@@ -23,7 +21,7 @@ describe("All reporters must conform to naming convention", function () {
 
   it("should all have prefix names lower case", function () {
     allReporterFiles.forEach(function (item) {
-      var prefix = item
+      const prefix = item
         .replace("Reporter.js", "")
         .replace("Reporter.ts", "")
         .replace("Reporter.d.ts", "");
