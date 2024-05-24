@@ -327,23 +327,50 @@ Approvals module.
 
 
 * [approvals](#module_approvals)
-    * [.configure](#module_approvals.configure)
-    * [.getConfig](#module_approvals.getConfig) ⇒ <code>Object</code>
-    * [.verify](#module_approvals.verify)
-    * [.verifyAndScrub](#module_approvals.verifyAndScrub)
-    * [.verifyAsJSON](#module_approvals.verifyAsJSON)
-    * [.verifyAsJSONAndScrub](#module_approvals.verifyAsJSONAndScrub)
-    * [.verifyWithControl](#module_approvals.verifyWithControl)
-    * [.mocha](#module_approvals.mocha)
-    * [.reporters](#module_approvals.reporters)
-    * [.scrubbers](#module_approvals.scrubbers)
+    * _static_
+        * [.reporters](#module_approvals.reporters)
+            * [.MultiReporter](#module_approvals.reporters.MultiReporter)
+    * _inner_
+        * [~configure(overrideOptions)](#module_approvals..configure)
+        * [~getConfig(overrideOptions)](#module_approvals..getConfig) ⇒ <code>Object</code>
+        * [~mocha(optionalBaseDir)](#module_approvals..mocha)
+        * [~verifyAndScrub(dirName, testName, data, scrubber, optionsOverride)](#module_approvals..verifyAndScrub)
+        * [~verify(dirName, testName, data, optionsOverride)](#module_approvals..verify)
+        * [~verifyAsJSON(dirName, testName, data, optionsOverride)](#module_approvals..verifyAsJSON)
+        * [~verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride)](#module_approvals..verifyAsJSONAndScrub)
+        * [~verifyWithControl(namer, writer, [reporterFactory], [optionsOverride])](#module_approvals..verifyWithControl)
 
-<a name="module_approvals.configure"></a>
+<a name="module_approvals.reporters"></a>
 
-### approvals.configure
-Allows you to provide overrides to the default configuration.
+### approvals.reporters
+`reporters` gives access to the `MultiReporter`
 
 **Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Example**
+```js
+const MultiReporter = approvals.reporters.MultiReporter
+```
+<a name="module_approvals.reporters.MultiReporter"></a>
+
+#### reporters.MultiReporter
+This allows access to the MultiReporter constructor.
+You can use this to run multiple reporters at the same time.
+
+**Kind**: static property of [<code>reporters</code>](#module_approvals.reporters)
+**Example**
+```js
+approvals.verify(__dirname, "multi-reporter-example", "some data", {
+  reporters: [
+    new MultiReporter('p4merge', 'copycommand')
+  ]
+});
+```
+<a name="module_approvals..configure"></a>
+
+### approvals~configure(overrideOptions)
+Allows you to provide overrides to the default configuration.
+
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type |
 | --- | --- |
@@ -356,48 +383,35 @@ approvals.configure({
   reporters: ['p4merge']
 });
 ```
-<a name="module_approvals.getConfig"></a>
+<a name="module_approvals..getConfig"></a>
 
-### approvals.getConfig ⇒ <code>Object</code>
+### approvals~getConfig(overrideOptions) ⇒ <code>Object</code>
 Allows the creation of an approvals configuration object using any passed in options to override the defaults.
 
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 **Returns**: <code>Object</code> - approvals config object with any options overridden.
 
 | Param | Type |
 | --- | --- |
 | overrideOptions | <code>Object</code> |
 
-<a name="module_approvals.verify"></a>
+<a name="module_approvals..mocha"></a>
 
-### approvals.verify
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+### approvals~mocha(optionalBaseDir)
+Configure approvals to hook into Mocha tests.
+
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
-| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
-| testName | <code>string</code> | A file name save string to call the file associated with this test. |
-| data | <code>string</code> \| <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
-| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+| optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
 
-**Example**
-```js
-// basic approval test
-const approvals = require('approvals');
-approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
-```
-**Example**
-```js
-// basic approval test providing an option to override configuration
-const approvals = require('approvals');
-approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
-```
-<a name="module_approvals.verifyAndScrub"></a>
+<a name="module_approvals..verifyAndScrub"></a>
 
-### approvals.verifyAndScrub
+### approvals~verifyAndScrub(dirName, testName, data, scrubber, optionsOverride)
 Use this to apply the scrubber function to any data before running verify.
 
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -419,12 +433,36 @@ const scrubber = approvals.scrubbers.multiScrubber([
 });
 approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
 ```
-<a name="module_approvals.verifyAsJSON"></a>
+<a name="module_approvals..verify"></a>
 
-### approvals.verifyAsJSON
+### approvals~verify(dirName, testName, data, optionsOverride)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| dirName | <code>string</code> | Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files. |
+| testName | <code>string</code> | A file name save string to call the file associated with this test. |
+| data | <code>string</code> \| <code>Buffer</code> | Either the string to save as a text file or a Buffer that represents an image |
+| optionsOverride | <code>\*</code> | An object that can contain configurational overrides as defined in the approvals configuration object. |
+
+**Example**
+```js
+// basic approval test
+const approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
+```
+**Example**
+```js
+// basic approval test providing an option to override configuration
+const approvals = require('approvals');
+approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
+```
+<a name="module_approvals..verifyAsJSON"></a>
+
+### approvals~verifyAsJSON(dirName, testName, data, optionsOverride)
 You can pass as "data" any javascript object to be JSON.stringified and run verify against.
 
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -438,12 +476,12 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 const approvals = require('approvals');
 approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
 ```
-<a name="module_approvals.verifyAsJSONAndScrub"></a>
+<a name="module_approvals..verifyAsJSONAndScrub"></a>
 
-### approvals.verifyAsJSONAndScrub
+### approvals~verifyAsJSONAndScrub(dirName, testName, data, scrubber, optionsOverride)
 You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
 
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -465,14 +503,14 @@ const scrubber = approvals.scrubbers.multiScrubber([
 });
 approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
 ```
-<a name="module_approvals.verifyWithControl"></a>
+<a name="module_approvals..verifyWithControl"></a>
 
-### approvals.verifyWithControl
+### approvals~verifyWithControl(namer, writer, [reporterFactory], [optionsOverride])
 This allows you to take full control of naming and writing files before verifying.
 
 For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
 
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
+**Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
 | Param | Type |
 | --- | --- |
@@ -481,33 +519,6 @@ For an example that we use to generate the docs within the readme, check out the
 | [reporterFactory] | <code>function</code> |
 | [optionsOverride] | <code>Object</code> |
 
-<a name="module_approvals.mocha"></a>
-
-### approvals.mocha
-Configure approvals to hook into Mocha tests.
-
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
-
-| Param | Type | Description |
-| --- | --- | --- |
-| optionalBaseDir | <code>\*</code> | An optional folder to save approval files to. |
-
-<a name="module_approvals.reporters"></a>
-
-### approvals.reporters
-`reporters` gives access to the `MultiReporter`
-
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
-**Example**
-```js
-const MultiReporter = approvals.reporters.MultiReporter
-```
-<a name="module_approvals.scrubbers"></a>
-
-### approvals.scrubbers
-Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
-
-**Kind**: static property of [<code>approvals</code>](#module_approvals)
 
 
 <!--END-API-DOCS-->

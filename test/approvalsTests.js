@@ -94,7 +94,7 @@ describe("approvals", function () {
         __dirname,
         testName,
         dataToVerify,
-        approvals.scrubbers.guidScrubber,
+        approvals.Scrubbers.guidScrubber,
         approvalOverrides,
       );
     });

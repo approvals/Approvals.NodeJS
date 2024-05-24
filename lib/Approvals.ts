@@ -26,6 +26,12 @@ import { MochaNamer } from "./Providers/Mocha/MochaNamer";
 
 import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 
+/**
+ * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
+ */
+export { Scrubbers } ;
+
+
 if (typeof beforeEach === "function") {
   beforeEach(function (): void {
     if (!this) {
@@ -59,16 +65,37 @@ process.on("exit", function (): void {
   }
 });
 
-function configure(overrideOptions: cfg.Config): typeof module.exports {
+/**
+ * Allows you to provide overrides to the default configuration.
+ *
+ * @example
+ * const approvals = require('approvals');
+ * approvals.configure({
+ *   reporters: ['p4merge']
+ * });
+ *
+ * @param {*} overrideOptions
+ */
+export function configure(overrideOptions: cfg.Config): typeof module.exports {
   cfg.configure(overrideOptions);
   return module.exports;
 }
 
-function getConfig(overrideOptions?: cfg.Config): cfg.Config {
+/**
+ * Allows the creation of an approvals configuration object using any passed in options to override the defaults.
+ * @param {Object} overrideOptions
+ * @returns {Object} approvals config object with any options overridden.
+ */
+export function getConfig(overrideOptions?: cfg.Config): cfg.Config {
   return cfg.getConfig(overrideOptions);
 }
 
-function mochaExport(optionalBaseDir?: string): typeof module.exports {
+/**
+ * Configure approvals to hook into Mocha tests.
+ * @param {*} optionalBaseDir - An optional folder to save approval files to.
+ */
+
+export function mocha(optionalBaseDir?: string): typeof module.exports {
   // if not providing a base dir, fallback to the current calling code's directory
   if (!optionalBaseDir) {
     optionalBaseDir = path.dirname(callsite()[1].getFileName());
@@ -82,13 +109,21 @@ function mochaExport(optionalBaseDir?: string): typeof module.exports {
   return module.exports;
 }
 
+
 function jasmineExport(): void {
   throw new Error(
     "Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...",
   );
 }
 
-const reportersExport: { MultiReporter: any } = {
+/**
+ * `reporters` gives access to the `MultiReporter`
+ *
+ * @example
+ * const MultiReporter = approvals.reporters.MultiReporter
+ */
+
+export const reporters: { MultiReporter: any } = {
   /**
    * This allows access to the MultiReporter constructor.
    * You can use this to run multiple reporters at the same time.
@@ -103,6 +138,27 @@ const reportersExport: { MultiReporter: any } = {
   MultiReporter: require("./Reporting/Reporters/multiReporter").default,
 };
 
+
+/**
+ * Use this to apply the scrubber function to any data before running verify.
+ *
+ * @example
+ * // basic approval test with a custom scrubber
+ * const approvals = require('approvals');
+ * const scrubber = approvals.scrubbers.multiScrubber([
+ *    function (data) {
+ *      return (data || '').replace("some text", "some other text");
+ *    },
+ *    approvals.scrubbers.guidScrubber // to remove guids from the received data
+ * });
+ * approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
+ *
+ * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
+ * @param {string} testName - A file name safe string to call the file associated with this test.
+ * @param {(string|Buffer)} data - Either the string to save as a text file or a Buffer that represents an image
+ * @param {*} scrubber - A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files.
+ * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
+ */
 function verifyAndScrub(
   dirName: string,
   testName: string,
@@ -141,8 +197,25 @@ function verifyAndScrub(
   }
   verifyWithControl(namer, writer, null, newOptions);
 }
+/**
+ *
+ * @example
+ * // basic approval test
+ * const approvals = require('approvals');
+ * approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
+ *
+ * @example
+ * // basic approval test providing an option to override configuration
+ * const approvals = require('approvals');
+ * approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
+ *
+ * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
+ * @param {string} testName - A file name save string to call the file associated with this test.
+ * @param {(string|Buffer)} data - Either the string to save as a text file or a Buffer that represents an image
+ * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
+ */
 
-function verify(
+export function verify(
   dirName: string,
   testName: string,
   data: BinaryWriter | string,
@@ -157,7 +230,20 @@ function verify(
   );
 }
 
-function verifyAsJSON(
+
+/**
+ * You can pass as "data" any javascript object to be JSON.stringified and run verify against.
+ *
+ * @example
+ * const approvals = require('approvals');
+ * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
+ *
+ * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
+ * @param {string} testName - A file name safe string to call the file associated with this test.
+ * @param {(string|Buffer)} data - This can be any JavaScript object/array that will be JSON.stringified before running verify
+ * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
+ */
+export function verifyAsJSON(
   dirName: string,
   testName: string,
   data: BinaryWriter | string,
@@ -172,7 +258,28 @@ function verifyAsJSON(
   );
 }
 
-function verifyAsJSONAndScrub(
+/**
+ * You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
+
+ * @example
+ * // basic approval test with a custom scrubber
+ * const approvals = require('approvals');
+ * const scrubber = approvals.scrubbers.multiScrubber([
+ *    function (data) {
+ *      return (data || '').replace("some text", "some other text");
+ *    },
+ *    approvals.scrubbers.guidScrubber // to remove guids from the received data
+ * });
+ * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
+ *
+ * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
+ * @param {string} testName - A file name safe string to call the file associated with this test.
+ * @param {(string|Buffer)} data - This can be any JavaScript object/array that will be JSON.stringified before running verify
+ * @param {*} scrubber - A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files.
+ * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
+ */
+
+export function verifyAsJSONAndScrub(
   dirName: string,
   testName: string,
   data: BinaryWriter | string,
@@ -188,7 +295,20 @@ function verifyAsJSONAndScrub(
   );
 }
 
-function verifyWithControl(
+
+
+/**
+ * This allows you to take full control of naming and writing files before verifying.
+ *
+ * For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+ *
+ * @param {Object} namer
+ * @param {Object} writer
+ * @param {Function} [reporterFactory]
+ * @param {Object} [optionsOverride]
+ */
+
+export function verifyWithControl(
   namer: Namer,
   writer: Writer,
   reporterFactory?: ReporterLoader | null,
@@ -205,135 +325,4 @@ function verifyWithControl(
   FileApprover.verify(namer, writer, loader, newOptions);
 }
 
-/********************** exports **************************/
 
-module.exports = {
-  /**
-   * Allows you to provide overrides to the default configuration.
-   *
-   * @example
-   * const approvals = require('approvals');
-   * approvals.configure({
-   *   reporters: ['p4merge']
-   * });
-   *
-   * @param {*} overrideOptions
-   */
-  configure: configure,
-
-  /**
-   * Allows the creation of an approvals configuration object using any passed in options to override the defaults.
-   * @param {Object} overrideOptions
-   * @returns {Object} approvals config object with any options overridden.
-   */
-  getConfig: getConfig,
-
-  /**
-   *
-   * @example
-   * // basic approval test
-   * const approvals = require('approvals');
-   * approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
-   *
-   * @example
-   * // basic approval test providing an option to override configuration
-   * const approvals = require('approvals');
-   * approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
-   *
-   * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
-   * @param {string} testName - A file name save string to call the file associated with this test.
-   * @param {(string|Buffer)} data - Either the string to save as a text file or a Buffer that represents an image
-   * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
-   */
-  verify: verify,
-
-  /**
-   * Use this to apply the scrubber function to any data before running verify.
-   *
-   * @example
-   * // basic approval test with a custom scrubber
-   * const approvals = require('approvals');
-   * const scrubber = approvals.scrubbers.multiScrubber([
-   *    function (data) {
-   *      return (data || '').replace("some text", "some other text");
-   *    },
-   *    approvals.scrubbers.guidScrubber // to remove guids from the received data
-   * });
-   * approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify", scrubber);
-   *
-   * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
-   * @param {string} testName - A file name safe string to call the file associated with this test.
-   * @param {(string|Buffer)} data - Either the string to save as a text file or a Buffer that represents an image
-   * @param {*} scrubber - A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files.
-   * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
-   */
-  verifyAndScrub: verifyAndScrub,
-
-  /**
-   * You can pass as "data" any javascript object to be JSON.stringified and run verify against.
-   *
-   * @example
-   * const approvals = require('approvals');
-   * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
-   *
-   * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
-   * @param {string} testName - A file name safe string to call the file associated with this test.
-   * @param {(string|Buffer)} data - This can be any JavaScript object/array that will be JSON.stringified before running verify
-   * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
-   */
-  verifyAsJSON: verifyAsJSON,
-
-  /**
-     * You can pass as "data" any javascript object to be JSON.stringified. Before we run verify the scrubber will be run against the complete string before running verify against it.
-
-     * @example
-     * // basic approval test with a custom scrubber
-     * const approvals = require('approvals');
-     * const scrubber = approvals.scrubbers.multiScrubber([
-     *    function (data) {
-     *      return (data || '').replace("some text", "some other text");
-     *    },
-     *    approvals.scrubbers.guidScrubber // to remove guids from the received data
-     * });
-     * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" }, scrubber);
-     *
-     * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
-     * @param {string} testName - A file name safe string to call the file associated with this test.
-     * @param {(string|Buffer)} data - This can be any JavaScript object/array that will be JSON.stringified before running verify
-     * @param {*} scrubber - A function that takes a string and returns a string. Approvals will call this if it exists to scrub the "data" before writing to any files.
-     * @param {*} optionsOverride - An object that can contain configurational overrides as defined in the approvals configuration object.
-     */
-  verifyAsJSONAndScrub: verifyAsJSONAndScrub,
-
-  /**
-   * This allows you to take full control of naming and writing files before verifying.
-   *
-   * For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
-   *
-   * @param {Object} namer
-   * @param {Object} writer
-   * @param {Function} [reporterFactory]
-   * @param {Object} [optionsOverride]
-   */
-  verifyWithControl: verifyWithControl,
-
-  /**
-   * Configure approvals to hook into Mocha tests.
-   * @param {*} optionalBaseDir - An optional folder to save approval files to.
-   */
-  mocha: mochaExport,
-  jasmine: jasmineExport,
-
-  /**
-   * `reporters` gives access to the `MultiReporter`
-   *
-   * @example
-   * const MultiReporter = approvals.reporters.MultiReporter
-   */
-  reporters: reportersExport,
-
-  /**
-   * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
-   */
-  scrubbers: Scrubbers,
-};

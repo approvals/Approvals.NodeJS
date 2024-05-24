@@ -7,7 +7,7 @@ import path from "path";
 import marked from "marked";
 import TerminalRenderer from "marked-terminal";
 import minimist from "minimist";
-var approvals = require("../lib/Approvals");
+import {configure, verify} from "../lib/Approvals";
 
 const verbose = process.argv.includes("--verbose");
 const printHelp = process.argv.includes("--help");
@@ -100,7 +100,7 @@ opts.forceApproveAll =
 process.stdin.pipe(
   es.mapSync((data: Buffer) => {
     const dataToVerify = data.toString();
-    approvals.configure(opts);
-    approvals.verify(outdir, testname, dataToVerify);
+    configure(opts);
+    verify(outdir, testname, dataToVerify);
   }),
 );
