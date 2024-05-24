@@ -1,28 +1,31 @@
-"use strict";
+import {expect} from "chai";
 
-/// <reference path="../../../typings/node/node.d.ts"/>
-/// <reference path="../../../typings/mocha/mocha.d.ts"/>
-var expect = require("chai").expect;
-
-var assert = require("assert");
-var MyCustomReporter = function () {
-  var wasReporterUsed = false;
-  return {
-    canReportOn: function (/*file*/) {
-      return true;
-    },
-    report: function (/*approved, received*/) {
-      wasReporterUsed = true;
-    },
-    getWasReporterUsed: function () {
-      return wasReporterUsed;
-    },
-    name: "globalCustomReporter",
-  };
-};
-
+import assert from "assert";
+import {Reporter} from "../../../lib/Core/Reporter";
 var approvals = require("../../../lib/Approvals").mocha();
-var globalCustomReporter;
+
+
+interface CustomReporter extends Reporter {
+    getWasReporterUsed: () => boolean;
+}
+function MyCustomReporter(): CustomReporter {
+    var wasReporterUsed = false;
+    return {
+        canReportOn: function (/*file*/) {
+            return true;
+        },
+        report: function (/*approved, received*/) {
+            wasReporterUsed = true;
+        },
+        getWasReporterUsed: function () {
+            return wasReporterUsed;
+        },
+        name: "globalCustomReporter",
+    };
+}
+
+
+let globalCustomReporter: CustomReporter
 
 describe("CustomReporter", function () {
   beforeEach(function () {
@@ -30,7 +33,7 @@ describe("CustomReporter", function () {
   });
 
   it("allows CustomReporter at method level", function () {
-    var calledCustomReporter = false;
+    let calledCustomReporter = false;
 
     try {
       this.verify("foo", {
@@ -96,7 +99,7 @@ describe("CustomReporter", function () {
       errorOnStaleApprovedFiles: false,
     });
 
-    var reporter = this.approvals.getCurrentReporters()[0];
+    const reporter = this.approvals.getCurrentReporters()[0];
 
     assert.strictEqual(reporter.name, "globalCustomReporter");
   });
