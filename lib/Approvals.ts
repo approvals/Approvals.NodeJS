@@ -29,8 +29,7 @@ import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 /**
  * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
  */
-export { Scrubbers as scrubbers} ;
-
+export { Scrubbers as scrubbers };
 
 if (typeof beforeEach === "function") {
   beforeEach(function (): void {
@@ -109,7 +108,6 @@ export function mocha(optionalBaseDir?: string): typeof module.exports {
   return module.exports;
 }
 
-
 function jasmineExport(): void {
   throw new Error(
     "Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...",
@@ -137,7 +135,6 @@ export const reporters: { MultiReporter: any } = {
    */
   MultiReporter: require("./Reporting/Reporters/multiReporter").default,
 };
-
 
 /**
  * Use this to apply the scrubber function to any data before running verify.
@@ -230,7 +227,6 @@ export function verify(
   );
 }
 
-
 /**
  * You can pass as "data" any javascript object to be JSON.stringified and run verify against.
  *
@@ -295,8 +291,6 @@ export function verifyAsJSONAndScrub(
   );
 }
 
-
-
 /**
  * This allows you to take full control of naming and writing files before verifying.
  *
@@ -324,5 +318,3 @@ export function verifyWithControl(
 
   FileApprover.verify(namer, writer, loader, newOptions);
 }
-
-

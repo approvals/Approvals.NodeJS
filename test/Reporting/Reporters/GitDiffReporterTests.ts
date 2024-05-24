@@ -4,7 +4,7 @@
 
 import ReporterUnderTest from "../../../lib/Reporting/Reporters/gitdiffReporter";
 
-import {expect} from "chai";
+import { expect } from "chai";
 
 import path from "path";
 

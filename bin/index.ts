@@ -7,7 +7,7 @@ import path from "path";
 import marked from "marked";
 import TerminalRenderer from "marked-terminal";
 import minimist from "minimist";
-import {configure, verify} from "../lib/Approvals";
+import { configure, verify } from "../lib/Approvals";
 
 const verbose = process.argv.includes("--verbose");
 const printHelp = process.argv.includes("--help");

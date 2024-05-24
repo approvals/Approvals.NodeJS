@@ -1,31 +1,29 @@
-import {expect} from "chai";
+import { expect } from "chai";
 
 import assert from "assert";
-import {Reporter} from "../../../lib/Core/Reporter";
+import { Reporter } from "../../../lib/Core/Reporter";
 var approvals = require("../../../lib/Approvals").mocha();
 
-
 interface CustomReporter extends Reporter {
-    getWasReporterUsed: () => boolean;
+  getWasReporterUsed: () => boolean;
 }
 function MyCustomReporter(): CustomReporter {
-    var wasReporterUsed = false;
-    return {
-        canReportOn: function (/*file*/) {
-            return true;
-        },
-        report: function (/*approved, received*/) {
-            wasReporterUsed = true;
-        },
-        getWasReporterUsed: function () {
-            return wasReporterUsed;
-        },
-        name: "globalCustomReporter",
-    };
+  var wasReporterUsed = false;
+  return {
+    canReportOn: function (/*file*/) {
+      return true;
+    },
+    report: function (/*approved, received*/) {
+      wasReporterUsed = true;
+    },
+    getWasReporterUsed: function () {
+      return wasReporterUsed;
+    },
+    name: "globalCustomReporter",
+  };
 }
 
-
-let globalCustomReporter: CustomReporter
+let globalCustomReporter: CustomReporter;
 
 describe("CustomReporter", function () {
   beforeEach(function () {

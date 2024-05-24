@@ -25,4 +25,3 @@ export default class GitDiffReporter extends GenericDiffReporterBase {
     return super.report(approved, received, newOptions);
   }
 }
-
