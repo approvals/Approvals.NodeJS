@@ -1,7 +1,7 @@
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import { createEmptyFileIfNotExists, searchForExecutable } from "../../AUtils";
 
-class Reporter extends GenericDiffReporterBase {
+export default class GitDiffReporter extends GenericDiffReporterBase {
   constructor() {
     super("GitDiff");
 
@@ -26,4 +26,3 @@ class Reporter extends GenericDiffReporterBase {
   }
 }
 
-module.exports = Reporter;

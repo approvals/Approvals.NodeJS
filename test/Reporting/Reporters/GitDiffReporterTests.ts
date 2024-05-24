@@ -2,10 +2,10 @@
 
 //git diff --no-index -- test\Reporters\a.txt test\Reporters\b.txt
 
+import ReporterUnderTest from "../../../lib/Reporting/Reporters/gitdiffReporter";
+
 var expect = require("chai").expect;
 var path = require("path");
-var ReporterUnderTest = require("../../../lib/Reporting/Reporters/gitdiffReporter");
-
 describe("Reporter", function () {
   describe("git diff", function () {
     it("reporter args are correct", function () {
