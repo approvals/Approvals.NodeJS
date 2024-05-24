@@ -1,5 +1,5 @@
-var { Scrubbers } = require("../../lib/Scrubbers/Scrubbers");
-var expect = require("chai").expect;
+import {Scrubbers} from "../../lib/Scrubbers/Scrubbers";
+import {expect} from "chai";
 
 describe("Scrubbers", function () {
   describe("multiScrubber", function () {
