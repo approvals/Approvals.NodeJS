@@ -4,8 +4,10 @@
 
 import ReporterUnderTest from "../../../lib/Reporting/Reporters/gitdiffReporter";
 
-var expect = require("chai").expect;
-var path = require("path");
+import {expect} from "chai";
+
+import path from "path";
+
 describe("Reporter", function () {
   describe("git diff", function () {
     it("reporter args are correct", function () {
