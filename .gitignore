@@ -48,4 +48,5 @@ lib/**/*.js
 test/Utilities/**/**.js
 test/Providers/Jest/**.js
 test/Providers/Mocha/Typescript/**.js
+test/Scrubbers/**.js
 /yarn.lock
