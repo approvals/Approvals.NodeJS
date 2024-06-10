@@ -44,15 +44,10 @@ coverage/
 # TypeScript output
 *.d.ts
 bin/*.js
-lib/Core/*.js
-lib/Writers/*.js
-lib/Utilities/**/*.js
+lib/**/*.js
 test/Utilities/**/**.js
-lib/Providers/**/**.js
-lib/Reporting/*.js
 test/Providers/Jest/**.js
 test/Providers/Mocha/Typescript/**.js
-lib/Namer.js
-lib/Scrubbers/Scrubbers.js
-lib/Scrubbers/DateScrubber.js
+test/Scrubbers/**.js
+test/Reporting/Reporters/**.js
 /yarn.lock

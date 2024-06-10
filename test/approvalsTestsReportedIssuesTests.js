@@ -1,8 +1,7 @@
 var approvals = require("../lib/Approvals");
-var expect = require('chai').expect;
+var expect = require("chai").expect;
 
-describe('When issues are reported on github', () => {
-
+describe("When issues are reported on github", () => {
   it("Issue #86: Issues with Buffer Compare Loop", () => {
     var approvalOverrides = {
       EOL: "\r\n",
@@ -12,10 +11,12 @@ describe('When issues are reported on github', () => {
       reporters: [
         {
           name: "dummyReporter",
-          canReportOn: function () { return true; },
-          report: function () { }
-        }
-      ]
+          canReportOn: function () {
+            return true;
+          },
+          report: function () {},
+        },
+      ],
     };
 
     var testName = "manualVerification";
@@ -29,7 +30,5 @@ describe('When issues are reported on github', () => {
     expect(() => {
       approvals.verify(__dirname, testName, dataToVerify, approvalOverrides);
     }).throws(Error);
-
   });
-
 });

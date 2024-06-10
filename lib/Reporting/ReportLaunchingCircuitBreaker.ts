@@ -1,47 +1,40 @@
-const FinalMessages = require("../FinalMessages");
-var NodeDiffReporter = require('./Reporters/nodediffReporter');
+import { FinalMessages } from "../FinalMessages";
+import NodeDiffReporter from "./Reporters/nodediffReporter";
 
 let maxLaunch = 10;
 let currentCount = 0;
 let reroutedCount = 0;
 
-class ReportLaunchingCircuitBreaker {
-
-  static setMaxLaunch(value) {
+export class ReportLaunchingCircuitBreaker {
+  static setMaxLaunch(value: number): void {
     maxLaunch = value;
   }
 
-  static get currentCount() {
+  static get currentCount(): number {
     return currentCount;
   }
 
-  static notifyLaunched() {
+  static notifyLaunched(): void {
     currentCount++;
   }
 
-  static isLimitExceeded() {
+  static isLimitExceeded(): boolean {
     return maxLaunch <= currentCount;
   }
 
-  static check(approved, received, options) {
-
+  static check(approved: string, received: string, options: any): boolean {
     if (this.isLimitExceeded()) {
-
       reroutedCount++;
-
-      FinalMessages.addKeyMessage("maxLaunches", `config.maxLaunches (${maxLaunch}) exceeded: ${reroutedCount} diff(s) shown in console above...`);
-
-      (new NodeDiffReporter()).report(approved, received, options);
-
+      FinalMessages.addKeyMessage(
+        "maxLaunches",
+        `config.maxLaunches (${maxLaunch}) exceeded: ${reroutedCount} diff(s) shown in console above...`,
+      );
+      new NodeDiffReporter().report(approved, received, options);
       return true;
     }
-
     this.notifyLaunched();
-
     return false;
-
   }
-
 }
 
-module.exports = ReportLaunchingCircuitBreaker;
+export default ReportLaunchingCircuitBreaker;

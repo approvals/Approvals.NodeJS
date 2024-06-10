@@ -3,11 +3,12 @@
 # How to Configure Reporters with Options
 
 <!-- toc -->
+
 ## Contents
 
-  * [Why Configure Reporters](#why-configure-reporters)
-  * [How to Select a Reporter](#how-to-select-a-reporter)
-  * [See Also](#see-also)<!-- endToc -->
+- [Why Configure Reporters](#why-configure-reporters)
+- [How to Select a Reporter](#how-to-select-a-reporter)
+- [See Also](#see-also)<!-- endToc -->
 
 ## Why Configure Reporters
 
@@ -20,21 +21,22 @@ At the moment, you need to take advantage of the `ConfigModifier` in `Options`.
 Here is an example.
 
 <!-- snippet: configure-reporter-with-options -->
+
 <a id='snippet-configure-reporter-with-options'></a>
+
 ```ts
-let configModifier: ConfigModifier = c => {
-  c.reporters = [
-    new JestReporter(),
-    "BeyondCompare",
-  ]
+let configModifier: ConfigModifier = (c) => {
+  c.reporters = [new JestReporter(), "BeyondCompare"];
   return c;
 };
 let options = new Options();
 options = options.withConfig(configModifier);
 
-verify('Hello', options);
+verify("Hello", options);
 ```
-<sup><a href='/test/Providers/Jest/JestReporter.test.ts#L10-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure-reporter-with-options' title='Start of snippet'>anchor</a></sup>
+
+<sup><a href='/test/Providers/Jest/JestReporter.test.ts#L9-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure-reporter-with-options' title='Start of snippet'>anchor</a></sup>
+
 <!-- endSnippet -->
 
 **Note** when passing in multiple reporters, it will use the first one that works on your system.

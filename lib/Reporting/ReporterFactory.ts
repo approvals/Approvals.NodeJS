@@ -1,85 +1,85 @@
-'use strict';
+import DiffReporterAggregate from "./DiffReporterAggregate";
+import { readdirSync } from "fs";
+import { Reporter } from "../Core/Reporter";
 
-var DiffReporterAggregate = require('./DiffReporterAggregate');
+export type ReporterLoader = () => Reporter[];
 
-var loadReporter = function (name) {
+export class ReporterFactory {
+  static loadReporter(name: string | string[]): Reporter {
+    if (Array.isArray(name)) {
+      const reporters = ReporterFactory.loadAllReporters(name);
+      return new DiffReporterAggregate(reporters);
+    }
 
-  if (Array.isArray(name)) {
-    var reporters = loadAllReporters(name);
-    return new DiffReporterAggregate(reporters);
+    name = name.toLowerCase();
+
+    try {
+      const ReporterCtor = require(`./Reporters/${name}Reporter`);
+      if (!ReporterCtor.default) {
+        return new ReporterCtor();
+      }
+      return new ReporterCtor.default();
+    } catch (e) {
+      const allFiles = readdirSync(__dirname);
+      const availableReporters = allFiles
+        .map((item) => item.replace("Reporter.js", ""))
+        .join(", ");
+      throw new Error(
+        `Error loading reporter or reporter not found [${name}]. Try one of the following [${availableReporters}]. Original Error: ${e}`,
+      );
+    }
   }
 
-  name = name.toLowerCase();
+  static throwUnknownReporterError(reporter: unknown): never {
+    throw new Error(
+      `Unknown reporter: typeof= [${typeof reporter}]. Reporters are either a string like "gitdiff" or an object that conforms to the custom reporter interface.`,
+    );
+  }
 
-  var ReporterCtor;
-  try {
-    ReporterCtor = require("./Reporters/" + name + "Reporter.js");
-  } catch (e) {
+  static assertValidReporter(
+    reporter: Partial<Reporter>,
+  ): reporter is Reporter {
+    if (typeof reporter.name !== "string") {
+      console.error("invalid reporter", reporter);
+      throw new Error(
+        "A valid reporter should have a 'name' property. EX: { name: \"my-custom-reporter\" }",
+      );
+    }
 
-    var allFiles = require('fs').readdirSync(__dirname);
-    var availableReporters = "";
+    if (typeof reporter.canReportOn !== "function") {
+      console.error("invalid reporter", reporter);
+      throw new Error(
+        "A valid reporter should have a '{ canReportOn: function(fileName) { return true; // Example } ' function",
+      );
+    }
 
-    allFiles.forEach(function (item) {
-      if (item.indexOf("Reporter.js") > 0) {
-        if (availableReporters) {
-          availableReporters += ", ";
-        }
-        availableReporters += item.replace("Reporter.js", '');
+    if (typeof reporter.report !== "function") {
+      console.error("invalid reporter", reporter);
+      throw new Error(
+        "A valid reporter should have a ' { report: function (approvedFilePath, receivedFilePath) {...} }' function",
+      );
+    }
+
+    return true;
+  }
+
+  static loadAllReporters(reporters: (string | Reporter)[]): Reporter[] {
+    const reporterInstances: Reporter[] = [];
+
+    reporters.forEach((reporter) => {
+      if (typeof reporter === "object") {
+        ReporterFactory.assertValidReporter(reporter);
+        reporterInstances.push(reporter as Reporter);
+      } else if (typeof reporter === "string") {
+        const reporterInstance = ReporterFactory.loadReporter(
+          reporter,
+        ) as Reporter;
+        reporterInstances.push(reporterInstance);
+      } else {
+        ReporterFactory.throwUnknownReporterError(reporter);
       }
     });
 
-    throw new Error("Error loading reporter or reporter not found [" + name + "]. Try one of the following [" + availableReporters + "]. Original Error: " + e);
+    return reporterInstances;
   }
-  return new ReporterCtor();
-};
-
-var throwUnknownReporterError = function(reporter) {
-  throw new Error('Unknown reporter: typeof= [' + (typeof reporter) + ']. Reporters are either a string like "gitdiff" or an object that conforms to the custom reporter interface.');
 }
-
-var assertValidReporter = function (reporter) {
-
-  if (typeof reporter.name !== 'string') {
-    console.error('invalid reporter', reporter);
-    throw new Error('A valid reporter should have a \'name\' property. EX: { name: "my-custom-reporter" }');
-  }
-
-  if (typeof reporter.canReportOn !== 'function') {
-    console.error('invalid reporter', reporter);
-    throw new Error('A valid reporter should have a \'{ canReportOn: function(fileName) { return true; // Example } \' function');
-  }
-
-  if (typeof reporter.report !== 'function') {
-    console.error('invalid reporter', reporter);
-    throw new Error('A valid reporter should have a \' { report: function (approvedFilePath, receivedFilePath) {...} }\' function');
-  }
-
-  return true;
-}
-
-var loadAllReporters = function (reporters) {
-  var reporterInstances = [];
-
-  reporters.forEach(function (reporter) {
-
-    if (typeof reporter === "object") {
-
-      assertValidReporter(reporter);
-      reporterInstances.push(reporter);
-
-    } else if (typeof reporter === "string") {
-      var reporterInstance = loadReporter(reporter);
-      reporterInstances.push(reporterInstance);
-    } else {
-      throwUnknownReporterError(reporter);
-    }
-  });
-
-  return reporterInstances;
-};
-
-module.exports = {
-  loadAllReporters: loadAllReporters,
-  loadReporter: loadReporter,
-  assertValidReporter: assertValidReporter
-};

@@ -1,34 +1,27 @@
-'use strict';
-
-import path from 'path';
+import path from "path";
 
 export class Namer {
-
-  protected path: string;
+  public basePath: string;
   protected name: string;
 
-  constructor(path: string, name: string) {
-    path = path || '';
-    name = name || '';
-
-    this.path = path;
-    this.name = name[name.length - 1] === '.' ? name.substring(0, name.length - 1) : name;
+  constructor(basePath: string, name: string) {
+    this.basePath = basePath || "";
+    this.name = name || "";
+    if (this.name.endsWith(".")) {
+      this.name = this.name.slice(0, -1);
+    }
   }
 
-  pathCreator(type: string, ext: string) {
-    ext = ext || 'txt';
-    var cleanedExt = ext[0] === '.' ? ext.substring(1) : ext;
-    return path.join(this.path, (this.name + "." + type + "." + cleanedExt));
+  protected pathCreator(type: string, ext: string = "txt"): string {
+    const cleanedExt = ext.startsWith(".") ? ext.substring(1) : ext;
+    return path.join(this.basePath, `${this.name}.${type}.${cleanedExt}`);
   }
 
-  getReceivedFile(ext: string) {
+  getReceivedFile(ext: string): string {
     return this.pathCreator("received", ext);
   }
 
-  getApprovedFile(ext: string) {
+  getApprovedFile(ext: string): string {
     return this.pathCreator("approved", ext);
   }
-
 }
-
-module.exports = Namer;

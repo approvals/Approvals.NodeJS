@@ -1,7 +1,7 @@
 {
   "name": "approvals",
   "description": "Approval Tests Library - Capturing Human Intelligence",
-  "version": "6.2.4",
+  "version": "7.1.1",
   "homepage": "http://approvaltests.com",
   "author": {
     "name": "Jason Jarrett",
@@ -41,6 +41,8 @@
     "coverage": "nyc npm run mocha"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "callsite": "^1.0.0",
     "chalk": "^4.1.0",
     "diff": "^5.2.0",
@@ -60,10 +62,12 @@
     "ts-jest": "^29.0.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.11",
     "chai": "^4.4.1",
     "coveralls": "^3.1.0",
-    "eslint": "^8.15.0",
+    "eslint": "^8.57.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
@@ -77,9 +81,9 @@
     "mocha": "^10.4.0",
     "np": "^10.0.2",
     "npm-check-updates": "^16.14.18",
-    "nyc": "^15.1.0",
+    "nyc": "^17.0.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^17.0.1",
+    "sinon": "^18.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.4.3"
   },

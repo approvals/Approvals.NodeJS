@@ -1,16 +1,15 @@
 /*jshint expr:true */
-'use strict';
+"use strict";
 
-var chai = require('chai');
+var chai = require("chai");
 var expect = chai.expect;
-var sinon = require('sinon');
-var fs = require('fs');
-var _ = require('lodash');
+var sinon = require("sinon");
+var fs = require("fs");
+var _ = require("lodash");
 
-var cfg = require('../lib/config');
+var cfg = require("../lib/config");
 
 describe("config.js - ", function () {
-
   var fsExistsSyncStub;
   var fsReadFileSyncStub;
 
@@ -31,7 +30,7 @@ describe("config.js - ", function () {
 
   describe("when a config file does not exist in a user's home directory", function () {
     beforeEach(function () {
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync').callsFake(function () {
+      fsExistsSyncStub = sinon.stub(fs, "existsSync").callsFake(function () {
         return false;
       });
     });
@@ -47,23 +46,26 @@ describe("config.js - ", function () {
       var configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(cfg.defaultConfig);
     });
-
   });
 
   describe("when a config file exists in a user's home directory", function () {
     var configToLoad;
     beforeEach(function () {
-      configToLoad = {
-      };
+      configToLoad = {};
 
-      fsExistsSyncStub = sinon.stub(fs, 'existsSync').callsFake(function () {
+      fsExistsSyncStub = sinon.stub(fs, "existsSync").callsFake(function () {
         return true;
       });
 
-      fsReadFileSyncStub = sinon.stub(fs, 'readFileSync').callsFake(function () {
-        var data = typeof configToLoad === "string" ? configToLoad : JSON.stringify(configToLoad, null, '  ');
-        return Buffer.from(data);
-      });
+      fsReadFileSyncStub = sinon
+        .stub(fs, "readFileSync")
+        .callsFake(function () {
+          var data =
+            typeof configToLoad === "string"
+              ? configToLoad
+              : JSON.stringify(configToLoad, null, "  ");
+          return Buffer.from(data);
+        });
     });
 
     it("should find config in user home directory", function () {
@@ -74,9 +76,7 @@ describe("config.js - ", function () {
 
     it("should parse and return reporters array", function () {
       configToLoad = {
-        reporters: [
-          "gitdiff"
-        ]
+        reporters: ["gitdiff"],
       };
 
       var configFile = cfg.getHomeApprovalConfig();
@@ -93,7 +93,7 @@ describe("config.js - ", function () {
 
     it("should load user's config", function () {
       configToLoad = {
-        myConfig: true
+        myConfig: true,
       };
       var expectedConfig = _.defaults(configToLoad, cfg.defaultConfig);
       cfg.reset();
@@ -101,5 +101,4 @@ describe("config.js - ", function () {
       expect(configFile).to.deep.equal(expectedConfig);
     });
   });
-
 });

@@ -1,26 +1,32 @@
-'use strict';
+import * as childProcess from "child_process";
+import * as fs from "fs";
+import * as autils from "../AUtils";
+import reportingLaunchingCircuitBreaker from "./ReportLaunchingCircuitBreaker";
+import { ChildProcessWithoutNullStreams } from "child_process";
 
-var childProcess = require('child_process');
-var autils = require('../AUtils');
-var fs = require('fs');
-var reportingLaunchingCircuitBreaker = require('./ReportLaunchingCircuitBreaker');
+interface CmdOptions {
+  blockUntilReporterExits?: boolean;
+  cmdOptionOverrides?: any;
+  cmdArgs?: string[];
+}
 
-class GenericDiffReporterBase {
+export default class GenericDiffReporterBase {
+  name: string;
+  public exePath: string = "";
+  private _reporterFileLookedUp: boolean;
+  private _reporterFileLookedUpAndFound: boolean;
 
-  constructor(name) {
-
+  constructor(name: string) {
     if (!name) {
       throw new Error("Argument name missing");
     }
 
     this.name = name;
-
     this._reporterFileLookedUp = false;
     this._reporterFileLookedUpAndFound = false;
   }
 
-  isReporterAvailable() {
-
+  isReporterAvailable(): boolean {
     if (this._reporterFileLookedUp) {
       return this._reporterFileLookedUpAndFound;
     }
@@ -34,13 +40,11 @@ class GenericDiffReporterBase {
     return true;
   }
 
-  // override this if a specific image reporter can support images
-  canImageDiff() {
+  canImageDiff(): boolean {
     return false;
   }
 
-  canReportOn(fileName) {
-
+  canReportOn(fileName: string): boolean {
     if (!this.isReporterAvailable()) {
       return false;
     }
@@ -51,85 +55,82 @@ class GenericDiffReporterBase {
       return true;
     }
 
-    var isBinary = autils.isBinaryFile(fileName);
-    if (isBinary) {
-      return false;
-    }
-
-    return true;
+    const isBinary = autils.isBinaryFile(fileName);
+    return !isBinary;
   }
 
-  spawn(exe, args, cmdOptions) {
+  spawn(
+    exe: string,
+    args: string[],
+    cmdOptions?: any,
+  ): ChildProcessWithoutNullStreams {
     const process = childProcess.spawn(exe, args, cmdOptions);
 
-    let stdout = '';
-    let stderr = '';
+    let stdout = "";
+    let stderr = "";
 
     process.stdout.on("data", (data) => {
-
       stdout += data;
-
     });
     process.stderr.on("data", (data) => {
-
       stderr += data;
-
     });
 
     process.on("close", () => {
-
       if (stdout) {
-        console.log('\n============\nstdout:\n============\n' + stdout + "\n============\n");
+        console.log(
+          "\n============\nstdout:\n============\n" +
+            stdout +
+            "\n============\n",
+        );
       }
-
       if (stderr) {
-        console.log('\n============\nstderr:\n============\n' + stderr + "\n============\n");
+        console.log(
+          "\n============\nstderr:\n============\n" +
+            stderr +
+            "\n============\n",
+        );
       }
-
     });
 
-    return;
-
+    return process;
   }
 
-  spawnSync(exe, args, cmdOptions) {
-
+  spawnSync(exe: string, args: string[], cmdOptions?: any): void {
     const result = childProcess.spawnSync(exe, args, cmdOptions);
 
     const stdout = result.stdout.toString();
     const stderr = result.stderr.toString();
 
     if (stdout) {
-      console.log('\n============\nstdout:\n============\n' + stdout + "\n============\n");
+      console.log(
+        "\n============\nstdout:\n============\n" + stdout + "\n============\n",
+      );
     }
-
     if (stderr) {
-      console.log('\n============\nstderr:\n============\n' + stderr + "\n============\n");
+      console.log(
+        "\n============\nstderr:\n============\n" + stderr + "\n============\n",
+      );
     }
-
   }
 
-  report(approved, received, options) {
-
+  report(approved: string, received: string, options: CmdOptions): void {
     if (!options.blockUntilReporterExits) {
       if (reportingLaunchingCircuitBreaker.check(approved, received, options)) {
         return;
       }
     }
 
-    const spawn = (options.blockUntilReporterExits ? this.spawnSync : this.spawn);
+    const spawnMethod = options.blockUntilReporterExits
+      ? this.spawnSync.bind(this)
+      : this.spawn.bind(this);
     autils.createEmptyFileIfNotExists(approved);
 
-    var exe = this.exePath;
-    var cmdOptions = options.cmdOptionOverrides;
-    var args = options.cmdArgs || [received, approved];
+    const cmdOptions = options.cmdOptionOverrides;
+    const args = options.cmdArgs || [received, approved];
 
-    console.log('CMD: ', exe, args.join(' '));
+    console.log("CMD: ", this.exePath, args.join(" "));
 
-    spawn(exe, args, cmdOptions);
-
+    spawnMethod(this.exePath, args, cmdOptions);
   }
-
 }
-
-module.exports = GenericDiffReporterBase;

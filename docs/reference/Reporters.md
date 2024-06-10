@@ -3,10 +3,11 @@
 # Reporters
 
 <!-- toc -->
+
 ## Contents
 
-  * [What are Reporters](#what-are-reporters)
-  * [Links](#links)<!-- endToc -->
+- [What are Reporters](#what-are-reporters)
+- [Links](#links)<!-- endToc -->
 
 ## What are Reporters
 

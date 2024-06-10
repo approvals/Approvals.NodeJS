@@ -3,12 +3,13 @@
 # How to Test Combinations of Parameters
 
 <!-- toc -->
+
 ## Contents
 
-  * [Why use Combinations](#why-use-combinations)
-    * [Cartesian product](#cartesian-product)
-  * [Steps](#steps)
-  * [See Also](#see-also)<!-- endToc -->
+- [Why use Combinations](#why-use-combinations)
+  - [Cartesian product](#cartesian-product)
+- [Steps](#steps)
+- [See Also](#see-also)<!-- endToc -->
 
 ## Why use Combinations
 
@@ -31,15 +32,23 @@ it will call the function being tested with all
 1. Copy this starter text, and adjust for the number of inputs that you have.
 
 <!-- snippet: CombinationsStartingPoint -->
+
 <a id='snippet-CombinationsStartingPoint'></a>
+
 ```ts
-test('CombinationsStartingPoint', () => {
-    const inputs1 = ["input1.value1", "input1.value2"];
-    const inputs2 = ["input2.value1", "input2.value2", "input2.value3"];
-    verifyAllCombinations2((a, b) => `placeholder for ${a}, ${b}`, inputs1, inputs2);
+test("CombinationsStartingPoint", () => {
+  const inputs1 = ["input1.value1", "input1.value2"];
+  const inputs2 = ["input2.value1", "input2.value2", "input2.value3"];
+  verifyAllCombinations2(
+    (a, b) => `placeholder for ${a}, ${b}`,
+    inputs1,
+    inputs2,
+  );
 });
 ```
-<sup><a href='/test/Providers/Jest/CombinationApprovals.test.ts#L55-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+
+<sup><a href='/test/Providers/Jest/CombinationApprovals.test.ts#L107-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
@@ -50,7 +59,9 @@ If they are wired up correctly, you will see a file that looks like this: it is 
 matters at this point: all combinations of your own input values should be listed:
 
 <!-- snippet: CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt -->
+
 <a id='snippet-CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt'></a>
+
 ```txt
 [input1.value1,input2.value1] => placeholder for input1.value1, input2.value1
 [input1.value1,input2.value2] => placeholder for input1.value1, input2.value2
@@ -59,12 +70,13 @@ matters at this point: all combinations of your own input values should be liste
 [input1.value2,input2.value2] => placeholder for input1.value2, input2.value2
 [input1.value2,input2.value3] => placeholder for input1.value2, input2.value3
 ```
+
 <sup><a href='/test/Providers/Jest/CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt' title='Start of snippet'>anchor</a></sup>
+
 <!-- endSnippet -->
 
 5. Implement the body of your lambda
 6. Run it, and approve the output.
-
 
 ## See Also
 
