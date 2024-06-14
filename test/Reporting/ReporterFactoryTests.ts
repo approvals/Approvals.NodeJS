@@ -1,11 +1,10 @@
-"use strict";
+import { expect } from "chai";
 
-var ReporterFactory = require("../../lib/Reporting/ReporterFactory");
-var os = require("../../lib/osTools");
-var assert = require("assert");
-var path = require("path");
-var fs = require("fs");
-var expect = require("chai").expect;
+import fs from "fs";
+import path from "path";
+import assert from "assert";
+import * as os from "../../lib/osTools";
+import { ReporterFactory } from "../../lib/Reporting/ReporterFactory";
 
 describe("ReporterFactory", function () {
   var textDiffReporters, allAvailableDiffReporters;
@@ -20,14 +19,14 @@ describe("ReporterFactory", function () {
 
   it("Should load specific reporters", function () {
     allAvailableDiffReporters.forEach(function (differ) {
-      ReporterFactory.ReporterFactory.loadReporter(differ);
+      ReporterFactory.loadReporter(differ);
     });
   });
 
   it("Should report all available if incorrect name specified", function () {
     try {
-      ReporterFactory.ReporterFactory.loadReporter("wat?");
-    } catch (e) {
+      ReporterFactory.loadReporter("wat?");
+    } catch (e: any) {
       if (
         e.message.indexOf(
           "Error loading reporter or reporter not found [wat?]. Try one of the following",
@@ -39,15 +38,12 @@ describe("ReporterFactory", function () {
   });
 
   it("Should load all reporters", function () {
-    var reporters = ReporterFactory.ReporterFactory.loadAllReporters(
-      allAvailableDiffReporters,
-    );
+    var reporters = ReporterFactory.loadAllReporters(allAvailableDiffReporters);
     assert.strictEqual(reporters.length, allAvailableDiffReporters.length);
   });
 
   it("should be able to report on a txt file", function () {
-    var reporters =
-      ReporterFactory.ReporterFactory.loadAllReporters(textDiffReporters);
+    var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
 
     reporters.forEach(function (reporter) {
       assert.ok(
@@ -67,7 +63,7 @@ describe("ReporterFactory", function () {
 
   describe("When loading an array of reporters", function () {
     it("should use the ReporterDiffAggregate", function () {
-      ReporterFactory.ReporterFactory.loadReporter(textDiffReporters);
+      ReporterFactory.loadReporter(textDiffReporters);
     });
   });
 
@@ -85,29 +81,29 @@ describe("ReporterFactory", function () {
     });
 
     it("should return true for a valid reporter", function () {
-      expect(
-        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter),
-      ).to.equal(true);
+      expect(ReporterFactory.assertValidReporter(validDummyReporter)).to.equal(
+        true,
+      );
     });
 
     it("should raise an error when reporter is missing a name", function () {
       expect(function () {
         delete validDummyReporter.name;
-        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
 
     it("should raise an error when reporter is missing a canReportOn", function () {
       expect(function () {
         delete validDummyReporter.canReportOn;
-        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
 
     it("should raise an error when reporter is missing a report", function () {
       expect(function () {
         delete validDummyReporter.report;
-        ReporterFactory.ReporterFactory.assertValidReporter(validDummyReporter);
+        ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
     });
   });
@@ -127,6 +123,7 @@ describe("ReporterFactory", function () {
           } else if (item.indexOf("Reporter.js") !== -1) {
             return item.substr(0, item.indexOf("Reporter.js"));
           }
+          return "";
         })
         .filter(function (reporterName) {
           return reporterName !== "visualstudio"; // this has issues running in C.I. environment due to edge
@@ -134,12 +131,11 @@ describe("ReporterFactory", function () {
         .filter(function (reporterName) {
           return !!reporterName;
         })
-        .map(function (reporterName) {
+        .map(function (reporterName: string) {
           console.log("reporter", reporterName);
           return {
             name: reporterName,
-            reporter:
-              ReporterFactory.ReporterFactory.loadReporter(reporterName),
+            reporter: ReporterFactory.loadReporter(reporterName),
           };
         });
     });
@@ -147,7 +143,7 @@ describe("ReporterFactory", function () {
       allReporters.forEach((item) => {
         var reporter = item.reporter;
         try {
-          ReporterFactory.ReporterFactory.assertValidReporter(reporter);
+          ReporterFactory.assertValidReporter(reporter);
         } catch (err) {
           console.error(err);
           throw new Error(
