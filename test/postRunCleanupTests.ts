@@ -53,7 +53,7 @@ describe("postRunCleanup", function () {
           },
           approvedFilesMap,
         );
-      } catch (err) {
+      } catch (err: any) {
         didError = true;
         approvals.verify(
           __dirname,
