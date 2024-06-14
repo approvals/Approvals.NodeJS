@@ -7,7 +7,7 @@ import * as os from "../../lib/osTools";
 import { ReporterFactory } from "../../lib/Reporting/ReporterFactory";
 
 describe("ReporterFactory", function () {
-  var textDiffReporters, allAvailableDiffReporters;
+  let textDiffReporters, allAvailableDiffReporters;
 
   if (os.platform.isWindows) {
     textDiffReporters = ["DoNothing", "gitdiff"];
@@ -38,12 +38,14 @@ describe("ReporterFactory", function () {
   });
 
   it("Should load all reporters", function () {
-    var reporters = ReporterFactory.loadAllReporters(allAvailableDiffReporters);
+    const reporters = ReporterFactory.loadAllReporters(
+      allAvailableDiffReporters,
+    );
     assert.strictEqual(reporters.length, allAvailableDiffReporters.length);
   });
 
   it("should be able to report on a txt file", function () {
-    var reporters = ReporterFactory.loadAllReporters(textDiffReporters);
+    const reporters = ReporterFactory.loadAllReporters(textDiffReporters);
 
     reporters.forEach(function (reporter) {
       assert.ok(
@@ -53,7 +55,7 @@ describe("ReporterFactory", function () {
           "]",
       );
 
-      var canReportOn = reporter.canReportOn(path.join(__dirname, "a.txt"));
+      const canReportOn = reporter.canReportOn(path.join(__dirname, "a.txt"));
       assert.ok(
         canReportOn,
         "Could not load reporter with name [" + reporter.name + "]",
@@ -68,7 +70,7 @@ describe("ReporterFactory", function () {
   });
 
   describe("assertValidReporter a valid reporter", function () {
-    var validDummyReporter;
+    let validDummyReporter;
 
     beforeEach(function () {
       validDummyReporter = {
@@ -109,7 +111,7 @@ describe("ReporterFactory", function () {
   });
 
   describe("When loading every reporter:", function () {
-    var allReporters;
+    let allReporters;
     before(function () {
       this.timeout(20000); //appveyor seems slow
       allReporters = fs
@@ -141,7 +143,7 @@ describe("ReporterFactory", function () {
     });
     it("Should load all the reporters on disk, verify they follow the basic contract etc...", function () {
       allReporters.forEach((item) => {
-        var reporter = item.reporter;
+        const reporter = item.reporter;
         try {
           ReporterFactory.assertValidReporter(reporter);
         } catch (err) {
