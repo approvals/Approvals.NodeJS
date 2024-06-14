@@ -15,12 +15,12 @@ describe("StringWriter", function () {
 
   describe("", function () {
     it("should default to type of txt", function () {
-      var stringWriter = new StringWriter(defaultConfig, "HELLO");
+      const stringWriter = new StringWriter(defaultConfig, "HELLO");
       assert.strictEqual(stringWriter.getFileExtension(), "txt");
     });
 
     it("should allow type to be specified", function () {
-      var stringWriter = new StringWriter(defaultConfig, "HELLO", "html");
+      const stringWriter = new StringWriter(defaultConfig, "HELLO", "html");
       assert.strictEqual(stringWriter.getFileExtension(), "html");
     });
 
@@ -43,9 +43,9 @@ describe("StringWriter", function () {
         appendEOL: true,
         EOL: "EndOfLineConfig",
       };
-      var stringWriter = new StringWriter(config, "HELLO");
+      const stringWriter = new StringWriter(config, "HELLO");
 
-      var filePath = temp.path({ suffix: ".txt" });
+      const filePath = temp.path({ suffix: ".txt" });
 
       stringWriter.write(filePath);
 
@@ -56,7 +56,7 @@ describe("StringWriter", function () {
     });
 
     describe("test", function () {
-      var writeFileSyncStub;
+      let writeFileSyncStub;
       beforeEach(function () {
         writeFileSyncStub = sinon
           .stub(fs, "writeFileSync")
@@ -70,14 +70,14 @@ describe("StringWriter", function () {
       });
 
       it("should write out file and NOT append EOL but warn that it does not have the proper EOL (according to config)", function () {
-        var config = {
+        const config = {
           appendEOL: true,
           EOL: "\r\n",
         };
-        var expectedText = "HELLO\n";
-        var stringWriter = new StringWriter(config, expectedText);
+        const expectedText = "HELLO\n";
+        const stringWriter = new StringWriter(config, expectedText);
 
-        var filePath = temp.path({ suffix: ".txt" });
+        const filePath = temp.path({ suffix: ".txt" });
 
         stringWriter.write(filePath);
 
@@ -91,7 +91,7 @@ describe("StringWriter", function () {
       };
       const stringWriter = new StringWriter(config, "HELLO\nThere\n");
 
-      var filePath = temp.path({ suffix: ".txt" });
+      const filePath = temp.path({ suffix: ".txt" });
 
       stringWriter.write(filePath);
 
