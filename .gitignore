@@ -49,5 +49,5 @@ test/Utilities/**/**.js
 test/Providers/Jest/**.js
 test/Providers/Mocha/Typescript/**.js
 test/Scrubbers/**.js
-test/Reporting/Reporters/**.js
+test/Reporting/**/**.js
 /yarn.lock
