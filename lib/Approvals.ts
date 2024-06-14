@@ -216,7 +216,7 @@ export function verify(
   dirName: string,
   testName: string,
   data: BinaryWriter | string,
-  optionsOverride: any,
+  optionsOverride?: any,
 ): void {
   return verifyAndScrub(
     dirName,

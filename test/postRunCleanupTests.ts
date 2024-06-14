@@ -1,9 +1,10 @@
-var expect = require("chai").expect;
-var glob = require("glob");
-var sinon = require("sinon");
-var approvals = require("../lib/Approvals");
+import { verify } from "../lib/Approvals";
+import * as approvals from "../lib/Approvals";
+import { expect } from "chai";
+import sinon from "sinon";
+import { postRunCleanup } from "../lib/postRunCleanup";
 
-var { postRunCleanup } = require("../lib/postRunCleanup");
+var glob = require("glob");
 
 describe("postRunCleanup", function () {
   it("should export a cleanup function", function () {
@@ -55,11 +56,7 @@ describe("postRunCleanup", function () {
         );
       } catch (err: any) {
         didError = true;
-        approvals.verify(
-          __dirname,
-          "postRunCleanup_reporting_bad_file",
-          err.toString(),
-        );
+        verify(__dirname, "postRunCleanup_reporting_bad_file", err.toString());
       }
 
       if (!didError) {
