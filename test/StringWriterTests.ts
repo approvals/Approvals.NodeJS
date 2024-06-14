@@ -1,17 +1,17 @@
-"use strict";
+import assert from "assert";
+import { StringWriter } from "../lib/StringWriter";
+import { expect } from "chai";
+import fs from "fs";
+import sinon from "sinon";
+import temp from "temp";
+import { Config } from "../lib/config";
 
-var assert = require("assert");
-var expect = require("chai").expect;
-var StringWriter = require("../lib/StringWriter").StringWriter;
-var fs = require("fs");
-var sinon = require("sinon");
-var temp = require("temp");
 temp.track();
 // Write out contest to file (leveraging the Namer)
 // Responsible for 'type' of the file.
 
 describe("StringWriter", function () {
-  var defaultConfig = {};
+  const defaultConfig: Partial<Config> = {};
 
   describe("", function () {
     it("should default to type of txt", function () {
@@ -25,10 +25,10 @@ describe("StringWriter", function () {
     });
 
     it("should write out file", function (done) {
-      var config = {};
-      var stringWriter = new StringWriter(config, "HELLO");
+      const config = {};
+      const stringWriter = new StringWriter(config, "HELLO");
 
-      var filePath = temp.path({ suffix: ".txt" });
+      const filePath = temp.path({ suffix: ".txt" });
 
       stringWriter.write(filePath);
 
@@ -39,7 +39,7 @@ describe("StringWriter", function () {
     });
 
     it("should write out file and append EOL", function (done) {
-      var config = {
+      const config = {
         appendEOL: true,
         EOL: "EndOfLineConfig",
       };
@@ -86,10 +86,10 @@ describe("StringWriter", function () {
     });
 
     it("should write out file and replace line endings", function (done) {
-      var config = {
+      const config = {
         normalizeLineEndingsTo: "\r\n",
       };
-      var stringWriter = new StringWriter(config, "HELLO\nThere\n");
+      const stringWriter = new StringWriter(config, "HELLO\nThere\n");
 
       var filePath = temp.path({ suffix: ".txt" });
 
@@ -102,10 +102,10 @@ describe("StringWriter", function () {
     });
 
     it("should give a useful error message if value is not a string", function () {
-      var config = {};
+      const config = {};
 
       assert.throws(function () {
-        new StringWriter(config, { someObject: "someValue" });
+        new StringWriter(config, { someObject: "someValue" } as any as string);
       });
     });
   });

@@ -17,11 +17,11 @@ function normalizeLineEndings(
 }
 
 export class StringWriter {
-  private config: Config;
+  private config: Partial<Config>;
   private ext: string;
-  private outputText: string;
+  public outputText: string;
 
-  constructor(config: Config, outputText: string, ext?: string) {
+  constructor(config: Partial<Config>, outputText: string, ext?: string) {
     if (typeof outputText !== "string") {
       throw new Error(
         `The outputText provided is not a 'string' value but is a typeof ${typeof outputText}`,
