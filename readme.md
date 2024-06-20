@@ -540,9 +540,12 @@ If you're using [Git](http://git-scm.com) add this to your `.gitignore`:
 *.received.*
 ```
 
-Another issue that can crop up is the line-endings as git can change the files depending on checking out the file on linux/mac vs windows.
+Depending on your operating system and your `eol` settings in git, the diff output on a failed test might report each line as changed because of differences in line endings. To avoid this, consider fixating eol conversion to crlf for approved files by adding this line to your `.gitattributes` file:
 
-A possible fix for this is to add `*.approved.* binary` to your `.gitattributes` (but that makes viewing diffs as you check in a pain).
+```text
+*.approved.* eol=crlf
+```
+
 
 <a name="contributing" />
 
