@@ -58,7 +58,7 @@ describe("multiReporter", function () {
 
     try {
       multiReporter.report("asdf", "bsdf");
-    } catch (error) {
+    } catch (error: any) {
       approvals.verify(
         __dirname,
         "It_should_error_properly",
