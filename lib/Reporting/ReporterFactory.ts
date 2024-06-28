@@ -5,7 +5,7 @@ import { Reporter } from "../Core/Reporter";
 export type ReporterLoader = () => Reporter[];
 
 export class ReporterFactory {
-  static loadReporter(name: string | string[]): Reporter {
+  static loadReporter(name: string | (string | Reporter)[]): Reporter {
     if (Array.isArray(name)) {
       const reporters = ReporterFactory.loadAllReporters(name);
       return new DiffReporterAggregate(reporters);

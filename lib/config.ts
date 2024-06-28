@@ -4,10 +4,10 @@ import * as path from "path";
 import * as _ from "lodash";
 import * as yaml from "js-yaml";
 import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircuitBreaker";
-import { ApprovalFailureReporter } from "./Core/ApprovalFailureReporter";
+import { Reporter } from "./Core/Reporter";
 
 export interface Config {
-  reporters: (string | ApprovalFailureReporter)[];
+  reporters: (string | Reporter)[];
   normalizeLineEndingsTo: boolean | string;
   failOnLineEndingDifferences: boolean;
   appendEOL: boolean;
