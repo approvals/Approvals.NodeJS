@@ -34,7 +34,6 @@
     "build": "tsc",
     "test": "gulp && jest",
     "test2": "npm run mocha && npm run lint",
-    "install": "node install_dependencies.js",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
     "release": "np",
     "mocha": "mocha 'test/**/*[Tt]ests.js'",
