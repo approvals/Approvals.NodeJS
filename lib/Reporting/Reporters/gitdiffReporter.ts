@@ -1,6 +1,6 @@
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import { createEmptyFileIfNotExists, searchForExecutable } from "../../AUtils";
-import {Config} from "../../config";
+import { Config } from "../../config";
 
 export default class GitDiffReporter extends GenericDiffReporterBase {
   constructor() {

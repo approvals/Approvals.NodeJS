@@ -1,7 +1,7 @@
 /*jshint expr:true */
 "use strict";
 
-import {Reporter} from "../lib/Core/Reporter";
+import { Reporter } from "../lib/Core/Reporter";
 
 var assert = require("assert");
 var fs = require("fs");

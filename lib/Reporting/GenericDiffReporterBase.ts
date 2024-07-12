@@ -3,8 +3,8 @@ import * as fs from "fs";
 import * as autils from "../AUtils";
 import reportingLaunchingCircuitBreaker from "./ReportLaunchingCircuitBreaker";
 import { ChildProcessWithoutNullStreams } from "child_process";
-import {Reporter} from "../Core/Reporter";
-import {Config} from "../config";
+import { Reporter } from "../Core/Reporter";
+import { Config } from "../config";
 
 export default class GenericDiffReporterBase implements Reporter {
   name: string;
@@ -110,7 +110,11 @@ export default class GenericDiffReporterBase implements Reporter {
     }
   }
 
-  report(approved: string, received: string, options: Partial<Config> = {}): void {
+  report(
+    approved: string,
+    received: string,
+    options: Partial<Config> = {},
+  ): void {
     if (!options.blockUntilReporterExits) {
       if (reportingLaunchingCircuitBreaker.check(approved, received, options)) {
         return;
