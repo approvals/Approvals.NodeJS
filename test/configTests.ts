@@ -1,14 +1,10 @@
-/*jshint expr:true */
-"use strict";
+import chai from "chai";
+import sinon from "sinon";
+import fs from "fs";
+import _ from "lodash";
+import * as cfg from "../lib/config";
 
-var chai = require("chai");
 var expect = chai.expect;
-var sinon = require("sinon");
-var fs = require("fs");
-var _ = require("lodash");
-
-var cfg = require("../lib/config");
-
 describe("config.js - ", function () {
   var fsExistsSyncStub;
   var fsReadFileSyncStub;
@@ -81,7 +77,7 @@ describe("config.js - ", function () {
 
       var configFile = cfg.getHomeApprovalConfig();
 
-      expect(configFile.reporters).to.deep.equal(["gitdiff"]);
+      expect(configFile?.reporters).to.deep.equal(["gitdiff"]);
     });
 
     //it("but it is malformed it should raise exception with help about how to setup the file", function(){
