@@ -22,27 +22,29 @@ class ExceptionThrowingReporter implements Reporter {
     }
 }
 
+class TrackingReporter implements Reporter {
+    private wasReporterUsed = false;
+    public name: string = "temp-test-reporter";
+
+    canReportOn(/*file*/) {
+        return true;
+    }
+
+    report(/*approved, received*/) {
+        this.wasReporterUsed = true;
+    }
+
+    getWasReporterUsed() {
+        return this.wasReporterUsed;
+    }
+}
+
 describe("multiReporter", function () {
     it("should use a multiple reporter", function () {
         var MultiReporter = approvals.reporters.MultiReporter;
-        var MyCustomReporter = function () {
-            var wasReporterUsed = false;
-            return {
-                canReportOn: function (/*file*/) {
-                    return true;
-                },
-                report: function (/*approved, received*/) {
-                    wasReporterUsed = true;
-                },
-                getWasReporterUsed: function () {
-                    return wasReporterUsed;
-                },
-                name: "temp-test-reporter",
-            };
-        };
 
-        var r1 = new MyCustomReporter();
-        var r2 = new MyCustomReporter();
+        var r1 = new TrackingReporter();
+        var r2 = new TrackingReporter();
 
         var multiReporter = new MultiReporter([r1, r2]);
 
