@@ -1,5 +1,6 @@
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import { createEmptyFileIfNotExists, searchForExecutable } from "../../AUtils";
+import {Config} from "../../config";
 
 export default class GitDiffReporter extends GenericDiffReporterBase {
   constructor() {
@@ -8,7 +9,7 @@ export default class GitDiffReporter extends GenericDiffReporterBase {
     this.exePath = searchForExecutable("Git/cmd", "git");
   }
 
-  report(approved, received, options) {
+  report(approved: string, received: string, options?: Partial<Config>) {
     options = options || {};
 
     createEmptyFileIfNotExists(approved);

@@ -8,6 +8,6 @@ export interface Reporter {
   report(
     approvedFileName: string,
     receivedFileName: string,
-    options: Partial<Config>,
+    options?: Partial<Config>,
   ): void;
 }

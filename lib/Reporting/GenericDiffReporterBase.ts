@@ -110,7 +110,7 @@ export default class GenericDiffReporterBase implements Reporter {
     }
   }
 
-  report(approved: string, received: string, options: Partial<Config>): void {
+  report(approved: string, received: string, options: Partial<Config> = {}): void {
     if (!options.blockUntilReporterExits) {
       if (reportingLaunchingCircuitBreaker.check(approved, received, options)) {
         return;
