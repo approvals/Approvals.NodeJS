@@ -1,6 +1,8 @@
 /*jshint expr:true */
 "use strict";
 
+import {Reporter} from "../lib/Core/Reporter";
+
 var assert = require("assert");
 var fs = require("fs");
 var expect = require("chai").expect;
@@ -10,18 +12,18 @@ var StringWriter = require("../lib/StringWriter").StringWriter;
 var FileApprover = require("../lib/FileApprover");
 var ReporterFactory = require("../lib/Reporting/ReporterFactory");
 
-var ShouldFailCustomReporter = function () {
-  this.canReportOn = function (/*file*/) {
+class FailingReporter implements Reporter {
+  canReportOn(/*file*/) {
     return true;
-  };
+  }
 
-  this.report = function (/*approved, received*/) {
+  report(/*approved, received*/) {
     console.log(arguments);
     throw new Error("This reporter should never run");
-  };
+  }
 
-  this.name = "ShouldFailCustomReporter";
-};
+  public name = "ShouldFailCustomReporter";
+}
 
 describe("FileApprover", function () {
   describe("when two files match", function () {
@@ -36,7 +38,7 @@ describe("FileApprover", function () {
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
       reporterFactory = function () {
-        return [new ShouldFailCustomReporter()];
+        return [new FailingReporter()];
       };
     });
 
