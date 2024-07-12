@@ -3,14 +3,10 @@ import * as fs from "fs";
 import * as autils from "../AUtils";
 import reportingLaunchingCircuitBreaker from "./ReportLaunchingCircuitBreaker";
 import { ChildProcessWithoutNullStreams } from "child_process";
+import {Reporter} from "../Core/Reporter";
+import {Config} from "../config";
 
-interface CmdOptions {
-  blockUntilReporterExits?: boolean;
-  cmdOptionOverrides?: any;
-  cmdArgs?: string[];
-}
-
-export default class GenericDiffReporterBase {
+export default class GenericDiffReporterBase implements Reporter {
   name: string;
   public exePath: string = "";
   private _reporterFileLookedUp: boolean;
@@ -114,7 +110,7 @@ export default class GenericDiffReporterBase {
     }
   }
 
-  report(approved: string, received: string, options: CmdOptions): void {
+  report(approved: string, received: string, options: Partial<Config>): void {
     if (!options.blockUntilReporterExits) {
       if (reportingLaunchingCircuitBreaker.check(approved, received, options)) {
         return;

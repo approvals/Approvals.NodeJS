@@ -18,6 +18,8 @@ export interface Config {
   forceApproveAll: boolean;
   blockUntilReporterExits: boolean;
   maxLaunches: number;
+  cmdOptionOverrides?: any;
+  cmdArgs?: string[];
 }
 
 // begin-snippet: default_config
