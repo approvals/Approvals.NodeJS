@@ -79,7 +79,7 @@ Below is a simple getting started using Mocha.
 
    ```shell
    mkdir MyProject
-   cd MyProject`
+   cd MyProject
    ```
 
 1. Install approvals
