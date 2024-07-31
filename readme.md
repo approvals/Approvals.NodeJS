@@ -254,7 +254,7 @@ The default configuration as defined below can be overridden by using the follow
 
 > NOTE: Priority/order of config selection comes from the below list where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
 
-1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.js](lib/config.js).
+1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.ts](lib/config.ts).
 1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in your home directory `~/.approvalsConfig`.
 1. You can then call [`approvals.configure({...})`](#module_approvals.configure).
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
@@ -508,7 +508,7 @@ approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in a
 ### approvals~verifyWithControl(namer, writer, [reporterFactory], [optionsOverride])
 This allows you to take full control of naming and writing files before verifying.
 
-For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+For an example that we use to generate the docs within the readme, check out the [test/readmeTests.ts](test/readmeTests.ts) in this project.
 
 **Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
