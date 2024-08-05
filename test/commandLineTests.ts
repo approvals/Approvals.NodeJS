@@ -1,12 +1,9 @@
-"use strict";
-
-/// <reference path="../typings/tests.d.ts"/>
-var shelljs = require("shelljs");
-var path = require("path");
+import shelljs from "shelljs";
+import path from "path";
 
 describe("Command Line", function () {
   it("Should run approvals CLI with basic text input", function (done) {
-    var cliTestCommand =
+    const cliTestCommand =
       'echo "Hello\nWorld" | ' +
       path.join("./", "bin", "index.js") +
       " --reporter gitdiff --errorOnStaleApprovedFiles=false --outdir ./test commandlineTest";
