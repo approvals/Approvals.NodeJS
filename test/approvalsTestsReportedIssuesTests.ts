@@ -1,5 +1,5 @@
-var approvals = require("../lib/Approvals");
-var expect = require("chai").expect;
+import {verify} from "../lib/Approvals";
+import {expect} from "chai";
 
 describe("When issues are reported on github", () => {
   it("Issue #86: Issues with Buffer Compare Loop", () => {
@@ -22,13 +22,13 @@ describe("When issues are reported on github", () => {
     var testName = "manualVerification";
     var dataToVerify = "some stuff here";
 
-    approvals.verify(__dirname, testName, dataToVerify, approvalOverrides);
+    verify(__dirname, testName, dataToVerify, approvalOverrides);
 
     approvalOverrides.forceApproveAll = false;
     dataToVerify = "some stuff here - also";
 
     expect(() => {
-      approvals.verify(__dirname, testName, dataToVerify, approvalOverrides);
+      verify(__dirname, testName, dataToVerify, approvalOverrides);
     }).throws(Error);
   });
 });
