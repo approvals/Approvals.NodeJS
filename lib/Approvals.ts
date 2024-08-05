@@ -215,7 +215,7 @@ function verifyAndScrub(
 export function verify(
   dirName: string,
   testName: string,
-  data: BinaryWriter | string,
+  data: any,
   optionsOverride?: any,
 ): void {
   return verifyAndScrub(
@@ -242,7 +242,7 @@ export function verify(
 export function verifyAsJSON(
   dirName: string,
   testName: string,
-  data: BinaryWriter | string,
+  data: any,
   optionsOverride: any,
 ) {
   return verifyAsJSONAndScrub(
@@ -278,7 +278,7 @@ export function verifyAsJSON(
 export function verifyAsJSONAndScrub(
   dirName: string,
   testName: string,
-  data: BinaryWriter | string,
+  data: any,
   scrubber: Scrubber,
   optionsOverride: any,
 ): void {
