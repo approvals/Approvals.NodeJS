@@ -1,7 +1,5 @@
 import fs from "fs";
 
-import chalk from "chalk";
-
 import jsdiff from "diff";
 import {
   assertFileExists,
@@ -9,6 +7,7 @@ import {
   isBinaryFile,
 } from "../../AUtils";
 import { Reporter } from "../../Core/Reporter";
+import { grayText, greenText, redText } from "../../Utilities/ConsoleUtils";
 
 export default class NodeDiffReporter implements Reporter {
   public name: string;
@@ -42,9 +41,18 @@ export default class NodeDiffReporter implements Reporter {
     diff.forEach(function (part) {
       // green for additions, red for deletions
       // grey for common parts
-      var color = part.added ? "green" : part.removed ? "red" : "gray";
+      let text = "";
+      if (part.added) {
+        text = greenText(part.value);
+      } else {
+        if (part.removed) {
+          text = redText(part.value);
+        } else {
+          text = grayText(part.value);
+        }
+      }
 
-      process.stdout.write(chalk[color](part.value));
+      process.stdout.write(text);
     });
 
     console.log(`\n* End of diff for ${approved} vs ${received}`);

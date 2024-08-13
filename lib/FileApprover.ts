@@ -1,10 +1,10 @@
 import fs from "fs";
-import chalk from "chalk";
 import { Config } from "./config";
 import { Namer } from "./Core/Namer";
 import { Writer } from "./Core/Writer";
 import { Reporter } from "./Core/Reporter";
 import { ReporterLoader } from "./Reporting/ReporterFactory";
+import { yellowText } from "./Utilities/ConsoleUtils";
 
 interface Options {
   stripBOM?: boolean;
@@ -39,9 +39,7 @@ export class FileApprover {
     writer.write(receivedFileName);
 
     if (options.forceApproveAll) {
-      console.log(
-        chalk.yellow(`WARNING: Force approving: ${approvedFileName}`),
-      );
+      console.log(yellowText(`WARNING: Force approving: ${approvedFileName}`));
       writer.write(approvedFileName);
     }
 

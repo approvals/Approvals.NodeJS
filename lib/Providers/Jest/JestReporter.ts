@@ -1,5 +1,4 @@
 import { expect } from "@jest/globals";
-import type { ApprovalFailureReporter } from "../../Core/ApprovalFailureReporter";
 import fs from "fs";
 import { Config } from "../../config";
 import { Reporter } from "../../Core/Reporter";

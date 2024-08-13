@@ -1,5 +1,4 @@
 #!/usr/bin/env ts-node
-import chalk from "chalk";
 import es from "event-stream";
 import * as autils from "../lib/AUtils";
 import fs from "fs";
@@ -8,6 +7,7 @@ import marked from "marked";
 import TerminalRenderer from "marked-terminal";
 import minimist from "minimist";
 import { configure, verify } from "../lib/Approvals";
+import { redText } from "../lib/Utilities/ConsoleUtils";
 
 const verbose = process.argv.includes("--verbose");
 const printHelp = process.argv.includes("--help");
@@ -29,7 +29,7 @@ function printHelpMessage() {
 
 function errAndExit(msg: string): void {
   printHelpMessage();
-  console.log(chalk.red(msg));
+  console.log(redText(msg));
   process.exit(1);
 }
 
