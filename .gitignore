@@ -52,3 +52,4 @@ test/Scrubbers/**.js
 test/Reporting/**/**.js
 test/**.js
 /yarn.lock
+*.mjs
