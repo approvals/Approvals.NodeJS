@@ -1,16 +1,15 @@
-"use strict";
-
-var approvals = require("../../../lib/Approvals");
+import * as approvals from "../../../lib/Approvals";
+import {defaultConfig} from "../../../lib/config";
 
 describe("Mocha", function () {
   describe("when verifying some basic text", function () {
     beforeEach(function () {
       approvals
-        .configure({
-          appendEOL: false,
-          normalizeLineEndingsTo: "\n",
-          reporters: ["nodediff"],
-        })
+        .configure(Object.assign({}, defaultConfig, {
+            appendEOL: false,
+            normalizeLineEndingsTo: "\n",
+            reporters: ["nodediff"],
+        }))
         .mocha();
     });
 
