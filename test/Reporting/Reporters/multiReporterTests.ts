@@ -1,7 +1,7 @@
 import { Reporter } from "../../../lib/Core/Reporter";
 
-var approvals = require("../../../lib/Approvals");
-var expect = require("chai").expect;
+import {expect} from "chai";
+import * as approvals from "../../../lib/Approvals";
 
 class ExceptionThrowingReporter implements Reporter {
   public name: string;

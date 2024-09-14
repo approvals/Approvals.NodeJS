@@ -1,5 +1,5 @@
-var approvals = require("../lib/Approvals");
-var expect = require("chai").expect;
+import * as approvals from "../lib/Approvals";
+import {expect} from "chai";
 
 describe("When issues are reported on github", () => {
   it("Issue #86: Issues with Buffer Compare Loop", () => {
