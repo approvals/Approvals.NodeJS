@@ -1,10 +1,9 @@
 import { verify } from "../lib/Approvals";
-import * as approvals from "../lib/Approvals";
 import { expect } from "chai";
 import sinon from "sinon";
 import { postRunCleanup } from "../lib/postRunCleanup";
 
-var glob = require("glob");
+import * as glob from "glob";
 
 describe("postRunCleanup", function () {
   it("should export a cleanup function", function () {

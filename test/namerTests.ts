@@ -1,8 +1,6 @@
-"use strict";
-
-var assert = require("assert");
-var path = require("path");
-var Namer = require("../lib/Namer").Namer;
+import assert from "assert";
+import path from "path";
+import {Namer} from "../lib/Namer";
 
 describe("Namer", function () {
   describe("getReceivedFile & approvedFile", function () {
