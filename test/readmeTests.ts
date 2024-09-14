@@ -1,9 +1,8 @@
-var path = require("path");
-var fs = require("fs");
-
-var StringWriter = require("../lib/StringWriter").StringWriter;
-var approvals = require("../lib/Approvals");
-var jsdoc2md = require("jsdoc-to-markdown");
+import path from "path";
+import fs from "fs";
+import {StringWriter} from "../lib/StringWriter";
+import * as approvals from "../lib/Approvals";
+import jsdoc2md from "jsdoc-to-markdown";
 
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", function () {
