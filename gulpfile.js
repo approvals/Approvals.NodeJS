@@ -4,7 +4,7 @@ const gulp = require("gulp");
 const $ = require("gulp-load-plugins")();
 
 const paths = {
-  mochaTests: ["test/**/*[Tt]ests.js"],
+  mochaTests: ["test/**/*[Tt]ests.js", "test/**/*[Tt]ests.mjs"],
   filesToLint: ["./lib/**/*.js", "./test/**/*.js", "gulpfile.js"],
   sourceJSFilesForCodeCoverage: ["./lib/**/*.js"],
 };
