@@ -1,16 +1,12 @@
-/*jshint expr:true */
-"use strict";
-
 import { Reporter } from "../lib/Core/Reporter";
 
-var assert = require("assert");
-var fs = require("fs");
-var expect = require("chai").expect;
-
-var Namer = require("../lib/Namer").Namer;
-var StringWriter = require("../lib/StringWriter").StringWriter;
-var FileApprover = require("../lib/FileApprover");
-var ReporterFactory = require("../lib/Reporting/ReporterFactory");
+import * as ReporterFactory from "../lib/Reporting/ReporterFactory";
+import * as FileApprover from "../lib/FileApprover";
+import {StringWriter} from "../lib/StringWriter";
+import {Namer} from "../lib/Namer";
+import {expect} from "chai";
+import fs from "fs";
+import assert from "assert";
 
 class FailingReporter implements Reporter {
   canReportOn(/*file*/) {
@@ -45,19 +41,19 @@ describe("FileApprover", function () {
     describe("when validating arguments", function () {
       it("should validate namer (parameter 1)", function () {
         expect(function () {
-          FileApprover.verify(null);
+            (FileApprover as any).verify(null);
         }).to.throw(Error, "namer");
       });
 
       it("should validate writer (parameter 2)", function () {
         expect(function () {
-          FileApprover.verify(namer, null);
+            (FileApprover as any).verify(namer, null);
         }).to.throw(Error, "writer");
       });
 
       it("should validate reporterFactory (parameter 3)", function () {
         expect(function () {
-          FileApprover.verify(namer, writer, null);
+            (FileApprover as any).verify(namer, writer, null);
         }).to.throw(Error, "reporterFactory");
       });
     });
