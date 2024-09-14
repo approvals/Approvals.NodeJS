@@ -2,7 +2,9 @@ import { expect } from "chai";
 
 import assert from "assert";
 import { Reporter } from "../../../lib/Core/Reporter";
-var approvals = require("../../../lib/Approvals").mocha();
+import {mocha} from "../../../lib/Approvals";
+
+var approvals = mocha();
 
 interface CustomReporter extends Reporter {
   getWasReporterUsed: () => boolean;
