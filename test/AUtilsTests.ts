@@ -1,9 +1,7 @@
-"use strict";
-
-var utils = require("../lib/AUtils");
-var os = require("../lib/osTools");
-var assert = require("assert");
-var expect = require("chai").expect;
+import * as utils from "../lib/AUtils";
+import * as os from "../lib/osTools";
+import assert from "assert";
+import {expect} from "chai";
 
 describe("AUtils", function () {
   // only run these tests on Windows
