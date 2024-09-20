@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {scrubbers, verify, verifyAsJSON, verifyAsJSONAndScrub} from "../lib/Approvals";
+import {testDirectory} from "./testPaths";
 
 const approvalOverrides = {
   EOL: "\r\n",
@@ -13,7 +14,7 @@ describe("approvals", function () {
     it("can verify some manual text", function () {
       const testName = "manualVerification";
       const dataToVerify = "some stuff here";
-      verify(__dirname, testName, dataToVerify, approvalOverrides);
+      verify(testDirectory, testName, dataToVerify, approvalOverrides);
     });
 
     it("should verify an image", function () {
@@ -26,14 +27,14 @@ describe("approvals", function () {
       const base64Data = logoBase46.replace(/^data:image\/png;base64,/, "");
       const imgBuffer = Buffer.from(base64Data, "base64");
 
-      verify(__dirname, "basic-image-test-png", imgBuffer);
+      verify(testDirectory, "basic-image-test-png", imgBuffer);
     });
 
     it("should verify an image 2", function () {
-      const testImage = path.join(__dirname, "basic-image-test-png.approved.png");
+      const testImage = path.join(testDirectory, "basic-image-test-png.approved.png");
       const imgBuffer = fs.readFileSync(testImage);
 
-      verify(__dirname, "basic-image-test-png", imgBuffer);
+      verify(testDirectory, "basic-image-test-png", imgBuffer);
     });
   });
 
@@ -45,7 +46,7 @@ describe("approvals", function () {
         y: 123,
       };
       verifyAsJSON(
-        __dirname,
+        testDirectory,
         testName,
         dataToVerify,
         approvalOverrides,
@@ -59,7 +60,7 @@ describe("approvals", function () {
         y: 123,
       };
       verifyAsJSON(
-        __dirname,
+        testDirectory,
         testName,
         dataToVerify,
         approvalOverrides,
@@ -70,7 +71,7 @@ describe("approvals", function () {
         x: "some stuff here",
       };
       verifyAsJSON(
-        __dirname,
+        testDirectory,
         testName,
         dataToVerify2,
         approvalOverrides,
@@ -90,7 +91,7 @@ describe("approvals", function () {
       };
 
       verifyAsJSONAndScrub(
-        __dirname,
+        testDirectory,
         testName,
         dataToVerify,
         scrubbers.guidScrubber,

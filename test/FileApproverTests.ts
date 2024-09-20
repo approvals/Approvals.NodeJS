@@ -7,6 +7,7 @@ import {Namer} from "../lib/Namer";
 import {expect} from "chai";
 import fs from "fs";
 import assert from "assert";
+import {testDirectory} from "./testPaths";
 
 class FailingReporter implements Reporter {
   canReportOn(/*file*/) {
@@ -29,7 +30,7 @@ describe("FileApprover", function () {
     var config = { appendEOL: false };
 
     beforeEach(function () {
-      var dir = __dirname;
+      var dir = testDirectory;
       var fileName = "FileApprover.should_verify_two_files_match";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
@@ -104,7 +105,7 @@ describe("FileApprover", function () {
     };
 
     beforeEach(function () {
-      var dir = __dirname;
+      var dir = testDirectory;
       var fileName = "FileApproverTests.ByteOrderMark";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(

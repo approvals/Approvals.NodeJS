@@ -4,6 +4,7 @@ import sinon from "sinon";
 import { postRunCleanup } from "../lib/postRunCleanup";
 
 import * as glob from "glob";
+import {testDirectory} from "./testPaths";
 
 describe("postRunCleanup", function () {
   it("should export a cleanup function", function () {
@@ -55,7 +56,7 @@ describe("postRunCleanup", function () {
         );
       } catch (err: any) {
         didError = true;
-        verify(__dirname, "postRunCleanup_reporting_bad_file", err.toString());
+        verify(testDirectory, "postRunCleanup_reporting_bad_file", err.toString());
       }
 
       if (!didError) {

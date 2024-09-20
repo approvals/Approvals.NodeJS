@@ -3,20 +3,21 @@ import fs from "fs";
 import {StringWriter} from "../lib/StringWriter";
 import * as approvals from "../lib/Approvals";
 import jsdoc2md from "jsdoc-to-markdown";
+import {testDirectory} from "./testPaths";
 
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", function () {
     var currentReadme = fs
-      .readFileSync(path.join(__dirname, "../", "readme.md"))
+      .readFileSync(path.join(testDirectory, "../", "readme.md"))
       .toString();
     var cliDocsRaw = fs
-      .readFileSync(path.join(__dirname, "../bin", "help.md"))
+      .readFileSync(path.join(testDirectory, "../bin", "help.md"))
       .toString();
 
     cliDocsRaw = cliDocsRaw.replace(/&nbsp;/g, " ").replace(/\*\*/g, "");
 
     var approvalsSource = fs
-      .readFileSync(path.join(__dirname, "../lib", "Approvals.js"))
+      .readFileSync(path.join(testDirectory, "../lib", "Approvals.js"))
       .toString();
 
     var jsdocsOutput = jsdoc2md.renderSync({
@@ -53,7 +54,7 @@ describe("Readme", function () {
     reporterList +=
       '\n    "' +
       fs
-        .readdirSync(path.join(__dirname, "../lib/Reporting/Reporters"))
+        .readdirSync(path.join(testDirectory, "../lib/Reporting/Reporters"))
         .map(function (item) {
           return item.substr(0, item.indexOf("Reporter.js"));
         })
@@ -82,10 +83,10 @@ describe("Readme", function () {
     );
     var namer = {
       getReceivedFile: function () {
-        return path.join(__dirname, "..", "readme.received.md");
+        return path.join(testDirectory, "..", "readme.received.md");
       },
       getApprovedFile: function () {
-        return path.join(__dirname, "..", "readme.md");
+        return path.join(testDirectory, "..", "readme.md");
       },
     };
 
