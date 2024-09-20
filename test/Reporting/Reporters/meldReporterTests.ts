@@ -2,6 +2,8 @@
 
 //icdiff test\Reporters\a.txt test\Reporters\b.txt
 
+import {testDirectory} from "../../testPaths";
+
 var assert = require("assert");
 var path = require("path");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/icdiffReporter");
@@ -13,8 +15,8 @@ describe("Reporter", function () {
 
       var reporter = new ReporterUnderTest();
 
-      var approved = path.join(__dirname, "a.txt");
-      var received = path.join(__dirname, "b.txt");
+      var approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+      var received = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
 
       var expectedCommand = "'icdiff' '" + received + "' '" + approved + "'";
 

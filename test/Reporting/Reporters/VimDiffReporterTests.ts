@@ -1,5 +1,7 @@
 "use strict";
 
+import {testDirectory} from "../../testPaths";
+
 var expect = require("chai").expect;
 var path = require("path");
 var ReporterUnderTest =
@@ -10,8 +12,8 @@ describe("Reporter", function () {
     it("reporter args are correct", function () {
       var reporter = new ReporterUnderTest();
 
-      var approved = path.join(__dirname, "a.txt");
-      var received = path.join(__dirname, "b.txt");
+      var approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+      var received = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
 
       reporter.spawn = (exe, args) => {
         expect(args).to.deep.equal(["-d", received, approved]);

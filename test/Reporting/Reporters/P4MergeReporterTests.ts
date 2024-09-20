@@ -1,5 +1,7 @@
 "use strict";
 
+import {testDirectory} from "../../testPaths";
+
 var assert = require("assert");
 var path = require("path");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/p4mergeReporter");
@@ -20,8 +22,8 @@ describe("Reporter", function () {
       this.timeout(60000); // test runs slow on appveyor?
       var reporter = new ReporterUnderTest();
 
-      var approvedFile = path.join(__dirname, "a.txt");
-      var receivedFile = path.join(__dirname, "b.txt");
+      var approvedFile = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+      var receivedFile = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
 
       if (reporter.canReportOn(receivedFile)) {
         reporter.report(approvedFile, receivedFile, {

@@ -1,7 +1,9 @@
 import { Reporter } from "../../../lib/Core/Reporter";
 
 import {expect} from "chai";
+import * as path from "path";
 import * as approvals from "../../../lib/Approvals";
+import {testDirectory} from "../../testPaths";
 
 class ExceptionThrowingReporter implements Reporter {
   public name: string;
@@ -63,7 +65,7 @@ describe("multiReporter", function () {
       multiReporter.report("asdf", "bsdf");
     } catch (error: any) {
       approvals.verify(
-        __dirname,
+        path.join(testDirectory, "Reporting", "Reporters"),
         "It_should_error_properly",
         error.toString(),
         {

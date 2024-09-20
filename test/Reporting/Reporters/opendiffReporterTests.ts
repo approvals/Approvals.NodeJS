@@ -1,5 +1,7 @@
 "use strict";
 
+import {testDirectory} from "../../testPaths";
+
 var utils = require("../../../lib/AUtils");
 var assert = require("assert");
 var path = require("path");
@@ -12,8 +14,8 @@ describe("Reporter", function () {
       xit("reporter args are correct", function () {
         var reporter = new ReporterUnderTest();
 
-        var approvedFile = path.join(__dirname, "a.txt");
-        var receivedFile = path.join(__dirname, "b.txt");
+        var approvedFile = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+        var receivedFile = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
 
         assert.ok(reporter.report);
         reporter.report(approvedFile, receivedFile, {
@@ -33,8 +35,8 @@ describe("Reporter", function () {
       xit("reporter args are correct", function () {
         var reporter = new ReporterUnderTest();
 
-        var approvedFile = path.join(__dirname, "a.txt");
-        var receivedFile = path.join(__dirname, "b.txt");
+        var approvedFile = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+        var receivedFile = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
 
         expect(() => {
           reporter.report(approvedFile, receivedFile, {
