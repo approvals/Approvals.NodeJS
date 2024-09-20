@@ -5,18 +5,8 @@ import {testDirectory} from "../../testPaths";
 var assert = require("assert");
 var path = require("path");
 var ReporterUnderTest = require("../../../lib/Reporting/Reporters/p4mergeReporter");
-//var sinon = require('sinon');
 
 describe("Reporter", function () {
-  // it("sample p4merge real test", function () {
-  //   var approvals = require('../../../lib/Approvals');
-  //   approvals.verify(__dirname, 'p4mergeTempTest', 'some test data', {
-  //     reporters: [
-  //       'p4merge'
-  //     ]
-  //   });
-  // });
-
   describe("p4merge", function () {
     it.skip("reporter args are correct", function () {
       this.timeout(60000); // test runs slow on appveyor?
