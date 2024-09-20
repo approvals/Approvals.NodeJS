@@ -5,6 +5,7 @@ import path from "path";
 import assert from "assert";
 import * as os from "../../lib/osTools";
 import { ReporterFactory } from "../../lib/Reporting/ReporterFactory";
+import {testDirectory} from "../testPaths";
 
 describe("ReporterFactory", function () {
   let textDiffReporters, allAvailableDiffReporters;
@@ -55,7 +56,7 @@ describe("ReporterFactory", function () {
           "]",
       );
 
-      const canReportOn = reporter.canReportOn(path.join(__dirname, "a.txt"));
+      const canReportOn = reporter.canReportOn(path.join(testDirectory, "Reporting", "a.txt"));
       assert.ok(
         canReportOn,
         "Could not load reporter with name [" + reporter.name + "]",
@@ -115,7 +116,7 @@ describe("ReporterFactory", function () {
     before(function () {
       this.timeout(20000); //appveyor seems slow
       allReporters = fs
-        .readdirSync(path.join(__dirname, "../../lib/Reporting/Reporters"))
+        .readdirSync(path.join(testDirectory, "../lib/Reporting/Reporters"))
         .map(function (item) {
           if (item.indexOf("Reporter.d.ts") === -1) {
             // ignore the typescript definition file

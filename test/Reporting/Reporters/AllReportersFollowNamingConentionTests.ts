@@ -1,10 +1,11 @@
 import fs from "fs";
 import assert from "assert";
+import {testDirectory} from "../../testPaths";
 
 const allReporterFiles: string[] = [];
 describe("All reporters must conform to naming convention", function () {
   beforeEach(function () {
-    fs.readdirSync(__dirname + "/../../../lib/Reporting/Reporters").forEach(
+    fs.readdirSync(testDirectory + "/../lib/Reporting/Reporters").forEach(
       function (file) {
         if (file.indexOf("Reporter.js") > -1) {
           allReporterFiles.push(file);
