@@ -1,37 +1,35 @@
-"use strict";
-
-var utils = require("../lib/AUtils");
-var os = require("../lib/osTools");
-var assert = require("assert");
-var expect = require("chai").expect;
+import assert from "assert";
+import {expect} from "chai";
+import {assertFileExists, fixFilePathSlashes, searchForExecutable, stringifyKeysInOrder} from "../lib/AUtils";
+import {platform} from "../lib/osTools";
 
 describe("AUtils", function () {
   // only run these tests on Windows
-  if (os.platform.isWindows) {
+  if (platform.isWindows) {
     describe("searchForExecutable", function () {
       if (!process.env.APPVEYOR) {
         describe("when using windows where.exe to find programs", function () {
           it("ipconfig should be found once", function () {
-            var file = utils.searchForExecutable("ipconfig");
+            const file = searchForExecutable("ipconfig");
 
-            utils.assertFileExists(file);
+            assertFileExists(file);
           });
 
           it("notepad is found multiple times and we should just use the first one", function () {
-            var file = utils.searchForExecutable("ipconfig");
+            const file = searchForExecutable("ipconfig");
 
-            utils.assertFileExists(file);
+            assertFileExists(file);
           });
         });
 
         describe("When looking for a program in program files", function () {
           it("should find iexplorer", function () {
-            var file = utils.searchForExecutable(
+            const file = searchForExecutable(
               "Internet Explorer",
               "iexplore",
             );
 
-            utils.assertFileExists(file);
+            assertFileExists(file);
           });
         });
       }
@@ -40,9 +38,9 @@ describe("AUtils", function () {
     describe("find linux executable", function () {
       describe("when using linux 'which' to find programs", function () {
         it("ifconfig should be found once", function () {
-          var file = utils.searchForExecutable("ifconfig");
+          const file = searchForExecutable("ifconfig");
 
-          utils.assertFileExists(file);
+          assertFileExists(file);
         });
       });
     });
@@ -50,17 +48,17 @@ describe("AUtils", function () {
 
   describe("fixFilePathSlashes", function () {
     it("should replace back slashes with forward slashes", function () {
-      var before = "C:\\Windows\\System32\\ipconfig.exe";
-      var expected = "C:/Windows/System32/ipconfig.exe";
+      const before = "C:\\Windows\\System32\\ipconfig.exe";
+      const expected = "C:/Windows/System32/ipconfig.exe";
 
-      var fixed = utils.fixFilePathSlashes(before);
+      const fixed = fixFilePathSlashes(before);
 
       assert.strictEqual(fixed, expected);
     });
   });
 
   describe("stringifyKeysInOrder", function () {
-    var expected = `{
+    const expected = `{
   "a": 1,
   "aSub": {
     "a": 1,
@@ -84,7 +82,7 @@ describe("AUtils", function () {
   ]
 }`;
     it("should return proper string with keys in order", function () {
-      var result = utils.stringifyKeysInOrder({
+      const result = stringifyKeysInOrder({
         a: 1,
         aSub: {
           a: 1,
@@ -108,7 +106,7 @@ describe("AUtils", function () {
     });
 
     it("should return proper string with keys in order", function () {
-      var result = utils.stringifyKeysInOrder({
+      const result = stringifyKeysInOrder({
         b: 2,
         arr: [1, 2],
         aSub: {
