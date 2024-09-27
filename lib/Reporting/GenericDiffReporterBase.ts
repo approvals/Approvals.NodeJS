@@ -12,7 +12,7 @@ export default class GenericDiffReporterBase implements Reporter {
   private _reporterFileLookedUp: boolean;
   private _reporterFileLookedUpAndFound: boolean;
 
-  constructor(name: string) {
+    constructor(name: string) {
     if (!name) {
       throw new Error("Argument name missing");
     }
@@ -126,11 +126,16 @@ export default class GenericDiffReporterBase implements Reporter {
       : this.spawn.bind(this);
     autils.createEmptyFileIfNotExists(approved);
 
-    const cmdOptions = options.cmdOptionOverrides;
-    const args = options.cmdArgs || [received, approved];
+      const {cmdOptions, args} = this.getCommandArguments(approved, received, options);
 
-    console.log("CMD: ", this.exePath, args.join(" "));
+      console.log("CMD: ", this.exePath, args.join(" "));
 
     spawnMethod(this.exePath, args, cmdOptions);
   }
+
+    getCommandArguments(approved: string, received: string, options: Partial<Config> = {}) {
+        const cmdOptions = options.cmdOptionOverrides;
+        const args = options.cmdArgs || [received, approved];
+        return {cmdOptions, args};
+    }
 }

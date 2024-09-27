@@ -3,6 +3,8 @@
 //icdiff test\Reporters\a.txt test\Reporters\b.txt
 
 import {testDirectory} from "../../testPaths";
+import GenericDiffReporterBase from "../../../lib/Reporting/GenericDiffReporterBase";
+import {searchForExecutable} from "../../../lib/AUtils";
 
 var assert = require("assert");
 var path = require("path");
@@ -17,21 +19,12 @@ describe("Reporter", function () {
       var reporter = new ReporterUnderTest();
 
       var approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
-      var received = path.join(testDirectory, "Reporting", "Reporters", "b.txt");
+      var received = path.join(testDirectory, "Reporting", "Reporters", "r.txt");
 
-      var expectedCommand = "'icdiff' '" + received + "' '" + approved + "'";
+      var expectedCommand = [received, approved];
 
-      if (reporter.canReportOn(received)) {
-        reporter.report(approved, received, {
-          spawn: function (command) {
-            var startTrim = command.indexOf("icdiff");
-            command = "'" + command.substr(startTrim);
-
-            assert.strictEqual(command, expectedCommand);
-            return {};
-          },
-        });
-      }
+        const args = reporter.getCommandArguments(approved, received);
+        assert.deepEqual(expectedCommand, args.args);
     });
   });
 });
