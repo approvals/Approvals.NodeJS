@@ -3,13 +3,10 @@
 //icdiff test\Reporters\a.txt test\Reporters\b.txt
 
 import {testDirectory} from "../../testPaths";
-import GenericDiffReporterBase from "../../../lib/Reporting/GenericDiffReporterBase";
-import {searchForExecutable} from "../../../lib/AUtils";
 
-var assert = require("assert");
-var path = require("path");
-var ReporterUnderTest =
-  require("../../../lib/Reporting/Reporters/icdiffReporter").default;
+import ReporterUnderTest from "../../../lib/Reporting/Reporters/icdiffReporter";
+import path from "path";
+import assert from "assert";
 
 describe("Reporter", function () {
   describe("icdiff", function () {
