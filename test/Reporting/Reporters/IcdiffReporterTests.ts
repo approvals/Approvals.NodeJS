@@ -13,12 +13,12 @@ describe("Reporter", function () {
     it("reporter args are correct", function () {
       this.timeout(20000); // failed on appVeyor for some reason?
 
-      var reporter = new ReporterUnderTest();
+        const reporter = new ReporterUnderTest();
 
-      var approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
-      var received = path.join(testDirectory, "Reporting", "Reporters", "r.txt");
+        const approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
+        const received = path.join(testDirectory, "Reporting", "Reporters", "r.txt");
 
-      var expectedCommand = [received, approved];
+        const expectedCommand = [received, approved];
 
         const args = reporter.getCommandArguments(approved, received);
         assert.deepEqual(expectedCommand, args.args);
