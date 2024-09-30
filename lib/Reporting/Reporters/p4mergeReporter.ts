@@ -1,7 +1,4 @@
-"use strict";
-
 import fs from "fs";
-
 import shelljs from "shelljs";
 import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import { platform } from "../../osTools";
@@ -11,7 +8,7 @@ export default class P4MergeReporter extends GenericDiffReporterBase {
   constructor() {
     super("P4Merge");
 
-    var app = null;
+    let app = null;
     if (platform.isMac) {
       try {
         app = shelljs.ls(
