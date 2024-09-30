@@ -13,5 +13,13 @@ export default class Reporter extends GenericDiffReporterBase {
     this.setCommandArgs = (approved, received) => {
       return ["-d", received, approved];
     };
+    this.modifyCommandOptions = (cmdOptions) => {
+      if (!cmdOptions) {
+        cmdOptions = {};
+      }
+
+      cmdOptions.stdio = "inherit";
+      return cmdOptions;
+    };
   }
 }
