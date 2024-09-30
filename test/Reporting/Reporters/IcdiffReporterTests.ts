@@ -1,9 +1,4 @@
-"use strict";
-
-//icdiff test\Reporters\a.txt test\Reporters\b.txt
-
 import {testDirectory} from "../../testPaths";
-
 import ReporterUnderTest from "../../../lib/Reporting/Reporters/icdiffReporter";
 import path from "path";
 import assert from "assert";
