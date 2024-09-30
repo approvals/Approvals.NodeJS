@@ -15,6 +15,10 @@ describe("Reporter", function () {
 
       const args = reporter.getCommandArguments(approved, received);
       assert.deepEqual(expectedCommand, args.args);
+      assert.deepEqual(args.cmdOptions, {
+        stdio: 'inherit',
+      });
+
     });
   });
 });

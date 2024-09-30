@@ -11,6 +11,7 @@ export default class GenericDiffReporterBase implements Reporter {
   public exePath: string = "";
   private _reporterFileLookedUp: boolean;
   public setCommandArgs: (approved: string, received: string) => string[] = ((a: string, r: string) => [r,a]);
+  public modifyCommandOptions: (commandOptions: any) => any = ((c) => c);
   private _reporterFileLookedUpAndFound: boolean;
 
     constructor(name: string) {
@@ -135,7 +136,7 @@ export default class GenericDiffReporterBase implements Reporter {
   }
 
     getCommandArguments(approved: string, received: string, options: Partial<Config> = {}) {
-        const cmdOptions = options.cmdOptionOverrides;
+        const cmdOptions = this.modifyCommandOptions(options.cmdOptionOverrides);
         const args = options.cmdArgs || this.setCommandArgs(approved, received);
         return {cmdOptions, args};
     }
