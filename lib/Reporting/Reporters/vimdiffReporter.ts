@@ -5,19 +5,13 @@ export default class Reporter extends GenericDiffReporterBase {
   constructor() {
     super("VimDiff");
 
+    // options.cmdOptions = {
+    //   stdio: "inherit",
+    // };
+
     this.exePath = searchForExecutable("vim");
-  }
-
-  report(approved, received, options) {
-    options = options || {};
-    options.cmdArgs = ["-d", received, approved];
-
-    options.cmdOptions = {
-      stdio: "inherit",
+    this.setCommandArgs = (approved, received) => {
+      return ["-d", received, approved];
     };
-
-    createEmptyFileIfNotExists(approved);
-
-    return super.report(approved, received, options);
   }
 }
