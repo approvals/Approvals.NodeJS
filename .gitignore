@@ -45,11 +45,6 @@ coverage/
 *.d.ts
 bin/*.js
 lib/**/*.js
-test/Utilities/**/**.js
-test/Providers/Jest/**.js
-test/Providers/Mocha/Typescript/**.js
-test/Scrubbers/**.js
-test/Reporting/**/**.js
-test/**.js
+test/**/**.js
 /yarn.lock
 *.mjs
