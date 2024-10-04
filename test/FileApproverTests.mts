@@ -1,13 +1,13 @@
-import { Reporter } from "../lib/Core/Reporter";
+import { Reporter } from "../lib/Core/Reporter.js";
 
-import * as ReporterFactory from "../lib/Reporting/ReporterFactory";
-import * as FileApprover from "../lib/FileApprover";
-import {StringWriter} from "../lib/StringWriter";
-import {Namer} from "../lib/Namer";
+import * as ReporterFactory from "../lib/Reporting/ReporterFactory.js";
+import * as FileApprover from "../lib/FileApprover.js";
+import {StringWriter} from "../lib/StringWriter.js";
+import {Namer} from "../lib/Namer.js";
 import {expect} from "chai";
 import fs from "fs";
 import assert from "assert";
-import {testDirectory} from "./testPaths";
+import {testDirectory} from "./testPaths.js";
 
 class FailingReporter implements Reporter {
   canReportOn(/*file*/) {
