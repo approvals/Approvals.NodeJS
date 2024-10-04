@@ -28,8 +28,9 @@
     - [x] Update gulp and jest configuration to run tests in .mjs files
       - [x] Update gulp and jest configuration to only run on compiled output first!
         It's currently running at least the Jest tests twice.
-    - Change ts module to nodenext
-      - Add extension to relative imports
+    - [x] Change ts module to nodenext
+    - Add extension to relative imports
+    - Handle ES modules being stubbed in postRunCleanupTests.ts
     - Fix Jest tests, module mocking etc
       - jest.config.js: transform: {}
       - NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
