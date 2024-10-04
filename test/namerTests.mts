@@ -1,6 +1,6 @@
 import assert from "assert";
 import path from "path";
-import {Namer} from "../lib/Namer";
+import {Namer} from "../lib/Namer.js";
 
 describe("Namer", function () {
   describe("getReceivedFile & approvedFile", function () {
