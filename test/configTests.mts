@@ -2,7 +2,7 @@ import chai from "chai";
 import sinon from "sinon";
 import fs from "fs";
 import _ from "lodash";
-import * as cfg from "../lib/config";
+import * as cfg from "../lib/config.js";
 
 var expect = chai.expect;
 describe("config.js - ", function () {
