@@ -48,3 +48,4 @@ lib/**/*.js
 test/**/**.js
 /yarn.lock
 *.mjs
+*.d.mts

@@ -1,5 +1,5 @@
-import * as utils from "../lib/AUtils";
-import * as os from "../lib/osTools";
+import * as utils from "../lib/AUtils.js";
+import * as os from "../lib/osTools.js";
 import assert from "assert";
 import {expect} from "chai";
 
