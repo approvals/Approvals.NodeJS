@@ -1,10 +1,10 @@
 import assert from "assert";
-import { StringWriter } from "../lib/StringWriter";
+import { StringWriter } from "../lib/StringWriter.js";
 import { expect } from "chai";
 import fs from "fs";
 import sinon from "sinon";
 import temp from "temp";
-import { Config } from "../lib/config";
+import { Config } from "../lib/config.js";
 
 temp.track();
 // Write out contest to file (leveraging the Namer)
