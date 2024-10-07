@@ -8,7 +8,8 @@ function normalizeFilePath(filePath) {
   return (filePath || "").replace(/\\/g, "/");
 }
 
-export function postRunCleanup2(config, approvedFilesMap, glob_sync) {
+var glob = require("glob");
+export function postRunCleanup(config, approvedFilesMap, glob_sync = glob.sync) {
   var options = config;
   if (options.errorOnStaleApprovedFiles) {
     // Don't require glob at the top of the file.
@@ -53,9 +54,4 @@ export function postRunCleanup2(config, approvedFilesMap, glob_sync) {
       );
     }
   }
-}
-
-var glob = require("glob");
-export function postRunCleanup(config, approvedFilesMap, glob_sync = glob.sync) {
-  postRunCleanup2(config, approvedFilesMap, glob_sync);
 }
