@@ -1,26 +1,26 @@
 import path from "path";
 import fs from "fs";
-import {StringWriter} from "../lib/StringWriter";
-import * as approvals from "../lib/Approvals";
+import {StringWriter} from "../lib/StringWriter.js";
+import * as approvals from "../lib/Approvals.js";
 import jsdoc2md from "jsdoc-to-markdown";
-import {testDirectory} from "./testPaths";
+import {testDirectory} from "./testPaths.js";
 
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", function () {
-    var currentReadme = fs
+    const currentReadme = fs
       .readFileSync(path.join(testDirectory, "../", "readme.md"))
       .toString();
-    var cliDocsRaw = fs
+    let cliDocsRaw = fs
       .readFileSync(path.join(testDirectory, "../bin", "help.md"))
       .toString();
 
     cliDocsRaw = cliDocsRaw.replace(/&nbsp;/g, " ").replace(/\*\*/g, "");
 
-    var approvalsSource = fs
+    const approvalsSource = fs
       .readFileSync(path.join(testDirectory, "../lib", "Approvals.js"))
       .toString();
 
-    var jsdocsOutput = jsdoc2md.renderSync({
+    let jsdocsOutput = jsdoc2md.renderSync({
       source: approvalsSource,
       "no-cache": true,
     });
@@ -31,13 +31,13 @@ describe("Readme", function () {
       })
       .join("\n");
 
-    var newDocs = "<!--BEGIN-API-DOCS-->";
+    let newDocs = "<!--BEGIN-API-DOCS-->";
     newDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
     newDocs += "\n<!-- Update docs in the source ./lib/Approvals.js -->";
     newDocs += "\n\n" + jsdocsOutput;
     newDocs += "\n\n<!--END-API-DOCS-->";
 
-    var cliDocs = "<!--BEGIN-CLI-DOCS-->";
+    let cliDocs = "<!--BEGIN-CLI-DOCS-->";
     cliDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
     cliDocs += "\n<!-- Update docs in the source ./bin/help.md -->";
     cliDocs += "\n```";
@@ -45,7 +45,7 @@ describe("Readme", function () {
     cliDocs += "\n```";
     cliDocs += "\n\n<!--END-CLI-DOCS-->";
 
-    var reporterList = "<!--BEGIN-REPORTERS-LIST-->";
+    let reporterList = "<!--BEGIN-REPORTERS-LIST-->";
     reporterList += "\n<!-- GENERATED - DO NOT MODIFY THIS LIST -->";
     reporterList +=
       "\n<!-- Auto-Generated from folder of reporters in ./lib/Reporting/Reporters/* -->";
@@ -64,7 +64,7 @@ describe("Readme", function () {
     reporterList += "\n```";
     reporterList += "\n<!--END-REPORTERS-LIST-->";
 
-    var resultingReadme = currentReadme
+    const resultingReadme = currentReadme
       .replace(/<!--BEGIN-API-DOCS-->[\s\S]*<!--END-API-DOCS-->/gm, newDocs)
       .replace(/<!--BEGIN-CLI-DOCS-->[\s\S]*<!--END-CLI-DOCS-->/gm, cliDocs)
       .replace(
@@ -72,16 +72,16 @@ describe("Readme", function () {
         reporterList,
       );
 
-    var config = approvals.getConfig();
+    const config = approvals.getConfig();
     config.EOL = "\n";
     config.normalizeLineEndingsTo = "\n";
     console.log(config);
 
-    var writer = new StringWriter(
+    const writer = new StringWriter(
       config,
       resultingReadme.replace(/(?:\r\n|\r|\n)/g, "\n"),
     );
-    var namer = {
+    const namer = {
       getReceivedFile: function () {
         return path.join(testDirectory, "..", "readme.received.md");
       },
