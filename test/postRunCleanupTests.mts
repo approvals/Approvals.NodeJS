@@ -1,58 +1,46 @@
-import { verify } from "../lib/Approvals";
+import { verify } from "../lib/Approvals.js";
 import { expect } from "chai";
-import sinon from "sinon";
-import { postRunCleanup } from "../lib/postRunCleanup";
-
-import * as glob from "glob";
-import {testDirectory} from "./testPaths";
+import { postRunCleanup2} from "../lib/postRunCleanup.js";
+import {testDirectory} from "./testPaths.js";
 
 describe("postRunCleanup", function () {
-  it("should export a cleanup function", function () {
-    expect(postRunCleanup).to.be.a("function");
-  });
-
   describe("When there is a stale approved file", function () {
-    var globSyncStub;
-    var approvedFilesMap = [
+    const approvedFilesMap = [
       // windows path example
       "C:\\Users\\jason\\code\\Approvals.NodeJS\\test\\should-exist-windows.approved.txt",
       // linux/mac path example
       "/Users/jason/code/Approvals.NodeJS/test/should-exist-mac.approved.txt",
     ];
 
-    beforeEach(function () {
-      globSyncStub = sinon.stub(glob, "sync").callsFake(function () {
-        return [
-          "should-not-exist.approved.txt",
-          "C:\\Users\\jason\\code\\Approvals.NodeJS\\test\\should-exist-windows.approved.txt",
-          "/Users/jason/code/Approvals.NodeJS/test/should-exist-mac.approved.txt",
-        ];
-      });
-    });
-
-    afterEach(function () {
-      globSyncStub.restore();
-    });
+    const fakeGlobSync = function () {
+      return [
+        "should-not-exist.approved.txt",
+        "C:\\Users\\jason\\code\\Approvals.NodeJS\\test\\should-exist-windows.approved.txt",
+        "/Users/jason/code/Approvals.NodeJS/test/should-exist-mac.approved.txt",
+      ];
+    };
 
     it("should not run when config has it turned off", function () {
       expect(function () {
-        postRunCleanup(
+        postRunCleanup2(
           {
             errorOnStaleApprovedFiles: false,
           },
           approvedFilesMap,
+          fakeGlobSync,
         );
       }).to.not.throw;
     });
 
     it("should report the invalid file when config is on", function () {
-      var didError = false;
+      let didError = false;
       try {
-        postRunCleanup(
+        postRunCleanup2(
           {
             errorOnStaleApprovedFiles: true,
           },
           approvedFilesMap,
+          fakeGlobSync,
         );
       } catch (err: any) {
         didError = true;

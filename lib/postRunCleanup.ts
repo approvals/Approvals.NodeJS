@@ -8,13 +8,11 @@ function normalizeFilePath(filePath) {
   return (filePath || "").replace(/\\/g, "/");
 }
 
-export function postRunCleanup(config, approvedFilesMap) {
+export function postRunCleanup2(config, approvedFilesMap, glob_sync) {
   var options = config;
-
   if (options.errorOnStaleApprovedFiles) {
     // Don't require glob at the top of the file.
     // this avoids a load of glob if it's not necessary
-    var glob = require("glob");
 
     // normalize file paths for searching (windows vs *nix)...
     var normalizedApprovedFilePaths = approvedFilesMap.map(normalizeFilePath);
@@ -27,7 +25,7 @@ export function postRunCleanup(config, approvedFilesMap) {
 
     var discoveredApprovalFiles: any = [];
     getAllDirectoriesOfApprovedFiles.forEach(function (folder) {
-      return glob.sync(folder + "**/*.approved.*").forEach(function (file) {
+      return glob_sync(folder + "**/*.approved.*").forEach(function (file) {
         if (discoveredApprovalFiles.indexOf(file) === -1) {
           discoveredApprovalFiles.push(file);
         }
@@ -50,9 +48,16 @@ export function postRunCleanup(config, approvedFilesMap) {
     if (staleApprovals.length) {
       throw new Error(
         "ERROR: Found stale approvals files: \n  - " +
-          staleApprovals.join("\n  - ") +
-          "\n",
+        staleApprovals.join("\n  - ") +
+        "\n",
       );
     }
   }
+}
+
+export function postRunCleanup(config, approvedFilesMap) {
+  var glob = require("glob");
+  const glob_sync = glob.sync;
+
+  postRunCleanup2(config, approvedFilesMap, glob_sync);
 }
