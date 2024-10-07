@@ -55,9 +55,7 @@ export function postRunCleanup2(config, approvedFilesMap, glob_sync) {
   }
 }
 
-export function postRunCleanup(config, approvedFilesMap) {
-  var glob = require("glob");
-  const glob_sync = glob.sync;
-
+var glob = require("glob");
+export function postRunCleanup(config, approvedFilesMap, glob_sync = glob.sync) {
   postRunCleanup2(config, approvedFilesMap, glob_sync);
 }

@@ -1,6 +1,6 @@
 import { verify } from "../lib/Approvals.js";
 import { expect } from "chai";
-import { postRunCleanup2} from "../lib/postRunCleanup.js";
+import {postRunCleanup} from "../lib/postRunCleanup.js";
 import {testDirectory} from "./testPaths.js";
 
 describe("postRunCleanup", function () {
@@ -22,7 +22,7 @@ describe("postRunCleanup", function () {
 
     it("should not run when config has it turned off", function () {
       expect(function () {
-        postRunCleanup2(
+        postRunCleanup(
           {
             errorOnStaleApprovedFiles: false,
           },
@@ -35,7 +35,7 @@ describe("postRunCleanup", function () {
     it("should report the invalid file when config is on", function () {
       let didError = false;
       try {
-        postRunCleanup2(
+        postRunCleanup(
           {
             errorOnStaleApprovedFiles: true,
           },
