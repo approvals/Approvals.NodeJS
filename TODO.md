@@ -52,6 +52,6 @@
 - [x] ./Providers/Mocha/Typescript/Mocha.test
 - [x] ./Providers/Jest/JestReporter.test
 - [x] ./Providers/Jest/Scrubbers.test
-- [ ] ./Providers/Jest/Jest.test
+- [x] ./Providers/Jest/Jest.test
 - [ ] ./Providers/Jest/CombinationApprovals.test
 - [ ] ./Utilities/Logger/SimpleLogger.test
