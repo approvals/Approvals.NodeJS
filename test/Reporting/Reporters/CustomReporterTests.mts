@@ -1,9 +1,9 @@
 import {expect} from "chai";
 
 import assert from "assert";
-import {Reporter} from "../../../lib/Core/Reporter";
-import {mocha} from "../../../lib/Approvals";
-import {testDirectory} from "../../testPaths";
+import {Reporter} from "../../../lib/Core/Reporter.js";
+import {mocha} from "../../../lib/Approvals.js";
+import {testDirectory} from "../../testPaths.js";
 import * as path from 'path';
 
 var approvals = mocha();
