@@ -1,5 +1,5 @@
-import * as approvals from "../../../lib/Approvals";
-import {defaultConfig} from "../../../lib/config";
+import * as approvals from "../../../lib/Approvals.js";
+import {defaultConfig} from "../../../lib/config.js";
 
 describe("Mocha", function () {
   describe("when verifying some basic text", function () {

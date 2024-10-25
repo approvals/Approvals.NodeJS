@@ -48,7 +48,7 @@
 - [x] ./Reporting/Reporters/VimDiffReporterTests
 - [x] ./Reporting/Reporters/opendiffReporterTests
 - [x] ./Reporting/Reporters/multiReporterTests
-- [ ] ./Providers/Mocha/MochaTests
+- [x] ./Providers/Mocha/MochaTests
 - [ ] ./Providers/Mocha/Typescript/Mocha.test
 - [ ] ./Providers/Jest/JestReporter.test
 - [ ] ./Providers/Jest/Scrubbers.test
