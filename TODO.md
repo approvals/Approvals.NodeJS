@@ -42,7 +42,7 @@
 - [x] ./Reporting/AggregateDiffReporterTests
 - [x] ./Reporting/ReporterFactoryTests
 - [x] ./Reporting/GenericDiffReporterBaseTests
-- [ ] ./Reporting/Reporters/IcdiffReporterTests
+- [x] ./Reporting/Reporters/IcdiffReporterTests
 - [ ] ./Reporting/Reporters/CustomReporterTests
 - [ ] ./Reporting/Reporters/AllReportersFollowNamingConentionTests
 - [ ] ./Reporting/Reporters/VimDiffReporterTests

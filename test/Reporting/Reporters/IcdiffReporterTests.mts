@@ -1,5 +1,5 @@
-import {testDirectory} from "../../testPaths";
-import ReporterUnderTest from "../../../lib/Reporting/Reporters/icdiffReporter";
+import {testDirectory} from "../../testPaths.js";
+import ReporterUnderTest from "../../../lib/Reporting/Reporters/icdiffReporter.js";
 import path from "path";
 import assert from "assert";
 
@@ -8,7 +8,7 @@ describe("Reporter", function () {
     it("reporter args are correct", function () {
       this.timeout(20000); // failed on appVeyor for some reason?
 
-        const reporter = new ReporterUnderTest();
+        const reporter = new ReporterUnderTest.default();
 
         const approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
         const received = path.join(testDirectory, "Reporting", "Reporters", "r.txt");
