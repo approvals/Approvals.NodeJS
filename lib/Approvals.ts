@@ -7,6 +7,7 @@
 
 import callsite from "callsite";
 import path from "path";
+import { fileURLToPath } from "url";
 import * as cfg from "./config";
 import { BinaryWriter } from "./Writers/BinaryWriter";
 import { FileApprover } from "./FileApprover";
@@ -97,7 +98,11 @@ export function getConfig(overrideOptions?: cfg.Config): cfg.Config {
 export function mocha(optionalBaseDir?: string): typeof module.exports {
   // if not providing a base dir, fallback to the current calling code's directory
   if (!optionalBaseDir) {
-    optionalBaseDir = path.dirname(callsite()[1].getFileName());
+      let fileName = callsite()[1].getFileName();
+      if (fileName.startsWith("file://")) {
+          fileName = fileURLToPath(fileName);
+      }
+      optionalBaseDir = path.dirname(fileName);
   }
   beforeEachVerifierBase(
     MochaNamer,
