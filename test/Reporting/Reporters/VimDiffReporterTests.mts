@@ -1,12 +1,12 @@
-import {testDirectory} from "../../testPaths";
-import ReporterUnderTest from "../../../lib/Reporting/Reporters/vimdiffReporter";
+import {testDirectory} from "../../testPaths.js";
+import ReporterUnderTest from "../../../lib/Reporting/Reporters/vimdiffReporter.js";
 import path from "path";
 import assert from "assert";
 
 describe("Reporter", function () {
   describe("vimdiff", function () {
     it("reporter args are correct", function () {
-      const reporter = new ReporterUnderTest();
+      const reporter = new ReporterUnderTest.default();
 
       const approved = path.join(testDirectory, "Reporting", "Reporters", "a.txt");
       const received = path.join(testDirectory, "Reporting", "Reporters", "r.txt");
