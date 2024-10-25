@@ -46,7 +46,7 @@
 - [x] ./Reporting/Reporters/CustomReporterTests
 - [x] ./Reporting/Reporters/AllReportersFollowNamingConentionTests
 - [x] ./Reporting/Reporters/VimDiffReporterTests
-- [ ] ./Reporting/Reporters/opendiffReporterTests
+- [x] ./Reporting/Reporters/opendiffReporterTests
 - [ ] ./Reporting/Reporters/multiReporterTests
 - [ ] ./Providers/Mocha/MochaTests
 - [ ] ./Providers/Mocha/Typescript/Mocha.test
