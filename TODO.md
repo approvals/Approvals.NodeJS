@@ -23,35 +23,16 @@
 
 
 - Chai 5
-  - Make test files ESM
+  - [x] Make test files ESM
     - [x] Replace require with import
     - [x] Update gulp and jest configuration to run tests in .mjs files
       - [x] Update gulp and jest configuration to only run on compiled output first!
         It's currently running at least the Jest tests twice.
     - [x] Change ts module to nodenext
-    - Add extension to relative imports
+    - [x] Add extension to relative imports
     - [x] Handle ES modules being stubbed in postRunCleanupTests.ts
     - [x] Fix Jest tests, module mocking etc
       - [x] jest.config.js: transform: {}
       - [x] NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
       - [x] ReferenceError: __dirname is not defined
         [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d][How to fix “__dirname is not defined in ES module scope”]]
-
-- [x] ./test/Scrubbers/indexTests
-- [x] ./testPaths
-- [x] ./Reporting/AggregateDiffReporterTests
-- [x] ./Reporting/ReporterFactoryTests
-- [x] ./Reporting/GenericDiffReporterBaseTests
-- [x] ./Reporting/Reporters/IcdiffReporterTests
-- [x] ./Reporting/Reporters/CustomReporterTests
-- [x] ./Reporting/Reporters/AllReportersFollowNamingConentionTests
-- [x] ./Reporting/Reporters/VimDiffReporterTests
-- [x] ./Reporting/Reporters/opendiffReporterTests
-- [x] ./Reporting/Reporters/multiReporterTests
-- [x] ./Providers/Mocha/MochaTests
-- [x] ./Providers/Mocha/Typescript/Mocha.test
-- [x] ./Providers/Jest/JestReporter.test
-- [x] ./Providers/Jest/Scrubbers.test
-- [x] ./Providers/Jest/Jest.test
-- [x] ./Providers/Jest/CombinationApprovals.test
-- [x] ./Utilities/Logger/SimpleLogger.test
