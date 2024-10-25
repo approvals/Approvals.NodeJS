@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {scrubbers, verify, verifyAsJSON, verifyAsJSONAndScrub} from "../lib/Approvals.js";
-import {testDirectory} from "./testPaths.js";
+import {testDirectory} from "./testPaths.mjs";
 
 const approvalOverrides = {
   EOL: "\r\n",

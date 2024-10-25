@@ -1,6 +1,6 @@
 import { ReporterFactory } from "../../lib/Reporting/ReporterFactory.js";
 import DiffReporterAggregate from "../../lib/Reporting/DiffReporterAggregate.js";
-import {testDirectory} from "../testPaths.js";
+import {testDirectory} from "../testPaths.mjs";
 
 import assert from "assert";
 import path from "path";

@@ -38,7 +38,7 @@
         [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d][How to fix “__dirname is not defined in ES module scope”]]
 
 - [x] ./test/Scrubbers/indexTests
-- [ ] ./testPaths
+- [x] ./testPaths
 - [x] ./Reporting/AggregateDiffReporterTests
 - [x] ./Reporting/ReporterFactoryTests
 - [x] ./Reporting/GenericDiffReporterBaseTests

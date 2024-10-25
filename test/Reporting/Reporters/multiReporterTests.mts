@@ -3,7 +3,7 @@ import { Reporter } from "../../../lib/Core/Reporter.js";
 import {expect} from "chai";
 import * as path from "path";
 import * as approvals from "../../../lib/Approvals.js";
-import {testDirectory} from "../../testPaths.js";
+import {testDirectory} from "../../testPaths.mjs";
 
 class ExceptionThrowingReporter implements Reporter {
   public name: string;

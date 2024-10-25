@@ -7,7 +7,7 @@ import {Namer} from "../lib/Namer.js";
 import {expect} from "chai";
 import fs from "fs";
 import assert from "assert";
-import {testDirectory} from "./testPaths.js";
+import {testDirectory} from "./testPaths.mjs";
 
 class FailingReporter implements Reporter {
   canReportOn(/*file*/) {

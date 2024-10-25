@@ -1,4 +1,4 @@
-import {testDirectory} from "../../testPaths.js";
+import {testDirectory} from "../../testPaths.mjs";
 import ReporterUnderTest from "../../../lib/Reporting/Reporters/icdiffReporter.js";
 import path from "path";
 import assert from "assert";

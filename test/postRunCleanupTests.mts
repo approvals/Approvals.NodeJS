@@ -1,7 +1,7 @@
 import { verify } from "../lib/Approvals.js";
 import { expect } from "chai";
 import {postRunCleanup} from "../lib/postRunCleanup.js";
-import {testDirectory} from "./testPaths.js";
+import {testDirectory} from "./testPaths.mjs";
 
 describe("postRunCleanup", function () {
   describe("When there is a stale approved file", function () {

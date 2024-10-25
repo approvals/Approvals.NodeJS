@@ -3,7 +3,7 @@ import {expect} from "chai";
 import assert from "assert";
 import {Reporter} from "../../../lib/Core/Reporter.js";
 import {mocha} from "../../../lib/Approvals.js";
-import {testDirectory} from "../../testPaths.js";
+import {testDirectory} from "../../testPaths.mjs";
 import * as path from 'path';
 
 var approvals = mocha();

@@ -3,7 +3,7 @@ import fs from "fs";
 import {StringWriter} from "../lib/StringWriter.js";
 import * as approvals from "../lib/Approvals.js";
 import jsdoc2md from "jsdoc-to-markdown";
-import {testDirectory} from "./testPaths.js";
+import {testDirectory} from "./testPaths.mjs";
 
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", function () {

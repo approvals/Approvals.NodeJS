@@ -5,7 +5,7 @@ import path from "path";
 import assert from "assert";
 import * as os from "../../lib/osTools.js";
 import { ReporterFactory } from "../../lib/Reporting/ReporterFactory.js";
-import {testDirectory} from "../testPaths.js";
+import {testDirectory} from "../testPaths.mjs";
 
 describe("ReporterFactory", function () {
   let textDiffReporters, allAvailableDiffReporters;

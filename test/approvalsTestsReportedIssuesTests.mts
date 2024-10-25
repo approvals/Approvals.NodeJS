@@ -1,6 +1,6 @@
 import * as approvals from "../lib/Approvals.js";
 import {expect} from "chai";
-import {testDirectory} from "./testPaths.js";
+import {testDirectory} from "./testPaths.mjs";
 
 describe("When issues are reported on github", () => {
   it("Issue #86: Issues with Buffer Compare Loop", () => {
