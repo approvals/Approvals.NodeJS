@@ -3,9 +3,9 @@ import { expect } from "chai";
 import fs from "fs";
 import path from "path";
 import assert from "assert";
-import * as os from "../../lib/osTools";
-import { ReporterFactory } from "../../lib/Reporting/ReporterFactory";
-import {testDirectory} from "../testPaths";
+import * as os from "../../lib/osTools.js";
+import { ReporterFactory } from "../../lib/Reporting/ReporterFactory.js";
+import {testDirectory} from "../testPaths.js";
 
 describe("ReporterFactory", function () {
   let textDiffReporters, allAvailableDiffReporters;

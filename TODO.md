@@ -39,7 +39,7 @@
 
 - [x] ./test/Scrubbers/indexTests
 - [ ] ./testPaths
-- [ ] ./Reporting/AggregateDiffReporterTests
+- [x] ./Reporting/AggregateDiffReporterTests
 - [ ] ./Reporting/ReporterFactoryTests
 - [ ] ./Reporting/GenericDiffReporterBaseTests
 - [ ] ./Reporting/Reporters/IcdiffReporterTests
