@@ -32,7 +32,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "gulp && jest",
+    "test": "gulp && npm run test_jest",
+    "test_jest": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
     "release": "np",
