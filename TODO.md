@@ -49,7 +49,7 @@
 - [x] ./Reporting/Reporters/opendiffReporterTests
 - [x] ./Reporting/Reporters/multiReporterTests
 - [x] ./Providers/Mocha/MochaTests
-- [ ] ./Providers/Mocha/Typescript/Mocha.test
+- [x] ./Providers/Mocha/Typescript/Mocha.test
 - [ ] ./Providers/Jest/JestReporter.test
 - [ ] ./Providers/Jest/Scrubbers.test
 - [ ] ./Providers/Jest/Jest.test

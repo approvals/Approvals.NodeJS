@@ -1,6 +1,6 @@
 //require('approvals').mocha();
 
-import { it2, verify } from "../../../../lib/Providers/Mocha/MochaApprovals";
+import { it2, verify } from "../../../../lib/Providers/Mocha/MochaApprovals.js";
 
 import assert from "assert";
 // import { describe, it } from 'mocha';
@@ -8,7 +8,7 @@ import assert from "assert";
 describe("Mocha Typescript Approvals", () => {
   it("verify", () => {
     // verify("Hello From Approvals");
-    assert.equal(2, 2);
+    assert.equal(2, 4);
   });
 
   //  it2("verify approvals", () => {
