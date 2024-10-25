@@ -1,4 +1,4 @@
-import { Scrubbers } from "../../lib/Scrubbers/Scrubbers";
+import { Scrubbers } from "../../lib/Scrubbers/Scrubbers.js";
 import { expect } from "chai";
 
 describe("Scrubbers", function () {
