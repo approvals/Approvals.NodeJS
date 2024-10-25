@@ -54,4 +54,4 @@
 - [x] ./Providers/Jest/Scrubbers.test
 - [x] ./Providers/Jest/Jest.test
 - [x] ./Providers/Jest/CombinationApprovals.test
-- [ ] ./Utilities/Logger/SimpleLogger.test
+- [x] ./Utilities/Logger/SimpleLogger.test
