@@ -9,7 +9,7 @@ import {
   verifyAllCombinations7,
   verifyAllCombinations8,
   verifyAllCombinations9,
-} from "../../../lib/Providers/Jest/CombinationApprovals";
+} from "../../../lib/Providers/Jest/CombinationApprovals.js";
 
 describe("Combinations", () => {
   test("verify1", () => {

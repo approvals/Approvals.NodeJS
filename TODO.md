@@ -53,5 +53,5 @@
 - [x] ./Providers/Jest/JestReporter.test
 - [x] ./Providers/Jest/Scrubbers.test
 - [x] ./Providers/Jest/Jest.test
-- [ ] ./Providers/Jest/CombinationApprovals.test
+- [x] ./Providers/Jest/CombinationApprovals.test
 - [ ] ./Utilities/Logger/SimpleLogger.test
