@@ -37,21 +37,21 @@
       - [x] ReferenceError: __dirname is not defined
         [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d][How to fix “__dirname is not defined in ES module scope”]]
 
-- [x] ./test/Scrubbers/indexTests.mts
-- [ ] ./testPaths.mts
-- [ ] ./Reporting/AggregateDiffReporterTests.ts
-- [ ] ./Reporting/ReporterFactoryTests.ts
-- [ ] ./Reporting/GenericDiffReporterBaseTests.ts
-- [ ] ./Reporting/Reporters/IcdiffReporterTests.ts
-- [ ] ./Reporting/Reporters/CustomReporterTests.ts
-- [ ] ./Reporting/Reporters/AllReportersFollowNamingConentionTests.ts
-- [ ] ./Reporting/Reporters/VimDiffReporterTests.ts
-- [ ] ./Reporting/Reporters/opendiffReporterTests.ts
-- [ ] ./Reporting/Reporters/multiReporterTests.ts
-- [ ] ./Providers/Mocha/MochaTests.ts
-- [ ] ./Providers/Mocha/Typescript/Mocha.test.ts
-- [ ] ./Providers/Jest/JestReporter.test.ts
-- [ ] ./Providers/Jest/Scrubbers.test.ts
-- [ ] ./Providers/Jest/Jest.test.ts
-- [ ] ./Providers/Jest/CombinationApprovals.test.ts
-- [ ] ./Utilities/Logger/SimpleLogger.test.ts
+- [x] ./test/Scrubbers/indexTests
+- [ ] ./testPaths
+- [ ] ./Reporting/AggregateDiffReporterTests
+- [ ] ./Reporting/ReporterFactoryTests
+- [ ] ./Reporting/GenericDiffReporterBaseTests
+- [ ] ./Reporting/Reporters/IcdiffReporterTests
+- [ ] ./Reporting/Reporters/CustomReporterTests
+- [ ] ./Reporting/Reporters/AllReportersFollowNamingConentionTests
+- [ ] ./Reporting/Reporters/VimDiffReporterTests
+- [ ] ./Reporting/Reporters/opendiffReporterTests
+- [ ] ./Reporting/Reporters/multiReporterTests
+- [ ] ./Providers/Mocha/MochaTests
+- [ ] ./Providers/Mocha/Typescript/Mocha.test
+- [ ] ./Providers/Jest/JestReporter.test
+- [ ] ./Providers/Jest/Scrubbers.test
+- [ ] ./Providers/Jest/Jest.test
+- [ ] ./Providers/Jest/CombinationApprovals.test
+- [ ] ./Utilities/Logger/SimpleLogger.test
