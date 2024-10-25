@@ -1,6 +1,6 @@
 import fs from "fs";
 import { expect } from "chai";
-import GenericDiffReporterBase from "../../lib/Reporting/GenericDiffReporterBase";
+import GenericDiffReporterBase from "../../lib/Reporting/GenericDiffReporterBase.js";
 import sinon from "sinon";
 
 describe("GenericDiffReporterBase", function () {
@@ -9,7 +9,7 @@ describe("GenericDiffReporterBase", function () {
 
   beforeEach(function () {
     sandbox = sinon.createSandbox();
-    reporter = new GenericDiffReporterBase("test");
+    reporter = new GenericDiffReporterBase.default("test");
   });
 
   afterEach(function () {

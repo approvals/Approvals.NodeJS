@@ -40,8 +40,8 @@
 - [x] ./test/Scrubbers/indexTests
 - [ ] ./testPaths
 - [x] ./Reporting/AggregateDiffReporterTests
-- [ ] ./Reporting/ReporterFactoryTests
-- [ ] ./Reporting/GenericDiffReporterBaseTests
+- [x] ./Reporting/ReporterFactoryTests
+- [x] ./Reporting/GenericDiffReporterBaseTests
 - [ ] ./Reporting/Reporters/IcdiffReporterTests
 - [ ] ./Reporting/Reporters/CustomReporterTests
 - [ ] ./Reporting/Reporters/AllReportersFollowNamingConentionTests
