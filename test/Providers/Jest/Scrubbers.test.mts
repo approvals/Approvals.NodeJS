@@ -2,11 +2,11 @@ import { describe, expect, test } from "@jest/globals";
 import {
   verify,
   verifyAsJson,
-} from "../../../lib/Providers/Jest/JestApprovals";
-import { Options } from "../../../lib/Core/Options";
-import { StringUtils } from "../../../lib/Utilities/StringUtils";
-import { Scrubbers } from "../../../lib/Scrubbers/Scrubbers";
-import { DateScrubber } from "../../../lib/Scrubbers/DateScrubber";
+} from "../../../lib/Providers/Jest/JestApprovals.js";
+import { Options } from "../../../lib/Core/Options.js";
+import { StringUtils } from "../../../lib/Utilities/StringUtils.js";
+import { Scrubbers } from "../../../lib/Scrubbers/Scrubbers.js";
+import { DateScrubber } from "../../../lib/Scrubbers/DateScrubber.js";
 
 describe("Scubbers", () => {
   test("scrub", () => {
