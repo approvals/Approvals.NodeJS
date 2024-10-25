@@ -1,7 +1,7 @@
 import { describe, test, expect } from "@jest/globals";
-import { verify } from "../../../lib/Providers/Jest/JestApprovals";
-import { ConfigModifier, Options } from "../../../lib/Core/Options";
-import { JestReporter } from "../../../lib/Providers/Jest/JestReporter";
+import { verify } from "../../../lib/Providers/Jest/JestApprovals.js";
+import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
+import { JestReporter } from "../../../lib/Providers/Jest/JestReporter.js";
 
 describe("JestReporter", () => {
   test("reports file contents", () => {

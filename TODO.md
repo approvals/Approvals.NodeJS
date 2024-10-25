@@ -31,9 +31,9 @@
     - [x] Change ts module to nodenext
     - Add extension to relative imports
     - [x] Handle ES modules being stubbed in postRunCleanupTests.ts
-    - Fix Jest tests, module mocking etc
-      - jest.config.js: transform: {}
-      - NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
+    - [x] Fix Jest tests, module mocking etc
+      - [x] jest.config.js: transform: {}
+      - [x] NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
       - [x] ReferenceError: __dirname is not defined
         [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d][How to fix “__dirname is not defined in ES module scope”]]
 
@@ -50,7 +50,7 @@
 - [x] ./Reporting/Reporters/multiReporterTests
 - [x] ./Providers/Mocha/MochaTests
 - [x] ./Providers/Mocha/Typescript/Mocha.test
-- [ ] ./Providers/Jest/JestReporter.test
+- [x] ./Providers/Jest/JestReporter.test
 - [ ] ./Providers/Jest/Scrubbers.test
 - [ ] ./Providers/Jest/Jest.test
 - [ ] ./Providers/Jest/CombinationApprovals.test
