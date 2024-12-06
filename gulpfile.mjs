@@ -10,7 +10,7 @@ const $ = gulp_load_plugins;
 
 const paths = {
   mochaTests: ["test/**/*[Tt]ests.js", "test/**/*[Tt]ests.mjs"],
-  filesToLint: ["./lib/**/*.js", "./test/**/*.js", "gulpfile.mjs"],
+  filesToLint: ["./lib/**/*.ts", "./test/**/*.mts", "gulpfile.mjs"],
   sourceJSFilesForCodeCoverage: ["./lib/**/*.js"],
 };
 
