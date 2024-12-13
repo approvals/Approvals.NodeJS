@@ -6,7 +6,7 @@ import jsdoc2md from "jsdoc-to-markdown";
 import {testDirectory} from "./testPaths.mjs";
 
 describe("Readme", function () {
-  it("Should not allow the readme docs to get out of sync", function () {
+  it("Should not allow the readme docs to get out of sync", async function () {
     const currentReadme = fs
       .readFileSync(path.join(testDirectory, "../", "readme.md"))
       .toString();
@@ -20,7 +20,8 @@ describe("Readme", function () {
       .readFileSync(path.join(testDirectory, "../lib", "Approvals.js"))
       .toString();
 
-    let jsdocsOutput = jsdoc2md.renderSync({
+
+    let jsdocsOutput = await jsdoc2md.render({
       source: approvalsSource,
       "no-cache": true,
     });
