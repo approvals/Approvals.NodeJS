@@ -34,9 +34,9 @@ gulp.task(
 gulp.task("unitTest", function () {
   return gulp.src(paths.mochaTests, { read: false }).pipe(
     mocha({
-      reporter: "mocha-junit-reporter",
+      reporter: "mocha-multi-reporters",
       reporterOptions: {
-        mochaFile: 'test-reports/mocha-test-results.xml',
+       configFile: '.mocha-multi-reporters.json',
       },
       slow: 500,
       timeout: 5000,
