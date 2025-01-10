@@ -34,7 +34,10 @@ gulp.task(
 gulp.task("unitTest", function () {
   return gulp.src(paths.mochaTests, { read: false }).pipe(
     mocha({
-      reporter: "spec",
+      reporter: "mocha-junit-reporter",
+      reporterOptions: {
+        mochaFile: 'test-reports/mocha-test-results.xml',
+      },
       slow: 500,
       timeout: 5000,
       //globals: {}
