@@ -3,5 +3,9 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   testMatch: [ "**/__tests__/**/*.?(m)js?(x)", "**/?(*.)+(spec|test).?(m)js?(x)" ],
-  transform: {}
+  transform: {},
+  reporters: [
+    "default",
+    ["jest-junit", { outputDirectory: "./test-reports/", outputName: "jest-test-results.xml" }],
+  ]
 };

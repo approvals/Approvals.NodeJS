@@ -74,6 +74,7 @@
     "gulp-load-plugins": "^2.0.7",
     "gulp-mocha": "^10.0.1",
     "gulp-watch": "^5.0.1",
+    "jest-junit": "^16.0.0",
     "jsdoc-to-markdown": "^9.1.1",
     "mocha": "^11.0.1",
     "np": "^10.0.2",

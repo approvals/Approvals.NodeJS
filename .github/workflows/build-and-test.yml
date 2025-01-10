@@ -39,6 +39,13 @@ jobs:
       - run: ./build_and_test.sh
         shell: bash
 
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v5
+        if: always()
+        with:
+          report_paths: '**/test-reports/*.xml'
+          detailed_summary: true
+
   auto-merge:
     needs: build
     runs-on: ubuntu-latest

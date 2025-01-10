@@ -49,3 +49,6 @@ test/**/**.js
 /yarn.lock
 *.mjs
 *.d.mts
+
+# Reports
+test-reports/
