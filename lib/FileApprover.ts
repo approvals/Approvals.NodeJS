@@ -6,6 +6,7 @@ import { Reporter } from "./Core/Reporter";
 import { ReporterLoader } from "./Reporting/ReporterFactory";
 import { yellowText } from "./Utilities/ConsoleUtils";
 import {ApprovedFileLog} from "./Logs/ApprovedFileLog";
+import {FailedFileLog} from "./Logs/FailedFileLog";
 
 interface Options {
   stripBOM?: boolean;
@@ -36,6 +37,7 @@ export class FileApprover {
 
     const approvedFileName = namer.getApprovedFile(writer.getFileExtension());
     const receivedFileName = namer.getReceivedFile(writer.getFileExtension());
+    FailedFileLog.touch();
     ApprovedFileLog.log(approvedFileName);
     writer.write(receivedFileName);
 
@@ -58,6 +60,7 @@ export class FileApprover {
     };
 
     const throwReporterError = (msg: string): never => {
+        FailedFileLog.log(approvedFileName, receivedFileName);
       const reporter = selectFirstCompatibleReporter();
       try {
         reporter.report(approvedFileName, receivedFileName, options);
