@@ -18,13 +18,14 @@ lib-cov
 *.gz
 
 pids
-logs
 results
 
 npm-debug.log
 
 
 *.received.*
+.approval_tests_temp/
+
 
 node_modules
 

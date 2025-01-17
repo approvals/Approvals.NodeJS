@@ -5,6 +5,7 @@ import { Writer } from "./Core/Writer";
 import { Reporter } from "./Core/Reporter";
 import { ReporterLoader } from "./Reporting/ReporterFactory";
 import { yellowText } from "./Utilities/ConsoleUtils";
+import {ApprovedFileLog} from "./Logs/ApprovedFileLog";
 
 interface Options {
   stripBOM?: boolean;
@@ -35,7 +36,7 @@ export class FileApprover {
 
     const approvedFileName = namer.getApprovedFile(writer.getFileExtension());
     const receivedFileName = namer.getReceivedFile(writer.getFileExtension());
-
+    ApprovedFileLog.log(approvedFileName);
     writer.write(receivedFileName);
 
     if (options.forceApproveAll) {
