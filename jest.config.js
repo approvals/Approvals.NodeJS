@@ -7,5 +7,6 @@ module.exports = {
   reporters: [
     "default",
     ["jest-junit", { outputDirectory: "./test-reports/", outputName: "jest-test-results.xml" }],
-  ]
+  ],
+  globalSetup: "./test/Providers/Jest/JestGlobalSetup.mjs",
 };
