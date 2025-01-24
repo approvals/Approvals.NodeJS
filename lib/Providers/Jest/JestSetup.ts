@@ -28,11 +28,11 @@ export function helpUserSetupJest(fileToCheck: string) {
       return;
     }
   }
-    const helpMessage = `
+  const helpMessage = `
 **********************************************
 Jest needs to be set up for logging.
 More information at https://github.com/approvals/Approvals.NodeJS/blob/master/docs/how_tos/InitializeJestForLogging.md
 **********************************************
 `;
-    console.log(helpMessage);
+  console.log(helpMessage);
 }
