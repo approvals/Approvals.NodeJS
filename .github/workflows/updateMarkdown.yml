@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   update-markdown-snippets:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run MarkdownSnippets
