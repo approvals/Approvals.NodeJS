@@ -1,7 +1,7 @@
 import { verify } from "../lib/Approvals.js";
 import { expect } from "chai";
-import {postRunCleanup} from "../lib/postRunCleanup.js";
-import {testDirectory} from "./testPaths.mjs";
+import { postRunCleanup } from "../lib/postRunCleanup.js";
+import { testDirectory } from "./testPaths.mjs";
 
 describe("postRunCleanup", function () {
   describe("When there is a stale approved file", function () {
@@ -44,7 +44,11 @@ describe("postRunCleanup", function () {
         );
       } catch (err: any) {
         didError = true;
-        verify(testDirectory, "postRunCleanup_reporting_bad_file", err.toString());
+        verify(
+          testDirectory,
+          "postRunCleanup_reporting_bad_file",
+          err.toString(),
+        );
       }
 
       if (!didError) {

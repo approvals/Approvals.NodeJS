@@ -1,7 +1,12 @@
 import fs from "fs";
 import path from "path";
-import {scrubbers, verify, verifyAsJSON, verifyAsJSONAndScrub} from "../lib/Approvals.js";
-import {testDirectory} from "./testPaths.mjs";
+import {
+  scrubbers,
+  verify,
+  verifyAsJSON,
+  verifyAsJSONAndScrub,
+} from "../lib/Approvals.js";
+import { testDirectory } from "./testPaths.mjs";
 
 const approvalOverrides = {
   EOL: "\r\n",
@@ -31,7 +36,10 @@ describe("approvals", function () {
     });
 
     it("should verify an image 2", function () {
-      const testImage = path.join(testDirectory, "basic-image-test-png.approved.png");
+      const testImage = path.join(
+        testDirectory,
+        "basic-image-test-png.approved.png",
+      );
       const imgBuffer = fs.readFileSync(testImage);
 
       verify(testDirectory, "basic-image-test-png", imgBuffer);
@@ -45,12 +53,7 @@ describe("approvals", function () {
         x: "some stuff here",
         y: 123,
       };
-      verifyAsJSON(
-        testDirectory,
-        testName,
-        dataToVerify,
-        approvalOverrides,
-      );
+      verifyAsJSON(testDirectory, testName, dataToVerify, approvalOverrides);
     });
 
     it("can be run with same JSON but keys ordered differently", function () {
@@ -59,23 +62,13 @@ describe("approvals", function () {
         x: "some stuff here",
         y: 123,
       };
-      verifyAsJSON(
-        testDirectory,
-        testName,
-        dataToVerify,
-        approvalOverrides,
-      );
+      verifyAsJSON(testDirectory, testName, dataToVerify, approvalOverrides);
 
       const dataToVerify2 = {
         y: 123,
         x: "some stuff here",
       };
-      verifyAsJSON(
-        testDirectory,
-        testName,
-        dataToVerify2,
-        approvalOverrides,
-      );
+      verifyAsJSON(testDirectory, testName, dataToVerify2, approvalOverrides);
     });
   });
 

@@ -2,7 +2,7 @@ import assert from "assert";
 import { verify } from "../../../../lib/Approvals.js";
 
 describe("Mocha Typescript Approvals", () => {
-  it("verify", function() {
+  it("verify", function () {
     this.verify("Hello From Approvals");
     assert.equal(2, 2);
   });

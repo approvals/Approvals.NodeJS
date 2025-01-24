@@ -1,10 +1,10 @@
-import {expect} from "chai";
+import { expect } from "chai";
 
 import assert from "assert";
-import {Reporter} from "../../../lib/Core/Reporter.js";
-import {mocha} from "../../../lib/Approvals.js";
-import {testDirectory} from "../../testPaths.mjs";
-import * as path from 'path';
+import { Reporter } from "../../../lib/Core/Reporter.js";
+import { mocha } from "../../../lib/Approvals.js";
+import { testDirectory } from "../../testPaths.mjs";
+import * as path from "path";
 
 var approvals = mocha();
 
@@ -80,7 +80,7 @@ describe("CustomReporter", function () {
 
     var didRaiseException = false;
     try {
-        approvals.verify(
+      approvals.verify(
         path.join(testDirectory, "Reporting", "Reporters"),
         "CustomReporter.uses_global_custom_reporter_manual_verify",
         "foo",

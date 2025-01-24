@@ -5,7 +5,7 @@ import path from "path";
 import assert from "assert";
 import * as os from "../../lib/osTools.js";
 import { ReporterFactory } from "../../lib/Reporting/ReporterFactory.js";
-import {testDirectory} from "../testPaths.mjs";
+import { testDirectory } from "../testPaths.mjs";
 
 describe("ReporterFactory", function () {
   let textDiffReporters, allAvailableDiffReporters;
@@ -56,7 +56,9 @@ describe("ReporterFactory", function () {
           "]",
       );
 
-      const canReportOn = reporter.canReportOn(path.join(testDirectory, "Reporting", "a.txt"));
+      const canReportOn = reporter.canReportOn(
+        path.join(testDirectory, "Reporting", "a.txt"),
+      );
       assert.ok(
         canReportOn,
         "Could not load reporter with name [" + reporter.name + "]",

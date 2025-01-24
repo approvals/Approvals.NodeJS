@@ -10,11 +10,14 @@ export default class GenericDiffReporterBase implements Reporter {
   name: string;
   public exePath: string = "";
   private _reporterFileLookedUp: boolean;
-  public setCommandArgs: (approved: string, received: string) => string[] = ((a: string, r: string) => [r,a]);
-  public modifyCommandOptions: (commandOptions: any) => any = ((c) => c);
+  public setCommandArgs: (approved: string, received: string) => string[] = (
+    a: string,
+    r: string,
+  ) => [r, a];
+  public modifyCommandOptions: (commandOptions: any) => any = (c) => c;
   private _reporterFileLookedUpAndFound: boolean;
 
-    constructor(name: string) {
+  constructor(name: string) {
     if (!name) {
       throw new Error("Argument name missing");
     }
@@ -128,16 +131,24 @@ export default class GenericDiffReporterBase implements Reporter {
       : this.spawn.bind(this);
     autils.createEmptyFileIfNotExists(approved);
 
-      const {cmdOptions, args} = this.getCommandArguments(approved, received, options);
+    const { cmdOptions, args } = this.getCommandArguments(
+      approved,
+      received,
+      options,
+    );
 
-      console.log("CMD: ", this.exePath, args.join(" "));
+    console.log("CMD: ", this.exePath, args.join(" "));
 
     spawnMethod(this.exePath, args, cmdOptions);
   }
 
-    getCommandArguments(approved: string, received: string, options: Partial<Config> = {}) {
-        const cmdOptions = this.modifyCommandOptions(options.cmdOptionOverrides);
-        const args = options.cmdArgs || this.setCommandArgs(approved, received);
-        return {cmdOptions, args};
-    }
+  getCommandArguments(
+    approved: string,
+    received: string,
+    options: Partial<Config> = {},
+  ) {
+    const cmdOptions = this.modifyCommandOptions(options.cmdOptionOverrides);
+    const args = options.cmdArgs || this.setCommandArgs(approved, received);
+    return { cmdOptions, args };
+  }
 }

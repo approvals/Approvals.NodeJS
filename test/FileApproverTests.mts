@@ -2,12 +2,12 @@ import { Reporter } from "../lib/Core/Reporter.js";
 
 import * as ReporterFactory from "../lib/Reporting/ReporterFactory.js";
 import * as FileApprover from "../lib/FileApprover.js";
-import {StringWriter} from "../lib/StringWriter.js";
-import {Namer} from "../lib/Namer.js";
-import {expect} from "chai";
+import { StringWriter } from "../lib/StringWriter.js";
+import { Namer } from "../lib/Namer.js";
+import { expect } from "chai";
 import fs from "fs";
 import assert from "assert";
-import {testDirectory} from "./testPaths.mjs";
+import { testDirectory } from "./testPaths.mjs";
 
 class FailingReporter implements Reporter {
   canReportOn(/*file*/) {
@@ -42,19 +42,19 @@ describe("FileApprover", function () {
     describe("when validating arguments", function () {
       it("should validate namer (parameter 1)", function () {
         expect(function () {
-            (FileApprover as any).verify(null);
+          (FileApprover as any).verify(null);
         }).to.throw(Error, "namer");
       });
 
       it("should validate writer (parameter 2)", function () {
         expect(function () {
-            (FileApprover as any).verify(namer, null);
+          (FileApprover as any).verify(namer, null);
         }).to.throw(Error, "writer");
       });
 
       it("should validate reporterFactory (parameter 3)", function () {
         expect(function () {
-            (FileApprover as any).verify(namer, writer, null);
+          (FileApprover as any).verify(namer, writer, null);
         }).to.throw(Error, "reporterFactory");
       });
     });

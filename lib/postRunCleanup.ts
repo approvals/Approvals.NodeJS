@@ -10,7 +10,11 @@ function normalizeFilePath(filePath) {
 
 const glob = require("glob");
 
-export function postRunCleanup(config, approvedFilesMap, glob_sync = glob.sync) {
+export function postRunCleanup(
+  config,
+  approvedFilesMap,
+  glob_sync = glob.sync,
+) {
   const options = config;
   if (options.errorOnStaleApprovedFiles) {
     // Don't require glob at the top of the file.
@@ -50,8 +54,8 @@ export function postRunCleanup(config, approvedFilesMap, glob_sync = glob.sync) 
     if (staleApprovals.length) {
       throw new Error(
         "ERROR: Found stale approvals files: \n  - " +
-        staleApprovals.join("\n  - ") +
-        "\n",
+          staleApprovals.join("\n  - ") +
+          "\n",
       );
     }
   }

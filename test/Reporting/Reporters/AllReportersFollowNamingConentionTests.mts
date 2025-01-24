@@ -1,6 +1,6 @@
 import fs from "fs";
 import assert from "assert";
-import {testDirectory} from "../../testPaths.mjs";
+import { testDirectory } from "../../testPaths.mjs";
 
 const allReporterFiles: string[] = [];
 describe("All reporters must conform to naming convention", function () {

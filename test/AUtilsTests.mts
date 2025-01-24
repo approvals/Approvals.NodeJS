@@ -1,7 +1,7 @@
 import * as utils from "../lib/AUtils.js";
 import * as os from "../lib/osTools.js";
 import assert from "assert";
-import {expect} from "chai";
+import { expect } from "chai";
 
 describe("AUtils", function () {
   // only run these tests on Windows

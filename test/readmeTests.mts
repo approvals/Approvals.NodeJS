@@ -1,9 +1,9 @@
 import path from "path";
 import fs from "fs";
-import {StringWriter} from "../lib/StringWriter.js";
+import { StringWriter } from "../lib/StringWriter.js";
 import * as approvals from "../lib/Approvals.js";
 import jsdoc2md from "jsdoc-to-markdown";
-import {testDirectory} from "./testPaths.mjs";
+import { testDirectory } from "./testPaths.mjs";
 
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", async function () {
@@ -19,7 +19,6 @@ describe("Readme", function () {
     const approvalsSource = fs
       .readFileSync(path.join(testDirectory, "../lib", "Approvals.js"))
       .toString();
-
 
     let jsdocsOutput = await jsdoc2md.render({
       source: approvalsSource,

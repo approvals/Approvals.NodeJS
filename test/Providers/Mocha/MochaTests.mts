@@ -1,15 +1,17 @@
 import * as approvals from "../../../lib/Approvals.js";
-import {defaultConfig} from "../../../lib/config.js";
+import { defaultConfig } from "../../../lib/config.js";
 
 describe("Mocha", function () {
   describe("when verifying some basic text", function () {
     beforeEach(function () {
       approvals
-        .configure(Object.assign({}, defaultConfig, {
+        .configure(
+          Object.assign({}, defaultConfig, {
             appendEOL: false,
             normalizeLineEndingsTo: "\n",
             reporters: ["nodediff"],
-        }))
+          }),
+        )
         .mocha();
     });
 

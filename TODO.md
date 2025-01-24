@@ -20,19 +20,17 @@
 - [x] Add limit on number of reporters that get launched
 - [x] Fix Error message in GeneridDiffReporterBase when not spawnSync (spawn is used). (stderr/out is not logging correctly).
 
-
-
 - Chai 5
   - [x] Make test files ESM
     - [x] Replace require with import
     - [x] Update gulp and jest configuration to run tests in .mjs files
       - [x] Update gulp and jest configuration to only run on compiled output first!
-        It's currently running at least the Jest tests twice.
+            It's currently running at least the Jest tests twice.
     - [x] Change ts module to nodenext
     - [x] Add extension to relative imports
     - [x] Handle ES modules being stubbed in postRunCleanupTests.ts
     - [x] Fix Jest tests, module mocking etc
       - [x] jest.config.js: transform: {}
       - [x] NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
-      - [x] ReferenceError: __dirname is not defined
-        [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d][How to fix “__dirname is not defined in ES module scope”]]
+      - [x] ReferenceError: **dirname is not defined
+            [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d]How to fix “**dirname is not defined in ES module scope”]]
