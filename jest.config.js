@@ -8,7 +8,7 @@ module.exports = {
     "default",
     ["jest-junit", { outputDirectory: "./test-reports/", outputName: "jest-test-results.xml" }],
   ],
-  // being-snippet: jest_config_setup
+  // begin-snippet: jest_config_setup
   globalSetup: "./test/Providers/Jest/JestGlobalSetup.mjs",
   // end-snippet
 };
