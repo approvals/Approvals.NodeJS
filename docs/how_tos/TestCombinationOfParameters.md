@@ -35,7 +35,7 @@ it will call the function being tested with all
 
 <a id='snippet-CombinationsStartingPoint'></a>
 
-```ts
+```mts
 test("CombinationsStartingPoint", () => {
   const inputs1 = ["input1.value1", "input1.value2"];
   const inputs2 = ["input2.value1", "input2.value2", "input2.value3"];

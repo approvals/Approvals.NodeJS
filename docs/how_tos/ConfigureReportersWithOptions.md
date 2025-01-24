@@ -24,7 +24,7 @@ Here is an example.
 
 <a id='snippet-configure-reporter-with-options'></a>
 
-```ts
+```mts
 let configModifier: ConfigModifier = (c) => {
   c.reporters = [new JestReporter(), "BeyondCompare"];
   return c;
