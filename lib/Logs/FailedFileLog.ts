@@ -2,19 +2,22 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {ApprovedFileLog} from './ApprovedFileLog';
 import axios from 'axios';
+import { JestUtils } from "../Utilities/JestUtils";
 
 let runOnce = false;
 export class FailedFileLog {
     private static downloadedScriptCheck: boolean = false;
 
-
     private static clearLogFile(): void {
-        if (runOnce) {
+        if (!runOnce || JestUtils.isJestRunning()) {
             return;
         }
         runOnce = true;
-        fs.writeFileSync(this.getLogFilePath(), '');
+        this.forceClearFileLog();
+    }
 
+    public static forceClearFileLog() {
+        fs.writeFileSync(this.getLogFilePath(), '');
     }
 
     private static async downloadApproveAllScriptIfMissing(): Promise<void> {

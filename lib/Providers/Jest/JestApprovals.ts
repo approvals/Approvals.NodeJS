@@ -1,4 +1,4 @@
-import { printArray, printJson } from "../../Utilities/Printers";
+import {printArray, printJson} from "../../Utilities/Printers";
 /* ^^^ If the above line is failing, please add
 # 1. Jest Config
 ```
@@ -10,10 +10,10 @@ import { printArray, printJson } from "../../Utilities/Printers";
     "esModuleInterop": true
 ```
 */
-import { Options } from "../../Core/Options";
-import { getJestNamer } from "./JestNamer";
+import {Options} from "../../Core/Options";
+import {getJestNamer} from "./JestNamer";
 
-import { StringWriter } from "../../StringWriter";
+import {StringWriter} from "../../StringWriter";
 import * as approvals from "../../Approvals";
 
 export function verify(sut: any, options?: Options): void {
@@ -46,3 +46,4 @@ export function verifyAll<T>(
   const text = printArray(header, list, formatter);
   verify(text, options);
 }
+

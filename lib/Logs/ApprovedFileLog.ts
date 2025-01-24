@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { JestUtils } from '../Utilities/JestUtils';
+import { helpUserSetupJest } from "../Providers/Jest/JestSetup";
 
 let runOnce = false;
 export class ApprovedFileLog {
@@ -11,6 +12,7 @@ export class ApprovedFileLog {
             return;
         }
         if (JestUtils.isJestRunning()) {
+            helpUserSetupJest(this.getLogFilePath());
             return;
         }
         runOnce = true;
