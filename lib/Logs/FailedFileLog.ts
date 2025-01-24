@@ -13,7 +13,6 @@ export class FailedFileLog {
             return;
         }
         runOnce = true;
-        console.trace('clear FailedFileLog');
         fs.writeFileSync(this.getLogFilePath(), '');
 
     }
