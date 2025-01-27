@@ -8,12 +8,13 @@ describe("Command Line", function () {
   it("Should run approvals CLI with basic text input", function (done) {
     const pwd = process.cwd();
     const script = path.join(pwd, "/", "bin", "index.js");
+    let testDirectory = pwd + "/test";
     const cliTestCommand =
       'echo "Hello\nWorld" | ' +
       script +
       " --reporter gitdiff --errorOnStaleApprovedFiles=false --outdir " +
-      pwd +
-      "/test commandlineTest";
+      testDirectory +
+      " commandlineTest";
 
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "example-"));
     process.chdir(tempDir);
