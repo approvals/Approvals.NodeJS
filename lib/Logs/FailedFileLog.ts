@@ -26,17 +26,20 @@ export class FailedFileLog {
     }
     this.downloadedScriptCheck = true;
 
+      const baseScript = `approve_all`;
+
     try {
       const extension = process.platform === "win32" ? ".bat" : ".sh";
-      const scriptPath = path.join(
+
+        const scriptPath = path.join(
         ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
-        `approve_all${extension}`,
+        `${baseScript}${extension}`,
       );
 
       if (!fs.existsSync(scriptPath)) {
         const githubUrl =
           "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
-        const filePath = `resources/approve_all${extension}`;
+        const filePath = `resources/${baseScript}${extension}`;
         const response = await axios.get(`${githubUrl}${filePath}`);
 
         fs.writeFileSync(scriptPath, response.data);
