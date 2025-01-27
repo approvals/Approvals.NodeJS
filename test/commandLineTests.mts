@@ -7,7 +7,7 @@ import assert from "assert";
 describe("Command Line", function () {
   it("Should run approvals CLI with basic text input", function (done) {
     const pwd = process.cwd();
-    var cliTestCommand =
+    const cliTestCommand =
       'echo "Hello\nWorld" | ' +
       path.join(pwd, "/", "bin", "index.js") +
       " --reporter gitdiff --errorOnStaleApprovedFiles=false --outdir " +
