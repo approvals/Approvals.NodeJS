@@ -27,6 +27,7 @@ export class FailedFileLog {
     this.downloadedScriptCheck = true;
 
     await this.downloadFile(`approve_all`);
+    await this.downloadFile(`detect_and_remove_abandoned`);
   }
 
   private static async downloadFile(baseScript: string) {
