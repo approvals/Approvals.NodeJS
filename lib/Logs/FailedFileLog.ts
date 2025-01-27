@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
-import {ApprovedFileLog} from "./ApprovedFileLog";
+import { ApprovedFileLog } from "./ApprovedFileLog";
 import axios from "axios";
-import {JestUtils} from "../Utilities/JestUtils";
+import { JestUtils } from "../Utilities/JestUtils";
 
 let runOnce = false;
 export class FailedFileLog {
@@ -26,33 +26,33 @@ export class FailedFileLog {
     }
     this.downloadedScriptCheck = true;
 
-      await this.downloadFile(`approve_all`);
+    await this.downloadFile(`approve_all`);
   }
 
-    private static async downloadFile(baseScript: string) {
-        try {
-            const extension = process.platform === "win32" ? ".bat" : ".sh";
+  private static async downloadFile(baseScript: string) {
+    try {
+      const extension = process.platform === "win32" ? ".bat" : ".sh";
 
-            const scriptPath = path.join(
-                ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
-                `${baseScript}${extension}`,
-            );
+      const scriptPath = path.join(
+        ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
+        `${baseScript}${extension}`,
+      );
 
-            if (!fs.existsSync(scriptPath)) {
-                const githubUrl =
-                    "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
-                const filePath = `resources/${baseScript}${extension}`;
-                const response = await axios.get(`${githubUrl}${filePath}`);
+      if (!fs.existsSync(scriptPath)) {
+        const githubUrl =
+          "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
+        const filePath = `resources/${baseScript}${extension}`;
+        const response = await axios.get(`${githubUrl}${filePath}`);
 
-                fs.writeFileSync(scriptPath, response.data);
-                fs.chmodSync(scriptPath, 0o755);
-            }
-        } catch (error) {
-            // Do nothing
-        }
+        fs.writeFileSync(scriptPath, response.data);
+        fs.chmodSync(scriptPath, 0o755);
+      }
+    } catch (error) {
+      // Do nothing
     }
+  }
 
-    public static getLogFilePath(): string {
+  public static getLogFilePath(): string {
     return path.join(
       ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
       ".failed_comparison.log",
