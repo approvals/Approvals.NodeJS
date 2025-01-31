@@ -52,6 +52,7 @@ export function postRunCleanup(
       }); // only pull the ones that aren't already in the 'normalizedApprovedFilePaths'
 
     if (staleApprovals.length) {
+      process.exitCode = 1;
       throw new Error(
         "ERROR: Found stale approvals files: \n  - " +
           staleApprovals.join("\n  - ") +
