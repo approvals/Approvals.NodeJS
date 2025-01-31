@@ -299,7 +299,7 @@ export function verifyAsJSONAndScrub(
 /**
  * This allows you to take full control of naming and writing files before verifying.
  *
- * For an example that we use to generate the docs within the readme, check out the [test/readmeTests.js](test/readmeTests.js) in this project.
+ * For an example that we use to generate the docs within the readme, check out the [test/readmeTests.mts](test/readmeTests.mts) in this project.
  *
  * @param {Object} namer
  * @param {Object} writer

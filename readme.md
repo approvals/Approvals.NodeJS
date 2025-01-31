@@ -508,7 +508,7 @@ approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in a
 ### approvals~verifyWithControl(namer, writer, [reporterFactory], [optionsOverride])
 This allows you to take full control of naming and writing files before verifying.
 
-For an example that we use to generate the docs within the readme, check out the [test/readmeTests.ts](test/readmeTests.ts) in this project.
+For an example that we use to generate the docs within the readme, check out the [test/readmeTests.mts](test/readmeTests.mts) in this project.
 
 **Kind**: inner method of [<code>approvals</code>](#module_approvals)
 
