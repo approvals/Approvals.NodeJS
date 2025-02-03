@@ -6,7 +6,7 @@ import { ChildProcessWithoutNullStreams } from "child_process";
 import { Reporter } from "../Core/Reporter";
 import { Config } from "../config";
 
-export default class GenericDiffReporterBase implements Reporter {
+export class GenericDiffReporterBase implements Reporter {
   name: string;
   public exePath: string = "";
   private _reporterFileLookedUp: boolean;

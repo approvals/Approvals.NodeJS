@@ -1,4 +1,4 @@
-import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {GenericDiffReporterBase} from "../GenericDiffReporterBase";
 import { searchForExecutable } from "../../AUtils";
 
 export default class MeldReporter extends GenericDiffReporterBase {

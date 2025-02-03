@@ -1,7 +1,7 @@
 import { searchForExecutable } from "../../AUtils";
 import { platform } from "../../osTools";
-import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import shelljs from "shelljs";
+import {GenericDiffReporterBase} from "../GenericDiffReporterBase";
 
 export default class BeyondCompareReporter extends GenericDiffReporterBase {
   constructor() {
