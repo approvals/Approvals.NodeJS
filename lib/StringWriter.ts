@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
-import mkdirp from "mkdirp";
 import * as autils from "./AUtils";
 import { Config } from "./config";
+import {sync} from "mkdirp";
 
 const lineEndingRegex = new RegExp("\r?\n", "g");
 
@@ -40,7 +40,7 @@ export class StringWriter {
   write(filePath: string): void {
     const dir = path.dirname(path.normalize(filePath));
     if (!fs.existsSync(dir)) {
-      mkdirp.sync(dir);
+      sync(dir);
     }
 
     if (
