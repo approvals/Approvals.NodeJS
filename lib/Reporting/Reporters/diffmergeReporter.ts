@@ -1,7 +1,7 @@
-import GenericDiffReporterBase from "../GenericDiffReporterBase";
 import * as shelljs from "shelljs";
 import { platform } from "../../osTools";
 import { searchForExecutable } from "../../AUtils";
+import {GenericDiffReporterBase} from "../GenericDiffReporterBase";
 
 class Reporter extends GenericDiffReporterBase {
   constructor() {

@@ -1,4 +1,4 @@
-import GenericDiffReporterBase from "../GenericDiffReporterBase";
+import {GenericDiffReporterBase} from "../GenericDiffReporterBase";
 import { createEmptyFileIfNotExists } from "../../AUtils";
 import { platform } from "../../osTools";
 
