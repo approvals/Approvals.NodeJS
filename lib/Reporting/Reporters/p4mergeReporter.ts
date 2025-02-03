@@ -1,6 +1,6 @@
 import fs from "fs";
 import shelljs from "shelljs";
-import {GenericDiffReporterBase} from "../GenericDiffReporterBase";
+import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 import { platform } from "../../osTools";
 import { searchForExecutable } from "../../AUtils";
 

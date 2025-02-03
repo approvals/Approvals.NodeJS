@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as autils from "./AUtils";
 import { Config } from "./config";
-import {sync} from "mkdirp";
+import { sync } from "mkdirp";
 
 const lineEndingRegex = new RegExp("\r?\n", "g");
 
