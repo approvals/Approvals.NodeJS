@@ -1,4 +1,4 @@
-import { SingleWrapper, ThreadedWrapper, Wrapper } from "./Wrapper";
+import { SingleWrapper, Wrapper } from "./Wrapper";
 
 import { LoggingInstance } from "./LoggingInstance";
 import { StringWrapper } from "./StringWrapper";
