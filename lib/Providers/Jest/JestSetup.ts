@@ -11,6 +11,7 @@ export function initializeGlobalsForJest() {
 }
 
 export function helpUserSetupJest(fileToCheck: string) {
+  ApprovedFileLog.ensureTempDirectoryExists();
   // Check if the file exists
   if (fs.existsSync(fileToCheck)) {
     // Get the date that fileToCheck was created
