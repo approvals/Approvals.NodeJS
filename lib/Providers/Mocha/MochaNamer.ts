@@ -1,7 +1,8 @@
 import path from "path";
 
-import { Namer } from "../../Namer";
-import { Runnable, Suite } from "mocha";
+import {Namer} from "../../Namer";
+import {Runnable, Suite} from "mocha";
+import {convertToFilename} from "../../Core/Namer";
 
 export interface MochaTest {
   file: string;
@@ -59,4 +60,17 @@ export class MochaNamer extends Namer {
 
     return super.pathCreator(type, ext);
   }
+}
+
+export function getMochaNamer(test: any): Namer {
+    if (!test || !test.file || !test.title) {
+        throw new Error(`Test context is missing required properties.\ntitle:${test.title}\nfile:${test.file}`);
+    }
+
+    const file = path.parse(test.file);
+    const testPath = file.dir;
+    const testFileName = file.name;
+    const testName = convertToFilename(`${testFileName}.${test.title}`);
+
+    return new Namer(testPath, testName);
 }

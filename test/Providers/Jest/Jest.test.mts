@@ -4,8 +4,8 @@ import {
   verifyAll,
   verifyAsJson,
 } from "../../../lib/Providers/Jest/JestApprovals.js";
-import { convertToFilename } from "../../../lib/Providers/Jest/JestNamer.js";
 import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
+import {convertToFilename} from "../../../lib/Core/Namer.js";
 
 describe("JestApprovals", () => {
   test("verify", () => {
