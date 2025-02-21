@@ -12,9 +12,7 @@ jobs:
           mdsnippets ${GITHUB_WORKSPACE}
         shell: bash
       - name: Prettier
-        run: |
-          npm install -g prettier
-          prettier --write .
+        run: ./format_code.sh
         shell: bash
       - name: Push changes
         run: |
