@@ -2,8 +2,7 @@ import { expect } from "@jest/globals";
 import path from "path";
 import { StringUtils } from "../../Utilities/StringUtils";
 import { Namer } from "../../Namer";
-import {convertToFilename} from "../../Core/Namer";
-
+import { convertToFilename } from "../../Core/Namer";
 
 export function getJestNamer(): Namer {
   const state = expect.getState();

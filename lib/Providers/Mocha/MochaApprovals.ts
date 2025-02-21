@@ -11,13 +11,13 @@ import { printArray, printJson } from "../../Utilities/Printers";
 ```
 */
 import { Options } from "../../Core/Options";
-import {getMochaNamer, MochaNamer} from "./MochaNamer";
+import { getMochaNamer, MochaNamer } from "./MochaNamer";
 import mocha from "mocha";
 
 import StringWriter from "../../StringWriter";
 
 import * as approvals from "../../Approvals";
-import {Namer} from "../../Core/Namer";
+import { Namer } from "../../Core/Namer";
 
 let mochaTest: any = null;
 
@@ -31,12 +31,12 @@ export function it2(label: string, test: () => void): void {
 
 let namer: Namer;
 export function setNamer(that: any): void {
-    namer = getMochaNamer(that.currentTest);
+  namer = getMochaNamer(that.currentTest);
 }
-export function getNamer(): Namer{
-    return namer;
+export function getNamer(): Namer {
+  return namer;
 }
-export function verify( sut: any, options?: Options): void {
+export function verify(sut: any, options?: Options): void {
   options = options || new Options();
   const config = options.getConfig(approvals.getConfig());
   const scrubbed = options.scrub(`${sut}`);
