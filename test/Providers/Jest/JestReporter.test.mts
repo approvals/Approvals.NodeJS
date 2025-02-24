@@ -25,15 +25,15 @@ describe("JestReporter", () => {
     }
   });
 
-    test("options.withReporter", () => {
-        try {
-            verify("Hello", new Options().withReporter(new JestReporter()));
-        } catch (error: any) {
-            const message = error.message;
-            // Approved file contains 'Goodbye', to force the call verify() to fail.
-            // We test that jest-formatted output has shown the differences in the exception it throws.
-            expect(message).toMatch(/- Goodbye/);
-            expect(message).toMatch(/\+ Hello/);
-        }
-    });
+  test("options.withReporter", () => {
+    try {
+      verify("Hello", new Options().withReporter(new JestReporter()));
+    } catch (error: any) {
+      const message = error.message;
+      // Approved file contains 'Goodbye', to force the call verify() to fail.
+      // We test that jest-formatted output has shown the differences in the exception it throws.
+      expect(message).toMatch(/- Goodbye/);
+      expect(message).toMatch(/\+ Hello/);
+    }
+  });
 });

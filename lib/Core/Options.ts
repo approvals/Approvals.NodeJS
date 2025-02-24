@@ -1,7 +1,7 @@
 import type { Scrubber } from "../Scrubbers/Scrubbers";
 import { Namer } from "../Namer";
 import { Config } from "../config";
-import {Reporter} from "./Reporter";
+import { Reporter } from "./Reporter";
 export type ConfigModifier = (t: any) => any;
 
 class FileOptions {
@@ -77,13 +77,13 @@ export class Options {
     return this.get("Namer", () => new Namer("", ""));
   }
 
-    withReporter(reporter: Reporter): Options {
-        const previousModifier = this.get("ConfigModifier", () => (t: any) => t);
-        const previousModifierWithReporter: ConfigModifier = (c) => {
-            c = previousModifier(c);
-            c.reporters = [reporter];
-            return c;
-        };
-        return this.withConfig(previousModifierWithReporter);
-    }
+  withReporter(reporter: Reporter): Options {
+    const previousModifier = this.get("ConfigModifier", () => (t: any) => t);
+    const previousModifierWithReporter: ConfigModifier = (c) => {
+      c = previousModifier(c);
+      c.reporters = [reporter];
+      return c;
+    };
+    return this.withConfig(previousModifierWithReporter);
+  }
 }
