@@ -78,10 +78,12 @@ export class Options {
   }
 
     withReporter(reporter: Reporter): Options {
-        const configModifier: ConfigModifier = (c) => {
+        const previousModifier = this.get("ConfigModifier", () => (t: any) => t);
+        const previousModifierWithReporter: ConfigModifier = (c) => {
+            c = previousModifier(c);
             c.reporters = [reporter];
             return c;
         };
-        return this.withConfig(configModifier);
+        return this.withConfig(previousModifierWithReporter);
     }
 }
