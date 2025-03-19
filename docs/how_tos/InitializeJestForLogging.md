@@ -36,7 +36,7 @@ export default async function globalSetup(): Promise<void> {
 
 <!-- endSnippet -->
 
-## Where is the JestGlobalSetup file located
+## Where should I create the `JestGlobalSetup.ts` file located
 
-This file, `JestGlobalSetup.js` is your file and can be located anywhere in your test code.
+This file, `JestGlobalSetup.ts` is your file and can be located anywhere in your test code.
 just be sure to reference it in the `jest.config.js`
