@@ -1,10 +1,10 @@
 # How to initialize Jest for logging
 
-toc 
+toc
 
 ## Steps
 
-###  Step 1 - Add to `jest.config.js`
+### Step 1 - Add to `jest.config.js`
 
 <!-- snippet: jest_config_setup -->
 
@@ -36,9 +36,7 @@ export default async function globalSetup(): Promise<void> {
 
 <!-- endSnippet -->
 
-
 ## Where is the JestGlobalSetup file located
 
 This file, `JestGlobalSetup.js` is your file and can be located anywhere in your test code.
 just be sure to reference it in the `jest.config.js`
-
