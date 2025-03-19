@@ -1,6 +1,13 @@
 # How to initialize Jest for logging
 
-toc
+<!-- toc -->
+
+## Contents
+
+- [Steps](#steps)
+  - [Step 1 - Add to `jest.config.js`](#step-1---add-to-jestconfigjs)
+  - [Step 2 - Create a `JestGlobalSetup.ts` file](#step-2---create-a-jestglobalsetupts-file)
+- [Where should I create the `JestGlobalSetup.ts` file located](#where-should-i-create-the-jestglobalsetupts-file-located)<!-- endToc -->
 
 ## Steps
 
