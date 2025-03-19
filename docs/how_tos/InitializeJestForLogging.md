@@ -1,6 +1,10 @@
 # How to initialize Jest for logging
 
-## Step 1 - Add to `jest.config.js`
+toc 
+
+## Steps
+
+###  Step 1 - Add to `jest.config.js`
 
 <!-- snippet: jest_config_setup -->
 
@@ -14,7 +18,7 @@ globalSetup: "./test/Providers/Jest/JestGlobalSetup.mjs",
 
 <!-- endSnippet -->
 
-## Step 2 - Create a `JestGlobalSetup.ts` file
+### Step 2 - Create a `JestGlobalSetup.ts` file
 
 <!-- snippet: JestGlobalSetup.mts -->
 
@@ -31,3 +35,10 @@ export default async function globalSetup(): Promise<void> {
 <sup><a href='/test/Providers/Jest/JestGlobalSetup.mts#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-JestGlobalSetup.mts' title='Start of snippet'>anchor</a></sup>
 
 <!-- endSnippet -->
+
+
+## Where is the JestGlobalSetup file located
+
+This file, `JestGlobalSetup.js` is your file and can be located anywhere in your test code.
+just be sure to reference it in the `jest.config.js`
+
