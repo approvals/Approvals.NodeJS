@@ -22,7 +22,7 @@ import { Namer } from "../../Core/Namer";
 let mochaTest: any = null;
 
 export function it2(label: string, test: () => void): void {
-  mocha.it(label, function () {
+  mocha.it(label, function (this: any) {
     mochaTest = this;
     console.log("Mocha Test: ", mochaTest.test.name);
     test();
