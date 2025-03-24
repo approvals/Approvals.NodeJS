@@ -33,7 +33,7 @@ import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 export { Scrubbers as scrubbers };
 
 if (typeof beforeEach === "function") {
-  beforeEach(function (): void {
+  beforeEach(function (this: any): void {
     if (!this) {
       return;
     }

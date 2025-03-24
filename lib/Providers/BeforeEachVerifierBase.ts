@@ -62,7 +62,7 @@ export function beforeEachVerifierBase(
       `Invalid directory [${dirName}]. Try using the following syntax. > ${usageSample}`,
     );
   }
-  beforeEach(function () {
+  beforeEach(function (this: any) {
     return beforeEachLoaderFunction(Namer, dirName, this);
   });
 }
