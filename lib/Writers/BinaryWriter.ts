@@ -3,8 +3,9 @@ import * as path from "path";
 import mkdirp from "mkdirp";
 import fileType from "file-type"; // Assuming fileType provides synchronous methods
 import {Config} from "../config";
+import {Writer} from "../Core/Writer";
 
-export class BinaryWriter {
+export class BinaryWriter implements Writer {
   private config: Partial<Config>;
   private outputData: Buffer;
   private _ext?: string;
