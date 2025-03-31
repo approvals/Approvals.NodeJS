@@ -6,12 +6,10 @@ import {Config} from "../config";
 import {Writer} from "../Core/Writer";
 
 export class BinaryWriter implements Writer {
-  private config: Partial<Config>;
   private outputData: Buffer;
   private _ext?: string;
 
-  constructor(config: Partial<Config>, outputData: Buffer) {
-    this.config = config;
+    constructor(outputData: Buffer) {
     this.outputData = outputData;
   }
 
