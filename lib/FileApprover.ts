@@ -8,13 +8,6 @@ import { yellowText } from "./Utilities/ConsoleUtils";
 import { ApprovedFileLog } from "./Logs/ApprovedFileLog";
 import { FailedFileLog } from "./Logs/FailedFileLog";
 
-interface Options {
-  stripBOM?: boolean;
-  forceApproveAll?: boolean;
-  failOnLineEndingDifferences?: boolean;
-  shouldIgnoreStaleApprovedFile?(fileName: string): boolean;
-}
-
 function normalizeLineEndings(value: string): string {
   return value.replace(/(?:\r\n|\r|\n)/g, "\n");
 }
