@@ -11,8 +11,10 @@ export interface MochaTest {
 }
 
 export class MochaNamer extends Namer {
+  // @ts-ignore errors if Mocha is not used
   private ctx: Mocha.Runnable;
 
+  // @ts-ignore errors if Mocha is not used
   constructor(mochaTest: Mocha.Context, overrideBasePath?: string) {
     if (!mochaTest || !mochaTest.test) {
       throw new Error("Mocha test context was not supplied");
