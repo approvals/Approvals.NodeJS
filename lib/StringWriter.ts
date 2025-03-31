@@ -3,6 +3,7 @@ import * as path from "path";
 import * as autils from "./AUtils";
 import { Config } from "./config";
 import { sync } from "mkdirp";
+import {Writer} from "./Core/Writer";
 
 const lineEndingRegex = new RegExp("\r?\n", "g");
 
@@ -16,7 +17,7 @@ function normalizeLineEndings(
   return value.replace(lineEndingRegex, lineEnding);
 }
 
-export class StringWriter {
+export class StringWriter implements Writer {
   private config: Partial<Config>;
   private ext: string;
   public outputText: string;
