@@ -185,7 +185,7 @@ function verifyAndScrub(
 
   let writer: Writer;
   if (data instanceof Buffer) {
-    writer = new BinaryWriter(newOptions, data);
+    writer = new BinaryWriter(data);
   } else {
     data = scrubber(data as string);
 
