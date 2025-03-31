@@ -113,12 +113,6 @@ export function mocha(optionalBaseDir?: string): typeof module.exports {
   return module.exports;
 }
 
-function jasmineExport(): void {
-  throw new Error(
-    "Aww shucks.\n\nApprovals support of Jasmine has been completely yanked out (don't shoot). \n\n Jasmine has grown quite complicated (behind our back) and we haven't had enough time to figure out a solid integration pattern... for now it's support has been removed.\n\n Check out the docs for manual usage of approval tests to work around the missing Jasmine integration (it should be a straightforward change for you, really).\n\n We'll consider bringing it back if we can get someone with interest in submitting a pull request that can bring it back...",
-  );
-}
-
 /**
  * `reporters` gives access to the `MultiReporter`
  *
