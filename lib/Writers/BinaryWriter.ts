@@ -2,18 +2,14 @@ import * as fs from "fs";
 import * as path from "path";
 import mkdirp from "mkdirp";
 import fileType from "file-type"; // Assuming fileType provides synchronous methods
-
-interface Config {
-  // Define the structure of Config based on your application's needs
-  [key: string]: any;
-}
+import {Config} from "../config";
 
 export class BinaryWriter {
-  private config: Config;
+  private config: Partial<Config>;
   private outputData: Buffer;
   private _ext?: string;
 
-  constructor(config: Config, outputData: Buffer) {
+  constructor(config: Partial<Config>, outputData: Buffer) {
     this.config = config;
     this.outputData = outputData;
   }
