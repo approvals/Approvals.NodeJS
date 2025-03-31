@@ -1,14 +1,7 @@
 import path from "path";
-
 import { Namer } from "../../Namer";
 import { Runnable, Suite } from "mocha";
 import { convertToFilename } from "../../Core/Namer";
-
-export interface MochaTest {
-  file: string;
-  parent?: MochaTest;
-  title: string;
-}
 
 export class MochaNamer extends Namer {
   // @ts-ignore errors if Mocha is not used
