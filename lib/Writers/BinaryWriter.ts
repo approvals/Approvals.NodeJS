@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import mkdirp from "mkdirp";
 import fileType from "file-type"; // Assuming fileType provides synchronous methods
-import { Config } from "../config";
 import { Writer } from "../Core/Writer";
 
 export class BinaryWriter implements Writer {

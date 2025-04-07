@@ -2,7 +2,6 @@ import shelljs from "shelljs";
 import path from "path";
 import fs from "fs";
 import * as os from "node:os";
-import assert from "assert";
 
 describe("Command Line", function () {
   it("Should run approvals CLI with basic text input", function (done) {
