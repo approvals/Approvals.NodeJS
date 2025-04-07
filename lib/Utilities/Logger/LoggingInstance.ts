@@ -92,7 +92,7 @@ export class LoggingInstance {
       return;
     }
 
-    let toType = (v: any, s = "") => "";
+    let toType = (_value: any, _spacing = "") => "";
     if (showTypes) {
       toType = (value, spacing = " ") => `${spacing}${printType(value)}`;
     }

@@ -13,7 +13,7 @@ export class JestReporter implements Reporter {
   report(
     approvedFilePath: string,
     receivedFilePath: string,
-    options: Partial<Config>,
+    _: Partial<Config>,
   ) {
     const approvedText = fs.readFileSync(approvedFilePath).toString();
     const receivedText = fs.readFileSync(receivedFilePath).toString();

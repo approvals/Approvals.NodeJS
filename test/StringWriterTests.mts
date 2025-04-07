@@ -32,7 +32,7 @@ describe("StringWriter", function () {
 
       stringWriter.write(filePath);
 
-      fs.readFile(filePath, "utf8", function (err, data) {
+      fs.readFile(filePath, "utf8", function (_error, data) {
         assert.strictEqual(data, "HELLO");
         done();
       });
@@ -49,7 +49,7 @@ describe("StringWriter", function () {
 
       stringWriter.write(filePath);
 
-      fs.readFile(filePath, "utf8", function (err, data) {
+      fs.readFile(filePath, "utf8", function (_error, data) {
         assert.strictEqual(data, "HELLO" + "EndOfLineConfig");
         done();
       });
@@ -95,7 +95,7 @@ describe("StringWriter", function () {
 
       stringWriter.write(filePath);
 
-      fs.readFile(filePath, "utf8", function (err, data) {
+      fs.readFile(filePath, "utf8", function (_error, data) {
         assert.strictEqual(data, "HELLO\r\nThere\r\n");
         done();
       });
