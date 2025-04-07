@@ -88,7 +88,7 @@ describe("SimpleLogger", () => {
   }
 
   verifySimpleLogger("switching", () => {
-    verify_toggle("None", (a) => SimpleLogger.showAll(true));
+    verify_toggle("None", (_a) => SimpleLogger.showAll(true));
     verify_toggle("All", (a) => SimpleLogger.showAll(a));
     verify_toggle("Query", (a) => SimpleLogger.showQueries(a));
     verify_toggle("Message", (a) => SimpleLogger.showMessages(a));
