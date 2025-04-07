@@ -1,7 +1,7 @@
-import {describe, test} from "@jest/globals";
-import {SimpleLogger} from "../../../lib/Utilities/Logger/SimpleLogger.js";
-import {verify} from "../../../lib/Providers/Jest/JestApprovals.js";
-import {verifySimpleLogger} from "../../../lib/Utilities/Logger/SimpleLoggerApprovals.js";
+import { describe, test } from "@jest/globals";
+import { SimpleLogger } from "../../../lib/Utilities/Logger/SimpleLogger.js";
+import { verify } from "../../../lib/Providers/Jest/JestApprovals.js";
+import { verifySimpleLogger } from "../../../lib/Utilities/Logger/SimpleLoggerApprovals.js";
 
 function logVariables() {
   SimpleLogger.useMarkers(() => {
@@ -158,10 +158,10 @@ describe("SimpleLogger", () => {
 
   verifySimpleLogger("test_warnings", () => {
     SimpleLogger._wrapper.get().logStackTraces = true;
-      try {
+    try {
       throw new Error("EVERYTHING IS exceptionally AWFUL!!!!!!");
     } catch (e: any) {
-        SimpleLogger.warning(e);
+      SimpleLogger.warning(e);
     }
   });
 
