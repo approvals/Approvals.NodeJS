@@ -3,7 +3,7 @@ import { Reporter } from "../Core/Reporter";
 import { Config } from "../config";
 import { platform } from "../osTools";
 
-class ReportByOpeningTheReceivedFile implements Reporter {
+export class ReportByOpeningTheReceivedFile implements Reporter {
   name: string = "ReportByOpeningTheReceivedFile";
 
   canReportOn(_fileName: string): boolean {

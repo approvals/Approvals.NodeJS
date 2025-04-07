@@ -11,7 +11,7 @@ import { printArray, printJson } from "../../Utilities/Printers";
 ```
 */
 import { Options } from "../../Core/Options";
-import { getMochaNamer, MochaNamer } from "./MochaNamer";
+import { getMochaNamer } from "./MochaNamer";
 import mocha from "mocha";
 
 import StringWriter from "../../StringWriter";
