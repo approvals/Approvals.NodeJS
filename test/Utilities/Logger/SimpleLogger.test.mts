@@ -157,19 +157,14 @@ describe("SimpleLogger", () => {
   });
 
   verifySimpleLogger("test_warnings", () => {
-    function scrubber(text: string): string {
-      return text.replace("", "test_simple_logger.py");
-    }
-
     SimpleLogger._wrapper.get().logStackTraces = true;
-    const text = "EVERYTHING IS AWFUL!!!!!!";
     let exception: any;
     try {
       throw new Error("EVERYTHING IS exceptionally AWFUL!!!!!!");
     } catch (e) {
       exception = e;
     }
-    //SimpleLogger.warning(text)
+
     SimpleLogger.warning(exception);
   });
 
