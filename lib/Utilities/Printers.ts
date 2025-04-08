@@ -46,7 +46,7 @@ function generateCombinations<T extends any[]>(
   params: T[],
   combinations: T[],
   index: number = 0,
-  currentCombination: T = [] as any,
+  currentCombination: T = [] as unknown as T,
 ): T[] {
   const allParametersProcessed = index === params.length;
   if (allParametersProcessed) {
