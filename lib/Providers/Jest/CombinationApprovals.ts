@@ -8,12 +8,10 @@ export function verifyAllCombinations<T extends any[]>(
   func: Printer<T>,
   ...params: ParameterLists<T>
 ) {
-  const paddedParams = [...params];
-
   const combiner = (...args: any[]) =>
     func(...(args.slice(0, params.length) as T));
 
-  verify(printCombinations(combiner, ...paddedParams));
+  verify(printCombinations(combiner, ...params));
 }
 
 export function verifyAllCombinations1<T1>(
