@@ -26,6 +26,9 @@ export function printJson(data: any) {
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
 
+type Printer<T> = (...args: T[]) => any;
+type PrinterArgs<T> = T[];
+
 export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   func: (
     t1: T1,
@@ -94,7 +97,7 @@ function generateCombinations<T extends any[]>(
   return combinations;
 }
 
-function handleParameterCombination<T>(func: (...args: T[]) => any, args: T[]) {
+function handleParameterCombination<T>(func: Printer<T>, args: PrinterArgs<T>) {
   let output;
   try {
     output = func(...args);
