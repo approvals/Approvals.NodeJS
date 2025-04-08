@@ -48,8 +48,7 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   params8: T8[],
   params9: T9[],
 ): string {
-  const combinations: [T1, T2, T3, T4, T5, T6, T7, T8, T9][] = [];
-  generateCombinations(
+  const combinations = generateCombinations(
     params1,
     params2,
     params3,
@@ -59,7 +58,7 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
     params7,
     params8,
     params9,
-    combinations,
+    [],
   );
 
   let text = "";
@@ -102,6 +101,8 @@ function generateCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
       }
     }
   }
+
+  return combinations;
 }
 
 function handleParameterCombination<T>(func: (...args: T[]) => any, args: T[]) {
