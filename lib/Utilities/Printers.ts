@@ -26,18 +26,6 @@ export function printJson(data: any) {
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
 
-function appleSauce<T>(func: (...args: T[]) => any, args: T[]) {
-  let output;
-  try {
-    output = func(...args);
-  } catch (e) {
-    output = `${e}`;
-  }
-  const parameters = args.filter((p) => p !== EMPTY_ENTRY);
-
-  return `[${parameters}] => ${output}\n`;
-}
-
 export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   func: (
     t1: T1,
@@ -83,8 +71,21 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
 
   let text = "";
   combinations.forEach(
-    (combination) => (text += appleSauce(func as any, combination)),
+    (combination) =>
+      (text += handleParameterCombination(func as any, combination)),
   );
 
   return text;
+}
+
+function handleParameterCombination<T>(func: (...args: T[]) => any, args: T[]) {
+  let output;
+  try {
+    output = func(...args);
+  } catch (e) {
+    output = `${e}`;
+  }
+  const parameters = args.filter((p) => p !== EMPTY_ENTRY);
+
+  return `[${parameters}] => ${output}\n`;
 }
