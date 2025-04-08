@@ -65,7 +65,7 @@ function generateCombinations<T extends any[]>(
   return combinations;
 }
 
-function handleParameterCombination<T>(func: Printer<T>, args: PrinterArgs<T>) {
+function handleParameterCombination<T extends any[]>(func: Printer<T>, args: PrinterArgs<T>) {
   let output;
   try {
     output = func(...args);
