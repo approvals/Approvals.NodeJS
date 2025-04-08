@@ -48,15 +48,15 @@ function appleSauce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   p8: T8,
   p9: T9,
 ) {
+  const args = [p1, p2, p3, p4, p5, p6, p7, p8, p9];
   let output;
   try {
-    output = func(p1, p2, p3, p4, p5, p6, p7, p8, p9);
+    // @ts-expect-error
+    output = func(...args);
   } catch (e) {
     output = `${e}`;
   }
-  const parameters = [p1, p2, p3, p4, p5, p6, p7, p8, p9].filter(
-    (p) => p !== EMPTY_ENTRY,
-  );
+  const parameters = args.filter((p) => p !== EMPTY_ENTRY);
 
   return `[${parameters}] => ${output}\n`;
 }
