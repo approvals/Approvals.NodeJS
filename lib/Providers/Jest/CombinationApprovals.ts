@@ -1,11 +1,11 @@
 import { verify } from "./JestApprovals";
 import { printCombinations, EMPTY } from "../../Utilities/Printers";
 
-type PrinterFunction<T extends any[]> = (...args: T) => any;
+type Printer<T extends any[]> = (...args: T) => any;
 type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
 
 function verifyAllCombinations<T extends any[]>(
-  func: PrinterFunction<T>,
+  func: Printer<T>,
   ...params: ParameterLists<T>
 ) {
   const paddedParams = [...params];
