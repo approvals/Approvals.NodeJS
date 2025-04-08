@@ -76,11 +76,11 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
 }
 
 function generateCombinations<T extends any[]>(
-  params: T[][],
-  combinations: T[][],
+  params: PrinterArgs<T>[],
+  combinations: PrinterArgs<T>[],
   index: number = 0,
-  currentCombination: T[] = [],
-) {
+  currentCombination: PrinterArgs<T> = [],
+): PrinterArgs<T>[] {
   const allParametersProcessed = index === params.length;
   if (allParametersProcessed) {
     combinations.push(currentCombination);
