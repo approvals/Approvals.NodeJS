@@ -36,10 +36,9 @@ export function printCombinations<T>(
   const combinations = generateCombinations([...args] as any, []);
 
   let text = "";
-  combinations.forEach(
-    (combination) =>
-      (text += handleParameterCombination(func as any, combination)),
-  );
+  combinations.forEach((combination) => {
+    text += handleParameterCombination(func, combination as PrinterArgs<T>);
+  });
 
   return text;
 }
