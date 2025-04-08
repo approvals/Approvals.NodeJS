@@ -46,11 +46,11 @@ function generateCombinations<T extends any[]>(
   params: T[],
   combinations: T[],
   index: number = 0,
-  currentCombination: any[] = [],
+  currentCombination: T = [] as any,
 ): T[] {
   const allParametersProcessed = index === params.length;
   if (allParametersProcessed) {
-    combinations.push(currentCombination as T);
+    combinations.push(currentCombination);
     return combinations;
   }
 
