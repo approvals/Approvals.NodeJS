@@ -29,11 +29,11 @@ export const EMPTY = [EMPTY_ENTRY];
 type Printer<T> = (...args: T[]) => any;
 type PrinterArgs<T> = T[];
 
-export function printCombinations<T>(
+export function printCombinations<T extends any[]>(
   func: Printer<T>,
   ...args: PrinterArgs<T>
 ): string {
-  const combinations = generateCombinations([...args] as any, []);
+  const combinations = generateCombinations([...args], []);
 
   let text = "";
   combinations.forEach((combination) => {
