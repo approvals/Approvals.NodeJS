@@ -1,5 +1,5 @@
 import { verify } from "./JestApprovals";
-import { printCombinations, EMPTY } from "../../Utilities/Printers";
+import { printCombinations } from "../../Utilities/Printers";
 
 export type Printer<T extends any[]> = (...args: T) => any;
 type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
@@ -10,14 +10,9 @@ export function verifyAllCombinations<T extends any[]>(
 ) {
   const paddedParams = [...params];
 
-  while (paddedParams.length < 9) {
-    paddedParams.push(EMPTY);
-  }
-
   const combiner = (...args: any[]) =>
     func(...(args.slice(0, params.length) as T));
 
-  // @ts-ignore
   verify(printCombinations(combiner, ...paddedParams));
 }
 
