@@ -1,25 +1,31 @@
 import { verify } from "./JestApprovals";
 import { printCombinations, EMPTY } from "../../Utilities/Printers";
 
+type PrinterFunction<T extends any[]> = (...args: T) => any;
+type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
+
+function verifyAllCombinations<T extends any[]>(
+  func: PrinterFunction<T>,
+  ...params: ParameterLists<T>
+) {
+  const paddedParams = [...params];
+
+  while (paddedParams.length < 9) {
+    paddedParams.push(EMPTY);
+  }
+
+  const combiner = (...args: any[]) =>
+    func(...(args.slice(0, params.length) as T));
+
+  // @ts-ignore
+  verify(printCombinations(combiner, ...paddedParams));
+}
+
 export function verifyAllCombinations1<T1>(
-  func: (i: T1) => any,
+  func: (t1: T1) => any,
   params1: T1[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (t1, _t2, _t3, _t4, _t5, _t6, _t7, _t8, _t9) => func(t1),
-      params1,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
-  );
+  verifyAllCombinations(func, params1);
 }
 
 export function verifyAllCombinations2<T1, T2>(
@@ -27,31 +33,7 @@ export function verifyAllCombinations2<T1, T2>(
   params1: T1[],
   params2: T2[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        _t3: any,
-        _t4: any,
-        _t5: any,
-        _t6: any,
-        _t7: any,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2),
-      params1,
-      params2,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
-  );
+  verifyAllCombinations(func, params1, params2);
 }
 
 export function verifyAllCombinations3<T1, T2, T3>(
@@ -60,31 +42,7 @@ export function verifyAllCombinations3<T1, T2, T3>(
   params2: T2[],
   params3: T3[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        _t4: any,
-        _t5: any,
-        _t6: any,
-        _t7: any,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2, t3),
-      params1,
-      params2,
-      params3,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
-  );
+  verifyAllCombinations(func, params1, params2, params3);
 }
 
 export function verifyAllCombinations4<T1, T2, T3, T4>(
@@ -94,31 +52,7 @@ export function verifyAllCombinations4<T1, T2, T3, T4>(
   params3: T3[],
   params4: T4[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        _t5: any,
-        _t6: any,
-        _t7: any,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2, t3, t4),
-      params1,
-      params2,
-      params3,
-      params4,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
-  );
+  verifyAllCombinations(func, params1, params2, params3, params4);
 }
 
 export function verifyAllCombinations5<T1, T2, T3, T4, T5>(
@@ -129,31 +63,7 @@ export function verifyAllCombinations5<T1, T2, T3, T4, T5>(
   params4: T4[],
   params5: T5[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        t5: T5,
-        _t6: any,
-        _t7: any,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2, t3, t4, t5),
-      params1,
-      params2,
-      params3,
-      params4,
-      params5,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
-  );
+  verifyAllCombinations(func, params1, params2, params3, params4, params5);
 }
 
 export function verifyAllCombinations6<T1, T2, T3, T4, T5, T6>(
@@ -165,30 +75,14 @@ export function verifyAllCombinations6<T1, T2, T3, T4, T5, T6>(
   params5: T5[],
   params6: T6[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        t5: T5,
-        t6: T6,
-        _t7: any,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2, t3, t4, t5, t6),
-      params1,
-      params2,
-      params3,
-      params4,
-      params5,
-      params6,
-      EMPTY,
-      EMPTY,
-      EMPTY,
-    ),
+  verifyAllCombinations(
+    func,
+    params1,
+    params2,
+    params3,
+    params4,
+    params5,
+    params6,
   );
 }
 
@@ -202,32 +96,18 @@ export function verifyAllCombinations7<T1, T2, T3, T4, T5, T6, T7>(
   params6: T6[],
   params7: T7[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        t5: T5,
-        t6: T6,
-        t7: T7,
-        _t8: any,
-        _t9: any,
-      ) => func(t1, t2, t3, t4, t5, t6, t7),
-      params1,
-      params2,
-      params3,
-      params4,
-      params5,
-      params6,
-      params7,
-      EMPTY,
-      EMPTY,
-    ),
+  verifyAllCombinations(
+    func,
+    params1,
+    params2,
+    params3,
+    params4,
+    params5,
+    params6,
+    params7,
   );
 }
+
 export function verifyAllCombinations8<T1, T2, T3, T4, T5, T6, T7, T8>(
   func: (t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8) => any,
   params1: T1[],
@@ -239,32 +119,19 @@ export function verifyAllCombinations8<T1, T2, T3, T4, T5, T6, T7, T8>(
   params7: T7[],
   params8: T8[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        t5: T5,
-        t6: T6,
-        t7: T7,
-        t8: T8,
-        _t9: any,
-      ) => func(t1, t2, t3, t4, t5, t6, t7, t8),
-      params1,
-      params2,
-      params3,
-      params4,
-      params5,
-      params6,
-      params7,
-      params8,
-      EMPTY,
-    ),
+  verifyAllCombinations(
+    func,
+    params1,
+    params2,
+    params3,
+    params4,
+    params5,
+    params6,
+    params7,
+    params8,
   );
 }
+
 export function verifyAllCombinations9<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   func: (
     t1: T1,
@@ -287,29 +154,16 @@ export function verifyAllCombinations9<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   params8: T8[],
   params9: T9[],
 ) {
-  // @ts-ignore
-  verify(
-    printCombinations(
-      (
-        t1: T1,
-        t2: T2,
-        t3: T3,
-        t4: T4,
-        t5: T5,
-        t6: T6,
-        t7: T7,
-        t8: T8,
-        t9: T9,
-      ) => func(t1, t2, t3, t4, t5, t6, t7, t8, t9),
-      params1,
-      params2,
-      params3,
-      params4,
-      params5,
-      params6,
-      params7,
-      params8,
-      params9,
-    ),
+  verifyAllCombinations(
+    func,
+    params1,
+    params2,
+    params3,
+    params4,
+    params5,
+    params6,
+    params7,
+    params8,
+    params9,
   );
 }
