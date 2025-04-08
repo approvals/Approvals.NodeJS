@@ -26,6 +26,43 @@ export function printJson(data: any) {
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
 
+function appleSauce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+  func: (
+    t1: T1,
+    t2: T2,
+    t3: T3,
+    t4: T4,
+    t5: T5,
+    t6: T6,
+    t7: T7,
+    t8: T8,
+    t9: T9,
+  ) => any,
+  p1: T1,
+  p2: T2,
+  p3: T3,
+  p4: T4,
+  p5: T5,
+  p6: T6,
+  p7: T7,
+  p8: T8,
+  p9: T9,
+  text: string,
+) {
+  let output;
+  try {
+    output = func(p1, p2, p3, p4, p5, p6, p7, p8, p9);
+  } catch (e) {
+    output = `${e}`;
+  }
+  const parameters = [p1, p2, p3, p4, p5, p6, p7, p8, p9].filter(
+    (p) => p !== EMPTY_ENTRY,
+  );
+
+  text += `[${parameters}] => ${output}\n`;
+  return text;
+}
+
 export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   func: (
     t1: T1,
@@ -58,13 +95,8 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
               for (let p7 of params7) {
                 for (let p8 of params8) {
                   for (let p9 of params9) {
-                    let output;
-                    try {
-                      output = func(p1, p2, p3, p4, p5, p6, p7, p8, p9);
-                    } catch (e) {
-                      output = `${e}`;
-                    }
-                    const parameters = [
+                    text = appleSauce(
+                      func,
                       p1,
                       p2,
                       p3,
@@ -74,9 +106,8 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
                       p7,
                       p8,
                       p9,
-                    ].filter((p) => p !== EMPTY_ENTRY);
-
-                    text += `[${parameters}] => ${output}\n`;
+                      text,
+                    );
                   }
                 }
               }
