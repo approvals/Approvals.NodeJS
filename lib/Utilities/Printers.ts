@@ -26,7 +26,7 @@ export function printJson(data: any) {
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
 
-type Printer<T extends any[]> = (...args: T) => any;
+export type Printer<T extends any[]> = (...args: T) => any;
 
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
