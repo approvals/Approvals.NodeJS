@@ -60,7 +60,7 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   params8: T8[],
   params9: T9[],
 ): string {
-  let text = "";
+  const combinations: [T1, T2, T3, T4, T5, T6, T7, T8, T9][] = [];
   for (let p1 of params1) {
     for (let p2 of params2) {
       for (let p3 of params3) {
@@ -70,17 +70,7 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
               for (let p7 of params7) {
                 for (let p8 of params8) {
                   for (let p9 of params9) {
-                    text += appleSauce(func as any, [
-                      p1,
-                      p2,
-                      p3,
-                      p4,
-                      p5,
-                      p6,
-                      p7,
-                      p8,
-                      p9,
-                    ]);
+                    combinations.push([p1, p2, p3, p4, p5, p6, p7, p8, p9]);
                   }
                 }
               }
@@ -90,5 +80,11 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
       }
     }
   }
+
+  let text = "";
+  combinations.forEach(
+    (combination) => (text += appleSauce(func as any, combination)),
+  );
+
   return text;
 }
