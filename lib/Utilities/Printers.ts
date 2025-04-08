@@ -1,3 +1,5 @@
+import { Printer } from "../Providers/Jest/CombinationApprovals";
+
 export function printArray<T>(
   header: string,
   list: T[],
@@ -25,8 +27,6 @@ export function printJson(data: any) {
 
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
-
-export type Printer<T extends any[]> = (...args: T) => any;
 
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
