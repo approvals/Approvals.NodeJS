@@ -47,7 +47,7 @@ function appleSauce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   p7: T7,
   p8: T8,
   p9: T9,
-  text: string,
+  _text: string,
 ) {
   let output;
   try {
@@ -59,8 +59,7 @@ function appleSauce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
     (p) => p !== EMPTY_ENTRY,
   );
 
-  text += `[${parameters}] => ${output}\n`;
-  return text;
+  return `[${parameters}] => ${output}\n`;
 }
 
 export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
@@ -95,7 +94,7 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
               for (let p7 of params7) {
                 for (let p8 of params8) {
                   for (let p9 of params9) {
-                    text = appleSauce(
+                    text += appleSauce(
                       func,
                       p1,
                       p2,
