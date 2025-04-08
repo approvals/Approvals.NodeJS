@@ -26,32 +26,31 @@ export function printJson(data: any) {
 const EMPTY_ENTRY = {};
 export const EMPTY = [EMPTY_ENTRY];
 
-type Printer<T> = (...args: T[]) => any;
-type PrinterArgs<T> = T[];
+type Printer<T extends any[]> = (...args: T) => any;
 
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
-  ...args: PrinterArgs<T>
+  ...args: T[]
 ): string {
-  const combinations = generateCombinations([...args], []);
+  const combinations = generateCombinations(args, []);
 
   let text = "";
   combinations.forEach((combination) => {
-    text += handleParameterCombination(func, combination as PrinterArgs<T>);
+    text += handleParameterCombination(func, combination);
   });
 
   return text;
 }
 
 function generateCombinations<T extends any[]>(
-  params: PrinterArgs<T>[],
-  combinations: PrinterArgs<T>[],
+  params: T[],
+  combinations: T[],
   index: number = 0,
-  currentCombination: PrinterArgs<T> = [],
-): PrinterArgs<T>[] {
+  currentCombination: any[] = [],
+): T[] {
   const allParametersProcessed = index === params.length;
   if (allParametersProcessed) {
-    combinations.push(currentCombination);
+    combinations.push(currentCombination as T);
     return combinations;
   }
 
@@ -65,7 +64,10 @@ function generateCombinations<T extends any[]>(
   return combinations;
 }
 
-function handleParameterCombination<T extends any[]>(func: Printer<T>, args: PrinterArgs<T>) {
+function handleParameterCombination<T extends any[]>(
+  func: Printer<T>,
+  args: T,
+) {
   let output;
   try {
     output = func(...args);
