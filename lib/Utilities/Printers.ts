@@ -47,7 +47,6 @@ function appleSauce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
   p7: T7,
   p8: T8,
   p9: T9,
-  _text: string,
 ) {
   let output;
   try {
@@ -105,7 +104,6 @@ export function printCombinations<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
                       p7,
                       p8,
                       p9,
-                      text,
                     );
                   }
                 }
