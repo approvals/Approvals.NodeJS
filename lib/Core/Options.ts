@@ -1,5 +1,6 @@
 import type { Scrubber } from "../Scrubbers/Scrubbers";
 import { Namer } from "../Namer";
+import { Namer as CoreNamer } from "./Namer";
 import { Config } from "../config";
 import { Reporter } from "./Reporter";
 export type ConfigModifier = (t: any) => any;
@@ -69,11 +70,11 @@ export class Options {
     return modifier(config);
   }
 
-  withNamer(namer: Namer): Options {
+  withNamer(namer: CoreNamer): Options {
     return this.modify("Namer", namer);
   }
 
-  getNamer(): Namer {
+  getNamer(): CoreNamer {
     return this.get("Namer", () => new Namer("", ""));
   }
 

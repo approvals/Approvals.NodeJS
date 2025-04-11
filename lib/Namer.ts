@@ -1,6 +1,7 @@
 import path from "path";
+import { Namer as CoreNamer } from "./Core/Namer";
 
-export class Namer {
+export class Namer implements CoreNamer {
   public basePath: string;
   protected name: string;
 
