@@ -1,22 +1,14 @@
-import * as approvals from "../../../lib/Approvals.js";
-import { defaultConfig } from "../../../lib/config.js";
+
+import { verify, setNamer } from "../../../lib/Providers/Mocha/MochaApprovals.js";
 
 describe("Mocha", function () {
   describe("when verifying some basic text", function () {
     beforeEach(function () {
-      approvals
-        .configure(
-          Object.assign({}, defaultConfig, {
-            appendEOL: false,
-            normalizeLineEndingsTo: "\n",
-            reporters: ["nodediff"],
-          }),
-        )
-        .mocha();
+      setNamer(this);
     });
 
     it("should work", function () {
-      this.verify("Hello World!");
+      verify("Hello World!");
     });
 
     it("should verifyAsJSON", function () {

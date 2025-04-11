@@ -57,6 +57,16 @@ export class MochaNamer extends Namer {
   }
 }
 
+function getTitleChain(test: any, pieces: string[] = []): string[] {
+    if (test.title && test.title.length > 0) {
+        pieces.unshift(test.title);
+    }
+    if (test.parent) {
+      return getTitleChain(test.parent, pieces);
+    }
+    return pieces;
+}
+
 export function getMochaNamer(test: any): Namer {
   if (!test || !test.file || !test.title) {
     throw new Error(
@@ -67,7 +77,8 @@ export function getMochaNamer(test: any): Namer {
   const file = path.parse(test.file);
   const testPath = file.dir;
   const testFileName = file.name;
-  const testName = convertToFilename(`${testFileName}.${test.title}`);
+  const pieces: string[] = getTitleChain(test);
+  const testName = convertToFilename(`${testFileName}.${pieces.join(".")}`);
 
   return new Namer(testPath, testName);
 }
