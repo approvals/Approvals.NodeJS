@@ -20,9 +20,12 @@ export class FileApprover {
     options?: Partial<Config>,
   ): void {
     if (!namer || !writer || !reporterFactory) {
-      throw new Error(
-        "Missing required arguments: 'namer', 'writer', or 'reporterFactory'.",
-      );
+        const missing = [
+            !namer ? "namer" : null,
+            !writer ? "writer" : null,
+            !reporterFactory ? "reporterFactory" : null]
+            .filter(Boolean).join(", ");
+        throw new Error(`Missing required arguments: ${missing}.`);
     }
     if (!options) {
       options = {};
