@@ -58,13 +58,13 @@ export class MochaNamer extends Namer {
 }
 
 function getTitleChain(test: any, pieces: string[] = []): string[] {
-    if (test.title && test.title.length > 0) {
-        pieces.unshift(test.title);
-    }
-    if (test.parent) {
-      return getTitleChain(test.parent, pieces);
-    }
-    return pieces;
+  if (test.title && test.title.length > 0) {
+    pieces.unshift(test.title);
+  }
+  if (test.parent) {
+    return getTitleChain(test.parent, pieces);
+  }
+  return pieces;
 }
 
 export function getMochaNamer(test: any): Namer {

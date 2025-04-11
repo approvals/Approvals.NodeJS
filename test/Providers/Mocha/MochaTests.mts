@@ -1,5 +1,7 @@
-
-import { verify, setNamer } from "../../../lib/Providers/Mocha/MochaApprovals.js";
+import {
+  verify,
+  setNamer,
+} from "../../../lib/Providers/Mocha/MochaApprovals.js";
 
 describe("Mocha", function () {
   describe("when verifying some basic text", function () {
