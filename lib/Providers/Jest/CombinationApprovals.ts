@@ -2,7 +2,7 @@ import { verify } from "./JestApprovals";
 import { printCombinations } from "../../Utilities/Printers";
 
 export type Printer<T extends any[]> = (...args: T) => any;
-type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
+export type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
 
 export function verifyAllCombinations<T extends any[]>(
   func: Printer<T>,
