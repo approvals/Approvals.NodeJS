@@ -2,13 +2,15 @@ import { verify } from "./JestApprovals";
 import { printCombinations } from "../../Utilities/Printers";
 
 export type Printer<T extends any[]> = (...args: T) => any;
-export type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
+export type VariationsForEachParameter<T extends any[]> = {
+  [K in keyof T]: T[K][];
+};
 
 export function verifyAllCombinations<T extends any[]>(
   func: Printer<T>,
-  ...params: ParameterLists<T>
+  ...variations: VariationsForEachParameter<T>
 ): void {
-  verify(printCombinations(func, ...params));
+  verify(printCombinations(func, ...variations));
 }
 
 export function verifyAllCombinations1<T1>(

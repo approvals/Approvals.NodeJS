@@ -1,5 +1,5 @@
 import {
-  ParameterLists,
+  VariationsForEachParameter,
   Printer,
 } from "../Providers/Jest/CombinationApprovals";
 
@@ -30,49 +30,48 @@ export function printJson(data: any) {
 
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
-  ...args: ParameterLists<T>
+  ...variations: VariationsForEachParameter<T>
 ): string {
-  const combinations = generateCombinations(args);
+  const parameterCombinations = generateParameterCombinations(variations);
 
   let text = "";
-  combinations.forEach((combination) => {
-    text += handleParameterCombination(func, combination);
+  parameterCombinations.forEach((parameters) => {
+    text += print(func, parameters);
   });
 
   return text;
 }
 
-function generateCombinations<T extends any[]>(
-  params: ParameterLists<T>,
-  combinations: T[] = [],
+function generateParameterCombinations<T extends any[]>(
+  variations: VariationsForEachParameter<T>,
+  parameterCombinations: T[] = [],
   index: number = 0,
-  currentCombination: T = [] as unknown as T,
+  currentParameterCombination: T = [] as unknown as T,
 ): T[] {
-  const allParametersProcessed = index === params.length;
+  const allParametersProcessed = index === variations.length;
   if (allParametersProcessed) {
-    combinations.push(currentCombination);
-    return combinations;
+    parameterCombinations.push(currentParameterCombination);
+    return parameterCombinations;
   }
 
-  for (let p of params[index]) {
-    generateCombinations(params, combinations, index + 1, [
-      ...currentCombination,
-      p,
-    ]);
+  for (let nextParameter of variations[index]) {
+    generateParameterCombinations(
+      variations,
+      parameterCombinations,
+      index + 1,
+      [...currentParameterCombination, nextParameter],
+    );
   }
 
-  return combinations;
+  return parameterCombinations;
 }
 
-function handleParameterCombination<T extends any[]>(
-  func: Printer<T>,
-  args: T,
-) {
+function print<T extends any[]>(func: Printer<T>, parameters: T) {
   let output;
   try {
-    output = func(...args);
+    output = func(...parameters);
   } catch (e) {
     output = `${e}`;
   }
-  return `[${args}] => ${output}\n`;
+  return `[${parameters}] => ${output}\n`;
 }
