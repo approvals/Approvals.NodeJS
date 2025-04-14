@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import { LogUtils } from "./ApprovedFileLog";
 import { JestUtils } from "../Utilities/JestUtils";
+import { LogUtils } from "./LogUtils";
 
 let runOnce = false;
 export class FailedFileLog {
