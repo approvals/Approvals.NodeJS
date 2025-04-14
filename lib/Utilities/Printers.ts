@@ -1,4 +1,7 @@
-import { Printer } from "../Providers/Jest/CombinationApprovals";
+import {
+  ParameterLists,
+  Printer,
+} from "../Providers/Jest/CombinationApprovals";
 
 export function printArray<T>(
   header: string,
@@ -26,6 +29,15 @@ export function printJson(data: any) {
 }
 
 export function printCombinations<T extends any[]>(
+  func: Printer<T>,
+  ...args: ParameterLists<T>
+): string {
+  const combiner = (...args: any[]) =>
+    func(...(args.slice(0, args.length) as T));
+  return printCombinations2(combiner, ...args);
+}
+
+export function printCombinations2<T extends any[]>(
   func: Printer<T>,
   ...args: T[]
 ): string {
