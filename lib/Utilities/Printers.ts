@@ -26,7 +26,6 @@ export function printJson(data: any) {
 }
 
 const EMPTY_ENTRY = {};
-export const EMPTY = [EMPTY_ENTRY];
 
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
