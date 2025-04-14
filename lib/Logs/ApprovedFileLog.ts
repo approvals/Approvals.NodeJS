@@ -6,10 +6,6 @@ import axios from "axios";
 
 let runOnce = false;
 export class ApprovedFileLog {
-  private static downloadedScriptCheck: boolean = false;
-  public static readonly APPROVAL_TEMP_DIRECTORY: string =
-    ".approval_tests_temp";
-
   private static clearLogFile(): void {
     if (runOnce) {
       return;
@@ -23,41 +19,55 @@ export class ApprovedFileLog {
   }
 
   public static forceClearLogFile() {
-    const logFilePath = this.ensureTempDirectoryExists();
+    const logFilePath = this.getLogFilePath();
     fs.writeFileSync(logFilePath, "");
   }
 
-  public static ensureTempDirectoryExists() {
+  private static getLogFilePath(): string {
+    return path.join(
+      LogUtils.ensureTempDirectoryExists(),
+      ".approved_files.log",
+    );
+  }
+
+  public static log(filePath: string): void {
+    this.clearLogFile();
     const logFilePath = this.getLogFilePath();
+    fs.appendFileSync(logFilePath, filePath + "\n");
+  }
+}
+
+export class LogUtils {
+  private static runOnce: boolean = false;
+  public static readonly APPROVAL_TEMP_DIRECTORY: string =
+    ".approval_tests_temp";
+
+  public static ensureTempDirectoryExists() {
+    if (this.runOnce) {
+      return this.APPROVAL_TEMP_DIRECTORY;
+    }
+    this.runOnce = true;
+
     if (!fs.existsSync(this.APPROVAL_TEMP_DIRECTORY)) {
       fs.mkdirSync(this.APPROVAL_TEMP_DIRECTORY);
     }
     this.downloadApproveAllScriptIfMissing().then();
-    return logFilePath;
+    return this.APPROVAL_TEMP_DIRECTORY;
   }
 
   private static async downloadApproveAllScriptIfMissing(): Promise<void> {
-    if (this.downloadedScriptCheck) {
-      return;
-    }
-    this.downloadedScriptCheck = true;
-
     await this.downloadFile(`approve_all.py`);
     await this.downloadFile(`remove_abandoned_files.py`);
   }
 
-  public static async downloadFile(script: string) {
+  private static async downloadFile(script: string) {
     try {
-      const scriptPath = path.join(
-        ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
-        script,
-      );
+      const scriptPath = path.join(this.APPROVAL_TEMP_DIRECTORY, script);
 
       if (!fs.existsSync(scriptPath)) {
         const githubUrl =
           "https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/";
-        const filePath = `${script}`;
-        const response = await axios.get(`${githubUrl}${filePath}`);
+        const response = await axios.get(`${githubUrl}${script}`);
 
         fs.writeFileSync(scriptPath, response.data);
         fs.chmodSync(scriptPath, 0o755);
@@ -65,15 +75,5 @@ export class ApprovedFileLog {
     } catch (error) {
       // Do nothing
     }
-  }
-
-  private static getLogFilePath(): string {
-    return path.join(this.APPROVAL_TEMP_DIRECTORY, ".approved_files.log");
-  }
-
-  public static log(filePath: string): void {
-    this.clearLogFile();
-    const logFilePath = this.getLogFilePath();
-    fs.appendFileSync(logFilePath, filePath + "\n");
   }
 }

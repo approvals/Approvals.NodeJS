@@ -1,4 +1,4 @@
-import { ApprovedFileLog } from "../../Logs/ApprovedFileLog";
+import { ApprovedFileLog, LogUtils } from "../../Logs/ApprovedFileLog";
 import { FailedFileLog } from "../../Logs/FailedFileLog";
 import fs from "fs";
 
@@ -11,7 +11,7 @@ export function initializeGlobalsForJest() {
 }
 
 export function helpUserSetupJest(fileToCheck: string) {
-  ApprovedFileLog.ensureTempDirectoryExists();
+  LogUtils.ensureTempDirectoryExists();
   // Check if the file exists
   if (fs.existsSync(fileToCheck)) {
     // Get the date that fileToCheck was created
