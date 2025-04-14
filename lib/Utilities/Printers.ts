@@ -32,7 +32,7 @@ export function printCombinations<T extends any[]>(
   func: Printer<T>,
   ...args: ParameterLists<T>
 ): string {
-  const combinations = generateCombinations(args, [], 0, [] as unknown as T);
+  const combinations = generateCombinations(args);
 
   let text = "";
   combinations.forEach((combination) => {
@@ -44,9 +44,9 @@ export function printCombinations<T extends any[]>(
 
 function generateCombinations<T extends any[]>(
   params: ParameterLists<T>,
-  combinations: T[],
-  index: number,
-  currentCombination: T,
+  combinations: T[] = [],
+  index: number = 0,
+  currentCombination: T = [] as unknown as T,
 ): T[] {
   const allParametersProcessed = index === params.length;
   if (allParametersProcessed) {
