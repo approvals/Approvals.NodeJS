@@ -47,7 +47,7 @@ test("CombinationsStartingPoint", () => {
 });
 ```
 
-<sup><a href='/test/Providers/Jest/CombinationApprovals.test.mts#L107-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/Providers/Jest/CombinationApprovals.test.mts#L129-L139' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
 
 <!-- endSnippet -->
 
