@@ -7,11 +7,8 @@ export type ParameterLists<T extends any[]> = { [K in keyof T]: T[K][] };
 export function verifyAllCombinations<T extends any[]>(
   func: Printer<T>,
   ...params: ParameterLists<T>
-) {
-  const combiner = (...args: any[]) =>
-    func(...(args.slice(0, params.length) as T));
-
-  verify(printCombinations(combiner, ...params));
+): void {
+  verify(printCombinations(func, ...params));
 }
 
 export function verifyAllCombinations1<T1>(
