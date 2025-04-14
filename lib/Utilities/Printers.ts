@@ -25,8 +25,6 @@ export function printJson(data: any) {
   return JSON.stringify(data, null, "  ");
 }
 
-const EMPTY_ENTRY = {};
-
 export function printCombinations<T extends any[]>(
   func: Printer<T>,
   ...args: T[]
@@ -73,7 +71,5 @@ function handleParameterCombination<T extends any[]>(
   } catch (e) {
     output = `${e}`;
   }
-  const parameters = args.filter((p) => p !== EMPTY_ENTRY);
-
-  return `[${parameters}] => ${output}\n`;
+  return `[${args}] => ${output}\n`;
 }
