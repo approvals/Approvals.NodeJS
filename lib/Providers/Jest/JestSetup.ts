@@ -1,6 +1,7 @@
-import { ApprovedFileLog, LogUtils } from "../../Logs/ApprovedFileLog";
+import { ApprovedFileLog } from "../../Logs/ApprovedFileLog";
 import { FailedFileLog } from "../../Logs/FailedFileLog";
 import fs from "fs";
+import { LogUtils } from "../../Logs/LogUtils";
 
 export let jestInitializingRun = false;
 
