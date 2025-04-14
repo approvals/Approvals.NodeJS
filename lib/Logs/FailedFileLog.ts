@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { ApprovedFileLog } from "./ApprovedFileLog";
+import { LogUtils } from "./ApprovedFileLog";
 import { JestUtils } from "../Utilities/JestUtils";
 
 let runOnce = false;
@@ -19,7 +19,7 @@ export class FailedFileLog {
 
   public static getLogFilePath(): string {
     return path.join(
-      ApprovedFileLog.APPROVAL_TEMP_DIRECTORY,
+      LogUtils.ensureTempDirectoryExists(),
       ".failed_comparison.log",
     );
   }
