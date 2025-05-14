@@ -43,7 +43,7 @@
     "ansi-colors": "^4.1.3",
     "axios": "^1.7.9",
     "callsite": "^1.0.0",
-    "diff": "^7.0.0",
+    "diff": "^8.0.1",
     "event-stream": "^4.0.1",
     "file-type": "^12.4.2",
     "glob": "^11.0.0",
