@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 18
       - run: ./build_and_test.sh
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
@@ -47,7 +47,7 @@ jobs:
 #     runs-on: ubuntu-latest
 #     steps:
 #       - uses: actions/checkout@v5
-#       - uses: actions/setup-node@v5
+#       - uses: actions/setup-node@v6
 #         with:
 #           node-version: 12
 #           registry-url: https://npm.pkg.github.com/
