@@ -22,7 +22,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
       - run: ./build_and_test_bun.sh
         shell: bash
