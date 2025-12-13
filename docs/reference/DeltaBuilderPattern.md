@@ -13,6 +13,7 @@ const builder = new Builder()
 ```
 
 Each call to `withFieldX()` returns a **new immutable object**, leaving the previous object unchanged.
+
 ## Quick Comparison
 
 ```mermaid
