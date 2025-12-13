@@ -8,8 +8,8 @@ When you have an immutable object with multiple fields, adding a new field requi
 
 ```typescript
 const builder = new Builder()
-  .withField1(1)    // creates new immutable Builder
-  .withField2(2);   // creates another new immutable Builder
+  .withField1(1) // creates new immutable Builder
+  .withField2(2); // creates another new immutable Builder
 ```
 
 Each call to `withFieldX()` returns a **new immutable object**, leaving the previous object unchanged.
@@ -69,6 +69,7 @@ classDiagram
 ```
 
 **Each `withX` method must reconstruct with all 5 parameters:**
+
 ```typescript
 withField2(field2: Type2): Builder {
   return new Builder(
@@ -109,6 +110,7 @@ classDiagram
 ```
 
 **Must update constructor + ALL 5 `withX` methods:**
+
 ```typescript
 // Constructor changes
 constructor(
@@ -155,6 +157,7 @@ classDiagram
 ```
 
 **Each `withX` method delegates to `modify`:**
+
 ```typescript
 withField2(field2: Type2): Builder {
   return this.modify("Field2", field2);
@@ -162,6 +165,7 @@ withField2(field2: Type2): Builder {
 ```
 
 **The `modify` method handles ALL copying & Encapsulates the Mutability:**
+
 ```typescript
 modify(key: string, value: any): Builder {
   const next = new Builder();
@@ -197,6 +201,7 @@ classDiagram
 ```
 
 **Only add 2 new methods:**
+
 ```typescript
 withField6(field6: Type6): Builder {
   return this.modify("Field6", field6);
@@ -213,8 +218,8 @@ getField6(): Type6 {
 
 ## Comparison
 
-| Action | Traditional Pattern | Delta Builder Pattern |
-|--------|-------------------|---------------------|
-| Add 6th field | Change constructor + 5 methods (6 changes) | Add 2 methods (2 changes) |
-| Constructor parameters | Grows with each field | Always zero |
-| Existing methods affected | ALL methods must update | ZERO methods change |
+| Action                    | Traditional Pattern                        | Delta Builder Pattern     |
+| ------------------------- | ------------------------------------------ | ------------------------- |
+| Add 6th field             | Change constructor + 5 methods (6 changes) | Add 2 methods (2 changes) |
+| Constructor parameters    | Grows with each field                      | Always zero               |
+| Existing methods affected | ALL methods must update                    | ZERO methods change       |
