@@ -55,7 +55,7 @@ export function verify(sut: any, options?: Options): void {
 export function verifyAsJson(data: any, options?: Options): void {
   const text = printJson(data);
   options = options || new Options();
-  options = options.forFile().withFileExtention(".json");
+  options = options.forFile().withFileExtension(".json");
   verify(text, options);
 }
 

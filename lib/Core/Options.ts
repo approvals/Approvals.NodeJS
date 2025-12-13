@@ -12,12 +12,16 @@ class FileOptions {
     this.options = options;
   }
 
+  /** @deprecated Use withFileExtension instead. This method has a typo and will be removed in a future version. */
   withFileExtention(extensionWithDot: string): Options {
-    return this.options.modify("FileExtention", extensionWithDot);
+    return this.withFileExtension(extensionWithDot);
+  }
+  withFileExtension(extensionWithDot: string): Options {
+    return this.options.modify("FileExtension", extensionWithDot);
   }
 
   getFileExtension(): string {
-    return this.options.get("FileExtention", () => ".txt");
+    return this.options.get("FileExtension", () => ".txt");
   }
 }
 
