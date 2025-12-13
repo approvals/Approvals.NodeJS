@@ -13,6 +13,36 @@ const builder = new Builder()
 ```
 
 Each call to `withFieldX()` returns a **new immutable object**, leaving the previous object unchanged.
+## Quick Comparison
+
+```mermaid
+---
+config:
+  layout: elk
+  elk:
+    alignment: TOP
+---
+classDiagram
+    class TraditionalBuilder {
+        -field1: Type1
+        -field2: Type2
+        -field3: Type3
+        -field4: Type4
+        -field5: Type5
+        +Builder(field1, field2, field3, field4, field5)
+        +with1...()
+        +get1...()
+
+    }
+
+    class DeltaBuilder {
+        -fields: Map
+        +Builder()
+        +modify(key: string, value: any): Builder
+        +with1...()
+        +get1... ()
+    }
+```
 
 ## Traditional Immutable Pattern (5 fields)
 
