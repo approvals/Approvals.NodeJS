@@ -45,7 +45,7 @@
     "callsite": "^1.0.0",
     "diff": "^8.0.1",
     "event-stream": "^4.0.1",
-    "file-type": "^12.4.2",
+    "file-type": "^21.3.0",
     "glob": "^13.0.0",
     "jest": "^30.0.0",
     "js-yaml": "^4.1.0",
