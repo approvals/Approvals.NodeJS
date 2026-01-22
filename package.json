@@ -78,7 +78,7 @@
     "mocha": "^11.0.1",
     "mocha-junit-reporter": "^2.2.1",
     "mocha-multi-reporters": "^1.5.1",
-    "np": "^10.0.2",
+    "np": "^11.0.0",
     "nyc": "^17.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^3.4.2",
