@@ -80,7 +80,7 @@
     "mocha-multi-reporters": "^1.5.1",
     "np": "^11.0.0",
     "nyc": "^18.0.0",
-    "pre-commit": "^1.2.2",
+    "pre-commit": "^2.0.0",
     "prettier": "^3.4.2",
     "sinon": "^21.0.0",
     "ts-node": "^10.9.1",
