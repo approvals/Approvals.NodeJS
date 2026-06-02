@@ -4,7 +4,7 @@
 [tools]
 # Local default. Override per-run with the MISE_NODE_VERSION env var
 # (CI can set it per matrix entry without editing this file).
-node = "20"
+node = "24"
 
 [env]
 # Make locally-installed CLIs (tsc, gulp, jest) resolve like npm scripts do.
