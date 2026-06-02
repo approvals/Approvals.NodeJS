@@ -19,8 +19,8 @@ description = "Compile TypeScript"
 run = "tsc"
 
 [tasks.test]
-description = "Mocha unit tests + eslint (gulp), then jest"
+description = "Mocha unit tests + eslint (gulp), then jest, then vitest"
 # jest runs native-ESM .mjs tests; mirror .npmrc's node-options since we
 # invoke jest directly (not via npm, which would inject it from .npmrc).
 env = { NODE_OPTIONS = "--experimental-vm-modules" }
-run = ["gulp", "jest"]
+run = ["gulp", "jest", "vitest run"]
