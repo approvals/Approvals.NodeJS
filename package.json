@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/approvals/Approvals.NodeJS.git"
+    "url": "git+https://github.com/approvals/Approvals.NodeJS.git"
   },
   "bugs": {
     "url": "https://github.com/approvals/Approvals.NodeJS/issues"
