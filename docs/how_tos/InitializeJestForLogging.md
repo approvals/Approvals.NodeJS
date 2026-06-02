@@ -21,7 +21,7 @@
 globalSetup: "./test/Providers/Jest/JestGlobalSetup.mjs",
 ```
 
-<sup><a href='/jest.config.js#L20-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-jest_config_setup' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/jest.config.js#L21-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-jest_config_setup' title='Start of snippet'>anchor</a></sup>
 
 <!-- endSnippet -->
 
