@@ -1,0 +1,43 @@
+lib/Providers/Vitest/VitestReporter.ts
+  s_77876b842f8112::t_e3f30408bef204 1-3,6-23
+  s_77876b842f8112::t_3fd8f4e1c53edc 4-5
+tsconfig.json
+  s_77876b842f8112::t_c024d0d8519b6f 101-102
+.gitignore
+  s_77876b842f8112::t_8c5843db55d3a0 56-58
+test/Providers/Vitest/Vitest.test.mts
+  s_77876b842f8112::t_a2b23c1855419a 1-8
+test/Providers/Vitest/Vitest.test.VitestApprovals___verify.approved.txt
+  s_77876b842f8112::t_737b9677ae6f03 1
+jest.config.js
+  s_77876b842f8112::t_012dd75c84e77e 9
+package.json
+  s_77876b842f8112::t_9a53846709d69d 88-89
+  s_77876b842f8112::t_6f4e12fe79696a 36
+lib/Providers/Vitest/VitestApprovals.ts
+  s_77876b842f8112::t_72553e8f7d6151 1-37
+vitest.config.ts
+  s_77876b842f8112::t_688981847bbe09 5
+  s_77876b842f8112::t_884b424cb04438 1-4,6-8
+package-lock.json
+  ai_agent 59-60,2020-2023,2091-2100,2157-2439,2545-2551,3322-3441,5811-5820,6065-6071,6457-6466,6660-6669,12222-12487,12489-12493,12495-12499,12987-12996,13746-13764,14809-14819,15257-15263,15402-15430,16334-16367,16589-16595,16822-16831,17022-17028,17042-17048,17692-17708,17710-17712,17757-17766,18807-19015,19054-19068
+lib/Providers/Vitest/VitestNamer.ts
+  s_77876b842f8112::t_4cc037b0ff771d 1-3,11-21
+  s_77876b842f8112::t_50fb47bacdea5b 4-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "f0b9511a7f339a15cf660b1265dc7a01b26fd051",
+  "prompts": {},
+  "sessions": {
+    "s_77876b842f8112": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f7b7b9d2-c118-477c-b800-45d8a1677aea",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Lada Kesseler <archie.kesseler@gmail.com>"
+    }
+  }
+}
