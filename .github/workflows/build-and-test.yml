@@ -24,7 +24,8 @@ jobs:
         node-version:
           - 22
           - 24
-          - 26
+        # node 26 is Current (not LTS until Oct 2026); mocha's yargs dep breaks
+        # on its stricter ESM module detection. Re-add once 26 is LTS.
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         architecture:
           - x64
