@@ -30,6 +30,7 @@ jobs:
       - name: publish
         run: |
           ./build_and_test.sh
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
