@@ -1,0 +1,19 @@
+.github/workflows/build-and-test.yml
+  s_77876b842f8112::t_4d01cde5d32ac7 27-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "fb5ef6e3088b0d13e7eca92e85489d9f24526098",
+  "prompts": {},
+  "sessions": {
+    "s_77876b842f8112": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f7b7b9d2-c118-477c-b800-45d8a1677aea",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Lada Kesseler <archie.kesseler@gmail.com>"
+    }
+  }
+}
