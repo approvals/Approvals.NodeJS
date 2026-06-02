@@ -12,11 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
+      - uses: jdx/mise-action@v2
       - run: ./build_and_test.sh
-
+        env:
+          MISE_NODE_VERSION: 24
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
           MISE_NODE_VERSION: 24
       - name: Determine version from git tag
         id: version
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
       - name: set version
         run: |
           ./updateVersion.sh ${{ steps.version.outputs.tag }}
