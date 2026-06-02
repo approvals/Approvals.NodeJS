@@ -1,0 +1,26 @@
+# mise configuration — toolchain + build/test tasks.
+# Run tasks with `mise run <task>` (e.g. `mise run build`).
+
+[tools]
+# Local default. Override per-run with the MISE_NODE_VERSION env var
+# (CI can set it per matrix entry without editing this file).
+node = "20"
+
+[env]
+# Make locally-installed CLIs (tsc, gulp, jest) resolve like npm scripts do.
+_.path = ["node_modules/.bin"]
+
+[tasks.deps]
+description = "Clean, reproducible dependency install"
+run = "npm ci"
+
+[tasks.build]
+description = "Compile TypeScript"
+run = "tsc"
+
+[tasks.test]
+description = "Mocha unit tests + eslint (gulp), then jest"
+# jest runs native-ESM .mjs tests; mirror .npmrc's node-options since we
+# invoke jest directly (not via npm, which would inject it from .npmrc).
+env = { NODE_OPTIONS = "--experimental-vm-modules" }
+run = ["gulp", "jest"]

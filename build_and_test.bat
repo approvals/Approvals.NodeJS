@@ -1,4 +1,4 @@
-npm ci
-npm run build
-npm test
-
+mise install
+mise run deps
+mise run build
+mise run test

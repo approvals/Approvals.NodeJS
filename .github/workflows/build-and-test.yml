@@ -32,12 +32,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
+      - uses: jdx/mise-action@v2
       - run: ./build_and_test.sh
         shell: bash
+        env:
+          MISE_NODE_VERSION: ${{ matrix.node-version }}
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v6
