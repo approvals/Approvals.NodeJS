@@ -22,10 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
+      - uses: jdx/mise-action@v2
+      - run: ./build_and_test.sh
+        shell: bash
+        env:
+          MISE_NODE_VERSION: 24
       - name: Determine version from git tag
         id: version
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
