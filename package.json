@@ -33,6 +33,7 @@
   "scripts": {
     "build": "tsc",
     "test": "gulp && jest",
+    "vitest": "vitest run",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint './lib/**/*.js' './test/**/*.js'",
     "release": "np",
@@ -84,7 +85,8 @@
     "prettier": "^3.4.2",
     "sinon": "^22.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.8"
   },
   "keywords": [
     "Approve",

@@ -6,6 +6,7 @@ module.exports = {
     "**/__tests__/**/*.?(m)js?(x)",
     "**/?(*.)+(spec|test).?(m)js?(x)",
   ],
+  testPathIgnorePatterns: ["/node_modules/", "/test/Providers/Vitest/"],
   transform: {},
   reporters: [
     "default",
