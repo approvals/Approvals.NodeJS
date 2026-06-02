@@ -1,0 +1,24 @@
+mise.toml
+  s_1e43d4496e724d::t_4e6e1b547de0a5 1-22,26
+  s_1e43d4496e724d::t_2f329e76078152 23-25
+.github/workflows/build-and-test.yml
+  s_1e43d4496e724d::t_a02480e09c56f8 35,38-39
+build_and_test.bat
+  s_1e43d4496e724d::t_5ada9166f9c4d1 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "a46a206633087da26ef0bc17f183693348681f18",
+  "prompts": {},
+  "sessions": {
+    "s_1e43d4496e724d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0603e9d9-c5a8-43ba-a6a1-dad162b400ce",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Lada Kesseler <archie.kesseler@gmail.com>"
+    }
+  }
+}
