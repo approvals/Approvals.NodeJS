@@ -36,7 +36,6 @@ verify("Hello", options);
 ```
 
 <sup><a href='/test/Providers/Jest/JestReporter.test.mts#L9-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure-reporter-with-options' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 **Note** when passing in multiple reporters, it will use the first one that works on your system.
