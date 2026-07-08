@@ -33,4 +33,4 @@
       - [x] jest.config.js: transform: {}
       - [x] NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
       - [x] ReferenceError: **dirname is not defined
-                                                                                                                                                [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d]How to fix “**dirname is not defined in ES module scope”]]
+                                                                                                                                                            [[https://iamwebwiz.medium.com/how-to-fix-dirname-is-not-defined-in-es-module-scope-34d94a86694d]How to fix “**dirname is not defined in ES module scope”]]
