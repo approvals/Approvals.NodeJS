@@ -89,7 +89,7 @@
     "prettier": "^3.4.2",
     "sinon": "^22.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   },
   "keywords": [
