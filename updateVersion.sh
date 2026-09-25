@@ -1,9 +1,7 @@
 #!/bin/bash -e
 
 version_with_v="$1"
-version=$(echo "$version_with_v" | sed -e s/v//)
-TEMP_FILE=$(mktemp)
-jq ".version |= \"$version\"" package.json > "$TEMP_FILE" || exit 1
-mv "$TEMP_FILE" package.json
+version="${version_with_v#v}"
+npm version "$version" --no-git-tag-version --allow-same-version
 
-echo "Setting npm version in package.json to: $version "
+echo "Setting npm version in package.json and package-lock.json to: $version"
