@@ -52,7 +52,7 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
 
 | Service                      | Status                                                                                                                                                                                              |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Package                      | [![npm version](https://badge.fury.io/js/approvals.svg)](https://badge.fury.io/js/approvals)                                                                                                        |
+| Package                      | [@approval-tests/approvals on npm](https://www.npmjs.com/package/@approval-tests/approvals)                                                                                                        |
 | Github (Linux, Mac, Windows) | [![Build & Test](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/approvals/Approvals.NodeJS/actions/workflows/build-and-test.yml) |
 
 <a name="integrations" />
@@ -60,7 +60,7 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
 ## Integrations
 
 - [Mocha](http://mochajs.org/) tests, see the getting-started
-- [Approvals API](#api) (`require('approvals').verify(...)`)
+- [Approvals API](#api) (`require('@approval-tests/approvals').verify(...)`)
 - [Command line Utility](#cli)
 
 <a name="getting-started" />
@@ -85,7 +85,7 @@ Below is a simple getting started using Mocha.
 1. Install approvals
 
    ```shell
-   npm install --save-dev approvals
+   npm install --save-dev @approval-tests/approvals
    ```
 
 1. Install [Mocha](http://mochajs.org/) globally to execute our tests
@@ -97,7 +97,7 @@ Below is a simple getting started using Mocha.
 1. Create a sample Mocha test file called `SimpleLogger.test.js`.
 
    ```javascript
-   require("approvals").mocha();
+   require("@approval-tests/approvals").mocha();
 
    describe("When running some tests", function () {
      it("should be able to use Approvals", function () {
@@ -132,7 +132,7 @@ You can check out the `Examples` section of the below CLI help. Or a blog post i
 ### Install Approvals CLI
 
 ```
-npm install -g approvals
+npm install -g @approval-tests/approvals
 ```
 
 ### CLI Help
@@ -274,7 +274,7 @@ If you have the need to execute multiple reporters on a single failure.
 Say you made an "awesomeDiffReporter" and wanted it to run that in combination with a "notifyTheBossViaEmailReporter" you can use the MultiReporter like below.
 
 ```javascript
-var approvals = require("approvals");
+var approvals = require("@approval-tests/approvals");
 var MultiReporter = approvals.reporters.MultiReporter;
 
 it("should use a multiple reporters", function () {
@@ -378,7 +378,7 @@ Allows you to provide overrides to the default configuration.
 
 **Example**
 ```js
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 approvals.configure({
   reporters: ['p4merge']
 });
@@ -424,7 +424,7 @@ Use this to apply the scrubber function to any data before running verify.
 **Example**
 ```js
 // basic approval test with a custom scrubber
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 const scrubber = approvals.scrubbers.multiScrubber([
    function (data) {
      return (data || '').replace("some text", "some other text");
@@ -448,13 +448,13 @@ approvals.verifyAndScrub(__dirname, 'sample-approval-test', "some text to verify
 **Example**
 ```js
 // basic approval test
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
 ```
 **Example**
 ```js
 // basic approval test providing an option to override configuration
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
 ```
 <a name="module_approvals..verifyAsJSON"></a>
@@ -473,7 +473,7 @@ You can pass as "data" any javascript object to be JSON.stringified and run veri
 
 **Example**
 ```js
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
 ```
 <a name="module_approvals..verifyAsJSONAndScrub"></a>
@@ -494,7 +494,7 @@ You can pass as "data" any javascript object to be JSON.stringified. Before we r
 **Example**
 ```js
 // basic approval test with a custom scrubber
-const approvals = require('approvals');
+const approvals = require('@approval-tests/approvals');
 const scrubber = approvals.scrubbers.multiScrubber([
    function (data) {
      return (data || '').replace("some text", "some other text");

@@ -21,7 +21,7 @@ import { Writer } from "./Core/Writer";
 import { postRunCleanup } from "./postRunCleanup";
 import { stringifyKeysInOrder } from "./AUtils";
 
-// if someone tries to call 'require("approvals")...' without calling ".mocha(...) or
+// if someone tries to call 'require("@approval-tests/approvals")...' without calling ".mocha(...) or
 // they won't get a helpful error. So we put this in there - just in case"
 import { MochaNamer } from "./Providers/Mocha/MochaNamer";
 
@@ -69,7 +69,7 @@ process.on("exit", function (): void {
  * Allows you to provide overrides to the default configuration.
  *
  * @example
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * approvals.configure({
  *   reporters: ['p4merge']
  * });
@@ -106,7 +106,7 @@ export function mocha(optionalBaseDir?: string): typeof module.exports {
   }
   beforeEachVerifierBase(
     MochaNamer,
-    "require('Approvals').mocha();",
+    "require('@approval-tests/approvals').mocha();",
     optionalBaseDir,
   );
 
@@ -140,7 +140,7 @@ export const reporters: { MultiReporter: any } = {
  *
  * @example
  * // basic approval test with a custom scrubber
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * const scrubber = approvals.scrubbers.multiScrubber([
  *    function (data) {
  *      return (data || '').replace("some text", "some other text");
@@ -197,12 +197,12 @@ function verifyAndScrub(
  *
  * @example
  * // basic approval test
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * approvals.verify(__dirname, 'sample-approval-test', "some text to verify");
  *
  * @example
  * // basic approval test providing an option to override configuration
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * approvals.verify(__dirname, 'sample-approval-test', "some text to verify", { normalizeLineEndingsTo: true });
  *
  * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
@@ -230,7 +230,7 @@ export function verify(
  * You can pass as "data" any javascript object to be JSON.stringified and run verify against.
  *
  * @example
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in an object" });
  *
  * @param {string} dirName - Typically `__dirname` but could be the base-directory (anywhere) to store both approved and received files.
@@ -258,7 +258,7 @@ export function verifyAsJSON(
 
  * @example
  * // basic approval test with a custom scrubber
- * const approvals = require('approvals');
+ * const approvals = require('@approval-tests/approvals');
  * const scrubber = approvals.scrubbers.multiScrubber([
  *    function (data) {
  *      return (data || '').replace("some text", "some other text");
