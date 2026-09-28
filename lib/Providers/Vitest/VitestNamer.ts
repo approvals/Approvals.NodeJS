@@ -1,6 +1,7 @@
 import path from "path";
 import { Namer } from "../../Namer";
 import { convertToFilename } from "../../Core/Namer";
+import { StringUtils } from "../../Utilities/StringUtils";
 
 interface VitestExpectState {
   testPath?: string;
@@ -14,8 +15,13 @@ export function getVitestNamer(): Namer {
   const file = path.parse(state.testPath as string);
   const testPath = file.dir;
   const testFileName = file.name;
+  const currentTestNameWithoutSeparators = StringUtils.replaceAll(
+    state.currentTestName ?? "",
+    " > ",
+    " ",
+  );
   const testName = convertToFilename(
-    `${testFileName}.${state.currentTestName}`,
+    `${testFileName}.${currentTestNameWithoutSeparators}`,
   );
   return new Namer(testPath, testName);
 }

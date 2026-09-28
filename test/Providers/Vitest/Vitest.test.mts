@@ -10,7 +10,15 @@ describe("VitestApprovals", () => {
 
   test("uses single separator", () => {
     expect(path.basename(getVitestNamer().getApprovedFile("txt"))).toBe(
-      "Vitest.test.VitestApprovals___uses_single_separator.approved.txt",
+      "Vitest.test.VitestApprovals_uses_single_separator.approved.txt",
     );
+  });
+
+  describe("nested suite", () => {
+    test("uses single separators", () => {
+      expect(path.basename(getVitestNamer().getApprovedFile("txt"))).toBe(
+        "Vitest.test.VitestApprovals_nested_suite_uses_single_separators.approved.txt",
+      );
+    });
   });
 });
