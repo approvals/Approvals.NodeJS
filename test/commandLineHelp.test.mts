@@ -4,7 +4,7 @@ import { expect, test } from "@jest/globals";
 
 test("approvals --help output", () => {
   const script = path.join(process.cwd(), "bin", "index.js");
-  const result = spawnSync(script, ["--help"], {
+  const result = spawnSync(process.execPath, [script, "--help"], {
     encoding: "utf8",
     env: { ...process.env, FORCE_COLOR: "0" },
   });
