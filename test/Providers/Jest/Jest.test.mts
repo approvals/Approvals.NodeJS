@@ -19,14 +19,15 @@ describe("JestApprovals", () => {
     );
   });
 
-  test("uses single separator", () => {
-    expect(path.basename(getJestNamer().getApprovedFile("txt"))).toBe(
-      "Jest.test.JestApprovals_uses_single_separator.approved.txt",
-    );
-  });
   test("verify Json", () => {
     const data = { name: "fred", age: 30 };
     verifyAsJson(data);
+  });
+
+  it("should use single separator", () => {
+    expect(path.basename(getJestNamer().getApprovedFile("txt"))).toBe(
+      "Jest.test.JestApprovals_should_use_single_separator.approved.txt",
+    );
   });
 });
 
