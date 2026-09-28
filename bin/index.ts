@@ -3,7 +3,7 @@ import es from "event-stream";
 import * as autils from "../lib/AUtils";
 import fs from "fs";
 import path from "path";
-import marked from "marked";
+import { marked } from "marked";
 import TerminalRenderer from "marked-terminal";
 import minimist from "minimist";
 import { configure, verify } from "../lib/Approvals";
