@@ -1,3 +1,4 @@
+import path from "path";
 import { describe, expect, test } from "@jest/globals";
 import {
   verify,
@@ -6,6 +7,7 @@ import {
 } from "../../../lib/Providers/Jest/JestApprovals.js";
 import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
 import { convertToFilename } from "../../../lib/Core/Namer.js";
+import { getJestNamer } from "../../../lib/Providers/Jest/JestNamer.js";
 
 describe("JestApprovals", () => {
   test("verify", () => {
@@ -14,6 +16,12 @@ describe("JestApprovals", () => {
   test("convertToFilename", () => {
     expect(convertToFilename("More than one space")).toBe(
       "More_than_one_space",
+    );
+  });
+
+  test("uses single separator", () => {
+    expect(path.basename(getJestNamer().getApprovedFile("txt"))).toBe(
+      "Jest.test.JestApprovals_uses_single_separator.approved.txt",
     );
   });
   test("verify Json", () => {
