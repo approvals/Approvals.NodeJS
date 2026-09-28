@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { expect, test } from "@jest/globals";
 
-test.failing("approvals --help output", () => {
+test("approvals --help output", () => {
   const script = path.join(process.cwd(), "bin", "index.js");
   const result = spawnSync(script, ["--help"], {
     encoding: "utf8",
