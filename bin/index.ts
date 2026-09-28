@@ -3,6 +3,7 @@ import es from "event-stream";
 import * as autils from "../lib/AUtils";
 import fs from "fs";
 import path from "path";
+import { stripVTControlCharacters } from "node:util";
 import { marked } from "marked";
 import TerminalRenderer from "marked-terminal";
 import minimist from "minimist";
@@ -18,9 +19,23 @@ function printHelpMessage() {
   }
 
   const helpFile = fs.readFileSync(path.join(__dirname, "help.md"), "utf8");
-  marked.setOptions({
-    renderer: new TerminalRenderer(),
+  const terminalWidth = process.stdout.columns;
+  const effectiveTerminalWidth =
+    Number.isFinite(terminalWidth) && terminalWidth > 0 ? terminalWidth : 80;
+  const tableWidth = Math.max(12, Math.min(100, effectiveTerminalWidth));
+  // Reserve three columns for the table borders and keep descriptions readable.
+  const argumentWidth = Math.min(26, Math.floor((tableWidth - 3) * 0.4));
+  const renderer = new TerminalRenderer({
+    tableOptions: {
+      colWidths: [argumentWidth, tableWidth - argumentWidth - 3],
+      wordWrap: true,
+      wrapOnWordBoundary: false,
+    },
   });
+  const renderTableCell = renderer.tablecell.bind(renderer);
+  renderer.tablecell = (cell) =>
+    stripVTControlCharacters(renderTableCell(cell));
+  marked.setOptions({ renderer });
   let output = marked.parse(helpFile) as string;
 
   output = output.replace(/&nbsp;/g, " ");
