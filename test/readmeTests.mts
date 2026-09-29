@@ -14,7 +14,8 @@ describe("Readme", function () {
       .readFileSync(path.join(testDirectory, "../bin", "help.md"))
       .toString();
 
-    cliDocsRaw = cliDocsRaw.replace(/&nbsp;/g, " ").replace(/\*\*/g, "");
+    // Nest the CLI help headings under the README's CLI Help section.
+    cliDocsRaw = cliDocsRaw.replace(/^(#+) /gm, "###$1 ");
 
     const approvalsSource = fs
       .readFileSync(path.join(testDirectory, "../lib", "Approvals.js"))
@@ -38,11 +39,9 @@ describe("Readme", function () {
     newDocs += "\n\n<!--END-API-DOCS-->";
 
     let cliDocs = "<!--BEGIN-CLI-DOCS-->";
-    cliDocs += "\n<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->";
+    cliDocs += "\n<!-- GENERATED - DO NOT MODIFY CLI DOCS IN THIS README -->";
     cliDocs += "\n<!-- Update docs in the source ./bin/help.md -->";
-    cliDocs += "\n```";
     cliDocs += "\n\n" + cliDocsRaw;
-    cliDocs += "\n```";
     cliDocs += "\n\n<!--END-CLI-DOCS-->";
 
     let reporterList = "<!--BEGIN-REPORTERS-LIST-->";
