@@ -13,9 +13,11 @@
   * [CLI](#cli)
     * [Install Approvals CLI](#install-approvals-cli)
     * [CLI Help](#cli-help)
-  * [Simple hello world](#simple-hello-world)
-  * [Specify diff reporter (great for C.I.)](#specify-diff-reporter-great-for-ci)
-  * [Multiple diff reporters](#multiple-diff-reporters)
+      * [Usage](#usage)
+      * [Examples](#examples)
+        * [Simple hello world](#simple-hello-world)
+        * [Specify diff reporter (great for C.I.)](#specify-diff-reporter-great-for-ci)
+        * [Multiple diff reporters](#multiple-diff-reporters)
   * [Reporters](#reporters)
     * [Built-In Reporters](#built-in-reporters)
   * [Supported Diff Tools](#supported-diff-tools)
@@ -140,43 +142,41 @@ npm install -g @approval-tests/approvals
 By running `approvals --help`
 
 <!--BEGIN-CLI-DOCS-->
-<!-- GENERATED - DO NOT MODIFY API DOCS IN THIS README -->
+<!-- GENERATED - DO NOT MODIFY CLI DOCS IN THIS README -->
 <!-- Update docs in the source ./bin/help.md -->
-```
 
-# Usage
+#### Usage
 
 `approvals testName [options]`
 
 | Arg | Description |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| \*\*[-f | --forceapproveall]\*\* | Skip the approve step and apply the results to the .approved.txt file (good for a first time run) |
-| [--reporter difftool] | supports multiple EX: `--reporter opendiff --reporter gitdiff` |
-| [--outdir] | dir to place approval file - defaults to current directory |
-| [--verbose] | extra debug info |
-| TODO: | We need to extend the supported args to include other approval options. (file an [issue](https://github.com/approvals/Approvals.NodeJS/issues) if you need one that's not here) |
+| --- | --- |
+| **[-f \| --forceapproveall]** | Skip the approve step and apply the results to the .approved.txt file (good for a first time run) |
+| **[--reporter difftool]** | supports multiple EX: `--reporter opendiff --reporter gitdiff` |
+| **[--outdir]** | dir to place approval file - defaults to current directory |
+| **[--verbose]** | extra debug info |
+| **TODO:** | We need to extend the supported args to include other approval options. (file an [issue](https://github.com/approvals/Approvals.NodeJS/issues) if you need one that's not here) |
 
-# Examples
+#### Examples
 
-## Simple hello world
+##### Simple hello world
 
 ```
 echo 'Hello World!' | approvals helloWorldTest
 ```
 
-## Specify diff reporter (great for C.I.)
+##### Specify diff reporter (great for C.I.)
 
 ```
 echo 'Hello World!' | approvals helloWorldTest --reporter gitdiff
 ```
 
-## Multiple diff reporters
+##### Multiple diff reporters
 
 ```
 echo 'Hello World!' | approvals helloWorldTest --reporter gitdiff --reporter p4merge
 ```
 
-```
 
 <!--END-CLI-DOCS-->
 

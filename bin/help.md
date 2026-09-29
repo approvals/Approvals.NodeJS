@@ -3,8 +3,8 @@
 `approvals testName [options]`
 
 | Arg | Description |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| \*\*[-f | --forceapproveall]\*\* | Skip the approve step and apply the results to the .approved.txt file (good for a first time run) |
+| --- | --- |
+| **[-f \| --forceapproveall]** | Skip the approve step and apply the results to the .approved.txt file (good for a first time run) |
 | **[--reporter difftool]** | supports multiple EX: `--reporter opendiff --reporter gitdiff` |
 | **[--outdir]** | dir to place approval file - defaults to current directory |
 | **[--verbose]** | extra debug info |
