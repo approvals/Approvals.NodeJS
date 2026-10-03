@@ -14,7 +14,6 @@ appveyor.yml
 .travis.yml
 Approvals.NodeJS.njsproj
 Approvals.NodeJS.sln
-gulpfile.js
 LICENSE-Apache
 
 

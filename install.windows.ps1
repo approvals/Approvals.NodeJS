@@ -11,7 +11,6 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/javascr
 & "C:\Program Files\Git\cmd\git.exe" clone https://github.com/approvals/Approvals.NodeJS.git C:\Code\ApprovalTests.NodeJS
 cd C:\Code\ApprovalTests.NodeJS
 npm install
-npm install -g gulp
 
 # Done
 cls
