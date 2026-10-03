@@ -2,7 +2,7 @@
 
 import gulp from "gulp";
 import mocha from 'gulp-mocha';
-import eslint from 'gulp-eslint';
+import { ESLint } from "eslint";
 
 import * as gulp_load_plugins from "gulp-load-plugins";
 
@@ -14,20 +14,23 @@ const paths = {
   sourceJSFilesForCodeCoverage: ["./lib/**/*.js"],
 };
 
-gulp.task("lint", function () {
-  return gulp
-    .src(paths.filesToLint)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+gulp.task("lint", async function () {
+  const eslint = new ESLint();
+  const results = await eslint.lintFiles(paths.filesToLint);
+  const formatter = await eslint.loadFormatter("stylish");
+  const output = formatter.format(results);
+  if (output) {
+    console.log(output);
+  }
+  if (results.some((result) => result.errorCount > 0)) {
+    throw new Error("ESLint failed");
+  }
 });
 
 gulp.task(
   "lint-watch",
   gulp.series("lint", function () {
-    $.watch(paths.filesToLint, function () {
-      gulp.start("lint");
-    });
+    return gulp.watch(paths.filesToLint, gulp.series("lint"));
   }),
 );
 
