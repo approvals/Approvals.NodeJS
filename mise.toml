@@ -7,7 +7,7 @@
 node = "24"
 
 [env]
-# Make locally-installed CLIs (tsc, gulp, jest) resolve like npm scripts do.
+# Make locally-installed CLIs (tsc, jest) resolve like npm scripts do.
 _.path = ["node_modules/.bin"]
 
 [tasks.deps]
@@ -19,8 +19,5 @@ description = "Compile TypeScript"
 run = "tsc"
 
 [tasks.test]
-description = "Mocha unit tests + eslint (gulp), then jest, then vitest"
-# jest runs native-ESM .mjs tests; mirror .npmrc's node-options since we
-# invoke jest directly (not via npm, which would inject it from .npmrc).
-env = { NODE_OPTIONS = "--experimental-vm-modules" }
-run = ["gulp", "jest", "vitest run"]
+description = "Run ESLint and tests (Mocha, Jest, and Vitest)"
+run = "npm test"
