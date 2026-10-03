@@ -42,9 +42,9 @@
     "test": "npm run lint && npm run mocha && jest && vitest run",
     "vitest": "vitest run",
     "test2": "npm run mocha && npm run lint",
-    "lint": "eslint './lib/**/*.js' './test/**/*.js' './lib/**/*.ts' './test/**/*.mts' --no-error-on-unmatched-pattern",
+    "lint": "eslint lib test",
     "release": "np",
-    "mocha": "mocha 'test/**/*[Tt]ests.js' 'test/**/*[Tt]ests.mjs'",
+    "mocha": "mocha",
     "coverage": "nyc npm run mocha"
   },
   "dependencies": {
