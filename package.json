@@ -95,6 +95,11 @@
     "typescript": "^6.0.2",
     "vitest": "^5.0.1"
   },
+  "overrides": {
+    "gulp-mocha": {
+      "mocha": "$mocha"
+    }
+  },
   "keywords": [
     "Approve",
     "Approvals",
