@@ -48,74 +48,78 @@ function errAndExit(msg: string): void {
   process.exit(1);
 }
 
-if (printHelp) {
-  printHelpMessage();
-  process.exit();
+function main(): void {
+    if (printHelp) {
+        printHelpMessage();
+        process.exit();
+    }
+
+    if (verbose) {
+        console.log("process.argv: ", process.argv);
+    }
+
+    const argv = minimist(process.argv.slice(2), {
+        alias: {
+            reporters: ["r"],
+        },
+        boolean: ["verbose"],
+    });
+
+    if (verbose) {
+        console.log("parsed args: ", argv);
+    }
+
+    let reporters = argv.reporter as string | string[];
+    if (typeof reporters === "string") {
+        reporters = [reporters];
+    }
+
+    const testname = argv._[0];
+    if (!testname) {
+        errAndExit(
+            'Missing parameter: supply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory',
+        );
+    }
+
+    const outdir = argv.outdir || process.cwd();
+    if (!fs.existsSync(outdir)) {
+        errAndExit("Directory not found: " + outdir);
+    }
+
+    const errorOnStaleApprovedFiles = argv.errorOnStaleApprovedFiles === "true";
+
+    if (verbose) {
+        console.log("outdir: ", outdir);
+        console.log("errorOnStaleApprovedFiles: ", errorOnStaleApprovedFiles);
+        console.log("testname: ", testname);
+        console.log(
+            "reporters: ",
+            reporters ||
+            "undefined (but will fallback to approvals preconfigure defaults)",
+        );
+    }
+
+    const opts: any = {};
+    if (reporters) {
+        opts.reporters = reporters;
+    }
+    opts.errorOnStaleApprovedFiles = errorOnStaleApprovedFiles;
+
+    if (verbose) {
+        console.log("approval opts: ", opts);
+    }
+
+    opts.forceApproveAll =
+        autils.hasCommandLineArgument("--forceapproveall") ||
+        autils.hasCommandLineArgument("-f");
+
+    process.stdin.pipe(
+        es.mapSync((data: Buffer) => {
+            const dataToVerify = data.toString();
+            configure(opts);
+            verify(outdir, testname, dataToVerify);
+        }),
+    );
 }
 
-if (verbose) {
-  console.log("process.argv: ", process.argv);
-}
-
-const argv = minimist(process.argv.slice(2), {
-  alias: {
-    reporters: ["r"],
-  },
-  boolean: ["verbose"],
-});
-
-if (verbose) {
-  console.log("parsed args: ", argv);
-}
-
-let reporters = argv.reporter as string | string[];
-if (typeof reporters === "string") {
-  reporters = [reporters];
-}
-
-const testname = argv._[0];
-if (!testname) {
-  errAndExit(
-    'Missing parameter: supply a test name ex: echo "hello" | approvals myFirstTest. This will become the file name myFirstTest.approved.txt in the current directory',
-  );
-}
-
-const outdir = argv.outdir || process.cwd();
-if (!fs.existsSync(outdir)) {
-  errAndExit("Directory not found: " + outdir);
-}
-
-const errorOnStaleApprovedFiles = argv.errorOnStaleApprovedFiles === "true";
-
-if (verbose) {
-  console.log("outdir: ", outdir);
-  console.log("errorOnStaleApprovedFiles: ", errorOnStaleApprovedFiles);
-  console.log("testname: ", testname);
-  console.log(
-    "reporters: ",
-    reporters ||
-      "undefined (but will fallback to approvals preconfigure defaults)",
-  );
-}
-
-const opts: any = {};
-if (reporters) {
-  opts.reporters = reporters;
-}
-opts.errorOnStaleApprovedFiles = errorOnStaleApprovedFiles;
-
-if (verbose) {
-  console.log("approval opts: ", opts);
-}
-
-opts.forceApproveAll =
-  autils.hasCommandLineArgument("--forceapproveall") ||
-  autils.hasCommandLineArgument("-f");
-
-process.stdin.pipe(
-  es.mapSync((data: Buffer) => {
-    const dataToVerify = data.toString();
-    configure(opts);
-    verify(outdir, testname, dataToVerify);
-  }),
-);
+main()
