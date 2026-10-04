@@ -41,7 +41,7 @@ describe("Readme", function () {
     let cliDocs = "<!--BEGIN-CLI-DOCS-->";
     cliDocs += "\n<!-- GENERATED - DO NOT MODIFY CLI DOCS IN THIS README -->";
     cliDocs += "\n<!-- Update docs in the source ./bin/help.md -->";
-    cliDocs += "\n\n" + cliDocsRaw;
+    cliDocs += "\n\n" + cliDocsRaw.trimEnd();
     cliDocs += "\n\n<!--END-CLI-DOCS-->";
 
     let reporterList = "<!--BEGIN-REPORTERS-LIST-->";
