@@ -43,7 +43,6 @@
     "vitest": "vitest run",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint lib test",
-    "release": "np",
     "mocha": "mocha",
     "coverage": "nyc npm run mocha"
   },
@@ -80,7 +79,6 @@
     "mocha": "^12.0.2",
     "mocha-junit-reporter": "^2.2.1",
     "mocha-multi-reporters": "^1.5.1",
-    "np": "^12.0.0",
     "nyc": "^18.0.0",
     "pre-commit": "^2.0.0",
     "prettier": "^3.4.2",
