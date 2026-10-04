@@ -3,10 +3,8 @@ import es from "event-stream";
 import * as autils from "../lib/AUtils";
 import fs from "fs";
 import path from "path";
-import { stripVTControlCharacters } from "node:util";
-import { marked, type Tokens } from "marked";
+import { marked } from "marked";
 import { createTerminalRenderer, darkTheme } from "marked-terminal-renderer";
-import Table from "cli-table3";
 import minimist from "minimist";
 import { configure, verify } from "../lib/Approvals";
 import { redText } from "../lib/Utilities/ConsoleUtils";
@@ -20,49 +18,8 @@ async function printHelpMessage(): Promise<void> {
   }
 
   const helpFile = fs.readFileSync(path.join(__dirname, "help.md"), "utf8");
-  const terminalWidth = process.stdout.columns;
-  const effectiveTerminalWidth =
-    Number.isFinite(terminalWidth) && terminalWidth > 0 ? terminalWidth : 80;
-  const tableWidth = Math.max(12, Math.min(100, effectiveTerminalWidth));
-  // Reserve three columns for the table borders and keep descriptions readable.
-  const argumentWidth = Math.min(26, Math.floor((tableWidth - 3) * 0.4));
-  marked.use(createTerminalRenderer(darkTheme({ lineLength: tableWidth })), {
-    renderer: {
-      // Keep the CLI's existing help layout when changing terminal renderers.
-      heading({ depth, tokens }) {
-        return (
-          "#".repeat(depth) + " " + this.parser.parseInline(tokens) + "\n\n"
-        );
-      },
-      code({ text }) {
-        return (
-          text
-            .split("\n")
-            .map((line) => "    " + line)
-            .join("\n") + "\n\n"
-        );
-      },
-      link({ href, tokens }) {
-        return this.parser.parseInline(tokens) + " (" + href + ")";
-      },
-      table({ header, rows }) {
-        const renderCell = (cell: Tokens.TableCell) =>
-          stripVTControlCharacters(this.parser.parseInline(cell.tokens));
-        const table = new Table({
-          head: header.map(renderCell),
-          colWidths: [argumentWidth, tableWidth - argumentWidth - 3],
-          wordWrap: true,
-          wrapOnWordBoundary: false,
-        });
-        table.push(...rows.map((row) => row.map(renderCell)));
-        return table.toString() + "\n\n";
-      },
-    },
-  });
-  let output = await marked.parse(helpFile);
-
-  output = output.replace(/&nbsp;/g, " ");
-  console.log(output);
+  marked.use(createTerminalRenderer(darkTheme()));
+  console.log(await marked.parse(helpFile));
 }
 
 async function errAndExit(msg: string): Promise<void> {
