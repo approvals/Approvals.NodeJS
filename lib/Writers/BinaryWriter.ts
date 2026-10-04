@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import mkdirp from "mkdirp";
+import { sync } from "mkdirp";
 import fileType from "file-type"; // Assuming fileType provides synchronous methods
 import { Writer } from "../Core/Writer";
 
@@ -23,7 +23,7 @@ export class BinaryWriter implements Writer {
   write(filePath: string): void {
     const dir = path.dirname(path.normalize(filePath));
     if (!fs.existsSync(dir)) {
-      mkdirp.sync(dir);
+      sync(dir);
     }
 
     fs.writeFileSync(filePath, this.outputData);
