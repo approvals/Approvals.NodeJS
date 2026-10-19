@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { sync } from "mkdirp";
-import fileType from "file-type"; // Assuming fileType provides synchronous methods
+import { filetypeextension } from "magic-bytes.js";
 import { Writer } from "../Core/Writer";
 
 export class BinaryWriter implements Writer {
@@ -14,8 +14,19 @@ export class BinaryWriter implements Writer {
 
   getFileExtension(): string {
     if (!this._ext) {
-      const fileTypeDiscovered = fileType(this.outputData);
-      this._ext = fileTypeDiscovered?.ext || "blob"; // Assuming synchronous call
+      // Use the first signature match (for example, zip before jar/docx).
+      const extension = filetypeextension(this.outputData)[0] || "blob";
+      // Keep existing JPEG and TIFF approval filenames compatible.
+      switch (extension) {
+        case "jpeg":
+          this._ext = "jpg";
+          break;
+        case "tiff":
+          this._ext = "tif";
+          break;
+        default:
+          this._ext = extension;
+      }
     }
     return this._ext;
   }
