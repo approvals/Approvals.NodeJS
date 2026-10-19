@@ -1,0 +1,11 @@
+{
+  "name": "approvals-tests-vitest",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "cd ../.. && vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.1"
+  }
+}

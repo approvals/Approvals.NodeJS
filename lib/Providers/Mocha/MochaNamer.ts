@@ -1,6 +1,6 @@
 import path from "path";
 import { Namer } from "../../Namer";
-import { Runnable, Suite } from "mocha";
+import type { Runnable, Suite } from "mocha";
 import { convertToFilename } from "../../Core/Namer";
 
 export class MochaNamer extends Namer {

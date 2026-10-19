@@ -1,0 +1,14 @@
+{
+  "name": "vitest-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run --globals"
+  },
+  "dependencies": {
+    "@approval-tests/approvals": "file:../.."
+  },
+  "devDependencies": {
+    "vitest": "^5.0.1"
+  }
+}

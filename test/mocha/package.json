@@ -1,0 +1,12 @@
+{
+  "name": "approvals-tests-mocha",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "cd ../.. && mocha"
+  },
+  "devDependencies": {
+    "mocha": "^12.0.2",
+    "mocha-multi-reporters": "^1.5.1"
+  }
+}

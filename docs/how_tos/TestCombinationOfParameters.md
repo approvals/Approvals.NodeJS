@@ -47,7 +47,7 @@ test("CombinationsStartingPoint", () => {
 });
 ```
 
-<sup><a href='/test/Providers/Jest/CombinationApprovals.test.mts#L129-L139' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/jest/Providers/CombinationApprovals.test.mts#L129-L139' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
@@ -70,7 +70,7 @@ matters at this point: all combinations of your own input values should be liste
 [input1.value2,input2.value3] => placeholder for input1.value2, input2.value3
 ```
 
-<sup><a href='/test/Providers/Jest/CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/jest/Providers/CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationApprovals.test.documentation_CombinationsStartingPoint.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 5. Implement the body of your lambda

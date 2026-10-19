@@ -47,6 +47,7 @@ coverage/
 bin/*.js
 lib/**/*.js
 test/**/**.js
+!test/mocha/Providers/Mocha/MochaNamerTests.js
 /yarn.lock
 *.mjs
 *.d.mts

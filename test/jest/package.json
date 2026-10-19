@@ -1,0 +1,13 @@
+{
+  "name": "approvals-tests-jest",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "cd ../.. && jest"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "ts-jest": "^29.0.3",
+    "jest-junit": "^17.0.0"
+  }
+}

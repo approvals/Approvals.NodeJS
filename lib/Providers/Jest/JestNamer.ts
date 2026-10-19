@@ -1,9 +1,9 @@
-import { expect } from "@jest/globals";
 import path from "path";
 import { Namer } from "../../Namer";
 import { convertToFilename } from "../../Core/Namer";
 
 export function getJestNamer(): Namer {
+  const { expect } = require("@jest/globals") as typeof import("@jest/globals");
   const state = expect.getState();
   const file = path.parse(state.testPath as string);
   const testPath = file.dir;

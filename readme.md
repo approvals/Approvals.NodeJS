@@ -69,6 +69,10 @@ What is an approval test? Check out a brief [overview here](http://staxmanade.co
 
 ## Getting Started
 
+Mocha, Jest, and Vitest are optional peer dependencies. Install the framework
+your tests use alongside Approvals. Approvals silently skips integrations for
+frameworks that are not installed.
+
 ### Jest Typescript Starter Project
 
 If you want to jump start a new project, clone the [Jest Starter Project](https://github.com/approvals/ApprovalTests.TypeScript.Jest.StarterProject)
@@ -90,10 +94,10 @@ Below is a simple getting started using Mocha.
    npm install --save-dev @approval-tests/approvals
    ```
 
-1. Install [Mocha](http://mochajs.org/) globally to execute our tests
+1. Install [Mocha](http://mochajs.org/) in the project to execute our tests
 
    ```shell
-   npm install -g mocha
+   npm install --save-dev mocha
    ```
 
 1. Create a sample Mocha test file called `SimpleLogger.test.js`.
@@ -112,7 +116,7 @@ Below is a simple getting started using Mocha.
 1. Test the file with mocha.
 
    ```shell
-   mocha SimpleLogger.test.js
+   npx mocha SimpleLogger.test.js
    ```
 
 1. You should be presented with a diff tool. (if not, you may need to install one?)
@@ -507,7 +511,7 @@ approvals.verifyAndScrub(__dirname, 'sample-approval-test', { a: "some text in a
 ### approvals~verifyWithControl(namer, writer, [reporterFactory], [optionsOverride])
 This allows you to take full control of naming and writing files before verifying.
 
-For an example that we use to generate the docs within the readme, check out the [test/readmeTests.mts](test/readmeTests.mts) in this project.
+For an example that we use to generate the docs within the readme, check out the [test/mocha/readmeTests.mts](test/mocha/readmeTests.mts) in this project.
 
 **Kind**: inner method of [<code>approvals</code>](#module_approvals)
 

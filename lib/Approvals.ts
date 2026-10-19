@@ -26,6 +26,7 @@ import { stringifyKeysInOrder } from "./AUtils";
 import { MochaNamer } from "./Providers/Mocha/MochaNamer";
 
 import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
+import { isFrameworkAvailable } from "./Providers/OptionalFramework";
 
 /**
  * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
@@ -96,6 +97,7 @@ export function getConfig(overrideOptions?: cfg.Config): cfg.Config {
  */
 
 export function mocha(optionalBaseDir?: string): typeof module.exports {
+  if (!isFrameworkAvailable("mocha")) return module.exports;
   // if not providing a base dir, fallback to the current calling code's directory
   if (!optionalBaseDir) {
     let fileName = callsite()[1].getFileName();
@@ -293,7 +295,7 @@ export function verifyAsJSONAndScrub(
 /**
  * This allows you to take full control of naming and writing files before verifying.
  *
- * For an example that we use to generate the docs within the readme, check out the [test/readmeTests.mts](test/readmeTests.mts) in this project.
+ * For an example that we use to generate the docs within the readme, check out the [test/mocha/readmeTests.mts](test/mocha/readmeTests.mts) in this project.
  *
  * @param {Object} namer
  * @param {Object} writer

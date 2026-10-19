@@ -39,12 +39,14 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "npm run lint && npm run mocha && jest && vitest run",
-    "vitest": "vitest run",
+    "test": "npm run lint && npm run mocha && npm run jest && npm run vitest && npm run test:projects",
+    "vitest": "npm test --workspace test/vitest --",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint lib test",
-    "mocha": "mocha",
-    "coverage": "nyc npm run mocha"
+    "mocha": "npm test --workspace test/mocha --",
+    "coverage": "nyc npm run mocha",
+    "test:projects": "npm run build && node scripts/test-projects.cjs",
+    "jest": "npm test --workspace test/jest --"
   },
   "dependencies": {
     "ansi-colors": "^4.1.3",
@@ -54,7 +56,6 @@
     "event-stream": "^4.0.1",
     "file-type": "^12.4.2",
     "glob": "^13.0.0",
-    "jest": "^30.0.0",
     "js-yaml": "^5.1.0",
     "lodash": "^4.17.21",
     "marked": "^18.0.14",
@@ -62,8 +63,7 @@
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1",
     "shelljs": "^0.10.0",
-    "temp": "^0.9.4",
-    "ts-jest": "^29.0.3"
+    "temp": "^0.9.4"
   },
   "devDependencies": {
     "@types/chai": "^5.0.1",
@@ -74,17 +74,13 @@
     "chai": "^6.0.1",
     "eslint": "^10.2.1",
     "eslint-plugin-promise": "^7.2.1",
-    "jest-junit": "^17.0.0",
     "jsdoc-to-markdown": "^9.1.1",
-    "mocha": "^12.0.2",
-    "mocha-multi-reporters": "^1.5.1",
     "nyc": "^18.0.0",
     "pre-commit": "^2.0.0",
     "prettier": "^3.4.2",
     "sinon": "^22.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^6.0.2",
-    "vitest": "^5.0.1"
+    "typescript": "^6.0.2"
   },
   "keywords": [
     "Approve",
@@ -96,5 +92,26 @@
     "Testing",
     "Verification",
     "Verify"
+  ],
+  "peerDependencies": {
+    "jest": "^30.0.0",
+    "mocha": "^12.0.2",
+    "vitest": "^5.0.1"
+  },
+  "peerDependenciesMeta": {
+    "jest": {
+      "optional": true
+    },
+    "mocha": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "workspaces": [
+    "test/mocha",
+    "test/jest",
+    "test/vitest"
   ]
 }

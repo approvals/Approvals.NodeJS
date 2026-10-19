@@ -1,0 +1,14 @@
+{
+  "name": "jest-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "dependencies": {
+    "@approval-tests/approvals": "file:../.."
+  },
+  "devDependencies": {
+    "jest": "^30.0.0"
+  }
+}

@@ -15,8 +15,10 @@ import { getJestNamer } from "./JestNamer";
 
 import { StringWriter } from "../../StringWriter";
 import * as approvals from "../../Approvals";
+import { isFrameworkAvailable } from "../OptionalFramework";
 
 export function verify(sut: any, options?: Options): void {
+  if (!isFrameworkAvailable("jest")) return;
   options = options || new Options();
   options = options.withNamer(getJestNamer());
   const config = options.getConfig(approvals.getConfig());

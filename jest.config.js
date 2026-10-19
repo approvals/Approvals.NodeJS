@@ -1,12 +1,12 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: "ts-jest",
+  roots: ["<rootDir>/test/jest"],
   testEnvironment: "node",
   testMatch: [
     "**/__tests__/**/*.?(m)js?(x)",
     "**/?(*.)+(spec|test).?(m)js?(x)",
   ],
-  testPathIgnorePatterns: ["/node_modules/", "/test/Providers/Vitest/"],
   transform: {},
   reporters: [
     "default",
@@ -19,6 +19,6 @@ module.exports = {
     ],
   ],
   // begin-snippet: jest_config_setup
-  globalSetup: "./test/Providers/Jest/JestGlobalSetup.mjs",
+  globalSetup: "./test/jest/Providers/JestGlobalSetup.mjs",
   // end-snippet
 };

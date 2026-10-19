@@ -14,6 +14,17 @@ cd Approvals.NodeJS
 
 In lieu of a formal styleguide, take care to maintain the existing coding style, most style rules enforce by [eslint](http://eslint.org/). Add unit tests for any new or changed functionality. Run `./build_and_test.sh` before submitting changes.
 
+`npm run test:projects` builds and packs Approvals, then installs it in temporary
+consumer projects with only Mocha, Jest, or Vitest. It also checks installation
+without any framework and asserts that unrelated frameworks and `ts-jest` are
+absent. These checks run as part of `npm test` and require npm registry access.
+The projects in `test-projects/` each declare only their own test framework.
+
+The existing suites live in `test/mocha`, `test/jest`, and `test/vitest`.
+Each is an npm workspace with its own framework dependencies. The root install
+installs all workspaces for development; run one suite with `npm run mocha`,
+`npm run jest`, or `npm run vitest`.
+
 ### How to release a new version
 
 Releases are created through GitHub. GitHub Actions publishes the package to npmjs.org automatically.

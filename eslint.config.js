@@ -7,11 +7,11 @@ module.exports = [
   {
     ignores: [
       "lib/**/*.js",
-      "test/Utilities/Logger/*.js",
-      "test/Providers/Jest/*.js",
-      "test/Providers/Mocha/Typescript/*.js",
-      "test/Scrubbers/*.js",
-      "test/Reporting/Reporters/*.js",
+      "test/jest/Utilities/Logger/*.js",
+      "test/jest/Providers/*.js",
+      "test/mocha/Providers/Mocha/Typescript/*.js",
+      "test/mocha/Scrubbers/*.js",
+      "test/mocha/Reporting/Reporters/*.js",
     ],
   },
   {
