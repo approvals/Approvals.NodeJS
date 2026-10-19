@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "cd ../.. && mocha"
+    "test": "node ../../scripts/test-isolated.cjs mocha",
+    "test:suite": "mocha",
+    "test:coverage": "nyc mocha"
   },
   "devDependencies": {
     "mocha": "^12.0.2",

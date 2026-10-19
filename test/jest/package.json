@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "cd ../.. && jest"
+    "test": "node ../../scripts/test-isolated.cjs jest",
+    "test:suite": "jest"
   },
   "devDependencies": {
     "jest": "^30.0.0",

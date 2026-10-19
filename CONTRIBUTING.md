@@ -22,24 +22,25 @@ To build and run just one framework's suite (plus lint), pass `--framework`:
 
 On Windows, use `build_and_test.bat --framework mocha` (or `jest` / `vitest`).
 These commands still install development dependencies and build the library,
-but skip the other suites and the isolated consumer checks. After building,
+but run only the selected isolated suite. After building,
 `npm test -- --framework jest` selects a suite without rebuilding.
 
 In lieu of a formal styleguide, take care to maintain the existing coding style, most style rules enforce by [eslint](http://eslint.org/). Add unit tests for any new or changed functionality. Run `./build_and_test.sh` before submitting changes.
 
-`npm run test:projects` builds and packs Approvals, then installs it in temporary
-consumer projects with only Mocha, Jest, or Vitest. It also checks installation
-without any framework and asserts that unrelated frameworks and `ts-jest` are
-absent. These checks run as part of `npm test` and require npm registry access.
-The projects in `test-projects/` each declare only their own test framework.
-The default build-and-test command therefore runs the main suites first, then
-builds again and runs these smaller consumer tests. They verify the packaged
-library with isolated dependencies rather than repeating the full suites.
+The suites live in `test/mocha`, `test/jest`, and `test/vitest`, each with its own
+framework dependencies. `npm test` runs lint, a small framework-free core check,
+and each full suite once in a temporary directory. Each directory contains the
+built library and only that suite's framework; the runner asserts that the other
+frameworks are absent before starting tests. There is no second smoke-test run
+or rebuild during testing.
 
-The existing suites live in `test/mocha`, `test/jest`, and `test/vitest`.
-Each is an npm workspace with its own framework dependencies. The root install
-installs all workspaces for development; run one suite with `npm run mocha`,
-`npm run jest`, or `npm run vitest`.
+The root install supplies all workspaces for compilation and development.
+Isolated installs reuse versions from `package-lock.json` and require npm cache
+or registry access. Build first with `npm run build`; then run all suites with
+`npm test`, or one with `npm run mocha`, `npm run jest`, or `npm run vitest`.
+JUnit reports and any received files are copied back into the repository before
+the temporary directories are removed. `npm run coverage` runs Mocha in isolation
+and copies its coverage report back too.
 
 ### How to release a new version
 

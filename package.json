@@ -40,13 +40,12 @@
   "scripts": {
     "build": "tsc",
     "test": "node scripts/test.cjs",
-    "vitest": "npm test --workspace test/vitest --",
+    "vitest": "node scripts/test-isolated.cjs vitest",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint lib test",
-    "mocha": "npm test --workspace test/mocha --",
-    "coverage": "nyc npm run mocha",
-    "test:projects": "npm run build && node scripts/test-projects.cjs",
-    "jest": "npm test --workspace test/jest --"
+    "mocha": "node scripts/test-isolated.cjs mocha",
+    "coverage": "node scripts/test-isolated.cjs mocha --coverage",
+    "jest": "node scripts/test-isolated.cjs jest"
   },
   "dependencies": {
     "ansi-colors": "^4.1.3",

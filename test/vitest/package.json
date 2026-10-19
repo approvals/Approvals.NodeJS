@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "cd ../.. && vitest run"
+    "test": "node ../../scripts/test-isolated.cjs vitest",
+    "test:suite": "vitest run"
   },
   "devDependencies": {
     "vitest": "^5.0.1"

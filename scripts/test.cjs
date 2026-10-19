@@ -21,19 +21,22 @@ if (args.length) {
   }
 }
 
-const scripts = framework
-  ? ["lint", framework]
-  : ["lint", "mocha", "jest", "vitest", "test:projects"];
+const lint = spawnSync(
+  process.execPath,
+  [process.env.npm_execpath, "run", "lint"],
+  { stdio: "inherit" },
+);
+if (lint.error) {
+  console.error(lint.error.message);
+  process.exit(1);
+}
+if (lint.status !== 0) process.exit(lint.status ?? 1);
 
-for (const script of scripts) {
-  const result = spawnSync(
-    process.execPath,
-    [process.env.npm_execpath, "run", script],
-    { stdio: "inherit" },
+try {
+  require("./test-isolated.cjs").runSuites(
+    framework ? [framework] : [null, "mocha", "jest", "vitest"],
   );
-  if (result.error) {
-    console.error(result.error.message);
-    process.exit(1);
-  }
-  if (result.status !== 0) process.exit(result.status ?? 1);
+} catch (error) {
+  console.error(error.message);
+  process.exit(error.status || 1);
 }
