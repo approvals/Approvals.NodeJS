@@ -39,7 +39,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "npm run lint && npm run mocha && npm run jest && npm run vitest && npm run test:projects",
+    "test": "node scripts/test.cjs",
     "vitest": "npm test --workspace test/vitest --",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint lib test",
