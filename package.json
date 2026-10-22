@@ -27,9 +27,14 @@
   },
   "license": "Apache-2.0",
   "main": "lib/Approvals",
+  "types": "lib/Approvals.d.ts",
   "files": [
-    "lib",
-    "bin"
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "lib/DummyApprovedFiles/UnapprovedImage.png",
+    "bin/**/*.js",
+    "bin/**/*.d.ts",
+    "bin/help.md"
   ],
   "bin": {
     "approvals": "bin/index.js"
@@ -39,6 +44,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "prepack": "npm run build",
     "test": "node scripts/test.cjs",
     "vitest": "node scripts/test-isolated.cjs vitest",
     "test2": "npm run mocha && npm run lint",
