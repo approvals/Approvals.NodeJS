@@ -21,8 +21,8 @@ export class LogUtils {
   }
 
   private static async downloadApproveAllScriptIfMissing(): Promise<void> {
-    await this.downloadFile(`approve_all.py`);
-    await this.downloadFile(`remove_abandoned_files.py`);
+    void this.downloadFile(`approve_all.py`);
+    void this.downloadFile(`remove_abandoned_files.py`);
   }
 
   private static async downloadFile(script: string) {
@@ -32,7 +32,9 @@ export class LogUtils {
       if (!fs.existsSync(scriptPath)) {
         const githubUrl =
           "https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/";
-        const response = await axios.get(`${githubUrl}${script}`);
+        const response = await axios.get(`${githubUrl}${script}`, {
+          timeout: 3000,
+        });
 
         fs.writeFileSync(scriptPath, response.data);
         fs.chmodSync(scriptPath, 0o755);
