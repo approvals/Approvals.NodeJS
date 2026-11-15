@@ -45,13 +45,20 @@
   "scripts": {
     "build": "tsc",
     "prepack": "npm run build",
-    "test": "node scripts/test.cjs",
+    "test": "npm run lint && npm run test:suites --",
+    "test:suites": "node scripts/test.cjs",
     "vitest": "node scripts/test-isolated.cjs vitest",
     "test2": "npm run mocha && npm run lint",
     "lint": "eslint lib test",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:staged": "lint-staged",
     "mocha": "node scripts/test-isolated.cjs mocha",
     "coverage": "node scripts/test-isolated.cjs mocha --coverage",
     "jest": "node scripts/test-isolated.cjs jest"
+  },
+  "pre-commit": ["lint:staged", "test:suites"],
+  "lint-staged": {
+    "*.{js,mjs,ts,mts}": "eslint --fix"
   },
   "dependencies": {
     "ansi-colors": "^4.1.3",
@@ -80,6 +87,7 @@
     "eslint": "^10.2.1",
     "eslint-plugin-promise": "^7.2.1",
     "jsdoc-to-markdown": "^9.1.1",
+    "lint-staged": "^17.6.0",
     "nyc": "^18.0.0",
     "pre-commit": "^2.0.0",
     "prettier": "^3.4.2",
