@@ -1,5 +1,6 @@
 const parser = require("@typescript-eslint/parser");
 const typescript = require("@typescript-eslint/eslint-plugin");
+const globals = require("globals");
 
 module.exports = [
   {
@@ -17,7 +18,13 @@ module.exports = [
   },
   {
     files: ["**/*.js", "**/*.mjs", "**/*.ts", "**/*.mts"],
-    languageOptions: { parser },
+    languageOptions: {
+      parser,
+      globals: {
+        ...globals.node,
+        NodeJS: "readonly",
+      },
+    },
     plugins: { "@typescript-eslint": typescript },
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
@@ -67,7 +74,7 @@ module.exports = [
       //   "no-new": 0,
       //   "no-plusplus": 0,
       //   "quotes": 0,
-      //   "no-undef": "error",
+      "no-undef": "error",
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": ["error", {
         args: "all",
@@ -106,5 +113,27 @@ module.exports = [
       "no-new-wrappers": "error",
     //   "no-invalid-this": 0
     },
+  },
+  {
+    files: [
+      "test/mocha/**",
+      "lib/Approvals.ts",
+      "lib/Providers/BeforeEachVerifierBase.ts",
+      "lib/Providers/Mocha/**",
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.mocha,
+        Mocha: "readonly",
+      },
+    },
+  },
+  {
+    files: ["test/jest/**", "lib/Utilities/Logger/SimpleLoggerApprovals.ts"],
+    languageOptions: { globals: globals.jest },
+  },
+  {
+    files: ["test/vitest/**"],
+    languageOptions: { globals: globals.vitest },
   },
 ];
