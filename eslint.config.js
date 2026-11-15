@@ -4,6 +4,9 @@ const typescript = require("@typescript-eslint/eslint-plugin");
 module.exports = [
   {
     ignores: [
+      "**/*.d.ts",
+      "**/*.d.mts",
+      "**/*.mjs",
       "lib/**/*.js",
       "test/jest/Utilities/Logger/*.js",
       "test/jest/Providers/*.js",
