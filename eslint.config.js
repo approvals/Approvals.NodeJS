@@ -101,7 +101,7 @@ module.exports = [
       "no-proto": "error",
       "no-script-url": "error",
       "no-shadow": "error",
-      //   "dot-notation": "error",
+      "dot-notation": "error",
       "no-new-func": "error",
       "no-new-wrappers": "error",
     //   "no-invalid-this": 0
