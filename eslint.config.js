@@ -1,8 +1,6 @@
 const parser = require("@typescript-eslint/parser");
 const typescript = require("@typescript-eslint/eslint-plugin");
 
-// .eslintrc.js took precedence over .eslintrc.json in the legacy setup.
-// Preserve its effective settings without enabling the inactive JSON rules.
 module.exports = [
   {
     ignores: [
@@ -18,15 +16,15 @@ module.exports = [
     files: ["**/*.js", "**/*.mjs", "**/*.ts", "**/*.mts"],
     languageOptions: { parser },
     plugins: { "@typescript-eslint": typescript },
-    // Original .eslintrc.json rules, disabled for compatibility.
+    // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
-    // "rules": {
+    rules: {
     //   "indent": ["error", 2],
-    //   "semi": ["error", "always"],
+      "semi": ["error", "always"],
     //   "no-console": ["off"],
     //   "curly": [2, "all"],
-    //   "keyword-spacing": ["error", {}],
-    //   "space-infix-ops": "error",
+      "keyword-spacing": ["error", {}],
+      "space-infix-ops": "error",
     //   "no-implicit-coercion": [
     //     "error",
     //     {
@@ -35,8 +33,8 @@ module.exports = [
     //       "number": false
     //     }
     //   ],
-    //   "no-with": "error",
-    //   "no-multiple-empty-lines": "error",
+      "no-with": "error",
+      "no-multiple-empty-lines": ["error",  { max: 1, maxBOF: 0, maxEOF: 0 }],
     //   "brace-style": [
     //     "error",
     //     "1tbs",
@@ -44,17 +42,12 @@ module.exports = [
     //       "allowSingleLine": true
     //     }
     //   ],
-    //   "no-trailing-spaces": "error",
-    //   "eol-last": "error",
-    //   "no-empty": [
-    //     "error",
-    //     {
-    //       "allowEmptyCatch": true
-    //     }
-    //   ],
-    //   "array-bracket-spacing": ["error", "never", {}],
-    //   "space-in-parens": ["error", "never"],
-    //   "no-mixed-spaces-and-tabs": "error",
+      "no-trailing-spaces": "error",
+      "eol-last": "error",
+      "no-empty": "error",
+      "array-bracket-spacing": ["error", "never", {}],
+      "space-in-parens": ["error", "never"],
+      "no-mixed-spaces-and-tabs": "error",
     //   "indent": [
     //     "error",
     //     2,
@@ -62,13 +55,13 @@ module.exports = [
     //       "SwitchCase": 1
     //     }
     //   ],
-    //   "no-bitwise": "error",
+      "no-bitwise": "error",
     //   "camelcase": 0,
     //   "curly": "error",
     //   "eqeqeq": "error",
     //   "guard-for-in": "error",
-    //   "no-extend-native": "error",
-    //   "wrap-iife": 0,
+      "no-extend-native": "error",
+      "wrap-iife": "error",
     //   "indent": [
     //     2,
     //     2,
@@ -78,9 +71,9 @@ module.exports = [
     //   ],
     //   "no-use-before-define": 0,
     //   "new-cap": 0,
-    //   "no-caller": "error",
+      "no-caller": "error",
     //   "no-empty": "error",
-    //   "no-irregular-whitespace": "error",
+      "no-irregular-whitespace": "error",
     //   "no-new": 0,
     //   "no-plusplus": 0,
     //   "quotes": 0,
@@ -88,31 +81,31 @@ module.exports = [
     //   "no-unused-vars": "error",
     //   "strict": 0,
     //   "max-params": 0,
-    //   "max-depth": 0,
+      "max-depth": "error",
     //   "max-statements": 0,
-    //   "complexity": 0,
+      "complexity": "error",
     //   "max-len": 0,
     //   "semi": 0,
-    //   "no-cond-assign": 0,
-    //   "no-debugger": 0,
+      "no-cond-assign": "error",
+      "no-debugger": "error",
     //   "no-eq-null": 0,
-    //   "no-eval": 0,
+      "no-eval": "error",
     //   "no-unused-expressions": 0,
-    //   "block-scoped-var": 0,
-    //   "no-iterator": 0,
-    //   "linebreak-style": 0,
-    //   "comma-style": [2, "last"],
+      "block-scoped-var": "error",
+      "no-iterator": "error",
+      "linebreak-style": "error",
+      "comma-style": [2, "last"],
     //   "no-loop-func": 0,
-    //   "no-multi-str": 0,
+      "no-multi-str": "error",
     //   "require-yield": 0,
-    //   "valid-typeof": 0,
-    //   "no-proto": 0,
-    //   "no-script-url": 0,
+      "valid-typeof": "error",
+      "no-proto": "error",
+      "no-script-url": "error",
     //   "no-shadow": "error",
     //   "dot-notation": "error",
-    //   "no-new-func": 0,
-    //   "no-new-wrappers": 0,
+      "no-new-func": "error",
+      "no-new-wrappers": "error",
     //   "no-invalid-this": 0
-    // },
+    },
   },
 ];
