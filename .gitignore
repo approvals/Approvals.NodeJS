@@ -45,6 +45,7 @@ coverage/
 # TypeScript output
 *.d.ts
 bin/*.js
+tools/*.js
 lib/**/*.js
 test/**/**.js
 !test/mocha/Providers/Mocha/MochaNamerTests.js
