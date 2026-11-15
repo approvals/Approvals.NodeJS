@@ -7,7 +7,8 @@ export default [
     ignores: [
       "**/*.d.ts",
       "**/*.d.mts",
-      "**/*.mjs",
+      "lib/**/*.mjs",
+      "test/**/*.mjs",
       "lib/**/*.js",
       "test/jest/Utilities/Logger/*.js",
       "test/jest/Providers/*.js",
