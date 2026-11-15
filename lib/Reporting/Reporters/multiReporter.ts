@@ -29,7 +29,7 @@ export default class MultiReporter implements Reporter {
   }
 
   report(approvedFilePath, receivedFilePath, options) {
-    var errors: any[] = [];
+    const errors: any[] = [];
     this.reporters.forEach(function (reporter) {
       try {
         reporter.report(approvedFilePath, receivedFilePath, options);
@@ -41,7 +41,7 @@ export default class MultiReporter implements Reporter {
     if (errors.length === 1) {
       throw errors[0];
     } else if (1 < errors.length) {
-      var errorMessage =
+      const errorMessage =
         "There were multiple errors:\n\n" +
         errors
           .map((err) => {

@@ -30,7 +30,7 @@ export function verify(sut: any, options?: Options): void {
     scrubbed,
     options.forFile().getFileExtension(),
   );
-  let namer = options.getNamer();
+  const namer = options.getNamer();
   approvals.verifyWithControl(namer, writer, null, config);
 }
 

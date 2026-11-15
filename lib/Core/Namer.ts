@@ -7,7 +7,7 @@ export interface Namer {
 
 export function convertToFilename(name: string): string {
   const forbidden = "\\/:?\"<>|' ";
-  for (let forbiddenKey of forbidden) {
+  for (const forbiddenKey of forbidden) {
     name = StringUtils.replaceAll(name, forbiddenKey, "_");
   }
   return name;

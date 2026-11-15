@@ -24,7 +24,7 @@ describe("Mocha", function () {
     });
 
     it("should verifyAsJSON", function () {
-      var value = {
+      const value = {
         a: 1,
         b: "bar",
       };

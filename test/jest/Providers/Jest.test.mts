@@ -45,7 +45,7 @@ describe("verifyAll", () => {
 
 describe("Options", () => {
   test("handles configuration", () => {
-    let configModifier: ConfigModifier = (c) => {
+    const configModifier: ConfigModifier = (c) => {
       c.reporters = ["beyondcompare"];
       return c;
     };

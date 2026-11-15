@@ -1,21 +1,21 @@
 "use strict";
 
-var assert = require("assert");
-var path = require("path");
-var { MochaNamer } = require("../../../../lib/Providers/Mocha/MochaNamer");
+const assert = require("assert");
+const path = require("path");
+const { MochaNamer } = require("../../../../lib/Providers/Mocha/MochaNamer");
 
 describe("MochaNamer", function () {
   describe("when given a mocha context", function () {
     it("should generate correct name", function () {
-      var fullTestFilePathStub = "C:\\temp\\";
+      const fullTestFilePathStub = "C:\\temp\\";
 
-      var namer = new MochaNamer(this);
+      const namer = new MochaNamer(this);
 
       // hack the path (for testing purposes);
       namer.basePath = fullTestFilePathStub;
 
-      var approvedFileName = namer.getApprovedFile();
-      var receivedFileName = namer.getReceivedFile();
+      const approvedFileName = namer.getApprovedFile();
+      const receivedFileName = namer.getReceivedFile();
 
       assert.strictEqual(
         approvedFileName,

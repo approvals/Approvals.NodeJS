@@ -29,6 +29,8 @@ module.exports = [
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
+      "prefer-const": "error",
+      "no-var": "error",
       "indent": ["error", 2,{
         "SwitchCase": 1
       }],

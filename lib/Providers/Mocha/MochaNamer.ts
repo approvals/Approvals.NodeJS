@@ -20,9 +20,9 @@ export class MochaNamer extends Namer {
   }
 
   getFullTestName(testContext: Runnable): string {
-    let test = testContext;
+    const test = testContext;
 
-    let parentStack: (Runnable | Suite)[] = [];
+    const parentStack: (Runnable | Suite)[] = [];
     let currParent: Runnable | undefined | Suite = test;
     while (currParent && currParent.parent) {
       parentStack.push(currParent);
@@ -30,7 +30,7 @@ export class MochaNamer extends Namer {
     }
 
     let newTitle = "";
-    let parentStackReversed = parentStack.reverse();
+    const parentStackReversed = parentStack.reverse();
     parentStackReversed.forEach((item, index) => {
       if (index !== 0) {
         newTitle += ".";

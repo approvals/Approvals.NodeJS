@@ -19,7 +19,7 @@ export default class NodeDiffReporter implements Reporter {
   canReportOn(fileName) {
     assertFileExists(fileName);
 
-    var isBinary = isBinaryFile(fileName);
+    const isBinary = isBinaryFile(fileName);
     if (isBinary) {
       return false;
     }
@@ -30,13 +30,13 @@ export default class NodeDiffReporter implements Reporter {
   report(approved, received, _options): void {
     createEmptyFileIfNotExists(approved);
 
-    var approvedText = fs.readFileSync(approved).toString();
-    var receivedText = fs.readFileSync(received).toString();
+    const approvedText = fs.readFileSync(approved).toString();
+    const receivedText = fs.readFileSync(received).toString();
 
     console.log(`*******************************************`);
     console.log(`* Showing diff for ${approved} vs ${received}\n`);
 
-    var diff = jsdiff.diffChars(approvedText, receivedText);
+    const diff = jsdiff.diffChars(approvedText, receivedText);
 
     diff.forEach(function (part) {
       // green for additions, red for deletions

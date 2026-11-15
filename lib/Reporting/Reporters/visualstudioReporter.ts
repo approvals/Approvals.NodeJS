@@ -7,10 +7,10 @@ export default class VisualStudioReporter extends GenericDiffReporterBase {
     super("VisualStudio");
 
     if (platform.isWindows) {
-      var edge = require("edge");
+      const edge = require("edge");
 
       // Use edge to execute some .net and go find the installed version of visual studio.
-      var getVisualStudioPath = edge.func(function () {
+      const getVisualStudioPath = edge.func(function () {
         /*
         async (input) => {
           // pulled this from https://github.com/approvals/ApprovalTests.Net/blob/master/ApprovalTests/Reporters/VisualStudioReporter.cs

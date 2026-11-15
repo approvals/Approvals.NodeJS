@@ -18,7 +18,7 @@ export function printArray<T>(
   if (header) {
     text = header + "\n\n\n";
   }
-  for (let t of list) {
+  for (const t of list) {
     text += formatter(t) + "\n";
   }
   return text;
@@ -54,7 +54,7 @@ function generateParameterCombinations<T extends any[]>(
     return parameterCombinations;
   }
 
-  for (let nextParameter of variations[index]) {
+  for (const nextParameter of variations[index]) {
     generateParameterCombinations(
       variations,
       parameterCombinations,

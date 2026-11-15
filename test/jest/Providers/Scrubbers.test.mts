@@ -48,8 +48,8 @@ describe("Scubbers", () => {
     );
   });
   test("dates", () => {
-    for (let format of DateScrubber.getSupportedFormats()) {
-      for (let example of format.examples) {
+    for (const format of DateScrubber.getSupportedFormats()) {
+      for (const example of format.examples) {
         const scrubber = DateScrubber.getScrubberFor(example);
         expect(scrubber(example)).toBe("<date_1>");
       }

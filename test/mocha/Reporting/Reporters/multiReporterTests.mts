@@ -40,12 +40,12 @@ class TrackingReporter implements Reporter {
 
 describe("multiReporter", function () {
   it("should use a multiple reporter", function () {
-    var MultiReporter = approvals.reporters.MultiReporter;
+    const MultiReporter = approvals.reporters.MultiReporter;
 
-    var r1 = new TrackingReporter();
-    var r2 = new TrackingReporter();
+    const r1 = new TrackingReporter();
+    const r2 = new TrackingReporter();
 
-    var multiReporter = new MultiReporter([r1, r2]);
+    const multiReporter = new MultiReporter([r1, r2]);
 
     multiReporter.report("asdf", "bsdf");
 
@@ -54,12 +54,12 @@ describe("multiReporter", function () {
   });
 
   it("It should error propertly", function () {
-    var MultiReporter = approvals.reporters.MultiReporter;
+    const MultiReporter = approvals.reporters.MultiReporter;
 
-    var r1 = new ExceptionThrowingReporter("reporter 1");
-    var r2 = new ExceptionThrowingReporter("reporter 2");
+    const r1 = new ExceptionThrowingReporter("reporter 1");
+    const r2 = new ExceptionThrowingReporter("reporter 2");
 
-    var multiReporter = new MultiReporter([r1, r2]);
+    const multiReporter = new MultiReporter([r1, r2]);
 
     try {
       multiReporter.report("asdf", "bsdf");

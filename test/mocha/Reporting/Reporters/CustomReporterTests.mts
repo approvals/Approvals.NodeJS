@@ -6,13 +6,13 @@ import { mocha } from "../../../../lib/Approvals.js";
 import { testDirectory } from "../../testPaths.mjs";
 import * as path from "path";
 
-var approvals = mocha();
+const approvals = mocha();
 
 interface CustomReporter extends Reporter {
   getWasReporterUsed: () => boolean;
 }
 function MyCustomReporter(): CustomReporter {
-  var wasReporterUsed = false;
+  let wasReporterUsed = false;
   return {
     canReportOn: function (/*file*/) {
       return true;
@@ -78,7 +78,7 @@ describe("CustomReporter", function () {
       reporters: [globalCustomReporter],
     });
 
-    var didRaiseException = false;
+    let didRaiseException = false;
     try {
       approvals.verify(
         path.join(testDirectory, "Reporting", "Reporters"),

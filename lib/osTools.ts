@@ -8,4 +8,4 @@ export const platform = {
   isMac: process.platform === "darwin",
 };
 
-export let findProgramPathCommand = isWindows ? "where" : "which";
+export const findProgramPathCommand = isWindows ? "where" : "which";

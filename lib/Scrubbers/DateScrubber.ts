@@ -64,7 +64,7 @@ export class DateScrubber {
 
   static getScrubberFor(example: string): Scrubber {
     let supported = "";
-    for (let format of DateScrubber.getSupportedFormats()) {
+    for (const format of DateScrubber.getSupportedFormats()) {
       const scrubber = this.create(format.regex);
       const scrubbed = scrubber(example);
       if (scrubbed === "<date_1>") {

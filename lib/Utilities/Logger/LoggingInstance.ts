@@ -239,7 +239,7 @@ export class LoggingInstance {
       diff_millseconds = time1.getTime() - this.previousTimestamp.getTime();
     }
     const diff_display = `~${String(diff_millseconds).padStart(6, "0")}ms`;
-    let time_text = `${time}`.replace("T", " ").substring(0, 19);
+    const time_text = `${time}`.replace("T", " ").substring(0, 19);
     const timestamp = `[${time_text} ${diff_display}] `;
     this.previousTimestamp = time1;
     return timestamp;

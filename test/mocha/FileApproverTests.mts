@@ -24,14 +24,14 @@ class FailingReporter implements Reporter {
 
 describe("FileApprover", function () {
   describe("when two files match", function () {
-    var namer;
-    var reporterFactory;
-    var writer;
-    var config = { appendEOL: false };
+    let namer;
+    let reporterFactory;
+    let writer;
+    const config = { appendEOL: false };
 
     beforeEach(function () {
-      var dir = testDirectory;
-      var fileName = "FileApprover.should_verify_two_files_match";
+      const dir = testDirectory;
+      const fileName = "FileApprover.should_verify_two_files_match";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(config, "HELLO!");
       reporterFactory = function () {
@@ -65,7 +65,7 @@ describe("FileApprover", function () {
 
     it("should remove the received file", function () {
       FileApprover.verify(namer, writer, reporterFactory);
-      var receivedFileName = namer.getReceivedFile(writer.getFileExtension());
+      const receivedFileName = namer.getReceivedFile(writer.getFileExtension());
 
       assert.ok(
         !fs.existsSync(receivedFileName),
@@ -74,7 +74,7 @@ describe("FileApprover", function () {
     });
 
     it("should raise an event with the approved file name", function (done) {
-      var approvedFileName = namer.getApprovedFile(writer.getFileExtension());
+      const approvedFileName = namer.getApprovedFile(writer.getFileExtension());
 
       process.once("approvalFileApproved", function (fileName) {
         assert.strictEqual(fileName, approvedFileName);
@@ -95,25 +95,25 @@ describe("FileApprover", function () {
   });
 
   describe("when configuring the Byte Order Mark (BOM)", function () {
-    var namer;
-    var reporterFactory;
-    var writer;
-    var config = {
+    let namer;
+    let reporterFactory;
+    let writer;
+    const config = {
       appendEOL: false,
       stripBOM: true,
       normalizeLineEndingsTo: "\n",
     };
 
     beforeEach(function () {
-      var dir = testDirectory;
-      var fileName = "FileApproverTests.ByteOrderMark";
+      const dir = testDirectory;
+      const fileName = "FileApproverTests.ByteOrderMark";
       namer = new Namer(dir, fileName);
       writer = new StringWriter(
         config,
         "\uFEFFHello Missing Byte Order Mark!\n",
       );
       reporterFactory = function () {
-        var x = ReporterFactory.ReporterFactory.loadReporter("gitdiff");
+        const x = ReporterFactory.ReporterFactory.loadReporter("gitdiff");
         return [x];
       };
     });

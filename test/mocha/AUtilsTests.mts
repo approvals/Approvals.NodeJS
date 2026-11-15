@@ -10,13 +10,13 @@ describe("AUtils", function () {
       if (!process.env.APPVEYOR) {
         describe("when using windows where.exe to find programs", function () {
           it("ipconfig should be found once", function () {
-            var file = utils.searchForExecutable("ipconfig");
+            const file = utils.searchForExecutable("ipconfig");
 
             utils.assertFileExists(file);
           });
 
           it("notepad is found multiple times and we should just use the first one", function () {
-            var file = utils.searchForExecutable("ipconfig");
+            const file = utils.searchForExecutable("ipconfig");
 
             utils.assertFileExists(file);
           });
@@ -24,7 +24,7 @@ describe("AUtils", function () {
 
         describe("When looking for a program in program files", function () {
           it("should find iexplorer", function () {
-            var file = utils.searchForExecutable(
+            const file = utils.searchForExecutable(
               "Internet Explorer",
               "iexplore",
             );
@@ -38,7 +38,7 @@ describe("AUtils", function () {
     describe("find linux executable", function () {
       describe("when using linux 'which' to find programs", function () {
         it("ifconfig should be found once", function () {
-          var file = utils.searchForExecutable("ifconfig");
+          const file = utils.searchForExecutable("ifconfig");
 
           utils.assertFileExists(file);
         });
@@ -48,17 +48,17 @@ describe("AUtils", function () {
 
   describe("fixFilePathSlashes", function () {
     it("should replace back slashes with forward slashes", function () {
-      var before = "C:\\Windows\\System32\\ipconfig.exe";
-      var expected = "C:/Windows/System32/ipconfig.exe";
+      const before = "C:\\Windows\\System32\\ipconfig.exe";
+      const expected = "C:/Windows/System32/ipconfig.exe";
 
-      var fixed = utils.fixFilePathSlashes(before);
+      const fixed = utils.fixFilePathSlashes(before);
 
       assert.strictEqual(fixed, expected);
     });
   });
 
   describe("stringifyKeysInOrder", function () {
-    var expected = `{
+    const expected = `{
   "a": 1,
   "aSub": {
     "a": 1,
@@ -82,7 +82,7 @@ describe("AUtils", function () {
   ]
 }`;
     it("should return proper string with keys in order", function () {
-      var result = utils.stringifyKeysInOrder({
+      const result = utils.stringifyKeysInOrder({
         a: 1,
         aSub: {
           a: 1,
@@ -106,7 +106,7 @@ describe("AUtils", function () {
     });
 
     it("should return proper string with keys in order", function () {
-      var result = utils.stringifyKeysInOrder({
+      const result = utils.stringifyKeysInOrder({
         b: 2,
         arr: [1, 2],
         aSub: {

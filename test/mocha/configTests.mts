@@ -4,10 +4,10 @@ import fs from "fs";
 import _ from "lodash";
 import * as cfg from "../../lib/config.js";
 
-var expect = chai.expect;
+const expect = chai.expect;
 describe("config.js - ", function () {
-  var fsExistsSyncStub;
-  var fsReadFileSyncStub;
+  let fsExistsSyncStub;
+  let fsReadFileSyncStub;
 
   beforeEach(function () {
     fsExistsSyncStub = null;
@@ -32,20 +32,20 @@ describe("config.js - ", function () {
     });
 
     it("should not find config in user home directory", function () {
-      var configFile = cfg.getHomeApprovalConfig();
+      const configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.not.exist;
     });
 
     it("should load default config", function () {
       cfg.reset();
-      var configFile = cfg.getConfig();
+      const configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(cfg.defaultConfig);
     });
   });
 
   describe("when a config file exists in a user's home directory", function () {
-    var configToLoad;
+    let configToLoad;
     beforeEach(function () {
       configToLoad = {};
 
@@ -56,7 +56,7 @@ describe("config.js - ", function () {
       fsReadFileSyncStub = sinon
         .stub(fs, "readFileSync")
         .callsFake(function () {
-          var data =
+          const data =
             typeof configToLoad === "string"
               ? configToLoad
               : JSON.stringify(configToLoad, null, "  ");
@@ -65,7 +65,7 @@ describe("config.js - ", function () {
     });
 
     it("should find config in user home directory", function () {
-      var configFile = cfg.getHomeApprovalConfig();
+      const configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile).to.exist;
     });
@@ -75,7 +75,7 @@ describe("config.js - ", function () {
         reporters: ["gitdiff"],
       };
 
-      var configFile = cfg.getHomeApprovalConfig();
+      const configFile = cfg.getHomeApprovalConfig();
 
       expect(configFile?.reporters).to.deep.equal(["gitdiff"]);
     });
@@ -91,9 +91,9 @@ describe("config.js - ", function () {
       configToLoad = {
         myConfig: true,
       };
-      var expectedConfig = _.defaults(configToLoad, cfg.defaultConfig);
+      const expectedConfig = _.defaults(configToLoad, cfg.defaultConfig);
       cfg.reset();
-      var configFile = cfg.getConfig();
+      const configFile = cfg.getConfig();
       expect(configFile).to.deep.equal(expectedConfig);
     });
   });

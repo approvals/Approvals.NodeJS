@@ -4,7 +4,7 @@ import { testDirectory } from "./testPaths.mjs";
 
 describe("When issues are reported on github", () => {
   it("Issue #86: Issues with Buffer Compare Loop", () => {
-    var approvalOverrides = {
+    const approvalOverrides = {
       EOL: "\r\n",
       normalizeLineEndingsTo: "\n",
       appendEOL: false,
@@ -20,8 +20,8 @@ describe("When issues are reported on github", () => {
       ],
     };
 
-    var testName = "manualVerification";
-    var dataToVerify = "some stuff here";
+    const testName = "manualVerification";
+    let dataToVerify = "some stuff here";
 
     approvals.verify(testDirectory, testName, dataToVerify, approvalOverrides);
 

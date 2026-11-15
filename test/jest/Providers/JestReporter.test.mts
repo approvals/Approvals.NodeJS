@@ -7,7 +7,7 @@ describe("JestReporter", () => {
   test("reports file contents", () => {
     try {
       // begin-snippet: configure-reporter-with-options
-      let configModifier: ConfigModifier = (c) => {
+      const configModifier: ConfigModifier = (c) => {
         c.reporters = [new JestReporter(), "BeyondCompare"];
         return c;
       };
