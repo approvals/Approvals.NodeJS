@@ -100,7 +100,7 @@ module.exports = [
       "valid-typeof": "error",
       "no-proto": "error",
       "no-script-url": "error",
-      //   "no-shadow": "error",
+      "no-shadow": "error",
       //   "dot-notation": "error",
       "no-new-func": "error",
       "no-new-wrappers": "error",

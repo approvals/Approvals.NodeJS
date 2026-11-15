@@ -94,7 +94,7 @@ export class LoggingInstance {
 
     let toType = (_value: any, _spacing = "") => "";
     if (showTypes) {
-      toType = (value, spacing = " ") => `${spacing}${printType(value)}`;
+      toType = (val, spacing = " ") => `${spacing}${printType(val)}`;
     }
 
     if (Array.isArray(value)) {

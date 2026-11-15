@@ -46,8 +46,8 @@ export class FileApprover {
 
     const selectFirstCompatibleReporter = (): Reporter => {
       const allReporters = reporterFactory();
-      const reporter = allReporters.find((reporter) =>
-        reporter.canReportOn(receivedFileName),
+      const reporter = allReporters.find((r) =>
+        r.canReportOn(receivedFileName),
       );
       if (!reporter) {
         throw new Error(
