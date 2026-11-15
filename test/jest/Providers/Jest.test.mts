@@ -46,6 +46,12 @@ describe("verifyAll", () => {
 });
 
 describe("Options", () => {
+  test("uses the default scrubber when the scrubber option is null", () => {
+    const options = new Options().modify("Scrubber", null);
+
+    expect(options.scrub("hello")).toBe("hello");
+  });
+
   test("handles configuration", () => {
     const configModifier: ConfigModifier = (c) => {
       c.reporters = ["beyondcompare"];
