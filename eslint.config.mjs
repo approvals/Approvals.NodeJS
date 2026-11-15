@@ -29,6 +29,7 @@ export default [
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
+      "@typescript-eslint/no-require-imports": "error",
       "no-self-assign": "error",
       "no-useless-assignment": "error",
       "prefer-const": "error",

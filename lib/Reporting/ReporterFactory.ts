@@ -14,6 +14,7 @@ export class ReporterFactory {
     name = name.toLowerCase();
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const ReporterCtor = require(`./Reporters/${name}Reporter`);
       if (!ReporterCtor.default) {
         return new ReporterCtor();

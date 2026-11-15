@@ -25,6 +25,7 @@ export function it2(label: string, test: () => void): void {
   if (!isFrameworkAvailable("mocha")) {
     return;
   }
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const mocha = require("mocha") as typeof import("mocha");
   mocha.it(label, function (this: any) {
     mochaTest = this;

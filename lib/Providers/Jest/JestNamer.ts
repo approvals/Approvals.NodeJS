@@ -3,6 +3,7 @@ import { Namer } from "../../Namer";
 import { convertToFilename } from "../../Core/Namer";
 
 export function getJestNamer(): Namer {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { expect } = require("@jest/globals") as typeof import("@jest/globals");
   const state = expect.getState();
   const file = path.parse(state.testPath as string);

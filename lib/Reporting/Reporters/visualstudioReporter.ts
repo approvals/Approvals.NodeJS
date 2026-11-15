@@ -7,6 +7,7 @@ export default class VisualStudioReporter extends GenericDiffReporterBase {
     super("VisualStudio");
 
     if (platform.isWindows) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const edge = require("edge");
 
       // Use edge to execute some .net and go find the installed version of visual studio.
