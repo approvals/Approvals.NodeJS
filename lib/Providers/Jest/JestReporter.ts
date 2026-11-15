@@ -19,8 +19,9 @@ export class JestReporter implements Reporter {
     if (!isFrameworkAvailable("jest")) {
       return;
     }
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
+
     const { expect } =
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
       require("@jest/globals") as typeof import("@jest/globals");
     const approvedText = fs.readFileSync(approvedFilePath).toString();
     const receivedText = fs.readFileSync(receivedFilePath).toString();
