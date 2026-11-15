@@ -18,14 +18,14 @@ export class BinaryWriter implements Writer {
       const extension = filetypeextension(this.outputData)[0] || "blob";
       // Keep existing JPEG and TIFF approval filenames compatible.
       switch (extension) {
-        case "jpeg":
-          this._ext = "jpg";
-          break;
-        case "tiff":
-          this._ext = "tif";
-          break;
-        default:
-          this._ext = extension;
+      case "jpeg":
+        this._ext = "jpg";
+        break;
+      case "tiff":
+        this._ext = "tif";
+        break;
+      default:
+        this._ext = extension;
       }
     }
     return this._ext;
