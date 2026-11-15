@@ -68,7 +68,16 @@ module.exports = [
       //   "no-plusplus": 0,
       //   "quotes": 0,
       //   "no-undef": "error",
-      //   "no-unused-vars": "error",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["error", {
+        args: "all",
+        argsIgnorePattern: "^_",
+        caughtErrors: "all",
+        caughtErrorsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        ignoreRestSiblings: true
+      }],
       //   "strict": 0,
       //   "max-params": 0,
       "max-depth": "error",

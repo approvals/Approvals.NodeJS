@@ -29,7 +29,7 @@ export default class P4MergeReporter extends GenericDiffReporterBase {
                 return item.indexOf("launchp4merge") >= 0;
               })[0];
         }
-      } catch (err) {
+      } catch {
         //console.error(err);
       }
     }

@@ -52,7 +52,7 @@ describe("CustomReporter", function () {
           },
         ],
       });
-    } catch (err) {
+    } catch {
       //
     }
 
@@ -66,7 +66,7 @@ describe("CustomReporter", function () {
 
     try {
       this.verify("foo", config);
-    } catch (err) {
+    } catch {
       //
     }
 
@@ -86,7 +86,7 @@ describe("CustomReporter", function () {
         "foo",
         config,
       );
-    } catch (err) {
+    } catch {
       didRaiseException = true;
     }
 

@@ -39,7 +39,7 @@ export class LogUtils {
         fs.writeFileSync(scriptPath, response.data);
         fs.chmodSync(scriptPath, 0o755);
       }
-    } catch (error) {
+    } catch {
       // Do nothing
     }
   }
