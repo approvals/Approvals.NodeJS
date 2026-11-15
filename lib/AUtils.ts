@@ -47,7 +47,9 @@ const isBinaryFile = (buffer: Buffer | String): boolean => {
 };
 
 const trimExtension = (filePath: string): string => {
-  if (!filePath) {return filePath;}
+  if (!filePath) {
+    return filePath;
+  }
   const i = filePath.lastIndexOf(".");
   const ext = i < 0 ? "" : filePath.substr(i);
   return ext ? filePath.substring(0, filePath.length - ext.length) : filePath;

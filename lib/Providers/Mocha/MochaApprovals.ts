@@ -22,7 +22,9 @@ import { Namer } from "../../Core/Namer";
 let mochaTest: any = null;
 
 export function it2(label: string, test: () => void): void {
-  if (!isFrameworkAvailable("mocha")) {return;}
+  if (!isFrameworkAvailable("mocha")) {
+    return;
+  }
   const mocha = require("mocha") as typeof import("mocha");
   mocha.it(label, function (this: any) {
     mochaTest = this;
@@ -34,7 +36,9 @@ export function it2(label: string, test: () => void): void {
 let namer: Namer;
 
 export function setNamer(that: any): void {
-  if (!isFrameworkAvailable("mocha")) {return;}
+  if (!isFrameworkAvailable("mocha")) {
+    return;
+  }
   namer = getMochaNamer(that.currentTest);
 }
 
@@ -43,7 +47,9 @@ export function getNamer(): Namer {
 }
 
 export function verify(sut: any, options?: Options): void {
-  if (!isFrameworkAvailable("mocha")) {return;}
+  if (!isFrameworkAvailable("mocha")) {
+    return;
+  }
   options = options || new Options();
   options = options.withNamer(getNamer());
   const config = options.getConfig(approvals.getConfig());

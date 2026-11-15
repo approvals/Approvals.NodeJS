@@ -35,13 +35,13 @@ module.exports = [
       //   ],
       "no-with": "error",
       "no-multiple-empty-lines": ["error",  { max: 1, maxBOF: 0, maxEOF: 0 }],
-      //   "brace-style": [
-      //     "error",
-      //     "1tbs",
-      //     {
-      //       "allowSingleLine": true
-      //     }
-      //   ],
+      "brace-style": [
+        "error",
+        "1tbs",
+        {
+          "allowSingleLine": false
+        }
+      ],
       "no-trailing-spaces": "error",
       "eol-last": "error",
       "no-empty": "error",
