@@ -1,5 +1,6 @@
-import fs from "fs";
 import assert from "assert";
+import fs from "fs";
+
 import { testDirectory } from "../../testPaths.mjs";
 
 const allReporterFiles: string[] = [];

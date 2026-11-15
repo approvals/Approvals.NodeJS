@@ -1,5 +1,6 @@
-import { Scrubbers } from "../../../lib/Scrubbers/Scrubbers.js";
 import { expect } from "chai";
+
+import { Scrubbers } from "../../../lib/Scrubbers/Scrubbers.js";
 
 describe("Scrubbers", function () {
   describe("multiScrubber", function () {

@@ -1,6 +1,7 @@
 import path from "path";
-import { Namer } from "../../Namer";
+
 import { convertToFilename } from "../../Core/Namer";
+import { Namer } from "../../Namer";
 
 export function getJestNamer(): Namer {
   // eslint-disable-next-line @typescript-eslint/no-require-imports

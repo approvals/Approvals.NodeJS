@@ -1,8 +1,9 @@
-import { expect } from "chai";
-
+import assert from "assert";
 import fs from "fs";
 import path from "path";
-import assert from "assert";
+
+import { expect } from "chai";
+
 import * as os from "../../../lib/osTools.js";
 import { ReporterFactory } from "../../../lib/Reporting/ReporterFactory.js";
 import { testDirectory } from "../testPaths.mjs";

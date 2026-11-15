@@ -1,12 +1,13 @@
 import fs from "fs";
+
 import { Config } from "./config";
 import { Namer } from "./Core/Namer";
-import { Writer } from "./Core/Writer";
 import { Reporter } from "./Core/Reporter";
-import { ReporterLoader } from "./Reporting/ReporterFactory";
-import { yellowText } from "./Utilities/ConsoleUtils";
+import { Writer } from "./Core/Writer";
 import { ApprovedFileLog } from "./Logs/ApprovedFileLog";
 import { FailedFileLog } from "./Logs/FailedFileLog";
+import { ReporterLoader } from "./Reporting/ReporterFactory";
+import { yellowText } from "./Utilities/ConsoleUtils";
 
 function normalizeLineEndings(value: string): string {
   return value.replace(/(?:\r\n|\r|\n)/g, "\n");

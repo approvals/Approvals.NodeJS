@@ -1,12 +1,14 @@
-import { Reporter } from "../../lib/Core/Reporter.js";
-
-import * as ReporterFactory from "../../lib/Reporting/ReporterFactory.js";
-import * as FileApprover from "../../lib/FileApprover.js";
-import { StringWriter } from "../../lib/StringWriter.js";
-import { Namer } from "../../lib/Namer.js";
-import { expect } from "chai";
-import fs from "fs";
 import assert from "assert";
+import fs from "fs";
+
+import { expect } from "chai";
+
+import { Reporter } from "../../lib/Core/Reporter.js";
+import * as FileApprover from "../../lib/FileApprover.js";
+import { Namer } from "../../lib/Namer.js";
+import * as ReporterFactory from "../../lib/Reporting/ReporterFactory.js";
+import { StringWriter } from "../../lib/StringWriter.js";
+
 import { testDirectory } from "./testPaths.mjs";
 
 class FailingReporter implements Reporter {

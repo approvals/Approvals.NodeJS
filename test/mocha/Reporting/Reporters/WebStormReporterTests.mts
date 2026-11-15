@@ -3,10 +3,12 @@ import fs from "fs";
 import { createRequire } from "module";
 import os from "os";
 import path from "path";
+
 import sinon from "sinon";
-import ReporterUnderTest from "../../../../lib/Reporting/Reporters/webstormReporter.js";
-import { ReporterFactory } from "../../../../lib/Reporting/ReporterFactory.js";
+
 import { platform } from "../../../../lib/osTools.js";
+import { ReporterFactory } from "../../../../lib/Reporting/ReporterFactory.js";
+import ReporterUnderTest from "../../../../lib/Reporting/Reporters/webstormReporter.js";
 
 const utils = createRequire(import.meta.url)("../../../../lib/AUtils.js");
 const WebStormReporter = ReporterUnderTest.default;

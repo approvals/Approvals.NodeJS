@@ -1,5 +1,6 @@
-import { Reporter } from "../../Core/Reporter";
 import { execSync } from "node:child_process";
+
+import { Reporter } from "../../Core/Reporter";
 
 export default class CopyCommandReporter implements Reporter {
   public name: string;

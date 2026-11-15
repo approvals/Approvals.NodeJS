@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+
 import { expect, test } from "@jest/globals";
 
 test("approvals --help output", () => {

@@ -1,6 +1,8 @@
 import fs from "fs";
+
 import { expect } from "chai";
 import sinon from "sinon";
+
 import { GenericDiffReporterBase } from "../../../lib/Reporting/GenericDiffReporterBase.js";
 
 describe("GenericDiffReporterBase", function () {

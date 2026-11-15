@@ -1,12 +1,14 @@
 import path from "path";
+
 import { describe, expect, test } from "@jest/globals";
+
+import { convertToFilename } from "../../../lib/Core/Namer.js";
+import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
 import {
   verify,
   verifyAll,
   verifyAsJson,
 } from "../../../lib/Providers/Jest/JestApprovals.js";
-import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
-import { convertToFilename } from "../../../lib/Core/Namer.js";
 import { getJestNamer } from "../../../lib/Providers/Jest/JestNamer.js";
 
 describe("JestApprovals", () => {

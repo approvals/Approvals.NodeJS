@@ -1,6 +1,7 @@
 import { exec } from "child_process";
-import { Reporter } from "../Core/Reporter";
+
 import { Config } from "../config";
+import { Reporter } from "../Core/Reporter";
 import { platform } from "../osTools";
 
 export class ReportByOpeningTheReceivedFile implements Reporter {

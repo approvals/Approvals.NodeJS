@@ -1,10 +1,12 @@
 import * as childProcess from "child_process";
-import * as fs from "fs";
-import * as autils from "../AUtils";
-import reportingLaunchingCircuitBreaker from "./ReportLaunchingCircuitBreaker";
 import { ChildProcessWithoutNullStreams } from "child_process";
-import { Reporter } from "../Core/Reporter";
+import * as fs from "fs";
+
+import * as autils from "../AUtils";
 import { Config } from "../config";
+import { Reporter } from "../Core/Reporter";
+
+import reportingLaunchingCircuitBreaker from "./ReportLaunchingCircuitBreaker";
 
 export class GenericDiffReporterBase implements Reporter {
   name: string;

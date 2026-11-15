@@ -1,10 +1,11 @@
+import assert from "assert";
+import * as path from "path";
+
 import { expect } from "chai";
 
-import assert from "assert";
-import { Reporter } from "../../../../lib/Core/Reporter.js";
 import { mocha } from "../../../../lib/Approvals.js";
+import { Reporter } from "../../../../lib/Core/Reporter.js";
 import { testDirectory } from "../../testPaths.mjs";
-import * as path from "path";
 
 const approvals = mocha();
 

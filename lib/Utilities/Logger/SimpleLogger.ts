@@ -1,7 +1,6 @@
-import { SingleWrapper, Wrapper } from "./Wrapper";
-
 import { LoggingInstance } from "./LoggingInstance";
 import { StringWrapper } from "./StringWrapper";
+import { SingleWrapper, Wrapper } from "./Wrapper";
 
 export class SimpleLogger {
   static _wrapper: Wrapper<LoggingInstance> = new SingleWrapper(

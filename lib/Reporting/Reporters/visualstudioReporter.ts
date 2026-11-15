@@ -1,6 +1,6 @@
-import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 import { createEmptyFileIfNotExists } from "../../AUtils";
 import { platform } from "../../osTools";
+import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 
 export default class VisualStudioReporter extends GenericDiffReporterBase {
   constructor() {

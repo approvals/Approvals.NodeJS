@@ -1,5 +1,6 @@
 import assert from "assert";
 import path from "path";
+
 import { Namer } from "../../lib/Namer.js";
 
 describe("Namer", function () {

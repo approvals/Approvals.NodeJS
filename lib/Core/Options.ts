@@ -1,7 +1,8 @@
-import type { Scrubber } from "../Scrubbers/Scrubbers";
-import { Namer } from "../Namer";
-import { Namer as CoreNamer } from "./Namer";
 import { Config } from "../config";
+import { Namer } from "../Namer";
+import type { Scrubber } from "../Scrubbers/Scrubbers";
+
+import { Namer as CoreNamer } from "./Namer";
 import { Reporter } from "./Reporter";
 
 export type ConfigModifier = (t: any) => any;

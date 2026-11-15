@@ -1,6 +1,7 @@
 import fs from "fs";
 
 import jsdiff from "diff";
+
 import {
   assertFileExists,
   createEmptyFileIfNotExists,

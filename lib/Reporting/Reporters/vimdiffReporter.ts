@@ -1,5 +1,5 @@
-import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 import { searchForExecutable } from "../../AUtils";
+import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 
 export default class Reporter extends GenericDiffReporterBase {
   constructor() {

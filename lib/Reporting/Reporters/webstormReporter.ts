@@ -1,7 +1,8 @@
-import { findProgramOnPath } from "../../AUtils";
 import { existsSync } from "fs";
 import { homedir } from "os";
 import { join } from "path";
+
+import { findProgramOnPath } from "../../AUtils";
 import { platform } from "../../osTools";
 import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 

@@ -1,5 +1,7 @@
-import * as approvals from "../../lib/Approvals.js";
 import { expect } from "chai";
+
+import * as approvals from "../../lib/Approvals.js";
+
 import { testDirectory } from "./testPaths.mjs";
 
 describe("When issues are reported on github", () => {

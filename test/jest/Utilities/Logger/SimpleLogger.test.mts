@@ -1,6 +1,7 @@
 import { describe, test } from "@jest/globals";
-import { SimpleLogger } from "../../../../lib/Utilities/Logger/SimpleLogger.js";
+
 import { verify } from "../../../../lib/Providers/Jest/JestApprovals.js";
+import { SimpleLogger } from "../../../../lib/Utilities/Logger/SimpleLogger.js";
 import { verifySimpleLogger } from "../../../../lib/Utilities/Logger/SimpleLoggerApprovals.js";
 
 function logVariables() {

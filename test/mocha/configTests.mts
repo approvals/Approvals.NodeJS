@@ -1,7 +1,9 @@
-import * as chai from "chai";
-import sinon from "sinon";
 import fs from "fs";
+
+import * as chai from "chai";
 import _ from "lodash";
+import sinon from "sinon";
+
 import * as cfg from "../../lib/config.js";
 
 const expect = chai.expect;

@@ -1,5 +1,5 @@
-import { platform } from "../../osTools";
 import { createEmptyFileIfNotExists, searchForExecutable } from "../../AUtils";
+import { platform } from "../../osTools";
 import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 
 export default class CodiumReporter extends GenericDiffReporterBase {

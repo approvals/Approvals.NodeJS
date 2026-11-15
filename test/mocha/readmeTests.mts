@@ -1,8 +1,11 @@
-import path from "path";
 import fs from "fs";
-import { StringWriter } from "../../lib/StringWriter.js";
-import * as approvals from "../../lib/Approvals.js";
+import path from "path";
+
 import jsdoc2md from "jsdoc-to-markdown";
+
+import * as approvals from "../../lib/Approvals.js";
+import { StringWriter } from "../../lib/StringWriter.js";
+
 import { testDirectory } from "./testPaths.mjs";
 
 describe("Readme", function () {

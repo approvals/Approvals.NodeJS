@@ -1,8 +1,9 @@
-import { Reporter } from "../../../../lib/Core/Reporter.js";
+import * as path from "path";
 
 import { expect } from "chai";
-import * as path from "path";
+
 import * as approvals from "../../../../lib/Approvals.js";
+import { Reporter } from "../../../../lib/Core/Reporter.js";
 import { testDirectory } from "../../testPaths.mjs";
 
 class ExceptionThrowingReporter implements Reporter {

@@ -1,21 +1,10 @@
-import { printArray, printJson } from "../../Utilities/Printers";
-/* ^^^ If the above line is failing, please add
-# 1. Jest Config
-```
-"transformIgnorePatterns": ["node_modules/@3ds"]
-```
-
-# 2. tsconfig.json
-```
-    "esModuleInterop": true
-```
-*/
-import { Options } from "../../Core/Options";
-import { getJestNamer } from "./JestNamer";
-
-import { StringWriter } from "../../StringWriter";
 import * as approvals from "../../Approvals";
+import { Options } from "../../Core/Options";
+import { StringWriter } from "../../StringWriter";
+import { printArray, printJson } from "../../Utilities/Printers";
 import { isFrameworkAvailable } from "../OptionalFramework";
+
+import { getJestNamer } from "./JestNamer";
 
 export function verify(sut: any, options?: Options): void {
   if (!isFrameworkAvailable("jest")) {

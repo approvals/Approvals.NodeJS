@@ -1,7 +1,8 @@
-import { isFrameworkAvailable } from "../OptionalFramework";
 import fs from "fs";
+
 import { Config } from "../../config";
 import { Reporter } from "../../Core/Reporter";
+import { isFrameworkAvailable } from "../OptionalFramework";
 
 export class JestReporter implements Reporter {
   name: string = "JestReporter";

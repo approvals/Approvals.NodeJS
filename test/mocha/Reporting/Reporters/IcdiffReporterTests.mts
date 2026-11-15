@@ -1,7 +1,8 @@
-import { testDirectory } from "../../testPaths.mjs";
-import ReporterUnderTest from "../../../../lib/Reporting/Reporters/icdiffReporter.js";
-import path from "path";
 import assert from "assert";
+import path from "path";
+
+import ReporterUnderTest from "../../../../lib/Reporting/Reporters/icdiffReporter.js";
+import { testDirectory } from "../../testPaths.mjs";
 
 describe("Reporter", function () {
   describe("icdiff", function () {

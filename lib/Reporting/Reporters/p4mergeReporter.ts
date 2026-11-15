@@ -1,8 +1,10 @@
 import fs from "fs";
+
 import shelljs from "shelljs";
-import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
-import { platform } from "../../osTools";
+
 import { searchForExecutable } from "../../AUtils";
+import { platform } from "../../osTools";
+import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 
 export default class P4MergeReporter extends GenericDiffReporterBase {
   constructor() {

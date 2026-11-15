@@ -1,9 +1,9 @@
-import { ReporterFactory } from "../../../lib/Reporting/ReporterFactory.js";
-import DiffReporterAggregate from "../../../lib/Reporting/DiffReporterAggregate.js";
-import { testDirectory } from "../testPaths.mjs";
-
 import assert from "assert";
 import path from "path";
+
+import DiffReporterAggregate from "../../../lib/Reporting/DiffReporterAggregate.js";
+import { ReporterFactory } from "../../../lib/Reporting/ReporterFactory.js";
+import { testDirectory } from "../testPaths.mjs";
 
 describe("AggregateReporter", function () {
   const textDiffReporters = ["gitdiff", "p4merge"];

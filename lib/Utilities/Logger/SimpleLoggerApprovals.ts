@@ -1,6 +1,7 @@
 import { Options } from "../../Core/Options";
-import { SimpleLogger } from "./SimpleLogger";
 import { verify } from "../../Providers/Jest/JestApprovals";
+
+import { SimpleLogger } from "./SimpleLogger";
 
 export function verifySimpleLogger(
   testName: string,

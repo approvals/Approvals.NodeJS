@@ -1,5 +1,5 @@
-import parser from "@typescript-eslint/parser";
 import typescript from "@typescript-eslint/eslint-plugin";
+import parser from "@typescript-eslint/parser";
 import importPlugin from "eslint-plugin-import-x";
 import globals from "globals";
 
@@ -32,6 +32,17 @@ export default [
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
       "import/newline-after-import": "error",
+      "import/order": [
+        "error",
+        {
+          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
       "@typescript-eslint/no-require-imports": "error",
       "no-self-assign": "error",
       "no-useless-assignment": "error",

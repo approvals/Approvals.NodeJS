@@ -1,10 +1,12 @@
-import * as _ from "lodash";
 import * as fs from "fs";
+
+import * as _ from "lodash";
+
+import * as aUtils from "../AUtils";
 import * as cfg from "../config";
-import { StringWriter } from "../StringWriter";
 import { FileApprover } from "../FileApprover";
 import { ReporterFactory } from "../Reporting/ReporterFactory";
-import * as aUtils from "../AUtils";
+import { StringWriter } from "../StringWriter";
 
 import { MochaNamer } from "./Mocha/MochaNamer";
 

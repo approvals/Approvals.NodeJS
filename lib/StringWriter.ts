@@ -1,8 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
+
+import { sync } from "mkdirp";
+
 import * as autils from "./AUtils";
 import { Config } from "./config";
-import { sync } from "mkdirp";
 import { Writer } from "./Core/Writer";
 
 const lineEndingRegex = new RegExp("\r?\n", "g");

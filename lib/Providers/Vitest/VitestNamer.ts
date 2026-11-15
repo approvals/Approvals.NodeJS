@@ -1,6 +1,7 @@
 import path from "path";
-import { Namer } from "../../Namer";
+
 import { convertToFilename } from "../../Core/Namer";
+import { Namer } from "../../Namer";
 import { StringUtils } from "../../Utilities/StringUtils";
 
 interface VitestExpectState {

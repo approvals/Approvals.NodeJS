@@ -1,4 +1,5 @@
 import path from "path";
+
 import { Namer as CoreNamer } from "./Core/Namer";
 
 export class Namer implements CoreNamer {

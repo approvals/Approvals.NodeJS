@@ -1,8 +1,9 @@
-import { testDirectory } from "../../testPaths.mjs";
-import ReporterUnderTest from "../../../../lib/Reporting/Reporters/opendiffReporter.js";
-import path from "path";
 import assert from "assert";
+import path from "path";
+
 import { findProgramOnPath } from "../../../../lib/AUtils.js";
+import ReporterUnderTest from "../../../../lib/Reporting/Reporters/opendiffReporter.js";
+import { testDirectory } from "../../testPaths.mjs";
 
 describe("Reporter", function () {
   if (findProgramOnPath("opendiff")) {

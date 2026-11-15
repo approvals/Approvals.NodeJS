@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
+
 import * as shell from "shelljs";
+
 import * as osTools from "./osTools";
 
 interface CachedProgramLookups {

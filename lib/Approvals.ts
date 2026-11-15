@@ -5,29 +5,27 @@
  * @module approvals
  */
 
-import callsite from "callsite";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import callsite from "callsite";
+
+import { stringifyKeysInOrder } from "./AUtils";
 import * as cfg from "./config";
-import { BinaryWriter } from "./Writers/BinaryWriter";
+import { Namer } from "./Core/Namer";
+import { Writer } from "./Core/Writer";
 import { FileApprover } from "./FileApprover";
 import { FinalMessages } from "./FinalMessages";
 import { ManualNamer } from "./ManualNamer";
-import { Namer } from "./Core/Namer";
+import { postRunCleanup } from "./postRunCleanup";
+import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
+import { MochaNamer } from "./Providers/Mocha/MochaNamer";
+import { isFrameworkAvailable } from "./Providers/OptionalFramework";
 import { ReporterFactory, ReporterLoader } from "./Reporting/ReporterFactory";
+import MultiReporter from "./Reporting/Reporters/multiReporter";
 import { Scrubber, Scrubbers } from "./Scrubbers/Scrubbers";
 import { StringWriter } from "./StringWriter";
-import { Writer } from "./Core/Writer";
-import { postRunCleanup } from "./postRunCleanup";
-import { stringifyKeysInOrder } from "./AUtils";
-
-// if someone tries to call 'require("@approval-tests/approvals")...' without calling ".mocha(...) or
-// they won't get a helpful error. So we put this in there - just in case"
-import { MochaNamer } from "./Providers/Mocha/MochaNamer";
-
-import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
-import { isFrameworkAvailable } from "./Providers/OptionalFramework";
-import MultiReporter from "./Reporting/Reporters/multiReporter";
+import { BinaryWriter } from "./Writers/BinaryWriter";
 
 /**
  * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.

@@ -1,7 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
-import { sync } from "mkdirp";
+
 import { filetypeextension } from "magic-bytes.js";
+import { sync } from "mkdirp";
+
 import { Writer } from "../Core/Writer";
 
 export class BinaryWriter implements Writer {

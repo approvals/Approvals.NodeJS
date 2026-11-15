@@ -1,6 +1,8 @@
-import DiffReporterAggregate from "./DiffReporterAggregate";
 import { readdirSync } from "fs";
+
 import { Reporter } from "../Core/Reporter";
+
+import DiffReporterAggregate from "./DiffReporterAggregate";
 
 export type ReporterLoader = () => Reporter[];
 

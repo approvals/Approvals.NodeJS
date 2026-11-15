@@ -1,10 +1,10 @@
-import { printArray, printJson } from "../../Utilities/Printers";
-import { Options } from "../../Core/Options";
-import { getVitestNamer } from "./VitestNamer";
-
-import { StringWriter } from "../../StringWriter";
 import * as approvals from "../../Approvals";
+import { Options } from "../../Core/Options";
+import { StringWriter } from "../../StringWriter";
+import { printArray, printJson } from "../../Utilities/Printers";
 import { isFrameworkAvailable } from "../OptionalFramework";
+
+import { getVitestNamer } from "./VitestNamer";
 
 export function verify(sut: any, options?: Options): void {
   if (!isFrameworkAvailable("vitest")) {

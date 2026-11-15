@@ -1,5 +1,6 @@
-import { sync } from "glob";
 import path from "path";
+
+import { sync } from "glob";
 
 function unique<T>(items: T[]): T[] {
   return [...new Set(items)];

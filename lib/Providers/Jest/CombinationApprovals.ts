@@ -1,5 +1,6 @@
-import { verify } from "./JestApprovals";
 import { printCombinations } from "../../Utilities/Printers";
+
+import { verify } from "./JestApprovals";
 
 export type Printer<T extends any[]> = (...args: T) => any;
 export type VariationsForEachParameter<T extends any[]> = {

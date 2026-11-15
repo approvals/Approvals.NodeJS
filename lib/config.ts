@@ -1,10 +1,12 @@
-import * as os from "os";
 import * as fs from "fs";
+import * as os from "os";
 import * as path from "path";
-import * as _ from "lodash";
+
 import * as yaml from "js-yaml";
-import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircuitBreaker";
+import * as _ from "lodash";
+
 import { Reporter } from "./Core/Reporter";
+import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircuitBreaker";
 
 export interface Config {
   reporters: (string | Reporter)[];

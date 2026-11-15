@@ -1,23 +1,11 @@
-import { printArray, printJson } from "../../Utilities/Printers";
-/* ^^^ If the above line is failing, please add
-# 1. Jest Config
-```
-"transformIgnorePatterns": ["node_modules/@3ds"]
-```
-
-# 2. tsconfig.json
-```
-    "esModuleInterop": true
-```
-*/
-import { Options } from "../../Core/Options";
-import { getMochaNamer } from "./MochaNamer";
-import { isFrameworkAvailable } from "../OptionalFramework";
-
-import StringWriter from "../../StringWriter";
-
 import * as approvals from "../../Approvals";
 import { Namer } from "../../Core/Namer";
+import { Options } from "../../Core/Options";
+import StringWriter from "../../StringWriter";
+import { printArray, printJson } from "../../Utilities/Printers";
+import { isFrameworkAvailable } from "../OptionalFramework";
+
+import { getMochaNamer } from "./MochaNamer";
 
 let mochaTest: any = null;
 

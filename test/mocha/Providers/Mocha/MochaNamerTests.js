@@ -1,8 +1,9 @@
 "use strict";
 
-import { MochaNamer } from "../../../../lib/Providers/Mocha/MochaNamer.js";
-import path from "path";
 import assert from "assert";
+import path from "path";
+
+import { MochaNamer } from "../../../../lib/Providers/Mocha/MochaNamer.js";
 
 describe("MochaNamer", function () {
   describe("when given a mocha context", function () {
