@@ -29,6 +29,7 @@ module.exports = [
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
+      "no-self-assign": "error",
       "no-useless-assignment": "error",
       "prefer-const": "error",
       "no-var": "error",

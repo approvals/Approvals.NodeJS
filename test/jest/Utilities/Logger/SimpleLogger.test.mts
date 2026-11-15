@@ -106,7 +106,7 @@ describe("SimpleLogger", () => {
     SimpleLogger.useMarkers(
       () => {
         // end-snippet
-        for (number = number; 0 <= number; number--) {
+        for (; 0 <= number; number--) {
           process.stdout.write(`${number} \n`);
         }
         process.stdout.write(`${announcement}\n`);
