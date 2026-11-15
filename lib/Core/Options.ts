@@ -3,6 +3,7 @@ import { Namer } from "../Namer";
 import { Namer as CoreNamer } from "./Namer";
 import { Config } from "../config";
 import { Reporter } from "./Reporter";
+
 export type ConfigModifier = (t: any) => any;
 
 class FileOptions {

@@ -1,5 +1,6 @@
 import parser from "@typescript-eslint/parser";
 import typescript from "@typescript-eslint/eslint-plugin";
+import importPlugin from "eslint-plugin-import-x";
 import globals from "globals";
 
 export default [
@@ -26,10 +27,11 @@ export default [
         NodeJS: "readonly",
       },
     },
-    plugins: { "@typescript-eslint": typescript },
+    plugins: { "@typescript-eslint": typescript, import: importPlugin },
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
+      "import/newline-after-import": "error",
       "@typescript-eslint/no-require-imports": "error",
       "no-self-assign": "error",
       "no-useless-assignment": "error",
