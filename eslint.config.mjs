@@ -33,7 +33,14 @@ export default [
       "import/order": [
         "error",
         {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
           "newlines-between": "always",
           alphabetize: {
             order: "asc",
@@ -46,22 +53,26 @@ export default [
       "no-useless-assignment": "error",
       "prefer-const": "error",
       "no-var": "error",
-      "indent": ["error", 2,{
-        "SwitchCase": 1
-      }],
-      "semi": ["error", "always"],
+      indent: [
+        "error",
+        2,
+        {
+          SwitchCase: 1,
+        },
+      ],
+      semi: ["error", "always"],
       //   "no-console": ["off"],
-      "curly": ["error", "all"],
+      curly: ["error", "all"],
       "keyword-spacing": ["error", {}],
       "no-multi-spaces": "error",
       "space-infix-ops": "error",
       "no-implicit-coercion": [
         "error",
         {
-          "boolean": false,
-          "string": true,
-          "number": false
-        }
+          boolean: false,
+          string: true,
+          number: false,
+        },
       ],
       "no-with": "error",
       "no-multiple-empty-lines": ["error", { max: 1, maxBOF: 0, maxEOF: 0 }],
@@ -69,8 +80,8 @@ export default [
         "error",
         "1tbs",
         {
-          "allowSingleLine": false
-        }
+          allowSingleLine: false,
+        },
       ],
       "no-trailing-spaces": "error",
       "eol-last": "error",
@@ -81,7 +92,7 @@ export default [
       "no-mixed-spaces-and-tabs": "error",
       "no-bitwise": "error",
       //   "camelcase": 0,
-      "eqeqeq": "error",
+      eqeqeq: "error",
       "guard-for-in": "error",
       "no-extend-native": "error",
       "wrap-iife": "error",
@@ -94,20 +105,23 @@ export default [
       //   "quotes": 0,
       "no-undef": "error",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error", {
-        args: "all",
-        argsIgnorePattern: "^_",
-        caughtErrors: "all",
-        caughtErrorsIgnorePattern: "^_",
-        destructuredArrayIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-        ignoreRestSiblings: true
-      }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
       //   "strict": 0,
       //   "max-params": 0,
       "max-depth": "error",
       //   "max-statements": 0,
-      "complexity": "error",
+      complexity: "error",
       //   "max-len": 0,
       //   "semi": 0,
       "no-cond-assign": "error",
@@ -129,7 +143,7 @@ export default [
       "dot-notation": "error",
       "no-new-func": "error",
       "no-new-wrappers": "error",
-    //   "no-invalid-this": 0
+      //   "no-invalid-this": 0
     },
   },
   {

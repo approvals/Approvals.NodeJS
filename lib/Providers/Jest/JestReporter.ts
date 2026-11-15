@@ -20,7 +20,8 @@ export class JestReporter implements Reporter {
       return;
     }
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { expect } = require("@jest/globals") as typeof import("@jest/globals");
+    const { expect } =
+      require("@jest/globals") as typeof import("@jest/globals");
     const approvedText = fs.readFileSync(approvedFilePath).toString();
     const receivedText = fs.readFileSync(receivedFilePath).toString();
     expect(receivedText).toBe(approvedText);
