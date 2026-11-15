@@ -50,7 +50,8 @@ lib/**/*.js
 test/**/**.js
 !test/mocha/Providers/Mocha/MochaNamerTests.js
 /yarn.lock
-*.mjs
+/lib/**/*.mjs
+/test/**/*.mjs
 *.d.mts
 
 # Reports
