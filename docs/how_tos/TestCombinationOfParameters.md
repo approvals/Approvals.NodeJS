@@ -47,7 +47,7 @@ test("CombinationsStartingPoint", () => {
 });
 ```
 
-<sup><a href='/test/jest/Providers/CombinationApprovals.test.mts#L130-L140' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/jest/Providers/CombinationApprovals.test.mts#L139-L149' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
