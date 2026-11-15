@@ -35,7 +35,7 @@ describe("Combinations", () => {
   test("verify4", () => {
     const numbers = [3, 4];
     verifyAllCombinations4(
-      (a, b, c, d) => a + "" + b + c + d,
+      (a, b, c, d) => String(a) + b + c + d,
       numbers,
       numbers,
       numbers,
@@ -90,7 +90,7 @@ describe("Combinations", () => {
   });
   test("verify9", () => {
     verifyAllCombinations9(
-      (a, b, c, d, e, f, g, h, i) => "" + a + b + c + d + e + f + g + h + i,
+      (a, b, c, d, e, f, g, h, i) => String(a) + b + c + d + e + f + g + h + i,
       [1, 2],
       [2, 3],
       [2, 3],
@@ -105,7 +105,7 @@ describe("Combinations", () => {
   test("verify15", () => {
     verifyAllCombinations(
       (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) =>
-        "" + a + b + c + d + e + f + g + h + i + j + k + l + m + n + o,
+        String(a) + b + c + d + e + f + g + h + i + j + k + l + m + n + o,
       [1, 2],
       [2, 3],
       [3, 4],

@@ -31,14 +31,14 @@ module.exports = [
       "keyword-spacing": ["error", {}],
       "no-multi-spaces": "error",
       "space-infix-ops": "error",
-      //   "no-implicit-coercion": [
-      //     "error",
-      //     {
-      //       "boolean": false,
-      //       "string": true,
-      //       "number": false
-      //     }
-      //   ],
+      "no-implicit-coercion": [
+        "error",
+        {
+          "boolean": false,
+          "string": true,
+          "number": false
+        }
+      ],
       "no-with": "error",
       "no-multiple-empty-lines": ["error", { max: 1, maxBOF: 0, maxEOF: 0 }],
       "brace-style": [
