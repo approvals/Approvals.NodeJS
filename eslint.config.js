@@ -55,7 +55,7 @@ module.exports = [
       "no-mixed-spaces-and-tabs": "error",
       "no-bitwise": "error",
       //   "camelcase": 0,
-      //   "eqeqeq": "error",
+      "eqeqeq": "error",
       //   "guard-for-in": "error",
       "no-extend-native": "error",
       "wrap-iife": "error",

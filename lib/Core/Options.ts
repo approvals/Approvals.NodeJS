@@ -46,7 +46,7 @@ export class Options {
   }
 
   get<Type>(key: string, default1: () => Type): Type {
-    if (this.fields[key] == undefined) {
+    if (this.fields[key] === undefined) {
       return default1();
     }
     return this.fields[key];

@@ -112,7 +112,7 @@ export class LoggingInstance {
   }
 
   private logLine(text: string, use_timestamps: boolean = true) {
-    if (this.counter != 0) {
+    if (this.counter !== 0) {
       this.logger("\n");
     }
     this.counter = 0;
@@ -138,12 +138,12 @@ export class LoggingInstance {
     }
 
     this.counter += 1;
-    if (this.counter == 1) {
+    if (this.counter === 1) {
       this.logger(`${this.getTabs()}.`);
-    } else if (this.counter == 100) {
+    } else if (this.counter === 100) {
       this.logger("10\n");
       this.counter = 0;
-    } else if (this.counter % 10 == 0) {
+    } else if (this.counter % 10 === 0) {
       const digit = this.counter / 10;
       this.logger(`${digit}`);
     } else {
@@ -235,7 +235,7 @@ export class LoggingInstance {
     const time1 = this.timer();
     const time = time1.toISOString();
     let diff_millseconds = 0;
-    if (this.previousTimestamp != null) {
+    if (this.previousTimestamp !== null) {
       diff_millseconds = time1.getTime() - this.previousTimestamp.getTime();
     }
     const diff_display = `~${String(diff_millseconds).padStart(6, "0")}ms`;
