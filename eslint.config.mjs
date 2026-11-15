@@ -28,8 +28,6 @@ export default [
       },
     },
     plugins: { "@typescript-eslint": typescript, import: importPlugin },
-    // Original .eslintrc.json rules, enabled incrementally.
-    // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
       "import/newline-after-import": "error",
       "import/order": [
