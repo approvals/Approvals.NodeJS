@@ -34,7 +34,7 @@ describe("config.js - ", function () {
     it("should not find config in user home directory", function () {
       const configFile = cfg.getHomeApprovalConfig();
 
-      expect(configFile).to.not.exist;
+      expect(configFile).to.equal(null);
     });
 
     it("should load default config", function () {
@@ -67,7 +67,7 @@ describe("config.js - ", function () {
     it("should find config in user home directory", function () {
       const configFile = cfg.getHomeApprovalConfig();
 
-      expect(configFile).to.exist;
+      expect(configFile).to.not.equal(null);
     });
 
     it("should parse and return reporters array", function () {

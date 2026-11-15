@@ -134,7 +134,7 @@ describe("FileApprover", function () {
       writer = new StringWriter(config, "Hello Missing Byte Order Mark!\n");
       expect(function () {
         FileApprover.verify(namer, writer, reporterFactory, config);
-      }).to.throw;
+      }).to.throw();
     });
   });
 });

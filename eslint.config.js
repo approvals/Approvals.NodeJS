@@ -100,7 +100,7 @@ module.exports = [
       "no-debugger": "error",
       //   "no-eq-null": 0,
       "no-eval": "error",
-      //   "no-unused-expressions": 0,
+      "no-unused-expressions": "error",
       "block-scoped-var": "error",
       "no-iterator": "error",
       "linebreak-style": "error",

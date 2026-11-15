@@ -29,7 +29,7 @@ describe("postRunCleanup", function () {
           approvedFilesMap,
           fakeGlobSync,
         );
-      }).to.not.throw;
+      }).to.not.throw();
     });
 
     it("should report the invalid file when config is on", function () {
