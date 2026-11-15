@@ -213,6 +213,7 @@ Any of the following reporter may suite your needs. Some support images, some on
 | `visualstudio`  | [Visual Studio Diff tool](http://msdn.microsoft.com/en-us/library/bb385990.aspx)                                 | &#10003; |           |
 | `vscode`        | [Visual Studio Code Diff tool](https://code.visualstudio.com/)                                                   | &#10003; | &#10003;  |
 | `vscodium`      | [VSCodium Diff tool](https://vscodium.com/)                                                                      | &#10003; | &#10003;  |
+| `webstorm`     | [WebStorm](https://www.jetbrains.com/webstorm/) | &#10003; | &#10003; | Discovers WebStorm on PATH or in macOS application folders; [configure a launcher](docs/reference/Reporters.md#webstorm) for a custom installation. |
 
 ### Custom Reporter
 
