@@ -1,3 +1,4 @@
+import { sync } from "glob";
 import path from "path";
 
 function unique<T>(items: T[]): T[] {
@@ -8,12 +9,10 @@ function normalizeFilePath(filePath) {
   return (filePath || "").replace(/\\/g, "/");
 }
 
-const glob = require("glob");
-
 export function postRunCleanup(
   config,
   approvedFilesMap,
-  glob_sync = glob.sync,
+  glob_sync: (pattern: string) => string[] = sync,
 ) {
   const options = config;
   if (options.errorOnStaleApprovedFiles) {
