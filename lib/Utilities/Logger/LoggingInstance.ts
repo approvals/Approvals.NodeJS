@@ -66,7 +66,7 @@ export class LoggingInstance {
       return code();
     }
     const name = getCallingMethod(additional_stack + 1);
-    let parameterText = "";
+    let parameterText: string;
     if (typeof parameters === "function") {
       parameterText = parameters();
     } else {
@@ -197,7 +197,7 @@ export class LoggingInstance {
       this.logLine(`Message:${text}`, false);
     }
     if (exception) {
-      let stack_trace = "";
+      let stack_trace: string;
       if (this.logStackTraces) {
         // todo: grab stack trace
         stack_trace = exception.toString();

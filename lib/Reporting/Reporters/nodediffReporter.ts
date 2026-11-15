@@ -41,7 +41,7 @@ export default class NodeDiffReporter implements Reporter {
     diff.forEach(function (part) {
       // green for additions, red for deletions
       // grey for common parts
-      let text = "";
+      let text;
       if (part.added) {
         text = greenText(part.value);
       } else {
