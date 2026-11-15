@@ -15,7 +15,7 @@ export class JestReporter implements Reporter {
     receivedFilePath: string,
     _: Partial<Config>,
   ) {
-    if (!isFrameworkAvailable("jest")) return;
+    if (!isFrameworkAvailable("jest")) {return;}
     const { expect } =
       require("@jest/globals") as typeof import("@jest/globals");
     const approvedText = fs.readFileSync(approvedFilePath).toString();

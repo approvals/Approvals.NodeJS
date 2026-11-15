@@ -17,7 +17,7 @@ export class VitestReporter implements Reporter {
     receivedFilePath: string,
     _: Partial<Config>,
   ) {
-    if (!isFrameworkAvailable("vitest")) return;
+    if (!isFrameworkAvailable("vitest")) {return;}
     const approvedText = fs.readFileSync(approvedFilePath).toString();
     const receivedText = fs.readFileSync(receivedFilePath).toString();
     expect(receivedText).toBe(approvedText);

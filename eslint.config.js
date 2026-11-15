@@ -22,7 +22,7 @@ module.exports = [
       "indent": ["error", 2],
       "semi": ["error", "always"],
       //   "no-console": ["off"],
-      //   "curly": [2, "all"],
+      "curly": ["error", "all"],
       "keyword-spacing": ["error", {}],
       "space-infix-ops": "error",
       //   "no-implicit-coercion": [

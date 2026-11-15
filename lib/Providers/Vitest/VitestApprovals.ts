@@ -7,7 +7,7 @@ import * as approvals from "../../Approvals";
 import { isFrameworkAvailable } from "../OptionalFramework";
 
 export function verify(sut: any, options?: Options): void {
-  if (!isFrameworkAvailable("vitest")) return;
+  if (!isFrameworkAvailable("vitest")) {return;}
   options = options || new Options();
   options = options.withNamer(getVitestNamer());
   const config = options.getConfig(approvals.getConfig());

@@ -97,7 +97,7 @@ export function getConfig(overrideOptions?: cfg.Config): cfg.Config {
  */
 
 export function mocha(optionalBaseDir?: string): typeof module.exports {
-  if (!isFrameworkAvailable("mocha")) return module.exports;
+  if (!isFrameworkAvailable("mocha")) {return module.exports;}
   // if not providing a base dir, fallback to the current calling code's directory
   if (!optionalBaseDir) {
     let fileName = callsite()[1].getFileName();
