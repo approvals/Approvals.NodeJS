@@ -52,22 +52,13 @@ module.exports = [
       "no-mixed-spaces-and-tabs": "error",
       "no-bitwise": "error",
       //   "camelcase": 0,
-      //   "curly": "error",
       //   "eqeqeq": "error",
       //   "guard-for-in": "error",
       "no-extend-native": "error",
       "wrap-iife": "error",
-      //   "indent": [
-      //     2,
-      //     2,
-      //     {
-      //       "SwitchCase": 1
-      //     }
-      //   ],
       //   "no-use-before-define": 0,
       //   "new-cap": 0,
       "no-caller": "error",
-      //   "no-empty": "error",
       "no-irregular-whitespace": "error",
       //   "no-new": 0,
       //   "no-plusplus": 0,
