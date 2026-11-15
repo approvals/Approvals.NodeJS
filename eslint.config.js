@@ -19,7 +19,9 @@ module.exports = [
     // Original .eslintrc.json rules, enabled incrementally.
     // Duplicate keys are preserved; the last value for each key takes precedence.
     rules: {
-      "indent": ["error", 2],
+      "indent": ["error", 2,{
+        "SwitchCase": 1
+      }],
       "semi": ["error", "always"],
       //   "no-console": ["off"],
       "curly": ["error", "all"],
@@ -48,13 +50,6 @@ module.exports = [
       "array-bracket-spacing": ["error", "never", {}],
       "space-in-parens": ["error", "never"],
       "no-mixed-spaces-and-tabs": "error",
-      //   "indent": [
-      //     "error",
-      //     2,
-      //     {
-      //       "SwitchCase": 1
-      //     }
-      //   ],
       "no-bitwise": "error",
       //   "camelcase": 0,
       //   "curly": "error",
