@@ -25,14 +25,17 @@ describe("Combinations", () => {
     const numbers = [0, 1, 2];
     verifyAllCombinations1(binarySquare, numbers);
   });
+
   test("verify2", () => {
     const numbers = [0, 1, 2];
     verifyAllCombinations2((a, b) => a + b, numbers, numbers);
   });
+
   test("verify3", () => {
     const numbers = [3, 4];
     verifyAllCombinations3((a, b, c) => a * b * c, numbers, numbers, numbers);
   });
+
   test("verify4", () => {
     const numbers = [3, 4];
     verifyAllCombinations4(
@@ -43,6 +46,7 @@ describe("Combinations", () => {
       numbers,
     );
   });
+
   test("verify5", () => {
     verifyAllCombinations5(
       (a, b, c, d, e) => e + d + c + b + a,
@@ -53,6 +57,7 @@ describe("Combinations", () => {
       ["g", "h", "i"],
     );
   });
+
   test("verify6", () => {
     verifyAllCombinations6(
       (a, b, c, d, e, f) => "#" + a + " " + f + e + d + c + b,
@@ -64,6 +69,7 @@ describe("Combinations", () => {
       ["g", "h"],
     );
   });
+
   test("verify7", () => {
     verifyAllCombinations7(
       (a, b, c, d, e, f, g) => a + b + c + d + e + f + g,
@@ -76,6 +82,7 @@ describe("Combinations", () => {
       [2, 3],
     );
   });
+
   test("verify8", () => {
     verifyAllCombinations8(
       (a, b, c, d, e, f, g, h) => a + b + c + d + e + f + g + h,
@@ -89,6 +96,7 @@ describe("Combinations", () => {
       [8, 7],
     );
   });
+
   test("verify9", () => {
     verifyAllCombinations9(
       (a, b, c, d, e, f, g, h, i) => String(a) + b + c + d + e + f + g + h + i,
@@ -103,6 +111,7 @@ describe("Combinations", () => {
       [9, 8],
     );
   });
+
   test("verify15", () => {
     verifyAllCombinations(
       (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) =>
