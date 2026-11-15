@@ -29,6 +29,7 @@ module.exports = [
       //   "no-console": ["off"],
       "curly": ["error", "all"],
       "keyword-spacing": ["error", {}],
+      "no-multi-spaces": "error",
       "space-infix-ops": "error",
       //   "no-implicit-coercion": [
       //     "error",
@@ -39,7 +40,7 @@ module.exports = [
       //     }
       //   ],
       "no-with": "error",
-      "no-multiple-empty-lines": ["error",  { max: 1, maxBOF: 0, maxEOF: 0 }],
+      "no-multiple-empty-lines": ["error", { max: 1, maxBOF: 0, maxEOF: 0 }],
       "brace-style": [
         "error",
         "1tbs",
