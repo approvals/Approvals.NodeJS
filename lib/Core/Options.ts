@@ -34,7 +34,7 @@ export class Options {
 
   modify(key: string, value: any): Options {
     const next = new Options();
-    for (const key1 in this.fields) {
+    for (const key1 of Object.keys(this.fields)) {
       next.fields[key1] = this.fields[key1];
     }
     next.fields[key] = value;

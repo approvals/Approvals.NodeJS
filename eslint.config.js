@@ -57,7 +57,7 @@ module.exports = [
       "no-bitwise": "error",
       //   "camelcase": 0,
       "eqeqeq": "error",
-      //   "guard-for-in": "error",
+      "guard-for-in": "error",
       "no-extend-native": "error",
       "wrap-iife": "error",
       //   "no-use-before-define": 0,
