@@ -27,6 +27,7 @@ import { MochaNamer } from "./Providers/Mocha/MochaNamer";
 
 import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 import { isFrameworkAvailable } from "./Providers/OptionalFramework";
+import MultiReporter from "./Reporting/Reporters/multiReporter";
 
 /**
  * Contains some helpful and util scrubbers that can be used for scrubbing data before saving to a received file.
@@ -136,7 +137,7 @@ export const reporters: { MultiReporter: any } = {
    *   ]
    * });
    */
-  MultiReporter: require("./Reporting/Reporters/multiReporter").default,
+  MultiReporter: MultiReporter,
 };
 
 /**
