@@ -1,6 +1,6 @@
 "use strict";
 
-import {MochaNamer} from "../../../../lib/Providers/Mocha/MochaNamer.js";
+import { MochaNamer } from "../../../../lib/Providers/Mocha/MochaNamer.js";
 import path from "path";
 import assert from "assert";
 

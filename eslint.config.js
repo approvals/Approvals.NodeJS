@@ -63,6 +63,7 @@ module.exports = [
       "eol-last": "error",
       "no-empty": "error",
       "array-bracket-spacing": ["error", "never", {}],
+      "object-curly-spacing": ["error", "always"],
       "space-in-parens": ["error", "never"],
       "no-mixed-spaces-and-tabs": "error",
       "no-bitwise": "error",
