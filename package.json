@@ -56,7 +56,7 @@
     "coverage": "node scripts/test-isolated.cjs mocha --coverage",
     "jest": "node scripts/test-isolated.cjs jest"
   },
-  "pre-commit": ["lint:staged", "test:suites"],
+  "pre-commit": ["lint:staged", "build", "test:suites"],
   "lint-staged": {
     "*.{js,mjs,ts,mts}": "eslint --fix"
   },
