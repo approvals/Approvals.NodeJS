@@ -1,8 +1,8 @@
 "use strict";
 
-const assert = require("assert");
-const path = require("path");
-const { MochaNamer } = require("../../../../lib/Providers/Mocha/MochaNamer");
+import {MochaNamer} from "../../../../lib/Providers/Mocha/MochaNamer.js";
+import path from "path";
+import assert from "assert";
 
 describe("MochaNamer", function () {
   describe("when given a mocha context", function () {
