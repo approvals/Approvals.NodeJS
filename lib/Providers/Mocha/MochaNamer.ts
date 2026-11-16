@@ -1,16 +1,14 @@
 import path from "path";
 
-import type { Runnable, Suite } from "mocha";
+import type { Context, Runnable, Suite } from "mocha";
 
 import { convertToFilename } from "../../Core/Namer";
 import { Namer } from "../../Namer";
 
 export class MochaNamer extends Namer {
-  // @ts-ignore errors if Mocha is not used
-  private ctx: Mocha.Runnable;
+  private ctx: Runnable;
 
-  // @ts-ignore errors if Mocha is not used
-  constructor(mochaTest: Mocha.Context, overrideBasePath?: string) {
+  constructor(mochaTest: Context, overrideBasePath?: string) {
     if (!mochaTest || !mochaTest.test) {
       throw new Error("Mocha test context was not supplied");
     }
