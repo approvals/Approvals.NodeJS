@@ -20,6 +20,13 @@ function ignoreSharedLaunchLimit(sandbox) {
   sandbox.stub(circuitBreaker.default, "check").returns(false);
 }
 
+function reporterRunningScriptWithNode(script) {
+  const reporter = new WebStormReporter(process.execPath);
+  const diffArgs = reporter.setCommandArgs;
+  reporter.setCommandArgs = (a, r) => [script, ...diffArgs(a, r)];
+  return reporter;
+}
+
 describe("WebStormReporter", () => {
   let sandbox;
   let findProgram;
@@ -214,10 +221,7 @@ describe("WebStormReporter", () => {
         launcher,
         `require("fs").writeFileSync(${JSON.stringify(output)}, JSON.stringify(process.argv.slice(2)));`,
       );
-      // Use Node to run the test launcher on every OS, without a shell.
-      const reporter = new WebStormReporter(process.execPath);
-      const diffArgs = reporter.setCommandArgs;
-      reporter.setCommandArgs = (a, r) => [launcher, ...diffArgs(a, r)];
+      const reporter = reporterRunningScriptWithNode(launcher);
       sandbox.stub(console, "log");
 
       reporter.report(approved, received, { blockUntilReporterExits: true });
