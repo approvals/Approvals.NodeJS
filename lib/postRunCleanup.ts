@@ -17,10 +17,6 @@ export function postRunCleanup(
 ) {
   const options = config;
   if (options.errorOnStaleApprovedFiles) {
-    // Don't require glob at the top of the file.
-    // this avoids a load of glob if it's not necessary
-
-    // normalize file paths for searching (windows vs *nix)...
     const normalizedApprovedFilePaths = approvedFilesMap.map(normalizeFilePath);
 
     const getAllDirectoriesOfApprovedFiles = unique(
