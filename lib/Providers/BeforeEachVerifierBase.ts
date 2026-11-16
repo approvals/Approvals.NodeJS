@@ -26,10 +26,8 @@ function beforeEachLoaderFunction(
     );
     return reporterCandidates;
   }
-  function verify(data: any, overrideOptions?: any) {
-    // @ts-ignore
-    const context = this as Mocha.Context;
-    const namer = new Namer(context, dirName);
+  function verify(this: Mocha.Context, data: any, overrideOptions?: any) {
+    const namer = new Namer(this, dirName);
 
     const newOptions = _.defaults(overrideOptions || {}, cfg.currentConfig());
 
@@ -41,8 +39,7 @@ function beforeEachLoaderFunction(
     FileApprover.verify(namer, writer, reporterFactory);
   }
 
-  function verifyAsJSON(data: any, overrideOptions?: any) {
-    // @ts-ignore
+  function verifyAsJSON(this: any, data: any, overrideOptions?: any) {
     this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
   }
 }
