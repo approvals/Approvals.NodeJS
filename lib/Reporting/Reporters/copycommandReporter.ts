@@ -39,8 +39,8 @@ export default class CopyCommandReporter implements Reporter {
         input: selectedPrograms.fileCopy + " " + quotedReceivedAndApprovedPaths,
       });
     } else {
-      // some sort of fallback copy command logged to the console
-      console.log("cp " + quotedReceivedAndApprovedPaths);
+      const fallbackCopyCommand = "cp " + quotedReceivedAndApprovedPaths;
+      console.log(fallbackCopyCommand);
     }
   }
 }
