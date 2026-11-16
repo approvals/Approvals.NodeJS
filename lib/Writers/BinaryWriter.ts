@@ -6,6 +6,11 @@ import { sync } from "mkdirp";
 
 import { Writer } from "../Core/Writer";
 
+const legacyApprovalFileExtensions = new Map<string, string>([
+  ["jpeg", "jpg"],
+  ["tiff", "tif"],
+]);
+
 export class BinaryWriter implements Writer {
   private outputData: Buffer;
   private _ext?: string;
@@ -18,17 +23,7 @@ export class BinaryWriter implements Writer {
     if (!this._ext) {
       // Use the first signature match (for example, zip before jar/docx).
       const extension = filetypeextension(this.outputData)[0] || "blob";
-      // Keep existing JPEG and TIFF approval filenames compatible.
-      switch (extension) {
-        case "jpeg":
-          this._ext = "jpg";
-          break;
-        case "tiff":
-          this._ext = "tif";
-          break;
-        default:
-          this._ext = extension;
-      }
+      this._ext = legacyApprovalFileExtensions.get(extension) ?? extension;
     }
     return this._ext;
   }
