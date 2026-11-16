@@ -4,20 +4,12 @@ import path from "path";
 
 import { expect } from "chai";
 
-import * as os from "../../../lib/osTools.js";
 import { ReporterFactory } from "../../../lib/Reporting/ReporterFactory.js";
 import { testDirectory } from "../testPaths.mjs";
 
 describe("ReporterFactory", function () {
-  let textDiffReporters, allAvailableDiffReporters;
-
-  if (os.platform.isWindows) {
-    textDiffReporters = ["DoNothing", "gitdiff"];
-    allAvailableDiffReporters = ["DoNothing", "gitdiff"];
-  } else {
-    textDiffReporters = ["DoNothing", "gitdiff"];
-    allAvailableDiffReporters = ["DoNothing", "gitdiff"];
-  }
+  const textDiffReporters = ["DoNothing", "gitdiff"];
+  const allAvailableDiffReporters = ["DoNothing", "gitdiff"];
 
   it("Should load specific reporters", function () {
     allAvailableDiffReporters.forEach(function (differ) {
