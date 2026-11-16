@@ -1,5 +1,3 @@
-/*jshint freeze:false */
-
 /**
  * Approvals module.
  * @module approvals
