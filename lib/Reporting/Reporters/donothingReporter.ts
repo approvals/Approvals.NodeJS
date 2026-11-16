@@ -7,7 +7,5 @@ export default class DoNothingReporter implements Reporter {
     return true;
   }
 
-  report() {
-    // Do nothing
-  }
+  report() {}
 }
