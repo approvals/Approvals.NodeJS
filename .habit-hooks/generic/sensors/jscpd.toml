@@ -1,0 +1,3 @@
+# The stock jscpd sensor ignores the run's scope and reports the whole repo's
+# duplication on every run; this wrapper keeps only clones touching a scoped file.
+argv = ["${python}", "${dir}/scoped_jscpd.py", "${detector:jscpd}", "--", "${files}"]

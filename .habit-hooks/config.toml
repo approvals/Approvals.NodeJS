@@ -1,0 +1,11 @@
+plugins = ["typescript", "generic"]
+# Scan source, including ESM tests, without generated JavaScript/declarations.
+files = [
+  "lib/**/*.ts",
+  "bin/**/*.ts",
+  "tools/**/*.ts",
+  "test/**/*.mts",
+  "!**/*.d.ts",
+  "!**/*.d.mts",
+  "!**/node_modules/**",
+]
