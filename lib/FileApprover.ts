@@ -100,7 +100,6 @@ export class FileApprover {
       throwReporterError("Files do not match.");
     }
 
-    // Delete the received file
     fs.unlinkSync(receivedFileName);
 
     (process.emit as Function)("approvalFileApproved", approvedFileName);
