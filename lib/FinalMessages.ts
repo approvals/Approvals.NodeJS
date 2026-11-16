@@ -10,7 +10,6 @@ export class FinalMessages {
   }
 
   static getMessages() {
-    //return messages;
     return Object.keys(messages).map((x) => messages[x]);
   }
 }
