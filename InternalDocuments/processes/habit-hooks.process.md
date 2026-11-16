@@ -28,6 +28,9 @@ For each File:
    Don't pipe `quick_check.sh` into `tail`/`grep`; that hides its exit code.
 1. Commit the change (We will review them later) with the message from
    `node tools/create_message.ts proven refactor "<short-message>"` (gives `- r <short-message>`).
+   If every changed file is a test (under `test/`), use
+   `node tools/create_message.ts completely_safe test "<short-message>"` instead (gives `. t <short-message>`):
+   a test-only change can't break production, so it gets the safer notation.
 1. Repeat from "Run Habit Hooks" until the remaining findings are worth leaving.
    Make at most 5 commits per file; at most 3 if one quick check takes over 5 minutes.
 1. When done with the file, run the full static check (`npm run lint` and `npm run build`).
