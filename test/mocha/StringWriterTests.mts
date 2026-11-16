@@ -58,11 +58,7 @@ describe("StringWriter", function () {
     describe("test", function () {
       let writeFileSyncStub;
       beforeEach(function () {
-        writeFileSyncStub = sinon
-          .stub(fs, "writeFileSync")
-          .callsFake(function () {
-            // do nothing
-          });
+        writeFileSyncStub = sinon.stub(fs, "writeFileSync");
       });
 
       afterEach(function () {
