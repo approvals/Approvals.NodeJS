@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-import es from "event-stream";
-import * as autils from "../lib/AUtils";
 import fs from "fs";
 import path from "path";
+
+import es from "event-stream";
 import { marked } from "marked";
 import { createTerminalRenderer, darkTheme } from "marked-terminal-renderer";
 import minimist from "minimist";
+
 import { configure, verify } from "../lib/Approvals";
+import * as autils from "../lib/AUtils";
 import { redText } from "../lib/Utilities/ConsoleUtils";
 
 const verbose = process.argv.includes("--verbose");
