@@ -171,19 +171,8 @@ function verifyAndScrub(
 ): void {
   scrubber = scrubber || Scrubbers.noScrubber;
 
-  // backwards compatible option
   if (Array.isArray(optionsOverride)) {
-    optionsOverride = {
-      reporters: optionsOverride,
-    };
-    const stringReporters = JSON.stringify(optionsOverride.reporters);
-    console.error(
-      'For the last arg of the approvals.verify(...) function, if you passed in an array of reporters, something like ["opendiff","nodediff"], this has been deprecated and replaced by passing in a config object. Please re-evaluate if you can remove this parameter alltogether and use individual user configs in ~/.approvalConfig, if not then replace this: ' +
-        stringReporters +
-        " with this { reporters: " +
-        stringReporters +
-        "}.",
-    );
+    optionsOverride = convertDeprecatedReportersArray(optionsOverride);
   }
 
   const newOptions = cfg.getConfig(optionsOverride);
@@ -199,6 +188,20 @@ function verifyAndScrub(
     writer = new StringWriter(newOptions, data as string);
   }
   verifyWithControl(namer, writer, null, newOptions);
+}
+
+function convertDeprecatedReportersArray(reporterNames: any[]): {
+  reporters: any[];
+} {
+  const stringReporters = JSON.stringify(reporterNames);
+  console.error(
+    'For the last arg of the approvals.verify(...) function, if you passed in an array of reporters, something like ["opendiff","nodediff"], this has been deprecated and replaced by passing in a config object. Please re-evaluate if you can remove this parameter alltogether and use individual user configs in ~/.approvalConfig, if not then replace this: ' +
+      stringReporters +
+      " with this { reporters: " +
+      stringReporters +
+      "}.",
+  );
+  return { reporters: reporterNames };
 }
 /**
  *
