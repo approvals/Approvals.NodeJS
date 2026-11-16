@@ -7,6 +7,7 @@ Approval-testing library published as `@approval-tests/approvals`. TypeScript so
 - Full validation: `./build_and_test.sh` (build, lint, framework-free core and isolated framework suites).
 - Local feedback: `./quick_check.sh`; see [QuickCheck.md](QuickCheck.md).
 - Smell sensors: `tools/run-habit-hooks.sh`; see [habit-hooks.md](habit-hooks.md).
+- Coverage: `tools/create_code_coverage.sh` merges mocha, jest and vitest Istanbul coverage into `coverage/index.html` and opens it in Chrome.
 - Commit messages: `node tools/create_message.ts <risk> <intention> "<description>"`.
 
 Kit source: https://github.com/LearnWithLlew/AiInLegacyCode/tree/9bc43b24b8c7f03e0bb6de0828397a7b5d7c637a/kit

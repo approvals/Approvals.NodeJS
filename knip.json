@@ -28,6 +28,7 @@
     "ts-morph",
     "ts-jest",
     "jest-junit",
-    "mocha-multi-reporters"
+    "mocha-multi-reporters",
+    "@vitest/coverage-istanbul"
   ]
 }
