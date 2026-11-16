@@ -7,6 +7,7 @@ instructions on how to clean. Follow those instructions and clean up the code.
 See `InternalDocuments/habit-hooks.md` for setup.
 
 ## Usage
+
 ```
 tools/run-habit-hooks.sh lib/Approvals.ts   # single file
 tools/run-habit-hooks.sh --branch master       # changed files vs a branch
@@ -18,6 +19,7 @@ tools/run-habit-hooks.sh --all               # whole scanned scope
 Note: If multiple files are specified, do each one in a sub-agent, one at a time sequentially.
 
 For each File:
+
 1. Check Git Status that we are checked in, otherwise stop.
 1. Run Habit Hooks.
 1. Apply one fix.

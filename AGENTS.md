@@ -9,6 +9,7 @@ Stack additional emoji when requested; never replace 🍀.
 It is important that we both understand the code. If anything in my prompt is ambiguous or underspecified, ask before acting on a guess — don't silently pick an interpretation. Ask one question at a time, not a batch.
 
 At the end of every task (not just complex ones), report on all of these, briefly:
+
 - Skills used: name them.
 - Skill gaps: if a skill you wished existed would have helped, propose one, even briefly.
 - Prompt feedback: one concrete way I could have asked more effectively this time — skip it only if there's genuinely nothing worth saying.
@@ -21,13 +22,16 @@ Information about this project found in @InternalDocuments/project.md
 Never use Claude Code's persistent memory system for this project. Durable guidance (conventions, process corrections, preferences) belongs in-repo instead — this file, `InternalDocuments/`, or a skill — so it's visible in version control and to every contributor, not just stored privately for one user.
 
 ## Decisions
+
 When you need input on a decision:
+
 - First, pick the option you think is best and propose it. Start that message with `⭐ 1: `
 - Also list the alternatives you rejected, each with a brief reason why. Start each with `❌ n:`
-Then have a discussion.
-This formatting applies every time you present a decision, even a quick one — don't let a short or informal-feeling exchange skip it.
+  Then have a discussion.
+  This formatting applies every time you present a decision, even a quick one — don't let a short or informal-feeling exchange skip it.
 
 ## Markdown
+
 Numbered lists in markdown files prefix every item with `1.`, not an incrementing sequence.
 
 ## Commit messages

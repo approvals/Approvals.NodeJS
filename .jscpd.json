@@ -1,13 +1,6 @@
 {
-  "path": [
-    "lib",
-    "bin",
-    "tools",
-    "test"
-  ],
-  "format": [
-    "typescript"
-  ],
+  "path": ["lib", "bin", "tools", "test"],
+  "format": ["typescript"],
   "ignore": [
     "**/node_modules/**",
     "**/*.d.ts",
@@ -19,7 +12,5 @@
   "threshold": 0,
   "minLines": 5,
   "minTokens": 50,
-  "ignorePattern": [
-    "import\\s+[\\s\\S]*?from\\s+[\"'][^\"']+[\"'];?"
-  ]
+  "ignorePattern": ["import\\s+[\\s\\S]*?from\\s+[\"'][^\"']+[\"'];?"]
 }
