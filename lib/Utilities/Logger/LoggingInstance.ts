@@ -188,23 +188,12 @@ export class LoggingInstance {
 
   warning(exception: Error | string) {
     const warning_stars = "*".repeat(91);
-    const text = null;
     this.logLine(warning_stars, false);
     if (this.logWithTimestamps) {
       this.logLine("", true);
     }
-    if (text) {
-      this.logLine(`Message:${text}`, false);
-    }
     if (exception) {
-      let stack_trace: string;
-      if (this.logStackTraces) {
-        // todo: grab stack trace
-        stack_trace = exception.toString();
-      } else {
-        stack_trace = `${exception}`;
-      }
-      this.logLine(stack_trace, false);
+      this.logLine(`${exception}`, false);
     }
     this.logLine(warning_stars, false);
   }
