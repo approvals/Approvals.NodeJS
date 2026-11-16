@@ -82,13 +82,6 @@ describe("config.js - ", function () {
       expect(configFile?.reporters).to.deep.equal(["gitdiff"]);
     });
 
-    //it("but it is malformed it should raise exception with help about how to setup the file", function(){
-    //  configToLoad = "as dfa: sdf asdf";
-    //  expect(function() {
-    //    config.getHomeApprovalConfig();
-    //  }).to.throw(/Error parsing (.*).approvalsConfig/);
-    //});
-
     it("should load user's config", function () {
       configToLoad = {
         myConfig: true,
