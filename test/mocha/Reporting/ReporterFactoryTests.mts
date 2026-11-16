@@ -121,9 +121,6 @@ describe("ReporterFactory", function () {
       allReporters = fs
         .readdirSync(path.join(testDirectory, "../../lib/Reporting/Reporters"))
         .map(function (item) {
-          if (item.indexOf("Reporter.d.ts") === -1) {
-            // ignore the typescript definition file
-          }
           if (item.indexOf("Reporter.ts") !== -1) {
             return item.substr(0, item.indexOf("Reporter.ts"));
           } else if (item.indexOf("Reporter.js") !== -1) {
