@@ -99,13 +99,8 @@ export function mocha(optionalBaseDir?: string): typeof module.exports {
   if (!isFrameworkAvailable("mocha")) {
     return module.exports;
   }
-  // if not providing a base dir, fallback to the current calling code's directory
   if (!optionalBaseDir) {
-    let fileName = callsite()[1].getFileName();
-    if (fileName.startsWith("file://")) {
-      fileName = fileURLToPath(fileName);
-    }
-    optionalBaseDir = path.dirname(fileName);
+    optionalBaseDir = directoryOfCallerOfMocha();
   }
   beforeEachVerifierBase(
     MochaNamer,
@@ -114,6 +109,15 @@ export function mocha(optionalBaseDir?: string): typeof module.exports {
   );
 
   return module.exports;
+}
+
+function directoryOfCallerOfMocha(): string {
+  // callsite()[0] is this function, [1] is mocha(), [2] is the test file that called mocha()
+  let fileName = callsite()[2].getFileName();
+  if (fileName.startsWith("file://")) {
+    fileName = fileURLToPath(fileName);
+  }
+  return path.dirname(fileName);
 }
 
 /**
