@@ -9,8 +9,6 @@ import { Config } from "../../lib/config.js";
 import { StringWriter } from "../../lib/StringWriter.js";
 
 temp.track();
-// Write out contest to file (leveraging the Namer)
-// Responsible for 'type' of the file.
 
 describe("StringWriter", function () {
   const defaultConfig: Partial<Config> = {};
