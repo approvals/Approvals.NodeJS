@@ -33,6 +33,8 @@ The TypeScript plugin uses the project's ESLint configuration, knip, and ts-morp
 because knip ignores root entry patterns inside workspaces. Every `lib/**/*.ts` file is an entry: the
 package has no `exports` map, so every built `lib` file is importable by consumers. Dependencies used only
 by root test configs (`.mocharc.js`, `jest.config.js`) or by habit-hooks itself are listed in `ignoreDependencies`.
+`test/mocha/testPaths.mts` is a declared entry because tests import it as `./testPaths.mjs`, and once built,
+knip resolves that to the generated `.mjs` instead of the `.mts` source.
 Only ESLint rules enabled in this repository can produce structural findings; the current config
 does not enable every size, nesting, or parameter-count rule. Generic sensors add file length and
 duplication. These checks cannot establish behavior, API compatibility, test completeness, or whether

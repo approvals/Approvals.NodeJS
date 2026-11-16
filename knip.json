@@ -7,7 +7,11 @@
       "ignore": ["**/*.d.ts"]
     },
     "test/mocha": {
-      "entry": ["**/*{Tests,tests}.mts", "**/*{Tests,tests}.js"],
+      "entry": [
+        "**/*{Tests,tests}.mts",
+        "**/*{Tests,tests}.js",
+        "testPaths.mts"
+      ],
       "project": ["**/*.{mts,js}"]
     },
     "test/jest": {
