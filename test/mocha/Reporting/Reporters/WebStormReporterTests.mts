@@ -20,6 +20,10 @@ function ignoreSharedLaunchLimit(sandbox) {
   sandbox.stub(circuitBreaker.default, "check").returns(false);
 }
 
+function applicationLauncher(directory) {
+  return path.join(directory, "WebStorm.app", "Contents", "MacOS", "webstorm");
+}
+
 function reporterRunningScriptWithNode(script) {
   const reporter = new WebStormReporter(process.execPath);
   const diffArgs = reporter.setCommandArgs;
@@ -101,13 +105,7 @@ describe("WebStormReporter", () => {
             path.join(os.homedir(), "Applications"),
           ]) {
             it(`discovers WebStorm.app in ${directory}`, () => {
-              const launcher = path.join(
-                directory,
-                "WebStorm.app",
-                "Contents",
-                "MacOS",
-                "webstorm",
-              );
+              const launcher = applicationLauncher(directory);
               exists.withArgs(launcher).returns(true);
               const reporter = new WebStormReporter();
               assert.strictEqual(reporter.exePath, launcher);
@@ -129,13 +127,7 @@ describe("WebStormReporter", () => {
             exists.returns(true);
             assert.strictEqual(
               new WebStormReporter().exePath,
-              path.join(
-                "/Applications",
-                "WebStorm.app",
-                "Contents",
-                "MacOS",
-                "webstorm",
-              ),
+              applicationLauncher("/Applications"),
             );
           });
 
