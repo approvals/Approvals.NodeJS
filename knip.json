@@ -1,0 +1,29 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": ["lib/**/*.ts", "bin/index.ts", "tools/*.ts"],
+      "project": ["lib/**/*.ts", "bin/**/*.ts", "tools/**/*.ts"],
+      "ignore": ["**/*.d.ts"]
+    },
+    "test/mocha": {
+      "entry": ["**/*{Tests,tests}.mts", "**/*{Tests,tests}.js"],
+      "project": ["**/*.{mts,js}"]
+    },
+    "test/jest": {
+      "entry": ["**/*.test.mts", "Providers/JestGlobalSetup.mts"],
+      "project": ["**/*.mts"]
+    },
+    "test/vitest": {
+      "entry": ["**/*.test.mts"],
+      "project": ["**/*.mts"]
+    }
+  },
+  "ignoreDependencies": [
+    "jscpd",
+    "ts-morph",
+    "ts-jest",
+    "jest-junit",
+    "mocha-multi-reporters"
+  ]
+}

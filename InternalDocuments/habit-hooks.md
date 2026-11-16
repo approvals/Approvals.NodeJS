@@ -29,6 +29,10 @@ generated declarations and JavaScript. `.jscpd.json` uses weak mode, excludes ge
 and ignores imports. The scoped jscpd override reports only clones touching a file in scope.
 
 The TypeScript plugin uses the project's ESLint configuration, knip, and ts-morph comment analysis.
+`knip.json` declares one knip workspace per npm workspace (root, `test/mocha`, `test/jest`, `test/vitest`),
+because knip ignores root entry patterns inside workspaces. Every `lib/**/*.ts` file is an entry: the
+package has no `exports` map, so every built `lib` file is importable by consumers. Dependencies used only
+by root test configs (`.mocharc.js`, `jest.config.js`) or by habit-hooks itself are listed in `ignoreDependencies`.
 Only ESLint rules enabled in this repository can produce structural findings; the current config
 does not enable every size, nesting, or parameter-count rule. Generic sensors add file length and
 duplication. These checks cannot establish behavior, API compatibility, test completeness, or whether
