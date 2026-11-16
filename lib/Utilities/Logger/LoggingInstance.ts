@@ -66,24 +66,13 @@ export class LoggingInstance {
       return code();
     }
     const name = getCallingMethod(additional_stack + 1);
-    let parameterText: string;
-    if (typeof parameters === "function") {
-      parameterText = parameters();
-    } else {
-      parameterText = parameters;
-    }
-    this.logLine(`=> ${name}(${parameterText})`);
+    const entryParameters =
+      typeof parameters === "function" ? parameters() : parameters;
+    this.logLine(`=> ${name}(${entryParameters})`);
     const returnValue = this.withTabbing(code);
-    if (typeof parameters === "function") {
-      parameterText = parameters();
-    } else {
-      parameterText = "";
-    }
-    let returnText = "";
-    if (logReturnValue) {
-      returnText = `: ${returnValue}`;
-    }
-    this.logLine(`<= ${name}(${parameterText})${returnText}`);
+    const exitParameters = typeof parameters === "function" ? parameters() : "";
+    const returnText = logReturnValue ? `: ${returnValue}` : "";
+    this.logLine(`<= ${name}(${exitParameters})${returnText}`);
     return returnValue;
   }
 
