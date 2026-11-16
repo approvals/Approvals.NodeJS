@@ -15,7 +15,6 @@ function beforeEachLoaderFunction(
   dirName: string,
   that: any,
 ): void {
-  // Add methods to the test context
   that.approvals = { getCurrentReporters };
   that.verify = verify;
   that.verifyAsJSON = verifyAsJSON;
@@ -48,22 +47,23 @@ function beforeEachLoaderFunction(
   }
 }
 
+function ensureDirectoryExists(dirName: string, usageSample: string): void {
+  if (!fs.existsSync(dirName)) {
+    fs.mkdirSync(dirName);
+  }
+  if (!fs.lstatSync(dirName).isDirectory()) {
+    throw new Error(
+      `Invalid directory [${dirName}]. Try using the following syntax. > ${usageSample}`,
+    );
+  }
+}
+
 export function beforeEachVerifierBase(
   Namer: typeof MochaNamer,
   usageSample: string,
   dirName: string,
 ): void {
-  if (!fs.existsSync(dirName)) {
-    fs.mkdirSync(dirName);
-  }
-
-  // Make sure it's a valid directory
-  const stats = fs.lstatSync(dirName);
-  if (!stats.isDirectory()) {
-    throw new Error(
-      `Invalid directory [${dirName}]. Try using the following syntax. > ${usageSample}`,
-    );
-  }
+  ensureDirectoryExists(dirName, usageSample);
   beforeEach(function (this: any) {
     return beforeEachLoaderFunction(Namer, dirName, this);
   });
