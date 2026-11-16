@@ -17,9 +17,4 @@ describe("Mocha Typescript Approvals", () => {
   it("verify from lambda", () => {
     verify("Hello From Approvals2");
   });
-
-  //  it2("verify approvals", () => {
-  //      verify("Hello From Approvals");
-  //      // get the test name of the current mocha test
-  // });
 });
