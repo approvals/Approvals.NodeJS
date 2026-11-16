@@ -2,6 +2,9 @@ import { DateScrubber } from "./DateScrubber";
 
 export type Scrubber = (t: string) => string;
 
+const GUID_REGEX =
+  /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
+
 type ReplacementFunction = (index: number) => string;
 
 function _replaceRegex(
@@ -36,9 +39,7 @@ export class Scrubbers {
   }
 
   static createGuidScrubber(): Scrubber {
-    const guidReqex: RegExp =
-      /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
-    return this.createReqexScrubber(guidReqex, (t) => `<guid_${t}>`);
+    return this.createReqexScrubber(GUID_REGEX, (t) => `<guid_${t}>`);
   }
 
   /**
@@ -69,10 +70,7 @@ export class Scrubbers {
   }
 
   static guidScrubber(data: string) {
-    const guidRegex =
-      /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
-
-    return _replaceRegex(data, guidRegex, (index) => `guid_${index}`);
+    return _replaceRegex(data, GUID_REGEX, (index) => `guid_${index}`);
   }
 
   static multiScrubber(scrubbers: Scrubber[]) {
