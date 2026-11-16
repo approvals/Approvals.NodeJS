@@ -4,6 +4,12 @@ import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
 import { verify } from "../../../lib/Providers/Jest/JestApprovals.js";
 import { JestReporter } from "../../../lib/Providers/Jest/JestReporter.js";
 
+function expectJestDiffAgainstApprovedGoodbye(error: any) {
+  const message = error.message;
+  expect(message).toMatch(/- Goodbye/);
+  expect(message).toMatch(/\+ Hello/);
+}
+
 describe("JestReporter", () => {
   test("reports file contents", () => {
     try {
@@ -18,11 +24,7 @@ describe("JestReporter", () => {
       verify("Hello", options);
       // end-snippet
     } catch (error: any) {
-      const message = error.message;
-      // Approved file contains 'Goodbye', to force the call verify() to fail.
-      // We test that jest-formatted output has shown the differences in the exception it throws.
-      expect(message).toMatch(/- Goodbye/);
-      expect(message).toMatch(/\+ Hello/);
+      expectJestDiffAgainstApprovedGoodbye(error);
     }
   });
 
@@ -30,11 +32,7 @@ describe("JestReporter", () => {
     try {
       verify("Hello", new Options().withReporter(new JestReporter()));
     } catch (error: any) {
-      const message = error.message;
-      // Approved file contains 'Goodbye', to force the call verify() to fail.
-      // We test that jest-formatted output has shown the differences in the exception it throws.
-      expect(message).toMatch(/- Goodbye/);
-      expect(message).toMatch(/\+ Hello/);
+      expectJestDiffAgainstApprovedGoodbye(error);
     }
   });
 });
