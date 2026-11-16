@@ -10,6 +10,16 @@ import {
 import { Reporter } from "../../Core/Reporter";
 import { grayText, greenText, redText } from "../../Utilities/ConsoleUtils";
 
+function colorByChangeType(part: jsdiff.Change): string {
+  if (part.added) {
+    return greenText(part.value);
+  }
+  if (part.removed) {
+    return redText(part.value);
+  }
+  return grayText(part.value);
+}
+
 export default class NodeDiffReporter implements Reporter {
   public name: string;
 
@@ -39,22 +49,7 @@ export default class NodeDiffReporter implements Reporter {
 
     const diff = jsdiff.diffChars(approvedText, receivedText);
 
-    diff.forEach(function (part) {
-      // green for additions, red for deletions
-      // grey for common parts
-      let text;
-      if (part.added) {
-        text = greenText(part.value);
-      } else {
-        if (part.removed) {
-          text = redText(part.value);
-        } else {
-          text = grayText(part.value);
-        }
-      }
-
-      process.stdout.write(text);
-    });
+    diff.forEach((part) => process.stdout.write(colorByChangeType(part)));
 
     console.log(`\n* End of diff for ${approved} vs ${received}`);
     console.log(`*******************************************\n\n`);
