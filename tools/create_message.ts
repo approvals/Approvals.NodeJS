@@ -24,8 +24,11 @@ const INTENTIONS = {
   documentation: "d",
 } as const;
 
-// Only these intentions may carry a risk other than completely_safe.
-const CODE_INTENTIONS = new Set<string>(["refactor", "feature", "bug"]);
+const INTENTIONS_ALLOWING_ANY_RISK = new Set<string>([
+  "refactor",
+  "feature",
+  "bug",
+]);
 
 function create_message(
   risk: string,
@@ -42,7 +45,10 @@ function create_message(
       `unrecognized intention '${intention}' (expected one of: ${Object.keys(INTENTIONS).join(", ")})`,
     );
   }
-  if (!CODE_INTENTIONS.has(intention) && risk !== "completely_safe") {
+  if (
+    !INTENTIONS_ALLOWING_ANY_RISK.has(intention) &&
+    risk !== "completely_safe"
+  ) {
     throw new Error(
       `intention '${intention}' is not a code change, so risk must be completely_safe`,
     );
