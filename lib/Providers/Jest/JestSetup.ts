@@ -12,24 +12,16 @@ export function initializeGlobalsForJest() {
   jestInitializingRun = true;
 }
 
+function wasCreatedInLast24Hours(file: string): boolean {
+  const creationDate = fs.statSync(file).birthtime;
+  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  return creationDate > twentyFourHoursAgo;
+}
+
 export function helpUserSetupJest(fileToCheck: string) {
   LogUtils.ensureTempDirectoryExists();
-  // Check if the file exists
-  if (fs.existsSync(fileToCheck)) {
-    // Get the date that fileToCheck was created
-    const fileStats = fs.statSync(fileToCheck);
-    const fileCreationDate = fileStats.birthtime;
-
-    // Check if the date was in the last 24 hours
-    const currentDate = new Date();
-    const twentyFourHoursAgo = new Date(
-      currentDate.getTime() - 24 * 60 * 60 * 1000,
-    );
-    const isFileRecent = fileCreationDate > twentyFourHoursAgo;
-
-    if (isFileRecent) {
-      return;
-    }
+  if (fs.existsSync(fileToCheck) && wasCreatedInLast24Hours(fileToCheck)) {
+    return;
   }
   const helpMessage = `
 **********************************************
