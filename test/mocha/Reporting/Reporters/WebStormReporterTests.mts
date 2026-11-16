@@ -10,8 +10,15 @@ import { platform } from "../../../../lib/osTools.js";
 import { ReporterFactory } from "../../../../lib/Reporting/ReporterFactory.js";
 import ReporterUnderTest from "../../../../lib/Reporting/Reporters/webstormReporter.js";
 
-const utils = createRequire(import.meta.url)("../../../../lib/AUtils.js");
+const require = createRequire(import.meta.url);
+const utils = require("../../../../lib/AUtils.js");
+const circuitBreaker = require("../../../../lib/Reporting/ReportLaunchingCircuitBreaker.js");
+
 const WebStormReporter = ReporterUnderTest.default;
+
+function ignoreSharedLaunchLimit(sandbox) {
+  sandbox.stub(circuitBreaker.default, "check").returns(false);
+}
 
 describe("WebStormReporter", () => {
   let sandbox;
@@ -171,11 +178,7 @@ describe("WebStormReporter", () => {
       const spawnSync = sandbox.stub(reporter, "spawnSync");
       sandbox.stub(utils, "createEmptyFileIfNotExists");
       sandbox.stub(console, "log");
-      // Keep the test independent of the shared launch limit.
-      const circuitBreaker = createRequire(import.meta.url)(
-        "../../../../lib/Reporting/ReportLaunchingCircuitBreaker.js",
-      );
-      sandbox.stub(circuitBreaker.default, "check").returns(false);
+      ignoreSharedLaunchLimit(sandbox);
 
       const approved = "/project with spaces/file.approved.txt";
       const received = "/project with spaces/file.received.txt";
