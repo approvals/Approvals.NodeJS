@@ -31,17 +31,16 @@ export default class CopyCommandReporter implements Reporter {
 
     const selectedPrograms = programs[process.platform];
 
-    // EX: "copy my-file.received.txt my-file.approved.txt"
-    const copyFragment =
+    const quotedReceivedAndApprovedPaths =
       "'" + receivedFilePath + "' '" + approvedFilePath + "'";
 
     if (selectedPrograms) {
       execSync(selectedPrograms.clipboard, {
-        input: selectedPrograms.fileCopy + " " + copyFragment,
+        input: selectedPrograms.fileCopy + " " + quotedReceivedAndApprovedPaths,
       });
     } else {
       // some sort of fallback copy command logged to the console
-      console.log("cp " + copyFragment);
+      console.log("cp " + quotedReceivedAndApprovedPaths);
     }
   }
 }
