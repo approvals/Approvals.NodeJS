@@ -2,24 +2,27 @@ import { createEmptyFileIfNotExists } from "../../AUtils";
 import { platform } from "../../osTools";
 import { GenericDiffReporterBase } from "../GenericDiffReporterBase";
 
-export default class VisualStudioReporter extends GenericDiffReporterBase {
-  constructor() {
-    super("VisualStudio");
+function findInstalledVisualStudioPathUsingDotNet() {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const edge = require("edge");
 
-    if (platform.isWindows) {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const edge = require("edge");
-
-      // Use edge to execute some .net and go find the installed version of visual studio.
-      const getVisualStudioPath = edge.func(function () {
-        /*
+  const getVisualStudioPath = edge.func(function () {
+    /*
         async (input) => {
           // pulled this from https://github.com/approvals/ApprovalTests.Net/blob/master/ApprovalTests/Reporters/VisualStudioReporter.cs
           return (string)Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\devenv.exe", "", @"Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe");
         }
       */
-      });
-      this.exePath = getVisualStudioPath(null, true);
+  });
+  return getVisualStudioPath(null, true);
+}
+
+export default class VisualStudioReporter extends GenericDiffReporterBase {
+  constructor() {
+    super("VisualStudio");
+
+    if (platform.isWindows) {
+      this.exePath = findInstalledVisualStudioPathUsingDotNet();
     }
   }
 
