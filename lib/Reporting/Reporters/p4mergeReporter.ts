@@ -32,7 +32,7 @@ export default class P4MergeReporter extends GenericDiffReporterBase {
               })[0];
         }
       } catch {
-        //console.error(err);
+        // best effort: fall back to searching for the Windows executable
       }
     }
 
