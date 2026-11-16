@@ -13,6 +13,21 @@ function normalizeLineEndings(value: string): string {
   return value.replace(/(?:\r\n|\r|\n)/g, "\n");
 }
 
+function assertRequiredArguments(
+  namer: Namer,
+  writer: Writer,
+  reporterFactory: ReporterLoader,
+): void {
+  const missing = [
+    !namer ? "namer" : null,
+    !writer ? "writer" : null,
+    !reporterFactory ? "reporterFactory" : null,
+  ].filter(Boolean);
+  if (missing.length > 0) {
+    throw new Error(`Missing required arguments: ${missing.join(", ")}.`);
+  }
+}
+
 export class FileApprover {
   static verify(
     namer: Namer,
@@ -20,16 +35,7 @@ export class FileApprover {
     reporterFactory: ReporterLoader,
     options?: Partial<Config>,
   ): void {
-    if (!namer || !writer || !reporterFactory) {
-      const missing = [
-        !namer ? "namer" : null,
-        !writer ? "writer" : null,
-        !reporterFactory ? "reporterFactory" : null,
-      ]
-        .filter(Boolean)
-        .join(", ");
-      throw new Error(`Missing required arguments: ${missing}.`);
-    }
+    assertRequiredArguments(namer, writer, reporterFactory);
     if (!options) {
       options = {};
     }
