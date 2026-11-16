@@ -17,11 +17,11 @@ export class LogUtils {
     if (!fs.existsSync(this.APPROVAL_TEMP_DIRECTORY)) {
       fs.mkdirSync(this.APPROVAL_TEMP_DIRECTORY);
     }
-    this.downloadApproveAllScriptIfMissing().then();
+    this.downloadScriptsIfMissing().then();
     return this.APPROVAL_TEMP_DIRECTORY;
   }
 
-  private static async downloadApproveAllScriptIfMissing(): Promise<void> {
+  private static async downloadScriptsIfMissing(): Promise<void> {
     void this.downloadFile(`approve_all.py`);
     void this.downloadFile(`remove_abandoned_files.py`);
   }
