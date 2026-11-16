@@ -8,17 +8,20 @@ import { StringWriter } from "../../lib/StringWriter.js";
 
 import { testDirectory } from "./testPaths.mjs";
 
+function nestHeadingsUnderCliHelpSection(markdown: string): string {
+  return markdown.replace(/^(#+) /gm, "###$1 ");
+}
+
 describe("Readme", function () {
   it("Should not allow the readme docs to get out of sync", async function () {
     const currentReadme = fs
       .readFileSync(path.join(testDirectory, "../../", "readme.md"))
       .toString();
-    let cliDocsRaw = fs
-      .readFileSync(path.join(testDirectory, "../../bin", "help.md"))
-      .toString();
-
-    // Nest the CLI help headings under the README's CLI Help section.
-    cliDocsRaw = cliDocsRaw.replace(/^(#+) /gm, "###$1 ");
+    const cliDocsRaw = nestHeadingsUnderCliHelpSection(
+      fs
+        .readFileSync(path.join(testDirectory, "../../bin", "help.md"))
+        .toString(),
+    );
 
     const approvalsSource = fs
       .readFileSync(path.join(testDirectory, "../../lib", "Approvals.js"))
