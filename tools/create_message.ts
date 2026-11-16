@@ -1,13 +1,4 @@
 #!/usr/bin/env node
-/**
- * Create a commit message: <risk char> <intention char> <message>
- *
- * Usage: node tools/create_message.ts RISK INTENTION MESSAGE
- * Risk and intention are separated by a space, for example: - F Add a feature
- * Use feature and bug only for code shipped in the npm package.
- * Use environment for development tooling and build configuration changes.
- */
-
 const RISKS = {
   completely_safe: ".",
   proven: "-",
