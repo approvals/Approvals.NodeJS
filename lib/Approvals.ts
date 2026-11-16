@@ -43,17 +43,16 @@ if (typeof beforeEach === "function") {
   });
 }
 
-// keep track of approved files we run into with tests
-const listOfApprovedFiles: string[] = [];
+const approvedFilesSeenDuringTests: string[] = [];
 process.on("approvalFileApproved", function (fileName): void {
-  if (listOfApprovedFiles.indexOf(fileName) === -1) {
-    listOfApprovedFiles.push(fileName);
+  if (approvedFilesSeenDuringTests.indexOf(fileName) === -1) {
+    approvedFilesSeenDuringTests.push(fileName);
   }
 });
 
 process.on("exit", function (): void {
   const options = cfg.currentConfig();
-  postRunCleanup(options, listOfApprovedFiles);
+  postRunCleanup(options, approvedFilesSeenDuringTests);
   const finalMessages = FinalMessages.getMessages();
   if (finalMessages.length) {
     console.log("******************************");
