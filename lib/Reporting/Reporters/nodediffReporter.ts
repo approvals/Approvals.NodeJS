@@ -30,12 +30,7 @@ export default class NodeDiffReporter implements Reporter {
   canReportOn(fileName) {
     assertFileExists(fileName);
 
-    const isBinary = isBinaryFile(fileName);
-    if (isBinary) {
-      return false;
-    }
-
-    return true;
+    return !isBinaryFile(fileName);
   }
 
   report(approved, received, _options): void {
