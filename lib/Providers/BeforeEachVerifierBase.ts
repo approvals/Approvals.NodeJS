@@ -21,19 +21,14 @@ function beforeEachLoaderFunction(
 
   function getCurrentReporters(options?: any) {
     options = options || cfg.currentConfig();
-    const reporterCandidates = ReporterFactory.loadAllReporters(
-      options.reporters,
-    );
-    return reporterCandidates;
+    return ReporterFactory.loadAllReporters(options.reporters);
   }
   function verify(this: Mocha.Context, data: any, overrideOptions?: any) {
     const namer = new Namer(this, dirName);
 
     const newOptions = _.defaults(overrideOptions || {}, cfg.currentConfig());
 
-    const reporterFactory = function () {
-      return { getCurrentReporters }.getCurrentReporters(newOptions);
-    };
+    const reporterFactory = () => getCurrentReporters(newOptions);
 
     const writer = new StringWriter(newOptions, data);
     FileApprover.verify(namer, writer, reporterFactory);
