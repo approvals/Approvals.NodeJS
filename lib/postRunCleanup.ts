@@ -10,6 +10,21 @@ function normalizeFilePath(filePath) {
   return (filePath || "").replace(/\\/g, "/");
 }
 
+function findApprovedFilesInFolders(
+  folders: string[],
+  glob_sync: (pattern: string) => string[],
+): string[] {
+  const discoveredApprovalFiles: string[] = [];
+  folders.forEach(function (folder) {
+    return glob_sync(folder + "**/*.approved.*").forEach(function (file) {
+      if (discoveredApprovalFiles.indexOf(file) === -1) {
+        discoveredApprovalFiles.push(file);
+      }
+    });
+  });
+  return discoveredApprovalFiles;
+}
+
 export function postRunCleanup(
   config,
   approvedFilesMap,
@@ -19,22 +34,16 @@ export function postRunCleanup(
   if (options.errorOnStaleApprovedFiles) {
     const normalizedApprovedFilePaths = approvedFilesMap.map(normalizeFilePath);
 
-    const getAllDirectoriesOfApprovedFiles = unique(
+    const approvedFileFolders = unique<string>(
       normalizedApprovedFilePaths.map(function (file) {
         return path.dirname(file);
       }),
-    ); // get just the directory of each
+    );
 
-    let discoveredApprovalFiles: any = [];
-    getAllDirectoriesOfApprovedFiles.forEach(function (folder) {
-      return glob_sync(folder + "**/*.approved.*").forEach(function (file) {
-        if (discoveredApprovalFiles.indexOf(file) === -1) {
-          discoveredApprovalFiles.push(file);
-        }
-      });
-    }); // use 'glob' to find all .approved.* files for each folder.
-
-    discoveredApprovalFiles = discoveredApprovalFiles.map(normalizeFilePath);
+    const discoveredApprovalFiles = findApprovedFilesInFolders(
+      approvedFileFolders,
+      glob_sync,
+    ).map(normalizeFilePath);
 
     const staleApprovals = discoveredApprovalFiles
       .filter(function (file) {
@@ -45,7 +54,7 @@ export function postRunCleanup(
       })
       .filter(function (discoveredFilePath) {
         return normalizedApprovedFilePaths.indexOf(discoveredFilePath) < 0;
-      }); // only pull the ones that aren't already in the 'normalizedApprovedFilePaths'
+      });
 
     if (staleApprovals.length) {
       process.exitCode = 1;
