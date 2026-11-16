@@ -6,7 +6,6 @@ import * as utils from "../../lib/AUtils.js";
 import * as os from "../../lib/osTools.js";
 
 describe("AUtils", function () {
-  // only run these tests on Windows
   if (os.platform.isWindows) {
     describe("searchForExecutable", function () {
       if (!process.env.APPVEYOR) {
