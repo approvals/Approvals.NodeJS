@@ -41,7 +41,7 @@ export class LogUtils {
         fs.chmodSync(scriptPath, 0o755);
       }
     } catch {
-      // Do nothing
+      // Best-effort download: being offline or GitHub failing must not break tests.
     }
   }
 }
