@@ -313,7 +313,7 @@ export const defaultConfig: Config = {
   maxLaunches: 10,
 };
 ```
-<sup><a href='/lib/config.ts#L27-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_config' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/lib/config.ts#L28-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_config' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <a name="api" />
