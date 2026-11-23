@@ -12,7 +12,8 @@ function npm(args, cwd) {
   execFileSync(process.execPath, [process.env.npm_execpath, ...args], {
     cwd,
     stdio: "inherit",
-    env: { ...process.env, NODE_PATH: "" },
+    // Each call sets its own log level; do not inherit --silent from the parent npm.
+    env: { ...process.env, NODE_PATH: "", npm_config_loglevel: undefined },
   });
 }
 
@@ -134,7 +135,7 @@ function runSuites(selected, { coverage = false, args = [] } = {}) {
           });
         }
       }
-      npm(["test", "--", ...args], directory);
+      npm(["test", "--silent", "--", ...args], directory);
     } finally {
       for (const artifact of ["test-reports", "coverage", ".nyc_output"]) {
         const source = path.join(directory, artifact);
