@@ -1,6 +1,6 @@
 # AI Coding Agent Reporter
 
-Status: **not implemented yet**.
+Implemented in `lib/Reporting/Reporters/aicodingagentReporter.ts`.
 
 ## Purpose
 
@@ -38,6 +38,19 @@ An agent is detected when any of these environment variables is set:
 - `canReportOn(fileName)` returns `true` only when an agent is detected. This is how it works as a
   [front loaded reporter](front_loaded_reporter.md).
 - `report(approved, received)` prints the report with `console.log` and never launches a process.
+
+## Test seam
+
+The constructor takes the environment to read, and defaults to `process.env`:
+
+```ts
+new AiCodingAgentReporter({ CLAUDECODE: "1" }).canReportOn(); // true
+new AiCodingAgentReporter({}).canReportOn(); // false
+```
+
+Tests pass a plain map instead of changing `process.env`, so they give the same result whether or not they run
+inside an agent. The report text comes from the static `AiCodingAgentReporter.getReportText(approved, received)`,
+so tests can approve it without capturing `console.log`.
 
 ## Output format
 
