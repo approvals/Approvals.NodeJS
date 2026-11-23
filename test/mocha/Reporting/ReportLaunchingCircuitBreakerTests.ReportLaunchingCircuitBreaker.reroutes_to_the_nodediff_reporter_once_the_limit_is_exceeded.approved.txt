@@ -1,0 +1,11 @@
+*******************************************
+* Showing diff for <dir>/a.approved.txt vs <dir>/a.received.txt
+
+[90msame[39m
+* End of diff for <dir>/a.approved.txt vs <dir>/a.received.txt
+*******************************************
+
+
+
+final messages:
+config.maxLaunches (0) exceeded: 1 diff(s) shown in console above...
