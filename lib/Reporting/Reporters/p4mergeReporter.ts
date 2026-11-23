@@ -11,12 +11,9 @@ const MAC_APPLICATIONS_LAUNCHER =
 const HOMEBREW_CASK_FOLDER = "/opt/homebrew-cask/Caskroom/p4merge";
 
 function findInMacApplications(): string | null {
-  try {
-    return shelljs.ls(MAC_APPLICATIONS_LAUNCHER)[0];
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
+  return fs.existsSync(MAC_APPLICATIONS_LAUNCHER)
+    ? MAC_APPLICATIONS_LAUNCHER
+    : null;
 }
 
 function findInHomebrewCask(): string | undefined {
