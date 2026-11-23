@@ -160,14 +160,14 @@ module.exports = { runSuites };
 
 if (require.main === module) {
   const [framework, ...args] = process.argv.slice(2);
-  if (!frameworks.includes(framework)) {
+  if (framework !== "core" && !frameworks.includes(framework)) {
     console.error(
-      "Usage: node scripts/test-isolated.cjs mocha|jest|vitest [test arguments]",
+      "Usage: node scripts/test-isolated.cjs core|mocha|jest|vitest [test arguments]",
     );
     process.exit(2);
   }
   try {
-    runSuites([framework], {
+    runSuites([framework === "core" ? null : framework], {
       coverage: args.includes("--coverage"),
       args: args.filter((arg) => arg !== "--coverage"),
     });

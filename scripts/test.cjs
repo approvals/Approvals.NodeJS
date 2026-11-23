@@ -19,11 +19,32 @@ if (args.length) {
   }
 }
 
-try {
-  require("./test-isolated.cjs").runSuites(
-    framework ? [framework] : [null, "mocha", "jest", "vitest"],
+if (framework) {
+  try {
+    require("./test-isolated.cjs").runSuites([framework]);
+  } catch (error) {
+    console.error(error.message);
+    process.exit(error.status || 1);
+  }
+} else {
+  runAllSuitesInParallel();
+}
+
+// Each suite installs into its own temporary directory, so they can run at
+// the same time. `group` holds each suite's output until it is done and prints
+// the suites in the order listed, so their output never interleaves.
+function runAllSuitesInParallel() {
+  const { concurrently } = require("concurrently");
+  const suites = ["core", "mocha", "jest", "vitest"];
+  const { result } = concurrently(
+    suites.map((suite) => ({
+      name: suite,
+      command: `node scripts/test-isolated.cjs ${suite}`,
+    })),
+    { group: true, prefix: "none", successCondition: "all" },
   );
-} catch (error) {
-  console.error(error.message);
-  process.exit(error.status || 1);
+  result.then(
+    () => process.exit(0),
+    () => process.exit(1),
+  );
 }
