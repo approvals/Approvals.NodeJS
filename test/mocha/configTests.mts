@@ -7,6 +7,10 @@ import sinon from "sinon";
 import * as cfg from "../../lib/config.js";
 
 const expect = chai.expect;
+const readme = fs.readFileSync(
+  new URL("../../readme.md", import.meta.url),
+  "utf8",
+);
 describe("config.js - ", function () {
   let fsExistsSyncStub;
   let fsReadFileSyncStub;
@@ -71,6 +75,24 @@ describe("config.js - ", function () {
 
       expect(configFile).to.not.equal(null);
     });
+
+    for (const format of ["yaml", "json"]) {
+      it(`should load the documented ${format} configuration`, function () {
+        const section = readme.split("## Configuration")[1].split("## API")[0];
+        const example = section.match(
+          new RegExp("```" + format + "\\n([\\s\\S]*?)```"),
+        );
+        expect(example, `missing ${format} example`).to.not.equal(null);
+        configToLoad = example![1];
+        cfg.reset();
+
+        const config = cfg.getConfig();
+
+        expect(config.reporters).to.deep.equal(["nodediff"]);
+        expect(config.appendEOL).to.equal(false);
+        expect(config.stripBOM).to.equal(cfg.defaultConfig.stripBOM);
+      });
+    }
 
     it("should parse and return reporters array", function () {
       configToLoad = {

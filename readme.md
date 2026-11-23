@@ -258,10 +258,31 @@ The default configuration as defined below can be overridden by using the follow
 
 > NOTE: Priority/order of config selection comes from the below list where the first item have the defined defaults and each next step having a potential to override the previous if a configuration value is specified.
 
-1. Starting with the defaults (as shown in the JS object below) this is defined in [lib/config.ts](lib/config.ts).
+1. Starting with the defaults (as shown in the TypeScript source below) this is defined in [lib/config.ts](lib/config.ts).
 1. We then take and override the defaults (and only the properties specified) with config in a yaml or json file in your home directory `~/.approvalsConfig`.
 1. You can then call [`approvals.configure({...})`](#module_approvals.configure).
 1. Then passing any specific configuration at the test level as the last parameter in the verify function `.verify(..., {...overridden config...});`. See [API](#api) for specific parameters.
+
+For example, save this YAML in `~/.approvalsConfig`:
+
+```yaml
+reporters:
+  - nodediff
+appendEOL: false
+```
+
+The equivalent strict JSON is also supported:
+
+```json
+{
+  "reporters": ["nodediff"],
+  "appendEOL": false
+}
+```
+
+Only specify the settings you want to override. Values that require JavaScript,
+such as `os.EOL` or a callback, belong in `approvals.configure({...})`, rather
+than the configuration file.
 
 Here's an example of using a single reporter `p4merge`, and overriding whatever is configured. This will only override this specific test.
 
@@ -287,6 +308,8 @@ it("should use a multiple reporters", function () {
   });
 });
 ```
+
+The following TypeScript source shows the library defaults. It is not a configuration file to copy into `~/.approvalsConfig`.
 
 <!-- snippet: default_config -->
 <a id='snippet-default_config'></a>
