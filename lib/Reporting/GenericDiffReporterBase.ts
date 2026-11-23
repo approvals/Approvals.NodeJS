@@ -1,6 +1,6 @@
-import * as childProcess from "child_process";
+import childProcess from "child_process";
 import { ChildProcessWithoutNullStreams } from "child_process";
-import * as fs from "fs";
+import fs from "fs";
 
 import * as autils from "../AUtils";
 import { Config } from "../config";

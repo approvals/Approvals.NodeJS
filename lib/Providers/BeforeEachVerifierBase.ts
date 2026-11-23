@@ -1,6 +1,6 @@
-import * as fs from "fs";
+import fs from "fs";
 
-import * as _ from "lodash";
+import _ from "lodash";
 
 import * as aUtils from "../AUtils";
 import * as cfg from "../config";

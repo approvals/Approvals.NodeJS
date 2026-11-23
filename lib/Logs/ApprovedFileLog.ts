@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 
 import { helpUserSetupJest } from "../Providers/Jest/JestSetup";
 import { JestUtils } from "../Utilities/JestUtils";

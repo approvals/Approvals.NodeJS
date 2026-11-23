@@ -1,9 +1,9 @@
-import * as fs from "fs";
-import * as os from "os";
-import * as path from "path";
+import fs from "fs";
+import os from "os";
+import path from "path";
 
-import * as yaml from "js-yaml";
-import * as _ from "lodash";
+import yaml from "js-yaml";
+import _ from "lodash";
 
 import { Reporter } from "./Core/Reporter";
 import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircuitBreaker";

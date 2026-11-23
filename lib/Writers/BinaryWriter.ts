@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 
 import { filetypeextension } from "magic-bytes.js";
 import { sync } from "mkdirp";
