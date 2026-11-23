@@ -1,0 +1,2 @@
+text file: true
+missing file: File not found: <dir>/missing.txt
