@@ -51,7 +51,7 @@ function runSuites(selected, { coverage = false, args = [] } = {}) {
         ".mocharc.js",
         ".mocha-multi-reporters.json",
         "jest.config.js",
-        "vitest.config.ts",
+        "vitest.config.mts",
         "tsconfig.json",
         ".nycrc",
         "scripts/check-core.cjs",
