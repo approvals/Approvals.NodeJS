@@ -3,7 +3,7 @@ import path from "path";
 
 import shell from "shelljs";
 
-import * as osTools from "./osTools";
+import { findProgramPathCommand, platform } from "./osTools";
 
 interface CachedProgramLookups {
   [programName: string]: string | null;
@@ -61,10 +61,9 @@ const findProgramOnPath = (programName: string): string | null => {
   if (_cachedProgramLookups.hasOwnProperty(programName)) {
     return _cachedProgramLookups[programName];
   }
-  const output = shell.exec(
-    `${osTools.findProgramPathCommand} ${programName}`,
-    { silent: true },
-  );
+  const output = shell.exec(`${findProgramPathCommand} ${programName}`, {
+    silent: true,
+  });
   let result: string | null = null;
   if (output.stdout) {
     const file = output.stdout.split("\n")[0].trim();
@@ -96,7 +95,7 @@ const searchForExecutable = (
     return programOnPath;
   }
   const lookInProgramFiles = (fileName_: string): string | null => {
-    if (osTools.platform.isWindows) {
+    if (platform.isWindows) {
       let tryVar = findInPath(
         "C:/Program Files",
         folderInProgramInFiles || "",

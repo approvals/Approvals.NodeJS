@@ -2,7 +2,11 @@ import childProcess from "child_process";
 import { ChildProcessWithoutNullStreams } from "child_process";
 import fs from "fs";
 
-import * as autils from "../AUtils";
+import {
+  assertFileExists,
+  createEmptyFileIfNotExists,
+  isBinaryFile,
+} from "../AUtils";
 import { Config } from "../config";
 import { Reporter } from "../Core/Reporter";
 
@@ -52,13 +56,13 @@ export class GenericDiffReporterBase implements Reporter {
       return false;
     }
 
-    autils.assertFileExists(fileName);
+    assertFileExists(fileName);
 
     if (this.canImageDiff()) {
       return true;
     }
 
-    const isBinary = autils.isBinaryFile(fileName);
+    const isBinary = isBinaryFile(fileName);
     return !isBinary;
   }
 
@@ -131,7 +135,7 @@ export class GenericDiffReporterBase implements Reporter {
     const spawnMethod = options.blockUntilReporterExits
       ? this.spawnSync.bind(this)
       : this.spawn.bind(this);
-    autils.createEmptyFileIfNotExists(approved);
+    createEmptyFileIfNotExists(approved);
 
     const { cmdOptions, args } = this.getCommandArguments(
       approved,

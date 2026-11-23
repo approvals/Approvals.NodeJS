@@ -2,8 +2,8 @@ import fs from "fs";
 
 import _ from "lodash";
 
-import * as aUtils from "../AUtils";
-import * as cfg from "../config";
+import { stringifyKeysInOrder } from "../AUtils";
+import { currentConfig } from "../config";
 import { FileApprover } from "../FileApprover";
 import { ReporterFactory } from "../Reporting/ReporterFactory";
 import { StringWriter } from "../StringWriter";
@@ -20,13 +20,13 @@ function beforeEachLoaderFunction(
   that.verifyAsJSON = verifyAsJSON;
 
   function getCurrentReporters(options?: any) {
-    options = options || cfg.currentConfig();
+    options = options || currentConfig();
     return ReporterFactory.loadAllReporters(options.reporters);
   }
   function verify(this: Mocha.Context, data: any, overrideOptions?: any) {
     const namer = new Namer(this, dirName);
 
-    const newOptions = _.defaults(overrideOptions || {}, cfg.currentConfig());
+    const newOptions = _.defaults(overrideOptions || {}, currentConfig());
 
     const reporterFactory = () => getCurrentReporters(newOptions);
 
@@ -35,7 +35,7 @@ function beforeEachLoaderFunction(
   }
 
   function verifyAsJSON(this: any, data: any, overrideOptions?: any) {
-    this.verify(aUtils.stringifyKeysInOrder(data), overrideOptions);
+    this.verify(stringifyKeysInOrder(data), overrideOptions);
   }
 }
 

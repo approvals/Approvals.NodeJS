@@ -3,7 +3,7 @@ import path from "path";
 
 import { sync } from "mkdirp";
 
-import * as autils from "./AUtils";
+import { isBinaryFile } from "./AUtils";
 import { Config } from "./config";
 import { Writer } from "./Core/Writer";
 
@@ -13,7 +13,7 @@ function normalizeLineEndings(
   lineEnding: string | any,
   value: string | any,
 ): string {
-  if (autils.isBinaryFile(value)) {
+  if (isBinaryFile(value)) {
     return value;
   }
   return value.replace(lineEndingRegex, lineEnding);

@@ -9,7 +9,12 @@ import { fileURLToPath } from "url";
 import callsite from "callsite";
 
 import { stringifyKeysInOrder } from "./AUtils";
-import * as cfg from "./config";
+import {
+  Config,
+  configure as configureConfig,
+  currentConfig,
+  getConfig as getConfigFor,
+} from "./config";
 import { Namer } from "./Core/Namer";
 import { Writer } from "./Core/Writer";
 import { FileApprover } from "./FileApprover";
@@ -49,7 +54,7 @@ process.on("approvalFileApproved", function (fileName): void {
 });
 
 process.on("exit", function (): void {
-  const options = cfg.currentConfig();
+  const options = currentConfig();
   postRunCleanup(options, approvedFilesSeenDuringTests);
   const finalMessages = FinalMessages.getMessages();
   if (finalMessages.length) {
@@ -73,8 +78,8 @@ process.on("exit", function (): void {
  *
  * @param {*} overrideOptions
  */
-export function configure(overrideOptions: cfg.Config): typeof module.exports {
-  cfg.configure(overrideOptions);
+export function configure(overrideOptions: Config): typeof module.exports {
+  configureConfig(overrideOptions);
   return module.exports;
 }
 
@@ -83,8 +88,8 @@ export function configure(overrideOptions: cfg.Config): typeof module.exports {
  * @param {Object} overrideOptions
  * @returns {Object} approvals config object with any options overridden.
  */
-export function getConfig(overrideOptions?: cfg.Config): cfg.Config {
-  return cfg.getConfig(overrideOptions);
+export function getConfig(overrideOptions?: Config): Config {
+  return getConfigFor(overrideOptions);
 }
 
 /**
@@ -172,7 +177,7 @@ function verifyAndScrub(
     optionsOverride = convertDeprecatedReportersArray(optionsOverride);
   }
 
-  const newOptions = cfg.getConfig(optionsOverride);
+  const newOptions = getConfigFor(optionsOverride);
 
   const namer = new ManualNamer(dirName, testName);
 
@@ -312,9 +317,9 @@ export function verifyWithControl(
   namer: Namer,
   writer: Writer,
   reporterFactory?: ReporterLoader | null,
-  optionsOverride?: Partial<cfg.Config>,
+  optionsOverride?: Partial<Config>,
 ) {
-  const newOptions = cfg.getConfig(optionsOverride);
+  const newOptions = getConfigFor(optionsOverride);
 
   const loader =
     (reporterFactory as ReporterLoader) ||

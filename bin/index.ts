@@ -8,7 +8,7 @@ import { createTerminalRenderer, darkTheme } from "marked-terminal-renderer";
 import minimist from "minimist";
 
 import { configure, verify } from "../lib/Approvals";
-import * as autils from "../lib/AUtils";
+import { hasCommandLineArgument } from "../lib/AUtils";
 import { redText } from "../lib/Utilities/ConsoleUtils";
 
 const verbose = process.argv.includes("--verbose");
@@ -92,8 +92,7 @@ async function main(): Promise<void> {
   }
 
   opts.forceApproveAll =
-    autils.hasCommandLineArgument("--forceapproveall") ||
-    autils.hasCommandLineArgument("-f");
+    hasCommandLineArgument("--forceapproveall") || hasCommandLineArgument("-f");
 
   process.stdin.pipe(
     es.mapSync((data: Buffer) => {

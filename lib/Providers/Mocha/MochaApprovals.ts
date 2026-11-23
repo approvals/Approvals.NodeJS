@@ -1,4 +1,4 @@
-import * as approvals from "../../Approvals";
+import { getConfig, verifyWithControl } from "../../Approvals";
 import { Namer } from "../../Core/Namer";
 import { Options } from "../../Core/Options";
 import StringWriter from "../../StringWriter";
@@ -41,14 +41,14 @@ export function verify(sut: any, options?: Options): void {
   }
   options = options || new Options();
   options = options.withNamer(getNamer());
-  const config = options.getConfig(approvals.getConfig());
+  const config = options.getConfig(getConfig());
   const scrubbed = options.scrub(`${sut}`);
   const writer = new StringWriter(
     config,
     scrubbed,
     options.forFile().getFileExtension(),
   );
-  approvals.verifyWithControl(namer, writer, null, config);
+  verifyWithControl(namer, writer, null, config);
 }
 
 export function verifyAsJson(data: any, options?: Options): void {

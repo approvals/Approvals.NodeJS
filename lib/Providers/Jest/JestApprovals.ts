@@ -1,4 +1,4 @@
-import * as approvals from "../../Approvals";
+import { getConfig, verifyWithControl } from "../../Approvals";
 import { Options } from "../../Core/Options";
 import { StringWriter } from "../../StringWriter";
 import { printArray, printJson } from "../../Utilities/Printers";
@@ -12,7 +12,7 @@ export function verify(sut: any, options?: Options): void {
   }
   options = options || new Options();
   options = options.withNamer(getJestNamer());
-  const config = options.getConfig(approvals.getConfig());
+  const config = options.getConfig(getConfig());
   const scrubbed = options.scrub(`${sut}`);
   const writer = new StringWriter(
     config,
@@ -20,7 +20,7 @@ export function verify(sut: any, options?: Options): void {
     options.forFile().getFileExtension(),
   );
   const namer = options.getNamer();
-  approvals.verifyWithControl(namer, writer, null, config);
+  verifyWithControl(namer, writer, null, config);
 }
 
 export function verifyAsJson(data: any, options?: Options): void {
