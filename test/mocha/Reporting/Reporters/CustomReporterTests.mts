@@ -41,6 +41,7 @@ describe("CustomReporter", function () {
     try {
       this.verify("foo", {
         errorOnStaleApprovedFiles: false,
+        frontLoadedReporter: null,
         reporters: [
           {
             name: "my-test-custom-reporter",
@@ -62,6 +63,7 @@ describe("CustomReporter", function () {
 
   it("uses global custom reporter", function () {
     const config = approvals.getConfig({
+      frontLoadedReporter: null,
       reporters: [globalCustomReporter],
     });
 
@@ -76,6 +78,7 @@ describe("CustomReporter", function () {
 
   it("uses global custom reporter manual verify", function () {
     const config = approvals.getConfig({
+      frontLoadedReporter: null,
       reporters: [globalCustomReporter],
     });
 

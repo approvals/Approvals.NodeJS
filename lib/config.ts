@@ -10,6 +10,7 @@ import { ReportLaunchingCircuitBreaker } from "./Reporting/ReportLaunchingCircui
 
 export interface Config {
   reporters: (string | Reporter)[];
+  frontLoadedReporter?: Reporter | null;
   normalizeLineEndingsTo: boolean | string;
   failOnLineEndingDifferences: boolean;
   appendEOL: boolean;

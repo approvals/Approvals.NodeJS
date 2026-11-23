@@ -24,6 +24,7 @@ import { postRunCleanup } from "./postRunCleanup";
 import { beforeEachVerifierBase } from "./Providers/BeforeEachVerifierBase";
 import { MochaNamer } from "./Providers/Mocha/MochaNamer";
 import { isFrameworkAvailable } from "./Providers/OptionalFramework";
+import { withFrontLoadedReporter } from "./Reporting/FrontLoadedReporter";
 import { ReporterFactory, ReporterLoader } from "./Reporting/ReporterFactory";
 import MultiReporter from "./Reporting/Reporters/multiReporter";
 import { Scrubber, Scrubbers } from "./Scrubbers/Scrubbers";
@@ -324,7 +325,9 @@ export function verifyWithControl(
   const loader =
     (reporterFactory as ReporterLoader) ||
     function () {
-      return [ReporterFactory.loadReporter(newOptions.reporters)];
+      return withFrontLoadedReporter(newOptions, [
+        ReporterFactory.loadReporter(newOptions.reporters),
+      ]);
     };
 
   FileApprover.verify(namer, writer, loader, newOptions);

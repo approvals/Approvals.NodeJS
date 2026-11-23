@@ -1,5 +1,6 @@
-import { describe, test, expect } from "@jest/globals";
+import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
 
+import { configure, reset } from "../../../lib/config.js";
 import { ConfigModifier, Options } from "../../../lib/Core/Options.js";
 import { verify } from "../../../lib/Providers/Jest/JestApprovals.js";
 import { JestReporter } from "../../../lib/Providers/Jest/JestReporter.js";
@@ -11,6 +12,11 @@ function expectJestDiffAgainstApprovedGoodbye(error: any) {
 }
 
 describe("JestReporter", () => {
+  beforeAll(() => {
+    configure({ frontLoadedReporter: null });
+  });
+  afterAll(() => reset());
+
   test("reports file contents", () => {
     try {
       // begin-snippet: configure-reporter-with-options

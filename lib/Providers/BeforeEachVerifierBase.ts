@@ -5,6 +5,7 @@ import _ from "lodash";
 import { stringifyKeysInOrder } from "../AUtils";
 import { currentConfig } from "../config";
 import { FileApprover } from "../FileApprover";
+import { withFrontLoadedReporter } from "../Reporting/FrontLoadedReporter";
 import { ReporterFactory } from "../Reporting/ReporterFactory";
 import { StringWriter } from "../StringWriter";
 
@@ -28,7 +29,8 @@ function beforeEachLoaderFunction(
 
     const newOptions = _.defaults(overrideOptions || {}, currentConfig());
 
-    const reporterFactory = () => getCurrentReporters(newOptions);
+    const reporterFactory = () =>
+      withFrontLoadedReporter(newOptions, getCurrentReporters(newOptions));
 
     const writer = new StringWriter(newOptions, data);
     FileApprover.verify(namer, writer, reporterFactory);

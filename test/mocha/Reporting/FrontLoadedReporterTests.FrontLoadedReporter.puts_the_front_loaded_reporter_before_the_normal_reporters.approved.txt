@@ -1,0 +1,4 @@
+default: DiffReporterAggregate [AiCodingAgent], normal
+null: normal
+custom: custom, normal
+default reporter: DiffReporterAggregate [AiCodingAgent]
