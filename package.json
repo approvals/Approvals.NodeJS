@@ -78,8 +78,7 @@
     "marked-terminal-renderer": "^2.2.0",
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1",
-    "shelljs": "^0.10.0",
-    "temp": "^0.9.4"
+    "shelljs": "^0.10.0"
   },
   "devDependencies": {
     "@types/chai": "^5.0.1",

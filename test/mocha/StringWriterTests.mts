@@ -1,14 +1,27 @@
 import assert from "assert";
 import fs from "fs";
+import os from "os";
+import path from "path";
 
 import { expect } from "chai";
 import sinon from "sinon";
-import temp from "temp";
 
 import { Config } from "../../lib/config.js";
 import { StringWriter } from "../../lib/StringWriter.js";
 
-temp.track();
+const tempDirectory = fs.mkdtempSync(
+  path.join(os.tmpdir(), "approvals-stringwriter-"),
+);
+let tempFileCount = 0;
+
+function tempTextFilePath(): string {
+  tempFileCount++;
+  return path.join(tempDirectory, `file${tempFileCount}.txt`);
+}
+
+after(function () {
+  fs.rmSync(tempDirectory, { recursive: true, force: true });
+});
 
 describe("StringWriter", function () {
   const defaultConfig: Partial<Config> = {};
@@ -28,7 +41,7 @@ describe("StringWriter", function () {
       const config = {};
       const stringWriter = new StringWriter(config, "HELLO");
 
-      const filePath = temp.path({ suffix: ".txt" });
+      const filePath = tempTextFilePath();
 
       stringWriter.write(filePath);
 
@@ -45,7 +58,7 @@ describe("StringWriter", function () {
       };
       const stringWriter = new StringWriter(config, "HELLO");
 
-      const filePath = temp.path({ suffix: ".txt" });
+      const filePath = tempTextFilePath();
 
       stringWriter.write(filePath);
 
@@ -73,7 +86,7 @@ describe("StringWriter", function () {
         const expectedText = "HELLO\n";
         const stringWriter = new StringWriter(config, expectedText);
 
-        const filePath = temp.path({ suffix: ".txt" });
+        const filePath = tempTextFilePath();
 
         stringWriter.write(filePath);
 
@@ -87,7 +100,7 @@ describe("StringWriter", function () {
       };
       const stringWriter = new StringWriter(config, "HELLO\nThere\n");
 
-      const filePath = temp.path({ suffix: ".txt" });
+      const filePath = tempTextFilePath();
 
       stringWriter.write(filePath);
 
