@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import sinon from "sinon";
 
 import * as approvals from "../../lib/Approvals.js";
 
@@ -25,7 +26,15 @@ describe("When issues are reported on github", () => {
     const testName = "manualVerification";
     let dataToVerify = "some stuff here";
 
-    approvals.verify(testDirectory, testName, dataToVerify, approvalOverrides);
+    const consoleLog = sinon.stub(console, "log");
+    try {
+      approvals.verify(testDirectory, testName, dataToVerify, approvalOverrides);
+    } finally {
+      consoleLog.restore();
+    }
+    expect(String(consoleLog.firstCall.args[0])).to.contain(
+      "WARNING: Force approving",
+    );
 
     approvalOverrides.forceApproveAll = false;
     dataToVerify = "some stuff here - also";
