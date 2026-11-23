@@ -29,7 +29,7 @@ cp "$PARTS/mocha/coverage-final.json" coverage/merge/mocha.json
 cp "$PARTS/jest/coverage-final.json" coverage/merge/jest.json
 "$BIN/nyc" merge coverage/merge coverage/reference.json || exit $?
 cp "$PARTS/vitest/coverage-final.json" coverage/merge/vitest.json
-node tools/align_coverage_maps.ts coverage/reference.json coverage/merge/vitest.json || exit $?
+node tools/align_coverage_maps.mts coverage/reference.json coverage/merge/vitest.json || exit $?
 mkdir -p .nyc_output
 "$BIN/nyc" merge coverage/merge .nyc_output/combined.json || exit $?
 

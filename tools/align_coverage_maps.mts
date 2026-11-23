@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// usage: node tools/align_coverage_maps.ts <reference coverage-final.json> <coverage-final.json to rewrite>
+// usage: node tools/align_coverage_maps.mts <reference coverage-final.json> <coverage-final.json to rewrite>
 //
 // Vitest remaps Istanbul locations through source maps and drops end columns, so nyc merge treats its
 // statements as different from mocha's and jest's. When a file has the same statements, functions and
@@ -29,7 +29,7 @@ const shapeOf = (file: FileCoverage) =>
 const [referencePath, targetPath] = process.argv.slice(2);
 if (!referencePath || !targetPath) {
   console.error(
-    "usage: node tools/align_coverage_maps.ts <reference.json> <target.json>",
+    "usage: node tools/align_coverage_maps.mts <reference.json> <target.json>",
   );
   process.exit(2);
 }

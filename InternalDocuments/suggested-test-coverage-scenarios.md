@@ -37,7 +37,7 @@ Top files by real gap (helpers excluded):
 
 ⭐ 1: Replace `import * as x from "..."` with default or named imports in the 13 files (`StringWriter`, `AUtils`, `config`, `Approvals`, `GenericDiffReporterBase`, `BinaryWriter`, `ApprovedFileLog`, `FailedFileLog`, `BeforeEachVerifierBase`, `diffmergeReporter`, `MochaApprovals`, `VitestApprovals`, `JestApprovals`). With `esModuleInterop` this emits only `__importDefault`, which is fully covered. Some files (e.g. `nodediffReporter`) already use `import fs from "fs"`. Small, mechanical refactor; no new dependency. Gain: about +6 points statements and functions, +4 lines.
 ❌ 2: `"importHelpers": true` plus a `tslib` dependency. Same gain, but adds a runtime dependency to the published package.
-❌ 3: Turn on source maps and have Istanbul remap to `.ts`. Most accurate, but has to be set up in nyc, jest and vitest plus `tools/align_coverage_maps.ts`. More moving parts.
+❌ 3: Turn on source maps and have Istanbul remap to `.ts`. Most accurate, but has to be set up in nyc, jest and vitest plus `tools/align_coverage_maps.mts`. More moving parts.
 ❌ 4: Lower `.nycrc` thresholds. Hides the problem instead of fixing it.
 
 ## Prioritised scenarios

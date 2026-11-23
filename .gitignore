@@ -46,6 +46,7 @@ coverage/
 *.d.ts
 bin/*.js
 tools/*.js
+tools/*.mjs
 lib/**/*.js
 test/**/**.js
 !test/mocha/Providers/Mocha/MochaNamerTests.js
