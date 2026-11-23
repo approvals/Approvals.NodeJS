@@ -16,7 +16,7 @@ npm run build || exit $?
 "$BIN/nyc" --check-coverage=false --reporter=json --report-dir="$PARTS/mocha" \
   --temp-dir=coverage/.nyc_mocha "$BIN/mocha" || failed=1
 
-NODE_OPTIONS=--experimental-vm-modules "$BIN/jest" --runInBand --coverage \
+NODE_OPTIONS="--experimental-vm-modules --disable-warning=ExperimentalWarning" "$BIN/jest" --runInBand --coverage \
   --coverageReporters=json --coverageDirectory="$PARTS/jest" \
   '--collectCoverageFrom=<rootDir>/lib/**/*.js' || failed=1
 
