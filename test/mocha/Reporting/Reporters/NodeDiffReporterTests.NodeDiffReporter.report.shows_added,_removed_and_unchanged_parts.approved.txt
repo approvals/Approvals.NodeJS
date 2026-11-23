@@ -1,0 +1,8 @@
+*******************************************
+* Showing diff for <dir>/c.approved.txt vs <dir>/c.received.txt
+
+[gray]hello [/][red]wo[/][green]the[/][gray]r[/][red]ld[/][green]e[/]
+* End of diff for <dir>/c.approved.txt vs <dir>/c.received.txt
+*******************************************
+
+

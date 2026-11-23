@@ -1,0 +1,10 @@
+*******************************************
+* Showing diff for <dir>/d.approved.txt vs <dir>/d.received.txt
+
+[green]new text[/]
+* End of diff for <dir>/d.approved.txt vs <dir>/d.received.txt
+*******************************************
+
+
+
+approved file created: true

@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import jsdiff from "diff";
+import { Change, diffChars } from "diff";
 
 import {
   assertFileExists,
@@ -10,7 +10,7 @@ import {
 import { Reporter } from "../../Core/Reporter";
 import { grayText, greenText, redText } from "../../Utilities/ConsoleUtils";
 
-function colorByChangeType(part: jsdiff.Change): string {
+function colorByChangeType(part: Change): string {
   if (part.added) {
     return greenText(part.value);
   }
@@ -42,7 +42,7 @@ export default class NodeDiffReporter implements Reporter {
     console.log(`*******************************************`);
     console.log(`* Showing diff for ${approved} vs ${received}\n`);
 
-    const diff = jsdiff.diffChars(approvedText, receivedText);
+    const diff = diffChars(approvedText, receivedText);
 
     diff.forEach((part) => process.stdout.write(colorByChangeType(part)));
 
