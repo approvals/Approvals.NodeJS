@@ -17,7 +17,6 @@ class FailingReporter implements Reporter {
   }
 
   report(/*approved, received*/) {
-    console.log(arguments);
     throw new Error("This reporter should never run");
   }
 
