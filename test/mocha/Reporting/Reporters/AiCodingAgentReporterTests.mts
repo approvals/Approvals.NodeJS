@@ -48,7 +48,7 @@ describe("AiCodingAgentReporter", function () {
     fs.writeFileSync(received, "hello there");
 
     const text = AiCodingAgentReporter.getReportText(approved, received);
-    verify(text.split(directory).join("<dir>"));
+    verify(text.split(directory + path.sep).join("<dir>/"));
   });
 
   it("reports when the approved file is missing", function () {
@@ -57,6 +57,6 @@ describe("AiCodingAgentReporter", function () {
     fs.writeFileSync(received, "new text");
 
     const text = AiCodingAgentReporter.getReportText(approved, received);
-    verify(text.split(directory).join("<dir>"));
+    verify(text.split(directory + path.sep).join("<dir>/"));
   });
 });

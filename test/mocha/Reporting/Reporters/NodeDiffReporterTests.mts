@@ -34,7 +34,7 @@ describe("NodeDiffReporter", function () {
       reporter.canReportOn(path.join(directory, "missing.txt"));
       missing = "no error";
     } catch (error: any) {
-      missing = error.message.split(directory).join("<dir>");
+      missing = error.message.split(directory + path.sep).join("<dir>/");
     }
 
     verify(
@@ -65,8 +65,8 @@ describe("NodeDiffReporter", function () {
     function capturedOutput(): string {
       return output
         .join("")
-        .split(directory)
-        .join("<dir>")
+        .split(directory + path.sep)
+        .join("<dir>/")
         .split("\u001b[32m")
         .join("[green]")
         .split("\u001b[31m")

@@ -70,7 +70,7 @@ describe("ReportLaunchingCircuitBreaker", function () {
       {},
     );
 
-    const text = output.join("").split(directory).join("<dir>");
+    const text = output.join("").split(directory + path.sep).join("<dir>/");
     const messages = FinalMessages.getMessages().join("\n");
     sandbox.restore();
     expect(rerouted).to.equal(true);
