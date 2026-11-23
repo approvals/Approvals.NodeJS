@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+started=$SECONDS
+trap 'result=$?; echo "Build and test: $((SECONDS - started))s, exit $result"; exit "$result"' EXIT
+
 touch bin/index.js
 chmod a+x bin/index.js
 mise install
