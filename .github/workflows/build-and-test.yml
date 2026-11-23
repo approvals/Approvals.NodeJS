@@ -42,17 +42,6 @@ jobs:
           TMP: ${{ runner.temp }}
           TMPDIR: ${{ runner.temp }}
           npm_config_cache: ${{ runner.temp }}/npm-cache
-          npm_config_timing: "true"
-          npm_config_logs_dir: ${{ runner.temp }}/npm-logs
-          npm_config_logs_max: "100"
-
-      - name: Upload npm timing logs
-        uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: npm-timing-${{ matrix.os }}-node-${{ matrix.node-version }}-${{ matrix.architecture }}
-          path: ${{ runner.temp }}/npm-logs/
-          if-no-files-found: warn
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v6
