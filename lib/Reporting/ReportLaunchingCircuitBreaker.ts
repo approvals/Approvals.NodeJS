@@ -11,6 +11,13 @@ export class ReportLaunchingCircuitBreaker {
     maxLaunch = value;
   }
 
+  /** Restores the initial state; intended for tests only. */
+  static reset(): void {
+    maxLaunch = 10;
+    currentCount = 0;
+    reroutedCount = 0;
+  }
+
   static get currentCount(): number {
     return currentCount;
   }
