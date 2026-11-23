@@ -8,4 +8,4 @@ npm run build
 npm run lint
 ./node_modules/.bin/mocha
 NODE_OPTIONS="--experimental-vm-modules --disable-warning=ExperimentalWarning" ./node_modules/.bin/jest --runInBand
-./node_modules/.bin/vitest run
+npm run vitest
