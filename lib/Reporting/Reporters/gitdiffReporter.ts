@@ -13,7 +13,6 @@ export default class GitDiffReporter extends GenericDiffReporterBase {
     options = options || {};
 
     createEmptyFileIfNotExists(approved);
-    console.log(this.exePath);
 
     options.cmdArgs = ["diff", "--no-index", "--", received, approved];
 
