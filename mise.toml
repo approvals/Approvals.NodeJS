@@ -12,7 +12,7 @@ _.path = ["node_modules/.bin"]
 
 [tasks.deps]
 description = "Clean, reproducible dependency install"
-run = "npm ci"
+run = "npm i"
 
 [tasks.build]
 description = "Compile TypeScript"
