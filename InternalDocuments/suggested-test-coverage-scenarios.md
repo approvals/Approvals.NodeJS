@@ -5,12 +5,12 @@ Line numbers below refer to the compiled `lib/**/*.js` that Istanbul measures; f
 
 ## Summary
 
-| Metric     | Now    | `.nycrc` | Gap (count)         | Now, without TS emit helpers |
-| ---------- | ------ | -------- | ------------------- | ---------------------------- |
-| Statements | 77.97% | 86%      | +156 of 1934        | 84.2% (+26 needed)           |
-| Branches   | 68.93% | 68%      | met                 | 72.8%                        |
-| Functions  | 74.26% | 86%      | +57 of 478          | 80.3% (+20 needed)           |
-| Lines      | 80.40% | 86%      | +98                 | 84.5% (+22 needed)           |
+| Metric     | Now    | `.nycrc` | Gap (count)  | Now, without TS emit helpers |
+| ---------- | ------ | -------- | ------------ | ---------------------------- |
+| Statements | 77.97% | 86%      | +156 of 1934 | 84.2% (+26 needed)           |
+| Branches   | 68.93% | 68%      | met          | 72.8%                        |
+| Functions  | 74.26% | 86%      | +57 of 478   | 80.3% (+20 needed)           |
+| Lines      | 80.40% | 86%      | +98          | 84.5% (+22 needed)           |
 
 **Main finding:** 195 of the 426 uncovered statements and 55 of the 123 uncovered functions are not our code.
 They are TypeScript's `__createBinding` / `__setModuleDefault` / `__importStar` helpers, emitted at the top of the 13 files that use `import * as x from ...`.
@@ -19,19 +19,19 @@ Until those are removed from the measurement, **the functions threshold can't re
 
 Top files by real gap (helpers excluded):
 
-| File                                         | Uncovered stmts | Uncovered fns | What is missing                                   |
-| -------------------------------------------- | --------------- | ------------- | ------------------------------------------------- |
-| `Reporting/Reporters/visualstudioReporter`   | 20 (all)        | 7             | Windows + `edge` package only                      |
-| `Reporting/GenericDiffReporterBase`          | 17              | 4             | async `spawn` output handling, ctor guard          |
-| `Reporting/Reporters/nodediffReporter`       | 17              | 4             | `report`, `canReportOn`, `colorByChangeType`      |
-| `AUtils`                                     | 17              | 1             | Windows Program Files search, error paths         |
-| `Providers/Mocha/MochaApprovals`             | 15              | 4             | `verifyAsJson`, `verifyAll`, `it2`                |
-| `Approvals`                                  | 12              | 3             | deprecated reporters array, exit-time report      |
-| `Providers/Vitest/VitestReporter`            | 11 (all)        | 3             | never referenced                                  |
-| `Reporting/ReportLaunchingCircuitBreaker`    | 10              | 4             | the "limit exceeded" path                         |
-| `Reporting/ReportByOpeningTheReceivedFile`   | 10 (all)        | 3             | never referenced                                  |
-| `Reporting/Reporters/copycommandReporter`    | 8               | 2             | `report`, `canReportOn`                           |
-| `Providers/Vitest/VitestApprovals`           | 7               | 2             | `verifyAsJson`, `verifyAll`                       |
+| File                                       | Uncovered stmts | Uncovered fns | What is missing                              |
+| ------------------------------------------ | --------------- | ------------- | -------------------------------------------- |
+| `Reporting/Reporters/visualstudioReporter` | 20 (all)        | 7             | Windows + `edge` package only                |
+| `Reporting/GenericDiffReporterBase`        | 17              | 4             | async `spawn` output handling, ctor guard    |
+| `Reporting/Reporters/nodediffReporter`     | 17              | 4             | `report`, `canReportOn`, `colorByChangeType` |
+| `AUtils`                                   | 17              | 1             | Windows Program Files search, error paths    |
+| `Providers/Mocha/MochaApprovals`           | 15              | 4             | `verifyAsJson`, `verifyAll`, `it2`           |
+| `Approvals`                                | 12              | 3             | deprecated reporters array, exit-time report |
+| `Providers/Vitest/VitestReporter`          | 11 (all)        | 3             | never referenced                             |
+| `Reporting/ReportLaunchingCircuitBreaker`  | 10              | 4             | the "limit exceeded" path                    |
+| `Reporting/ReportByOpeningTheReceivedFile` | 10 (all)        | 3             | never referenced                             |
+| `Reporting/Reporters/copycommandReporter`  | 8               | 2             | `report`, `canReportOn`                      |
+| `Providers/Vitest/VitestApprovals`         | 7               | 2             | `verifyAsJson`, `verifyAll`                  |
 
 ## Step 0: decide how to treat the TS emit helpers (biggest gain, no tests)
 

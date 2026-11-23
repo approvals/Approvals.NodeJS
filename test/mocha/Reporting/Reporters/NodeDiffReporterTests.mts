@@ -35,6 +35,8 @@ describe("NodeDiffReporter", function () {
       missing = error.message.split(directory).join("<dir>");
     }
 
-    verify(`text file: ${reporter.canReportOn(text)}\nmissing file: ${missing}`);
+    verify(
+      `text file: ${reporter.canReportOn(text)}\nmissing file: ${missing}`,
+    );
   });
 });
