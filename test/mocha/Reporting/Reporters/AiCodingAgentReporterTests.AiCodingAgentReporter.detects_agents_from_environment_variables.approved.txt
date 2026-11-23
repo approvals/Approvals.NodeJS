@@ -1,0 +1,13 @@
+undefined => false
+"" => false
+"  " => false
+"0" => false
+"f" => false
+"F" => false
+"false" => false
+"FALSE" => false
+"False" => false
+"1" => true
+"true" => true
+"cli" => true
+"claude-code" => true

@@ -1,0 +1,15 @@
+# APPROVAL TEST FAILED
+  approved: <dir>/b.approved.txt
+  received: <dir>/b.received.txt
+  approve_with: mv -f "<dir>/b.received.txt" "<dir>/b.approved.txt"
+
+## APPROVED
+```
+** Error reading APPROVED file **
+```
+
+## RECEIVED
+```
+new text
+```
+----------------------------------------

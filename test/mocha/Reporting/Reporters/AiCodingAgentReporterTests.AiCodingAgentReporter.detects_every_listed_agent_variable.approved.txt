@@ -1,0 +1,9 @@
+AI_AGENT => true
+APPROVAL_TESTS_AGENT => true
+CLAUDECODE => true
+CLAUDE_CODE_ENTRYPOINT => true
+CODEX_SANDBOX => true
+CURSOR_AGENT => true
+CURSOR_TRACE_ID => true
+GEMINI_CLI => true
+OPENCODE => true
