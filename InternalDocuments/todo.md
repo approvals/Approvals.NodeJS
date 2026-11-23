@@ -23,3 +23,12 @@
   - an existing ReSharper MCP server
   - a new ReSharper MCP server
   - a refactoring CLI
+
+
+## Reporters
+use the diff tools repo
+add intelij reporter
+
+
+## Feature map
+
