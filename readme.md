@@ -280,9 +280,10 @@ The equivalent strict JSON is also supported:
 }
 ```
 
-Only specify the settings you want to override. Values that require JavaScript,
-such as `os.EOL` or a callback, belong in `approvals.configure({...})`, rather
-than the configuration file.
+In the config file, specify only the settings you want to override. Set values
+that require JavaScript, such as a callback, through
+`approvals.configure({...})`. In TypeScript, pass a complete `Config` object
+when calling `approvals.configure`.
 
 Here's an example of using a single reporter `p4merge`, and overriding whatever is configured. This will only override this specific test.
 
