@@ -3,6 +3,8 @@ import path from "path";
 
 import {
   verify,
+  verifyAll,
+  verifyAsJson,
   setNamer,
   getNamer,
 } from "../../../../lib/Providers/Mocha/MochaApprovals.js";
@@ -31,6 +33,14 @@ describe("Mocha", function () {
       };
 
       this.verifyAsJSON(value);
+    });
+
+    it("should verifyAsJson", function () {
+      verifyAsJson({ a: 1, b: "bar" });
+    });
+
+    it("should verifyAll", function () {
+      verifyAll("Squared", [1, 2, 3], (n) => `${n} => ${n * n}`);
     });
   });
 });
