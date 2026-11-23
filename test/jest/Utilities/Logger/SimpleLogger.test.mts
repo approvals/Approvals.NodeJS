@@ -1,8 +1,19 @@
-import { describe, test } from "@jest/globals";
+import { describe, jest, test } from "@jest/globals";
 
 import { verify } from "../../../../lib/Providers/Jest/JestApprovals.js";
 import { SimpleLogger } from "../../../../lib/Utilities/Logger/SimpleLogger.js";
 import { verifySimpleLogger } from "../../../../lib/Utilities/Logger/SimpleLoggerApprovals.js";
+
+function withoutStdout(code: () => void) {
+  const write = jest
+    .spyOn(process.stdout, "write")
+    .mockImplementation(() => true);
+  try {
+    code();
+  } finally {
+    write.mockRestore();
+  }
+}
 
 function logVariables() {
   SimpleLogger.useMarkers(() => {
@@ -117,7 +128,7 @@ describe("SimpleLogger", () => {
   }
 
   verifySimpleLogger("test_markers_with_signature_in_and_out", () => {
-    method_with_inputs_and_outputs(10, "Blast off");
+    withoutStdout(() => method_with_inputs_and_outputs(10, "Blast off"));
   });
 
   // begin-snippet: method_with_inputs
@@ -130,7 +141,7 @@ describe("SimpleLogger", () => {
   // end-snippet
 
   verifySimpleLogger("test_markers_with_signature", () => {
-    method_with_inputs(1, "Susan");
+    withoutStdout(() => method_with_inputs(1, "Susan"));
   });
 
   verifySimpleLogger("test_timestamps", () => {
