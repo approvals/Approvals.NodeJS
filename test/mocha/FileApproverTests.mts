@@ -6,7 +6,6 @@ import { expect } from "chai";
 import { Reporter } from "../../lib/Core/Reporter.js";
 import * as FileApprover from "../../lib/FileApprover.js";
 import { Namer } from "../../lib/Namer.js";
-import * as ReporterFactory from "../../lib/Reporting/ReporterFactory.js";
 import { StringWriter } from "../../lib/StringWriter.js";
 
 import { testDirectory } from "./testPaths.mjs";
@@ -99,6 +98,7 @@ describe("FileApprover", function () {
     let namer;
     let reporterFactory;
     let writer;
+    let reportedFiles: string[][];
     const config = {
       appendEOL: false,
       stripBOM: true,
@@ -113,9 +113,16 @@ describe("FileApprover", function () {
         config,
         "\uFEFFHello Missing Byte Order Mark!\n",
       );
+      reportedFiles = [];
+      const recordingReporter: Reporter = {
+        name: "RecordingReporter",
+        canReportOn: () => true,
+        report: (approved: string, received: string) => {
+          reportedFiles.push([approved, received]);
+        },
+      };
       reporterFactory = function () {
-        const x = ReporterFactory.ReporterFactory.loadReporter("gitdiff");
-        return [x];
+        return [recordingReporter];
       };
     });
 
@@ -136,6 +143,7 @@ describe("FileApprover", function () {
       expect(function () {
         FileApprover.verify(namer, writer, reporterFactory, config);
       }).to.throw();
+      expect(reportedFiles.length).to.equal(1);
     });
   });
 });
