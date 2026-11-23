@@ -9,6 +9,7 @@ Approval-testing library published as `@approval-tests/approvals`. TypeScript so
 - Smell sensors: `tools/run-habit-hooks.sh`; see [habit-hooks.md](habit-hooks.md).
 - Coverage: `tools/create_code_coverage.sh` merges mocha, jest and vitest Istanbul coverage into `coverage/index.html` and opens it in Chrome.
 - Commit messages: `node tools/create_message.ts <risk> <intention> "<description>"`.
+  Risk words: `completely_safe` (.), `proven` (-), `single_item` (!), `other` (@). Intention words: `environment` (e), `test` (t), `refactor` (r), `feature` (F), `bug` (B), `documentation` (d). Only `refactor`, `feature` and `bug` may use a risk other than `completely_safe`.
 
 Kit source: https://github.com/LearnWithLlew/AiInLegacyCode/tree/9bc43b24b8c7f03e0bb6de0828397a7b5d7c637a/kit
 Installed for TypeScript; project commit-message rules take precedence over the template.
