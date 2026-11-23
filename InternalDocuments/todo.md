@@ -30,11 +30,13 @@ use the diff tools repo
 add intelij reporter
 
 ## Feature map
+
 create a feature map and go for parity
 
-
 ## AI
+
 front loaded reports + AI reporter
 
 ## Bun
+
 move to mise, get it working

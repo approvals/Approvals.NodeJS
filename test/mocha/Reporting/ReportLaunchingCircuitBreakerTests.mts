@@ -49,7 +49,11 @@ describe("ReportLaunchingCircuitBreaker", function () {
   it("lets reports launch while under the limit", function () {
     ReportLaunchingCircuitBreaker.setMaxLaunch(2);
 
-    const rerouted = ReportLaunchingCircuitBreaker.check(approved, received, {});
+    const rerouted = ReportLaunchingCircuitBreaker.check(
+      approved,
+      received,
+      {},
+    );
 
     expect(rerouted).to.equal(false);
     expect(ReportLaunchingCircuitBreaker.currentCount).to.equal(1);
@@ -60,7 +64,11 @@ describe("ReportLaunchingCircuitBreaker", function () {
   it("reroutes to the nodediff reporter once the limit is exceeded", function () {
     ReportLaunchingCircuitBreaker.setMaxLaunch(0);
 
-    const rerouted = ReportLaunchingCircuitBreaker.check(approved, received, {});
+    const rerouted = ReportLaunchingCircuitBreaker.check(
+      approved,
+      received,
+      {},
+    );
 
     const text = output.join("").split(directory).join("<dir>");
     const messages = FinalMessages.getMessages().join("\n");

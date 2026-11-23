@@ -28,7 +28,12 @@ describe("When issues are reported on github", () => {
 
     const consoleLog = sinon.stub(console, "log");
     try {
-      approvals.verify(testDirectory, testName, dataToVerify, approvalOverrides);
+      approvals.verify(
+        testDirectory,
+        testName,
+        dataToVerify,
+        approvalOverrides,
+      );
     } finally {
       consoleLog.restore();
     }
