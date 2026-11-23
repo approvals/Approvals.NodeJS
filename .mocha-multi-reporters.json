@@ -1,5 +1,5 @@
 {
-  "reporterEnabled": "spec,xunit",
+  "reporterEnabled": "dot,xunit",
   "xunitReporterOptions": {
     "output": "test-reports/mocha-test-results.xml"
   }
