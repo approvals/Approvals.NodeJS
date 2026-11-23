@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 
 import { expect } from "chai";
+import sinon from "sinon";
 
 import { ReporterFactory } from "../../../lib/Reporting/ReporterFactory.js";
 import { testDirectory } from "../testPaths.mjs";
@@ -67,8 +68,10 @@ describe("ReporterFactory", function () {
 
   describe("assertValidReporter a valid reporter", function () {
     let validDummyReporter;
+    let consoleError;
 
     beforeEach(function () {
+      consoleError = sinon.stub(console, "error");
       validDummyReporter = {
         name: "validDummyReporter",
         canReportOn: function () {
@@ -76,6 +79,10 @@ describe("ReporterFactory", function () {
         },
         report: function () {},
       };
+    });
+
+    afterEach(function () {
+      consoleError.restore();
     });
 
     it("should return true for a valid reporter", function () {
@@ -89,6 +96,7 @@ describe("ReporterFactory", function () {
         delete validDummyReporter.name;
         ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
+      expect(consoleError.calledWith("invalid reporter")).to.equal(true);
     });
 
     it("should raise an error when reporter is missing a canReportOn", function () {
@@ -96,6 +104,7 @@ describe("ReporterFactory", function () {
         delete validDummyReporter.canReportOn;
         ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
+      expect(consoleError.calledWith("invalid reporter")).to.equal(true);
     });
 
     it("should raise an error when reporter is missing a report", function () {
@@ -103,6 +112,7 @@ describe("ReporterFactory", function () {
         delete validDummyReporter.report;
         ReporterFactory.assertValidReporter(validDummyReporter);
       }).to.throw(Error, /A valid reporter should have a/);
+      expect(consoleError.calledWith("invalid reporter")).to.equal(true);
     });
   });
 
