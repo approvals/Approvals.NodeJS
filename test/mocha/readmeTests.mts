@@ -80,7 +80,6 @@ describe("Readme", function () {
     const config = approvals.getConfig();
     config.EOL = "\n";
     config.normalizeLineEndingsTo = "\n";
-    console.log(config);
 
     const writer = new StringWriter(
       config,
