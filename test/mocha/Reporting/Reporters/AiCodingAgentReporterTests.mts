@@ -27,7 +27,7 @@ describe("AiCodingAgentReporter", function () {
     const moreValues = ["False", "1", "true", "cli", "claude-code"];
     const lines = [...values, ...moreValues].map((value) => {
       const env = value === undefined ? {} : { CLAUDECODE: value };
-      const detected = AiCodingAgentReporter.isAgentDetected(env);
+      const detected = new AiCodingAgentReporter(env).canReportOn();
       return `${JSON.stringify(value)} => ${detected}`;
     });
     verify(lines.join("\n"));
@@ -36,7 +36,7 @@ describe("AiCodingAgentReporter", function () {
   it("detects every listed agent variable", function () {
     const lines = AiCodingAgentReporter.ENVIRONMENT_VARIABLES.map(
       (variable) =>
-        `${variable} => ${AiCodingAgentReporter.isAgentDetected({ [variable]: "1" })}`,
+        `${variable} => ${new AiCodingAgentReporter({ [variable]: "1" }).canReportOn()}`,
     );
     verify(lines.join("\n"));
   });

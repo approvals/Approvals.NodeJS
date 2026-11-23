@@ -19,15 +19,16 @@ export default class AiCodingAgentReporter implements Reporter {
   ];
 
   public name: string = "AiCodingAgent";
+  private environment: Record<string, string | undefined>;
 
-  static isAgentDetected(env: NodeJS.ProcessEnv = process.env): boolean {
-    return AiCodingAgentReporter.ENVIRONMENT_VARIABLES.some((variable) =>
-      isSet(env[variable]),
-    );
+  constructor(environment: Record<string, string | undefined> = process.env) {
+    this.environment = environment;
   }
 
   canReportOn(): boolean {
-    return AiCodingAgentReporter.isAgentDetected();
+    return AiCodingAgentReporter.ENVIRONMENT_VARIABLES.some((variable) =>
+      isSet(this.environment[variable]),
+    );
   }
 
   report(approved: string, received: string): void {
