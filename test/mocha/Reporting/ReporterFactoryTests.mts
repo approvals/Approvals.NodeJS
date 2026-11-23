@@ -127,7 +127,6 @@ describe("ReporterFactory", function () {
           return !!reporterName;
         })
         .map(function (reporterName: string) {
-          console.log("reporter", reporterName);
           return {
             name: reporterName,
             reporter: ReporterFactory.loadReporter(reporterName),
